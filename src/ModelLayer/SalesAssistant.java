@@ -2,34 +2,51 @@ package ModelLayer;
 
 
 /**
- * Write a description of class SalesAssistant here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * Class that is in charge of making objects of the type SalesAssistant
  */
 public class SalesAssistant
 {
-    // instance variables - replace the example below with your own
-    private int x;
+    private int _salesAssistantId;
+    private String _password;
+    private Person _person;
 
     /**
      * Constructor for objects of class SalesAssistant
      */
-    public SalesAssistant()
+    public SalesAssistant(int salesAssistantId, String password, Person person)
     {
-        // initialise instance variables
-        x = 0;
+        _salesAssistantId = salesAssistantId;
+        _password = password;
+        _person = person;
     }
 
-    /**
-     * An example of a method - replace this comment with your own
-     * 
-     * @param  y   a sample parameter for a method
-     * @return     the sum of x and y 
-     */
-    public int sampleMethod(int y)
+    public int getSalesAssistantId()
     {
-        // put your code here
-        return x + y;
+        return _salesAssistantId;
+    }
+    
+    public String getPassword()
+    {
+        return _password;
+    }
+    
+    public Person getPerson()
+    {
+        return _person;
+    }
+    
+    public void setSalesAssistantId(int salesAssistantId)
+    {
+        _salesAssistantId = salesAssistantId;
+    }
+    
+    public void setPassword(String password)
+    {
+        _password = password;
+    }
+    
+    public void setPerson(Person person)
+    {
+        _person = person;
     }
 }
