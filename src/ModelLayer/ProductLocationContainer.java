@@ -1,3 +1,6 @@
+package ModelLayer;
+
+import java.util.HashMap;
 
 /** 
 * @version: 0.1
@@ -43,7 +46,7 @@ public class ProductLocationContainer
         ProductLocation value = _locationCollection.get(key);
     	if(value != null)
     	{
-    		_locationCollection.put(key, prod);
+    		_locationCollection.put(key, value);
     		return true;
     	}
     	return false;
