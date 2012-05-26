@@ -3,15 +3,24 @@
 SOURCES = \
 	ControlLayer/ProductCtrl \
 	ModelLayer/Business \
+	ModelLayer/Customer \
+	ModelLayer/CustomerContainer \
 	ModelLayer/Discount \
 	ModelLayer/Person \
+	ModelLayer/PersonContainer \
 	ModelLayer/Product \
 	ModelLayer/ProductCategory \
 	ModelLayer/ProductContainer \
+	ModelLayer/ProductGroup \
+	ModelLayer/ProductGroupContainer \
+	ModelLayer/ProductGroupItem \
 	ModelLayer/ProductLocation \
 	ModelLayer/ProductLocationContainer \
 	ModelLayer/ProductPhysicalAvail \
+	ModelLayer/Purchase \
+	ModelLayer/PurchaseContainer \
 	ModelLayer/SalesAssistant \
+	ModelLayer/SalesAssistantContainer \
 	TUILayer/MainMenuUI \
 	Program
 
