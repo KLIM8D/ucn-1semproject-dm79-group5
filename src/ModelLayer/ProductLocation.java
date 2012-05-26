@@ -1,5 +1,7 @@
 package ModelLayer;
 
+import java.util.HashMap;
+
 /** 
 * @version: 0.1
 * Filename: ProductLocation.java
@@ -15,6 +17,7 @@ public class ProductLocation
 	private String _address;
 	private String _city;
 	private int _zipCode;
+	private HashMap<Long, ProductPhysicalAvail> _productCollection;
 
 	// LocationId {get;}
 	public int getLocationId()
@@ -43,13 +46,41 @@ public class ProductLocation
 	{ _zipCode = value; }
 	public int getZipCode()
 	{ return _zipCode; }
-	
-	public ProductLocation(int locationId, String locationName, String address, String city, int zipCode)
+
+	// ProductCollection {get;}
+	public HashMap<Long, ProductPhysicalAvail> getProductCollection()
+	{ return _productCollection; }
+
+	public ProductLocation(String locationName, String address, String city, int zipCode)
 	{
-		_locationId = locationId;
+		ProductLocationContainer locContainer = ProductLocationContainer.getInstance();
+		_locationId = locContainer.getLastKey() + 1;
 		_locationName = locationName;
 		_address = address;
 		_city = city;
 		_zipCode = zipCode;
+		_productCollection = new HashMap<Long, ProductPhysicalAvail>();
+	}
+
+	public boolean addProduct(ProductPhysicalAvail prod)
+	{
+		long key = prod.getProduct().getItemNumber();
+        if(!_productCollection.containsKey(key))
+        {
+    		_productCollection.put(key, prod);
+    		return true;
+    	}
+    	return false;
+	}
+
+	public boolean changeAvail(long itemNumber, int quantity)
+	{
+		if(_productCollection.containsKey(itemNumber))
+		{
+			ProductPhysicalAvail pAvail = _productCollection.get(itemNumber);
+			pAvail.setQuantity(quantity);
+			return true;
+		}
+		return false;
 	}
 }

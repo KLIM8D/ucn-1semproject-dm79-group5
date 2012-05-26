@@ -14,9 +14,15 @@ public class ProductLocationContainer
 
 	private HashMap<Integer, ProductLocation> _locationCollection;
     private static ProductLocationContainer _instance;
+    private int _lastKey;
+
+    // LastKey {get;}
+    public int getLastKey()
+    { return _lastKey; }
 
     public ProductLocationContainer()
 	{
+        _lastKey = 0;
 		_locationCollection = new HashMap<Integer, ProductLocation>();
 	}
 
@@ -35,6 +41,7 @@ public class ProductLocationContainer
         if(!_locationCollection.containsKey(key))
         {
     		_locationCollection.put(key, loc);
+            _lastKey++;
     		return true;
     	}
     	return false;
@@ -68,5 +75,13 @@ public class ProductLocationContainer
     	return _locationCollection.get(locId);
     }
 
-    //mangler changeAvail. Skal overvejes om skal ændres.
+    public boolean changeAvail(int locId, int avail, long itemNumber)
+    {
+        if(_locationCollection.containsKey(locId))
+        {
+            ProductLocation prodLoc = _locationCollection.get(locId);
+            return prodLoc.changeAvail(itemNumber, avail);
+        }
+        return false;
+    }
 }
