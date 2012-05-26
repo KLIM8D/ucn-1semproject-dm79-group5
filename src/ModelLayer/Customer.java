@@ -2,27 +2,34 @@ package ModelLayer;
 import java.util.ArrayList;
 
 /**
- * Class that creates ojbects of the type Customer
+ * Class that creates objects of the type Customer
  */
 public class Customer
 {
-    private int _customerId;
+    private long _customerId;
     private boolean _isBusiness;
     private Person _person;
+    private Business _business;
     private ArrayList<Discount> _discounts;
 
-    /**
-     * Constructer of the class
-     */
     public Customer(boolean isBusiness, Person person)
     {
-        _isBusiness = isBusiness;
+        _isBusiness = false;
         _person = person;
         _discounts = new ArrayList<Discount>();
-        _customerId = (int)person.getPhoneNumber();
+        _customerId = person.getPhoneNumber();
+    }
+
+    public Customer(Person person, String contactPerson, long cvrNo)
+    {
+        _isBusiness = true;
+        _business = new Business(contactPerson, cvrNo);
+        _person = person;
+        _discounts = new ArrayList<Discount>();
+        _customerId = person.getPhoneNumber();
     }
     
-    public int getCustomerId()
+    public long getCustomerId()
     {
         return _customerId;
     }
@@ -42,7 +49,7 @@ public class Customer
         return _discounts;
     }
     
-    public void setCustomerId(int customerId)
+    public void setCustomerId(long customerId)
     {
         _customerId = customerId;
     }
@@ -57,5 +64,16 @@ public class Customer
         _discounts.add(disc);
     }
     
-    
+    public void removeDiscount(int discType)
+    {
+        int index = 0;
+        while(index < _discounts.size())
+        {
+            Discount disc = _discounts.get(index);
+            if(disc.getDiscountType() == discType)
+                _discounts.remove(index);
+
+            index++;
+        }
+    }
 }

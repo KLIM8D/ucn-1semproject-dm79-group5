@@ -1,4 +1,5 @@
 package ModelLayer;
+
 import java.util.HashMap;
 import java.util.ArrayList;
 
@@ -7,15 +8,12 @@ import java.util.ArrayList;
  */
 public class CustomerContainer
 {
-    private HashMap<Integer, Customer> _customerCollection;
+    private HashMap<Long, Customer> _customerCollection;
     private static CustomerContainer _instance;
 
-    /**
-     * Constructor for objects of class CustomerContainer
-     */
     public CustomerContainer()
     {
-        _customerCollection = new HashMap<Integer, Customer>();
+        _customerCollection = new HashMap<Long, Customer>();
     }
     
     public static CustomerContainer getInstance()
@@ -29,13 +27,13 @@ public class CustomerContainer
     
     public void addCustomer(Customer cus)
     {
-        int key = cus.getCustomerId();
+        long key = cus.getCustomerId();
         _customerCollection.put(key, cus);
     }    
     
     public boolean updateCustomer(Customer cus)
     {
-        int key = cus.getCustomerId();
+        long key = cus.getCustomerId();
         Customer customer = _customerCollection.get(key);
         if(customer != null)
         {
@@ -45,7 +43,7 @@ public class CustomerContainer
         return false;        
     }
     
-    public boolean removeCustomer(int customerId)
+    public boolean removeCustomer(long customerId)
     {
         Customer cus = _customerCollection.get(customerId);
         if(cus != null)
@@ -56,12 +54,12 @@ public class CustomerContainer
         return false;        
     }
     
-    public Customer getCustomer(int customerId)
+    public Customer getCustomer(long customerId)
     {
         return _customerCollection.get(customerId);
     }
     
-    public HashMap getAllCustomers()
+    public HashMap<Long, Customer>  getAllCustomers()
     {
         return _customerCollection;
     }
@@ -72,10 +70,7 @@ public class CustomerContainer
         for(Customer cus : _customerCollection.values())
         {
             if(cus.getIsBusiness() == isBusiness)
-            {
-                int id = cus.getCustomerId();
-                c.add(_customerCollection.get(id));
-            }
+                c.add(cus);
         }
         return c;
     }
