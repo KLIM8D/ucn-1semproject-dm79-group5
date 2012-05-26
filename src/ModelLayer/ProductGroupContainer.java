@@ -3,11 +3,9 @@ package ModelLayer;
 import java.util.HashMap;
 
 /** 
-* @author:  Morten Klim Sørensen - mail@kl1m.dk
-* Created: 
 * @version: 0.1
 * Filename: ProductGroupContainer.java
-* Description: 
+* Description: Class containing all the ProductGroups in the system.
 * @changes	
 */
 
@@ -22,7 +20,7 @@ public class ProductGroupContainer
     public int getLastKey()
     { return _lastKey; }
 
-    public ProductGroupContainer()
+    private ProductGroupContainer()
 	{
         _lastKey = 0;
 		_prodGroupCollection = new HashMap<Integer, ProductGroup>();
@@ -37,6 +35,13 @@ public class ProductGroupContainer
         return _instance;
     }
 
+    /**
+    * Add a product group to the collection.
+    *
+    * @param prodGroup        the product group to be added
+    * @return boolean         returns true if added / false if it's not
+    *
+    */
     public boolean addProductGroup(ProductGroup prodGroup)
     {
     	int key = prodGroup.getProductGroupId();
@@ -49,6 +54,13 @@ public class ProductGroupContainer
     	return false;
     }
 
+    /**
+    * Update a product group.
+    *
+    * @param prodGroup        object which replaces the current
+    * @return boolean         returns true if updated / false if it's not
+    *
+    */
     public boolean updateProductGroup(ProductGroup prodGroup)
     {
     	int key = prodGroup.getProductGroupId();
@@ -60,6 +72,13 @@ public class ProductGroupContainer
     	return false;
     }
 
+    /**
+    * Remove a product group from the collection
+    *
+    * @param prodGroupId        the id of the productGroup which should be removed
+    * @return boolean           returns true if removed / false if it's not
+    *
+    */
     public boolean removeProductGroup(int prodGroupId)
     {
     	if(_prodGroupCollection.containsKey(prodGroupId))

@@ -1,18 +1,20 @@
 package ModelLayer;
+
 import java.util.HashMap;
 
-/**
- * Class that is responsable for containing objects of the type SalesAssistants
- */
+/** 
+* @version: 0.1
+* Filename: SalesAssistantContainer.java
+* Description: Class that is responsable for containing objects of the type SalesAssistants
+* @changes  
+*/
+
 public class SalesAssistantContainer
 {
     private HashMap<Integer, SalesAssistant> _saCollection;
     private static SalesAssistantContainer _instance;
     
-    /**
-     * Constructor for objects of class SalesAssistantContainer.
-     */
-    public SalesAssistantContainer()
+    private SalesAssistantContainer()
     {
         _saCollection = new HashMap<Integer, SalesAssistant>();
     }

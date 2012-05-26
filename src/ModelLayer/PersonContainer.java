@@ -1,18 +1,20 @@
 package ModelLayer;
+
 import java.util.HashMap;
 
-/**
- * Class that is responsable for containing objects of the type person
- */
+/** 
+* @version: 0.1
+* Filename: Product.java
+* Description: Class that is responsable for containing objects of the type person
+* @changes  
+*/
+
 public class PersonContainer
 {
     private HashMap<Long, Person> _personCollection;
     private static PersonContainer _instance;
     
-    /**
-     * Constructor for objects of class PersonContainer.
-     */
-    public PersonContainer()
+    private PersonContainer()
     {
         _personCollection = new HashMap<Long, Person>();
     }

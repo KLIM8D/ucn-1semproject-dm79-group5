@@ -1,18 +1,18 @@
 package ModelLayer;
 
+/** 
+* @version: 0.1
+* Filename: SalesAssistant.java
+* Description: Class that is in charge of making objects of the type SalesAssistant
+* @changes  
+*/
 
-/**
- * Class that is in charge of making objects of the type SalesAssistant
- */
 public class SalesAssistant
 {
     private int _salesAssistantId;
     private String _password;
     private Person _person;
 
-    /**
-     * Constructor for objects of class SalesAssistant
-     */
     public SalesAssistant(int salesAssistantId, String password, Person person)
     {
         _salesAssistantId = salesAssistantId;

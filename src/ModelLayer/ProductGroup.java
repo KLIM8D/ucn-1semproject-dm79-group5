@@ -2,10 +2,11 @@ package ModelLayer;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+
 /** 
 * @version: 0.1
 * Filename: ProductGroup.java
-* Description: 
+* Description: Class that creates objects of the type ProductGroup
 * @changes	
 */
 
@@ -46,6 +47,12 @@ public class ProductGroup
 		_items = new ArrayList<ProductGroupItem>();
 	}
 
+	/**
+	* Add an item to the ProductGroup.
+	*
+	* @param item		the item to be added. Containing the Product and quantity in this ProductGroup
+	*
+	*/
 	public void addItem(ProductGroupItem item)
 	{
 		_items.add(item);

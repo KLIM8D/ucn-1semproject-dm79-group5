@@ -1,9 +1,14 @@
 package ModelLayer;
+
 import java.util.ArrayList;
 
-/**
- * Class that creates objects of the type Customer
- */
+/** 
+* @version: 0.1
+* Filename: Product.java
+* Description: Class that creates objects of the type Customer
+* @changes  
+*/
+
 public class Customer
 {
     private long _customerId;

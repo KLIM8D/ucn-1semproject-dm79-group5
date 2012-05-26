@@ -1,10 +1,11 @@
 package ModelLayer;
 
 import java.math.BigDecimal;
+
 /** 
 * @version: 0.1
 * Filename: Product.java
-* Description: 
+* Description: Class that creates objects of the type Product
 * @changes	
 */
 

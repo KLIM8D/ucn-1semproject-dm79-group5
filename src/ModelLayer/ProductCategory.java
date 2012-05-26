@@ -3,7 +3,7 @@ package ModelLayer;
 /** 
 * @version: 0.1
 * Filename: ProductCategory.java
-* Description: 
+* Description: Class that creates objects of the type ProductCategory
 * @changes	
 */
 

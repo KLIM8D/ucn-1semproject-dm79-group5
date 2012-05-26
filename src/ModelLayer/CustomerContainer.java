@@ -3,15 +3,19 @@ package ModelLayer;
 import java.util.HashMap;
 import java.util.ArrayList;
 
-/**
- * Class responsable for containing object of the type customer.
- */
+/** 
+* @version: 0.1
+* Filename: Product.java
+* Description: Class responsable for containing object of the type customer.
+* @changes  
+*/
+
 public class CustomerContainer
 {
     private HashMap<Long, Customer> _customerCollection;
     private static CustomerContainer _instance;
 
-    public CustomerContainer()
+    private CustomerContainer()
     {
         _customerCollection = new HashMap<Long, Customer>();
     }

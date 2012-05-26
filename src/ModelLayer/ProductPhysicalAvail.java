@@ -3,7 +3,7 @@ package ModelLayer;
 /** 
 * @version: 0.1
 * Filename: ProductPhysicalAvail.java
-* Description: 
+* Description: Class that creates objects of the type ProductPhysicalAvail
 * @changes	
 */
 

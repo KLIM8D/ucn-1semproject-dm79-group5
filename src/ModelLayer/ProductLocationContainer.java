@@ -3,9 +3,9 @@ package ModelLayer;
 import java.util.HashMap;
 
 /** 
-* @version: 0.1
+* @version: 0.2
 * Filename: ProductLocationContainer.java
-* Description: 
+* Description: Class which contains all the ProductLocation in the system
 * @changes	
 */
 
@@ -20,7 +20,7 @@ public class ProductLocationContainer
     public int getLastKey()
     { return _lastKey; }
 
-    public ProductLocationContainer()
+    private ProductLocationContainer()
 	{
         _lastKey = 0;
 		_locationCollection = new HashMap<Integer, ProductLocation>();
@@ -35,6 +35,13 @@ public class ProductLocationContainer
         return _instance;
     }
 
+    /**
+    * Add a location to the collection
+    *
+    * @param loc         the location to be added
+    * @return boolean    returns true if added / false if it's not
+    *
+    */
     public boolean addLocation(ProductLocation loc)
     {
     	int key = loc.getLocationId();
@@ -47,6 +54,13 @@ public class ProductLocationContainer
     	return false;
     }
 
+    /**
+    * Update a location
+    *
+    * @param loc        object which should replace the current, if contained in the collection.
+    * @return boolean   returns true if updated / false if it's not
+    *
+    */
     public boolean updateLocation(ProductLocation loc)
     {
     	int key = loc.getLocationId();
@@ -59,6 +73,13 @@ public class ProductLocationContainer
     	return false;
     }
 
+    /**
+    * Remove a location from the collection
+    *
+    * @param locId        the id of the collection which should be removed
+    * @return boolean     returns true if removed / false if it's not
+    *
+    */
     public boolean removeLocation(int locId)
     {
     	ProductLocation value = _locationCollection.get(locId);
@@ -75,6 +96,14 @@ public class ProductLocationContainer
     	return _locationCollection.get(locId);
     }
 
+    /**
+    * Change the physical availble of a Product on a specific ProductLocation
+    *
+    * @param locId        the id product location
+    * @param avail        the remaining quantity of this product on the location
+    * @param itemNumber   the itemNumber of the product
+    *
+    */
     public boolean changeAvail(int locId, int avail, long itemNumber)
     {
         if(_locationCollection.containsKey(locId))

@@ -3,9 +3,9 @@ package ModelLayer;
 import java.util.HashMap;
 
 /** 
-* @version: 0.1
+* @version: 0.2
 * Filename: ProductLocation.java
-* Description: 
+* Description: Class that creates objects of the type ProductLocation
 * @changes	
 */
 
@@ -62,6 +62,12 @@ public class ProductLocation
 		_productCollection = new HashMap<Long, ProductPhysicalAvail>();
 	}
 
+	/**
+	* Add a physical product to the location
+	*
+	* @param prod		the product to be added
+	*
+	*/
 	public boolean addProduct(ProductPhysicalAvail prod)
 	{
 		long key = prod.getProduct().getItemNumber();
@@ -72,6 +78,14 @@ public class ProductLocation
     	}
     	return false;
 	}
+
+	/**
+	* Change the physical availble of the specified product on this location
+	*
+	* @param itemNumber		the itemNumber of the product
+	* @param quantity 		the remaining quantity of this product
+	*
+	*/
 
 	public boolean changeAvail(long itemNumber, int quantity)
 	{

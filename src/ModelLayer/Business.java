@@ -1,17 +1,17 @@
 package ModelLayer;
 
+/** 
+* @version: 0.1
+* Filename: Product.java
+* Description: Class that creates objects of the type business
+* @changes  
+*/
 
-/**
- * Class that creates objects of the type business
- */
 public class Business
 {
     private String _contactPerson;
     private long _cvrNo;
 
-    /**
-     * Constructor for objects of class Business
-     */
     public Business(String contactPerson, long cvrNo)
     {
         _contactPerson = contactPerson;

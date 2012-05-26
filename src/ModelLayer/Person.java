@@ -1,9 +1,12 @@
 package ModelLayer;
 
+/** 
+* @version: 0.1
+* Filename: Product.java
+* Description: Class in charge of creating objects of the type person
+* @changes  
+*/
 
-/**
- * Class in charge of creating objects of the type person
- */
 public class Person
 {
     private long _personId;
@@ -13,9 +16,6 @@ public class Person
     private int _zipCode;
     private long _phoneNumber;
 
-    /**
-     * Constructor for objects of class Person
-     */
     public Person(long personId, String name, String address, String city, int zipCode, long phoneNumber)
     {
         _personId = personId;
