@@ -13,10 +13,12 @@ public class ProductLocationCtrl
 {
 
 	
-	private ProductLocationContainer locContainer = ProductLocationContainer.getInstace();
+	private ProductLocationContainer locContainer;
 
 	public ProductLocationCtrl()
-	{}
+	{
+		locContainer = ProductLocationContainer.getInstance();
+	}
 
 	public boolean createProductLocation(String locationName, String address, String city, int zipCode)
 	{
