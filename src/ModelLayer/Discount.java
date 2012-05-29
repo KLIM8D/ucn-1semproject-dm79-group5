@@ -12,7 +12,7 @@ public class Discount
     private int _discountType;
     private double _discountValue;
 
-    public Discount(int discountType, double discountValue)
+    public Discount(int discountType, double discountValue) // FIXME: Should probably use BigDecimal here.
     {
         _discountType = discountType;
         _discountValue = discountValue;
