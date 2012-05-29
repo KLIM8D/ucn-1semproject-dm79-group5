@@ -5,7 +5,7 @@ import ModelLayer.*;
 /** 
 * @version: 0.1
 * Filename: ProductLocationCtrl.java
-* Description: 
+* Description: Controller class handling all operations with ProductLocations
 * @changes	
 */
 
@@ -14,10 +14,12 @@ public class ProductLocationCtrl
 
 	
 	private ProductLocationContainer _locContainer;
+    private ProductContainer _prodContainer;
 
 	public ProductLocationCtrl()
 	{
 		_locContainer = ProductLocationContainer.getInstance();
+        _prodContainer = ProductContainer.getInstance();
 	}
 
 	public boolean createProductLocation(String locationName, String address, String city, int zipCode)
@@ -49,5 +51,13 @@ public class ProductLocationCtrl
     public boolean changeAvail(int locId, int avail, long itemNumber)
     {
         return _locContainer.changeAvail(locId, avail, itemNumber);
+    }
+
+    public boolean addProduct(int locId, long itemNumber, int quantity)
+    {
+        ProductLocation loc = getLocation(locId);
+        Product prod = _prodContainer.getProduct(itemNumber);
+        ProductPhysicalAvail prodPhysicalAvail = new ProductPhysicalAvail(quantity, loc, prod);
+        return loc.addProduct(prodPhysicalAvail);
     }
 }

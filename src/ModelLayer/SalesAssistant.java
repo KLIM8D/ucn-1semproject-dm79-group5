@@ -11,12 +11,14 @@ public class SalesAssistant
 {
     private int _salesAssistantId;
     private String _password;
+    private String _salt;
     private Person _person;
 
-    public SalesAssistant(int salesAssistantId, String password, Person person)
+    public SalesAssistant(int salesAssistantId, String password, String salt, Person person)
     {
         _salesAssistantId = salesAssistantId;
         _password = password;
+        _salt = salt;
         _person = person;
     }
 
@@ -28,6 +30,16 @@ public class SalesAssistant
     public String getPassword()
     {
         return _password;
+    }
+
+    public void setSalt(String salt)
+    { 
+        _salt = salt; 
+    }
+
+    public String getSalt()
+    { 
+        return _salt; 
     }
     
     public Person getPerson()

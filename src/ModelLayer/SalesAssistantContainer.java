@@ -62,7 +62,7 @@ public class SalesAssistantContainer
         return _saCollection.get(saId);
     }
     
-    public HashMap getAllSalesAs()
+    public HashMap<Integer, SalesAssistant> getAllSalesAs()
     {
         return _saCollection;
     }

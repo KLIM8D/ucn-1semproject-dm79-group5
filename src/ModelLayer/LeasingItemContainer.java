@@ -12,9 +12,6 @@ public class LeasingItemContainer
     private HashMap<Long, LeasingItem> _leasingItemCollection;
     private static LeasingItemContainer _instance;
 
-    /**
-     * Constructor for objects of class LeasingItemContainer
-     */
     public LeasingItemContainer()
     {
         _leasingItemCollection = new HashMap<Long, LeasingItem>();

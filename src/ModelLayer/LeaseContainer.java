@@ -17,9 +17,6 @@ public class LeaseContainer
     public int getLastKey()
     { return _lastKey; }
     
-    /**
-     * Constructor for objects of class LeaseContainer
-     */
     public LeaseContainer()
     {
         _lastKey = 0;

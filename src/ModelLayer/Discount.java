@@ -1,5 +1,7 @@
 package ModelLayer;
 
+import java.math.BigDecimal;
+
 /** 
 * @version: 0.1
 * Filename: Product.java
@@ -10,9 +12,9 @@ package ModelLayer;
 public class Discount
 {
     private int _discountType;
-    private double _discountValue;
+    private BigDecimal _discountValue;
 
-    public Discount(int discountType, double discountValue) // FIXME: Should probably use BigDecimal here.
+    public Discount(int discountType, BigDecimal discountValue)
     {
         _discountType = discountType;
         _discountValue = discountValue;
@@ -23,7 +25,7 @@ public class Discount
         return _discountType;
     }
     
-    public double getDiscountValue()
+    public BigDecimal getDiscountValue()
     {
         return _discountValue;
     }
@@ -33,7 +35,7 @@ public class Discount
         _discountType = discountType;
     }
     
-    public void setDiscountValue(double discountValue)
+    public void setDiscountValue(BigDecimal discountValue)
     {
         _discountValue = discountValue;
     }

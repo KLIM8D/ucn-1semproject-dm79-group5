@@ -13,9 +13,6 @@ public class SerialNumber
     private boolean _isAvaible;
     private long _itemNumber;
 
-    /**
-     * Constructor for objects of class SerialNumber
-     */
     public SerialNumber(long serialNumber, boolean isAvaible, long itemNumber)
     {
         _serialNumber = serialNumber;

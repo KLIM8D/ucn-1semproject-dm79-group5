@@ -5,7 +5,7 @@ import java.util.HashMap;
 /** 
 * @version: 0.1
 * Filename: ProductCategoryContainer.java
-* Description: 
+* Description: Class which contains all the ProductCategory's in the system.
 * @changes	
 */
 

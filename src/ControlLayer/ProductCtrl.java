@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 /** 
 * @version: 0.1
 * Filename: ProductCtrl.java
-* Description: 
+* Description: Controller class handling all operations with Products
 * @changes    
 */
 

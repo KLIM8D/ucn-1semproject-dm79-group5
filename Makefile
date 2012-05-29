@@ -3,6 +3,8 @@
 SOURCES = \
 	ControlLayer/ProductCtrl \
 	ControlLayer/ProductLocationCtrl \
+	ControlLayer/PurchaseCtrl \
+	ControlLayer/SalesAssistantCtrl \
 	ModelLayer/Business \
 	ModelLayer/Customer \
 	ModelLayer/CustomerContainer \
