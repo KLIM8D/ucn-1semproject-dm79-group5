@@ -14,7 +14,7 @@ public class Order
     public Order(long id, SalesAssistant salesAsst, Customer customer, String salesNote, Discount discount)
     {
         _id = id;
-        _salesAssistant = salesAssistant;
+        _salesAsst = salesAsst;
         _customer = customer;
         _salesNote = salesNote;
         _discount = discount;

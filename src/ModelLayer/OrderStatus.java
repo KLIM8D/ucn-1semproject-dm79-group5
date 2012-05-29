@@ -35,6 +35,6 @@ public class OrderStatus
 
     public void setStatusValue(String statusValue)
     {
-        _statsuValue = statusValue;
+        _statusValue = statusValue;
     }
 }
