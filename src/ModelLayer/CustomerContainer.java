@@ -68,7 +68,7 @@ public class CustomerContainer
         return _customerCollection;
     }
     
-    public ArrayList getAllCustomersByBusiness(boolean isBusiness)
+    public ArrayList<Customer> getAllCustomersByBusiness(boolean isBusiness)
     {
         ArrayList<Customer> c = new ArrayList<Customer>();
         for(Customer cus : _customerCollection.values())

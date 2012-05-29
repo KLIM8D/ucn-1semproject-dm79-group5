@@ -17,7 +17,7 @@ public class Customer
     private Business _business;
     private ArrayList<Discount> _discounts;
 
-    public Customer(boolean isBusiness, Person person)
+    public Customer(Person person)
     {
         _isBusiness = false;
         _person = person;
