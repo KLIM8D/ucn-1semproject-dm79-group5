@@ -13,7 +13,7 @@ public class Lease
     private SerialNumber _serialNumber;
     private Date _rentStartDate;
     private Date _rentEndDate;
-    private int leaseId;
+    private int _leaseId;
     
     /**
      * Constructor for objects of class Lease
@@ -24,6 +24,7 @@ public class Lease
         _serialNumber = serialNumber;
         _rentStartDate = rentStartDate;
         _rentEndDate = rentEndDate;
+        _leaseId = LeaseContainer.getInstance().getLastKey() + 1;
     }
     
     public Customer getCustomer()
@@ -63,6 +64,6 @@ public class Lease
     
     public int getLeaseId()
     {
-        return leaseId;
+        return _leaseId;
     }
 }
