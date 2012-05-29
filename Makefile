@@ -6,6 +6,10 @@ SOURCES = \
 	ModelLayer/Customer \
 	ModelLayer/CustomerContainer \
 	ModelLayer/Discount \
+	ModelLayer/Order \
+	ModelLayer/OrderContainer \
+	ModelLayer/OrderLine \
+	ModelLayer/OrderStatus \
 	ModelLayer/Person \
 	ModelLayer/PersonContainer \
 	ModelLayer/Product \
