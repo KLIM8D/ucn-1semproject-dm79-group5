@@ -34,13 +34,12 @@ public class PersonContainer
         _personCollection.put(key, per);
     }
     
-    public boolean updatePerson(Person per)
+    public boolean updatePerson(long personId, Person per)
     {
-        long key = per.getPersonId();
-        Person person = _personCollection.get(key);
+        Person person = _personCollection.get(personId);
         if(person != null)
         {
-            _personCollection.put(key,per);
+            _personCollection.put(personId,per);
             return true;
         }
         return false;

@@ -35,13 +35,12 @@ public class CustomerContainer
         _customerCollection.put(key, cus);
     }    
     
-    public boolean updateCustomer(Customer cus)
+    public boolean updateCustomer(long customerId, Customer cus)
     {
-        long key = cus.getCustomerId();
-        Customer customer = _customerCollection.get(key);
+        Customer customer = _customerCollection.get(customerId);
         if(customer != null)
         {
-            _customerCollection.put(key,cus);
+            _customerCollection.put(customerId,cus);
             return true;
         }
         return false;        

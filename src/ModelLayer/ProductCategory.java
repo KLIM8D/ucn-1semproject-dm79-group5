@@ -13,9 +13,7 @@ public class ProductCategory
 	private int _categoryId;
 	private String _categoryName;
 
-	// CategoryId {set; get;}
-	public void setCategoryId(int value)
-	{ _categoryId = value; }
+	// CategoryId {get;}
 	public int getCategoryId()
 	{ return _categoryId; }
 
@@ -25,9 +23,10 @@ public class ProductCategory
 	public String getCategoryName()
 	{ return _categoryName; }
 	
-	public ProductCategory(int categoryId, String categoryName)
+	public ProductCategory(String categoryName)
 	{
-		_categoryId = categoryId;
+		ProductCategoryContainer prodCatContainer = ProductCategoryContainer.getInstance();
+		_categoryId = prodCatContainer.getLastKey() + 1;
 		_categoryName = categoryName;
 	}
 }

@@ -58,16 +58,16 @@ public class ProductLocationContainer
     * Update a location
     *
     * @param loc        object which should replace the current, if contained in the collection.
+    * @param locId      the id of the product location
     * @return boolean   returns true if updated / false if it's not
     *
     */
-    public boolean updateLocation(ProductLocation loc)
+    public boolean updateLocation(int locId, ProductLocation loc)
     {
-    	int key = loc.getLocationId();
-        ProductLocation value = _locationCollection.get(key);
+        ProductLocation value = _locationCollection.get(locId);
     	if(value != null)
     	{
-    		_locationCollection.put(key, value);
+    		_locationCollection.put(locId, value);
     		return true;
     	}
     	return false;
