@@ -28,14 +28,13 @@ SOURCES = \
 	ModelLayer/SalesAssistant \
 	ModelLayer/SalesAssistantContainer \
 	ModelLayer/SerialNumber \
-	TUILayer/MainMenuUI \
 	TUILayer/CustomerMenuUI \
-	TUILayer/GlobalUI \
-	TUILayer/MainMenuUI \
-	TUILayer/SalesMenuUI \
 	TUILayer/EconomyMenuUI \
+	TUILayer/GlobalUI \
 	TUILayer/LoginUI \
+	TUILayer/MainMenuUI \
 	TUILayer/RentalMenuUI \
+	TUILayer/SalesMenuUI \
 	TUILayer/StockMenuUI \
 	Program
 

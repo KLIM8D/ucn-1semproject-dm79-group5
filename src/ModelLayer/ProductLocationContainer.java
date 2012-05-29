@@ -62,8 +62,9 @@ public class ProductLocationContainer
     * @return boolean   returns true if updated / false if it's not
     *
     */
-    public boolean updateLocation(int locId, ProductLocation loc)
+    public boolean updateLocation(ProductLocation loc)
     {
+        int locId = loc.getLocationId();
         ProductLocation value = _locationCollection.get(locId);
     	if(value != null)
     	{

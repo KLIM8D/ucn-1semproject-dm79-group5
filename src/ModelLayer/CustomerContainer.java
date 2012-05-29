@@ -35,8 +35,9 @@ public class CustomerContainer
         _customerCollection.put(key, cus);
     }    
     
-    public boolean updateCustomer(long customerId, Customer cus)
+    public boolean updateCustomer(Customer cus)
     {
+        long customerId = cus.getCustomerId();
         Customer customer = _customerCollection.get(customerId);
         if(customer != null)
         {

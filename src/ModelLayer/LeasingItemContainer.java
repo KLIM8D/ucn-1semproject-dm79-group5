@@ -40,7 +40,7 @@ public class LeasingItemContainer
         return false;
     }
     
-    public boolean updateLeasingItem(long itemNumber, LeasingItem item)
+    public boolean updateLeasingItem(LeasingItem item)
     {
         long key = item.getItemNumber();
         LeasingItem value = _leasingItemCollection.get(key);

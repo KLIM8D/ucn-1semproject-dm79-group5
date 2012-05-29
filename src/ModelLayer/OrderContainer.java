@@ -24,7 +24,7 @@ public class OrderContainer
         _orders.put(order.getId(), order);
     }
 
-    public boolean updateOrder(long orderId, Order order)
+    public boolean updateOrder(Order order)
     {
         // TODO: Pointless? We do in-memory updates, so this serves no purpose; there's nowhere to persist to.
         return _orders.get(order.getId()) != null;

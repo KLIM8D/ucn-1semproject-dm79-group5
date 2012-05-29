@@ -62,8 +62,9 @@ public class ProductGroupContainer
     * @return boolean         returns true if updated / false if it's not
     *
     */
-    public boolean updateProductGroup(int prodGroupId, ProductGroup prodGroup)
+    public boolean updateProductGroup(ProductGroup prodGroup)
     {
+        int prodGroupId = prodGroup.getProductGroupId();
     	if(_prodGroupCollection.containsKey(prodGroupId))
     	{
     		_prodGroupCollection.put(prodGroupId, prodGroup);

@@ -31,19 +31,14 @@ public class GlobalUI
 
 	public static String errorHandling(int code)
     {
-        if (code == 01)
+        switch (code) 
         {
-            return "FEJL: Felterne Bruger ID og Adgangskode skal være udfyldt!";
-        }
-
-        if (code == 02)
-        {
-            return "FEJL: Ukendt menu valg!";
-        }
-
-        if (code == 03)
-        {
-            return "FEJL: Funktionen ikke integreret!";
+            case 01:
+                return "FEJL: Felterne Bruger ID og Adgangskode skal være udfyldt!";
+            case 02:
+                return "FEJL: Ukendt menu valg!";
+            case 03:
+                return "FEJL: Funktionen ikke integreret!";
         }
 
         return "FEJL: En ukendt system fejl er hændt!";
@@ -51,14 +46,7 @@ public class GlobalUI
 
     public static boolean checkIfEmpty(String data)
     {
-        boolean empty = false;
-
-        if (data.length() == 0)
-        {
-            empty = true;
-        }
-
-        return empty;
+        return data.length() == 0;
     }
 
     public static void tuiHeader()

@@ -34,8 +34,9 @@ public class PersonContainer
         _personCollection.put(key, per);
     }
     
-    public boolean updatePerson(long personId, Person per)
+    public boolean updatePerson(Person per)
     {
+        long personId = per.getPersonId();
         Person person = _personCollection.get(personId);
         if(person != null)
         {

@@ -77,8 +77,9 @@ public class ProductContainer
     * @return boolean    returns true if updated / false if it's not
     *
     */
-    public boolean updateProduct(long itemNumber, Product prod)
+    public boolean updateProduct(Product prod)
     {
+        long itemNumber = prod.getItemNumber();
     	Product value = _productCollection.get(itemNumber);
     	if(value != null)
     	{

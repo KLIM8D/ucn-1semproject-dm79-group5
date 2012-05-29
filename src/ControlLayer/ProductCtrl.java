@@ -12,97 +12,108 @@ import java.math.BigDecimal;
 
 public class ProductCtrl
 {
-    private ProductCategoryContainer prodCatContainer = ProductCategoryContainer.getInstance();
-    private ProductContainer prodContainer = ProductContainer.getInstance();
-    private ProductGroupContainer prodGroupContainer = ProductGroupContainer.getInstance();
+    private ProductCategoryContainer _prodCatContainer;
+    private ProductContainer _prodContainer;
+    private ProductGroupContainer _prodGroupContainer;
 
     public ProductCtrl()
-    {}
+    {
+        _prodCatContainer = ProductCategoryContainer.getInstance();
+        _prodContainer = ProductContainer.getInstance();
+        _prodGroupContainer = ProductGroupContainer.getInstance();
+    }
 
     public boolean createProduct(long itemNumber, String itemName, int minInStock, int maxInStock, String inPrice, int categoryId)
     {
         ProductCategory category = getCategory(categoryId);
         BigDecimal price = new BigDecimal(inPrice);
         Product prod = new Product(itemNumber, itemName, minInStock, maxInStock, price, category);
-        return prodContainer.addProduct(prod);
+        return _prodContainer.addProduct(prod);
     }
 
     public Product getProduct(long itemNumber)
     {
-        return prodContainer.getProduct(itemNumber);
+        return _prodContainer.getProduct(itemNumber);
     }
 
     public Iterable<Product> getAllProducts()
     {
-        return prodContainer.getAllProducts().values();
+        return _prodContainer.getAllProducts().values();
     }
 
     public boolean updateProduct(long itemNumber, String itemName, int minInStock, int maxInStock, String inPrice, int categoryId)
     {
         ProductCategory category = getCategory(categoryId);
-        BigDecimal price = new BigDecimal(inPrice);        
-        Product prod = new Product(itemNumber, itemName,  minInStock, maxInStock, price, category);
-        return prodContainer.updateProduct(itemNumber, prod);
+        BigDecimal price = new BigDecimal(inPrice);
+        Product prod = getProduct(itemNumber);
+        prod.setItemName(itemName);
+        prod.setMinInStock(minInStock);
+        prod.setMaxInStock(maxInStock);
+        prod.setPrice(price);
+        prod.setProductCategory(category);             
+        return _prodContainer.updateProduct(prod);
     }
 
     public boolean removeProduct(long itemNumber)
     {
-        return prodContainer.removeProduct(itemNumber);
+        return _prodContainer.removeProduct(itemNumber);
     }
 
     public Product findProduct(String itemName)
     {
-        return prodContainer.findProduct(itemName);
+        return _prodContainer.findProduct(itemName);
     }
 
     public boolean createProductCategory(String categoryName)
     {
         ProductCategory prodCat = new ProductCategory(categoryName);
-        return prodCatContainer.addCategory(prodCat);
+        return _prodCatContainer.addCategory(prodCat);
     }
 
     public ProductCategory getCategory(int categoryId)
     {
-        return prodCatContainer.getCategory(categoryId);
+        return _prodCatContainer.getCategory(categoryId);
     }
 
     public Iterable<ProductCategory> getAllCategories()
     {
-        return prodCatContainer.getAllCategories().values();
+        return _prodCatContainer.getAllCategories().values();
     }
 
     public boolean removeCategory(int categoryId)
     {
-        return prodCatContainer.removeCategory(categoryId);
+        return _prodCatContainer.removeCategory(categoryId);
     }
 
     public boolean createProductGroup(String productGroupName, String inPrice)
     {
         BigDecimal price = new BigDecimal(inPrice);
         ProductGroup group = new ProductGroup(productGroupName, price);
-        return prodGroupContainer.addProductGroup(group);
+        return _prodGroupContainer.addProductGroup(group);
     }
 
     public ProductGroup getProductGroup(int prodGroupId)
     {
-        return prodGroupContainer.getProductGroup(prodGroupId);
+        return _prodGroupContainer.getProductGroup(prodGroupId);
     }
 
     public boolean updateProductGroup(int prodGroupId, String productGroupName, String inPrice)
     {
         BigDecimal price = new BigDecimal(inPrice);
-        ProductGroup group = new ProductGroup(productGroupName, price);
-        return prodGroupContainer.updateProductGroup(prodGroupId, group);
+        ProductGroup group = getProductGroup(prodGroupId);
+        group.setProductGroupName(productGroupName);
+        group.setPrice(price);
+        return _prodGroupContainer.updateProductGroup(group);
     }
 
     public boolean removeProductGroup(int prodGroupId)
     {
-        return prodGroupContainer.removeProductGroup(prodGroupId);
+        return _prodGroupContainer.removeProductGroup(prodGroupId);
     }
 
     public Iterable<ProductGroup> getAllProductGroups()
     {
-        return prodGroupContainer.getAllProductGroups().values();
+        return _prodGroupContainer.getAllProductGroups().values();
     }
 
     public void createProductGroupItem(int prodGroupId, long itemNumber, int quantity)

@@ -13,27 +13,27 @@ public class ProductLocationCtrl
 {
 
 	
-	private ProductLocationContainer locContainer;
+	private ProductLocationContainer _locContainer;
 
 	public ProductLocationCtrl()
 	{
-		locContainer = ProductLocationContainer.getInstance();
+		_locContainer = ProductLocationContainer.getInstance();
 	}
 
 	public boolean createProductLocation(String locationName, String address, String city, int zipCode)
 	{
 		ProductLocation loc = new ProductLocation(locationName, address, city, zipCode);
-		return locContainer.addLocation(loc);
+		return _locContainer.addLocation(loc);
 	}
 
 	public ProductLocation getLocation(int locId)
     {
-    	return locContainer.getLocation(locId);
+    	return _locContainer.getLocation(locId);
     }
 
     public boolean removeLocation(int locId)
     {
-    	return locContainer.removeLocation(locId);
+    	return _locContainer.removeLocation(locId);
     }
 
     public boolean updateLocation(int locId, String locationName, String address, String city, int zipCode)
@@ -43,6 +43,11 @@ public class ProductLocationCtrl
         loc.setAddress(address);
         loc.setCity(city);
         loc.setZipCode(zipCode);
-        return locContainer.updateLocation(locId, loc);
-    } 
+        return _locContainer.updateLocation(loc);
+    }
+
+    public boolean changeAvail(int locId, int avail, long itemNumber)
+    {
+        return _locContainer.changeAvail(locId, avail, itemNumber);
+    }
 }
