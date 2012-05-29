@@ -3,10 +3,10 @@ package ModelLayer;
 public class OrderLine
 {
     private long _id;
-    private Product _product;
+    private ProductPhysicalAvail _product;
     private long _quantity;
 
-    public OrderLine(long id, Product product, long quantity)
+    public OrderLine(long id, ProductPhysicalAvail product, long quantity)
     {
         _id = id;
         _product = product;
@@ -17,12 +17,12 @@ public class OrderLine
         return _id;
     }
 
-    public Product getProduct()
+    public ProductPhysicalAvail getProduct()
     {
         return _product;
     }
 
-    public void setProduct(Product product)
+    public void setProduct(ProductPhysicalAvail product)
     {
         _product = product;
     }
