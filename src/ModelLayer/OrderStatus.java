@@ -4,13 +4,13 @@ public class OrderStatus
 {
     private long _id;
     private Order _order;
-    private int _status;
+    private String _statusValue;
 
-    public OrderStatus(long id, Order order, int status)
+    public OrderStatus(long id, Order order, String statusValue)
     {
         _id = id;
         _order = order;
-        _status = status;
+        _statusValue = statusValue;
     }
 
     public long getId()
@@ -28,13 +28,13 @@ public class OrderStatus
         _order = order;
     }
 
-    public int getStatus()
+    public String getStatusValue()
     {
-        return _status;
+        return _statusValue;
     }
 
-    public void setStatus(int status)
+    public void setStatusValue(String statusValue)
     {
-        _status = status;
+        _statsuValue = statusValue;
     }
 }

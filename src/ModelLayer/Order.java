@@ -5,13 +5,13 @@ import java.util.HashSet;
 public class Order
 {
     private long _id;
-    private SalesAssistant _salesAssistant;
+    private SalesAssistant _salesAsst;
     private Customer _customer;
     private String _salesNote;
     private Discount _discount;
     private HashSet<OrderLine> _orderLines;
 
-    public Order(long id, SalesAssistant salesAssistant, Customer customer, String salesNote, Discount discount)
+    public Order(long id, SalesAssistant salesAsst, Customer customer, String salesNote, Discount discount)
     {
         _id = id;
         _salesAssistant = salesAssistant;
@@ -26,14 +26,14 @@ public class Order
         return _id;
     }
 
-    public SalesAssistant getSalesAssistant()
+    public SalesAssistant getSalesAsst()
     {
-        return _salesAssistant;
+        return _salesAsst;
     }
 
-    public void setSalesAssistant(SalesAssistant salesAssistant)
+    public void setSalesAssistant(SalesAssistant salesAsst)
     {
-        _salesAssistant = salesAssistant;
+        _salesAsst = salesAsst;
     }
 
     public Customer getCustomer()
