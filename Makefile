@@ -14,6 +14,7 @@ SOURCES = \
 	ModelLayer/PersonContainer \
 	ModelLayer/Product \
 	ModelLayer/ProductCategory \
+	ModelLayer/ProductCategoryContainer \
 	ModelLayer/ProductContainer \
 	ModelLayer/ProductGroup \
 	ModelLayer/ProductGroupContainer \
@@ -25,6 +26,7 @@ SOURCES = \
 	ModelLayer/PurchaseContainer \
 	ModelLayer/SalesAssistant \
 	ModelLayer/SalesAssistantContainer \
+	ModelLayer/SerialNumber \
 	TUILayer/MainMenuUI \
 	Program
 

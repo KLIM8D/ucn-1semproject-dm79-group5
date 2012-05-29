@@ -58,15 +58,15 @@ public class ProductGroupContainer
     * Update a product group.
     *
     * @param prodGroup        object which replaces the current
+    * @param prodGroupId      the id of the group
     * @return boolean         returns true if updated / false if it's not
     *
     */
-    public boolean updateProductGroup(ProductGroup prodGroup)
+    public boolean updateProductGroup(int prodGroupId, ProductGroup prodGroup)
     {
-    	int key = prodGroup.getProductGroupId();
-    	if(_prodGroupCollection.containsKey(key))
+    	if(_prodGroupCollection.containsKey(prodGroupId))
     	{
-    		_prodGroupCollection.put(key, prodGroup);
+    		_prodGroupCollection.put(prodGroupId, prodGroup);
     		return true;
     	}
     	return false;
@@ -92,5 +92,10 @@ public class ProductGroupContainer
     public ProductGroup getProductGroup(int prodGroupId)
     {
     	return _prodGroupCollection.get(prodGroupId);
+    }
+
+    public HashMap<Integer, ProductGroup> getAllProductGroups()
+    {
+        return _prodGroupCollection;
     }
 }

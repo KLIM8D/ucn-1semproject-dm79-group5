@@ -34,13 +34,12 @@ public class SalesAssistantContainer
         _saCollection.put(key, sa);         
     }
     
-    public boolean updateSalesAs(SalesAssistant sa)
+    public boolean updateSalesAs(int saId, SalesAssistant sa)
     {
-        int key = sa.getSalesAssistantId();
-        SalesAssistant SalesAs = _saCollection.get(key);
+        SalesAssistant SalesAs = _saCollection.get(saId);
         if(SalesAs != null)
         {
-            _saCollection.put(key,sa);
+            _saCollection.put(saId,sa);
             return true;
         }
         return false;
