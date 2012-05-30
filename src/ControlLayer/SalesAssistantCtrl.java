@@ -36,6 +36,7 @@ public class SalesAssistantCtrl
 
             return _saContainer.addSalesAs(sa);
         }
+        return false;
     }
 
     public boolean removeSalesAssistant(int saId)
@@ -55,7 +56,7 @@ public class SalesAssistantCtrl
 
     public boolean changePassword(int saId, String password)
     {
-        SalesAssistant sa = getSalesAs(said);
+        SalesAssistant sa = getSalesAssistant(saId);
         if(sa != null)
         {
             String salt = sa.getSalt();
@@ -69,7 +70,7 @@ public class SalesAssistantCtrl
 
     public boolean checkLogin(int saId, String password)
     {
-        SalesAssistant sa = getSalesAs(said);
+        SalesAssistant sa = getSalesAssistant(saId);
         if(sa != null)
         {
             String salt = sa.getSalt();
@@ -81,13 +82,14 @@ public class SalesAssistantCtrl
             else
                 return false;
         }
+        return false;
     }
 
 	private String createSalt(int saId)
 	{
 		
 		Calendar currentDate = Calendar.getInstance();
-		Person per = getSalesAs(saId).getPerson();
+		Person per = getSalesAssistant(saId).getPerson();
 		String name = per.getName();
 		long phoneNumber = per.getPhoneNumber();
 

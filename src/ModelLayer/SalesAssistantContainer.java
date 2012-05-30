@@ -37,7 +37,7 @@ public class SalesAssistantContainer
     public boolean addSalesAs(SalesAssistant sa)
     {
         int key = sa.getSalesAssistantId();
-        if(!_locationCollection.containsKey(key))
+        if(!_saCollection.containsKey(key))
         {
             _saCollection.put(key, sa);
             _lastKey++;
