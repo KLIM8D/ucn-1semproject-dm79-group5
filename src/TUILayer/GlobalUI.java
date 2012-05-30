@@ -1,6 +1,7 @@
 package TUILayer;
 
 import java.util.Scanner;
+import ModelLayer.*;
 
 /**
  * Text User Interface - Global
@@ -86,7 +87,7 @@ public class GlobalUI
     * @param text        the text displayed for the user; Example: "Type the id:"
     *
     */
-    public static int inputGetInteger(String text)
+    public static int inputGetInt(String text)
     {
         Scanner keyboard = new Scanner(System.in);
         System.out.println(text);
@@ -134,5 +135,86 @@ public class GlobalUI
         System.out.println(text);
         long no = keyboard.nextLong();
         return no;
+    }
+
+    /**
+    * Display information about person
+    *
+    * @param person        the person object
+    *
+    */        
+    public static String getPersonInfo(Person person)
+    {
+        StringBuilder sb = new StringBuilder();
+        String newLine = System.getProperty("line.separator");
+        sb.append("id: " + person.getPersonId() + newLine);
+        sb.append("Navn: " + person.getName() + newLine);
+        sb.append("Adresse: " + person.getAddress() + newLine);
+        sb.append("Post. nr / by: " + person.getZipCode() + " / " + person.getCity() + newLine);
+        sb.append("Telefon nummer: " + person.getPhoneNumber() + newLine);        
+
+        return sb.toString();
+    }
+
+    /**
+    * Display information about customer
+    *
+    * @param customer        the customer object
+    *
+    */        
+    public static String getCustomerInfo(Customer customer)
+    {
+        StringBuilder sb = new StringBuilder();
+        String newLine = System.getProperty("line.separator");
+        sb.append("id: " + customer.getCustomerId() + newLine);
+        if(customer.getIsBusiness())
+        {
+            sb.append("CVR Nr.: " + customer.getBusiness().getCvrNo() + newLine);
+            sb.append("Kontakt person: " + customer.getBusiness().getContactPerson() + newLine);
+        }
+        sb.append(getPersonInfo(customer.getPerson()));
+        sb.append("Rabat aftaler: " + newLine);
+        for(Discount disc : customer.getDiscounts())
+            sb.append(translateDiscountTypes(disc.getDiscountType()) + " Beløb: " + disc.getDiscountValue() + " kr." + newLine);       
+
+        return sb.toString();
+    }
+
+    /**
+    * Display information about salesassistant
+    *
+    * @param salesAsst        the salesassistant object
+    *
+    */        
+    public static String getSalesAssistantInfo(SalesAssistant salesAsst)
+    {
+        StringBuilder sb = new StringBuilder();
+        String newLine = System.getProperty("line.separator");
+        sb.append("id: " + salesAsst.getSalesAssistantId() + newLine);
+        sb.append("Hashed kodeord: " + salesAsst.getPassword() + newLine);
+        sb.append("Kodeords salt: " + salesAsst.getSalt() + newLine);
+        sb.append(getPersonInfo(salesAsst.getPerson()));
+
+        return sb.toString();
+    }
+
+
+    public static String translateDiscountTypes(int discType)
+    {
+        switch (discType) 
+        {
+            case 1:
+                return "Rabat 1";
+            case 2:
+                return "Rabat 2";
+            case 3:
+                return "Rabat 3";
+            case 4:
+                return "Rabat 4";
+            case 5:
+                return "Rabat 5";
+        }
+
+        return "Ukendt rabat gruppe";
     }
 }
