@@ -1,5 +1,7 @@
 package TUILayer;
 
+import java.util.Scanner;
+
 /**
  * Text User Interface - Global
  *
@@ -76,5 +78,61 @@ public class GlobalUI
         System.out.println("                    ¦  (____nm_______ /____\\                                          ¦");
         System.out.println("                    ¦                                                                 ¦");
         System.out.println("                    -------------------------------------------------------------------");
+    }
+
+    /**
+    * Get next int from user input
+    *
+    * @param text        the text displayed for the user; Example: "Type the id:"
+    *
+    */
+    public static int inputGetInteger(String text)
+    {
+        Scanner keyboard = new Scanner(System.in);
+        System.out.println(text);
+        int no = keyboard.nextInt();
+        return no;
+    }
+
+    /**
+    * Get next double from user input
+    *
+    * @param text        the text displayed for the user; Example: "Type the price:"
+    *
+    */
+    public static double inputGetDouble(String text)
+    {
+        Scanner keyboard = new Scanner(System.in);
+        System.out.println(text);
+        double no = keyboard.nextDouble();
+        return no;
+    }
+
+    /**
+    * Get next String from user input
+    *
+    * @param text        the text displayed for the user; Example: "Type the name:"
+    *
+    */        
+    public static String inputGetLine(String text)
+    {
+        Scanner keyboard = new Scanner(System.in);
+        System.out.println(text);
+        String title = keyboard.nextLine();
+        return title;
+    }
+
+    /**
+    * Get next long from user input
+    *
+    * @param text        the text displayed for the user; Example: "Type the id:"
+    *
+    */        
+    public static long inputGetLong(String text)
+    {
+        Scanner keyboard = new Scanner(System.in);
+        System.out.println(text);
+        long no = keyboard.nextLong();
+        return no;
     }
 }
