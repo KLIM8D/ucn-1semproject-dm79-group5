@@ -13,6 +13,7 @@ SOURCES = \
 	ModelLayer/OrderContainer \
 	ModelLayer/OrderLine \
 	ModelLayer/OrderStatus \
+	ModelLayer/OrderStatusContainer \
 	ModelLayer/Person \
 	ModelLayer/PersonContainer \
 	ModelLayer/Product \

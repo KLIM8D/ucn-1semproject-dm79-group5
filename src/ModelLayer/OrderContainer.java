@@ -12,46 +12,57 @@ public class OrderContainer
         return _instance != null ? _instance : (_instance = new OrderContainer());
     }
 
-    private HashMap<Long, Order> _orders;
+    private HashMap<Long, Order> _orderCollection;
 
     private OrderContainer()
     {
-        _orders = new HashMap<Long, Order>();
+        _orderCollection = new HashMap<Long, Order>();
     }
 
     public void addOrder(Order order)
     {
-        _orders.put(order.getId(), order);
+        _orderCollection.put(order.getId(), order);
     }
 
     public boolean updateOrder(Order order)
     {
         // TODO: Pointless? We do in-memory updates, so this serves no purpose; there's nowhere to persist to.
-        return _orders.get(order.getId()) != null;
+        return _orderCollection.get(order.getId()) != null;
     }
 
     public boolean removeOrder(Order order)
     {
-        if (_orders.get(order.getId()) != null)
+        if (_orderCollection.get(order.getId()) != null)
         {
-            _orders.remove(order.getId());
+            _orderCollection.remove(order.getId());
             return true;
         }
 
         return false;
     }
 
-    public Order getOrder(long id)
+    public Order getOrderById(long id)
     {
-        return _orders.get(id);
+        return _orderCollection.get(id);
     }
 
-    public Iterable<Order> findOrders(Customer customer)
+    public Iterable<Order> getCustomerOrders(Customer customer)
     {
         ArrayList<Order> orders = new ArrayList<Order>();
 
-        for (Order order : _orders.values())
+        for (Order order : _orderCollection.values())
             if (order.getCustomer() == customer)
+                orders.add(order);
+
+        return orders;
+    }
+
+    public Iterable<Order> getSalesAssistantOrders(SalesAssistant salesAsst)
+    {
+        ArrayList<Order> orders = new ArrayList<Order>();
+
+        for (Order order : _orderCollection.values())
+            if (order.getSalesAsst() == salesAsst)
                 orders.add(order);
 
         return orders;
@@ -59,6 +70,6 @@ public class OrderContainer
 
     public Iterable<Order> getAllOrders()
     {
-        return _orders.values();
+        return _orderCollection.values();
     }
 }
