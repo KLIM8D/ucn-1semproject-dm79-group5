@@ -42,6 +42,8 @@ public class GlobalUI
                 return "FEJL: Ukendt menu valg!";
             case 03:
                 return "FEJL: Funktionen ikke integreret!";
+            case 04:
+                return "FEJL: Forkert brugernavn eller password. Prøv igen.";
         }
 
         return "FEJL: En ukendt system fejl er hændt!";
@@ -90,7 +92,7 @@ public class GlobalUI
     public static int inputGetInt(String text)
     {
         Scanner keyboard = new Scanner(System.in);
-        System.out.println(text);
+        System.out.print(text);
         int no = keyboard.nextInt();
         return no;
     }
@@ -104,7 +106,7 @@ public class GlobalUI
     public static double inputGetDouble(String text)
     {
         Scanner keyboard = new Scanner(System.in);
-        System.out.println(text);
+        System.out.print(text);
         double no = keyboard.nextDouble();
         return no;
     }
@@ -118,7 +120,7 @@ public class GlobalUI
     public static String inputGetLine(String text)
     {
         Scanner keyboard = new Scanner(System.in);
-        System.out.println(text);
+        System.out.print(text);
         String title = keyboard.nextLine();
         return title;
     }
@@ -132,7 +134,7 @@ public class GlobalUI
     public static long inputGetLong(String text)
     {
         Scanner keyboard = new Scanner(System.in);
-        System.out.println(text);
+        System.out.print(text);
         long no = keyboard.nextLong();
         return no;
     }

@@ -33,7 +33,7 @@ public class SalesAssistantMenuUI
 		print("                    ¦ 4) - Vis alle ekspedienter                                      ¦");
 		print("                    ¦ 5) - Skift password                                             ¦");
 		print("                    ¦                                                                 ¦");
-		print("                    ¦ 9) - Returnere til hovedmenu                                    ¦");
+		print("                    ¦ 9) - Returner til hovedmenu                                     ¦");
 		print("                    -------------------------------------------------------------------");
 
 		Scanner keyboard = new Scanner(System.in);
@@ -56,7 +56,7 @@ public class SalesAssistantMenuUI
 					if(succeeded)
 						print("Ekspedienten er nu oprettet!");
 					else
-						print("Der skete en fejl. Kontakt support.");
+						print(GlobalUI.errorHandling(99));
 
 					GlobalUI.inputGetLine("Tryk på enter for at forsætte..");	
 					execSalesAsstMenu();
@@ -90,7 +90,7 @@ public class SalesAssistantMenuUI
 							if(succeeded)
 								print("Ekspedienten er nu slettet");
 							else
-								print("Der skete en fejl. Kontant support");
+								print(GlobalUI.errorHandling(99));
 						}
 					}
 					else
@@ -113,7 +113,7 @@ public class SalesAssistantMenuUI
 					if(succeeded)
 						print("Kodeordet for ekspedienten blev ændret");
 					else
-						print("Der skete en fejl. Kontant support");
+						print(GlobalUI.errorHandling(99));
 					execSalesAsstMenu();
 					break;
 					// End of section
@@ -123,7 +123,7 @@ public class SalesAssistantMenuUI
 					break;
 
 				default:
-					System.out.print("\n                      " + GlobalUI.errorHandling(02));
+					print(GlobalUI.errorHandling(02));
 					Thread.sleep(2000);
 					execSalesAsstMenu();
 					break;
@@ -132,7 +132,7 @@ public class SalesAssistantMenuUI
 
 		catch (Exception e)
 		{
-			System.out.print("\n                      " + GlobalUI.errorHandling(99));
+			print(GlobalUI.errorHandling(99));
 		}
 	}
 
