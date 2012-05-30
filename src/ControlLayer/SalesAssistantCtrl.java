@@ -15,30 +15,75 @@ public class SalesAssistantCtrl
 {
 
 	private SalesAssistantContainer _saContainer;
+    private PersonContainer _perContainer;
 	
 	public SalesAssistantCtrl()
 	{
 		_saContainer = SalesAssistantContainer.getInstance();
+        _perContainer = PersonContainer.getInstance();
 	}
 
-	public SalesAssistant getSalesAs(int saId)
+    public boolean createSalesAssistant(String password, long personId)
+    {
+        Person person = _perContainer.getPerson(personId);
+        if(person != null)
+        {
+            SalesAssistant sa = new SalesAssistant(person);
+            String salt = createSalt(sa.getSalesAssistantId());
+            sa.setSalt(salt);
+            String hashedPassword = hashPassword(password, salt);
+            sa.setPassword(hashedPassword);
+
+            return _saContainer.addSalesAs(sa);
+        }
+    }
+
+    public boolean removeSalesAssistant(int saId)
+    {
+        return _saContainer.removeSalesAs(saId);
+    }
+
+	public SalesAssistant getSalesAssistant(int saId)
 	{
 		return _saContainer.getSalesAs(saId);
 	}
 
-/**
-*
-* Chris:
-*   
-* Alt det nederstående skal bruges til login. Men lige pt. kan man kun hashe et password + salt og lave en salt til ens password.
-* Du skal have lavet sådan at den tjekker for om man har indtastet det rigtige password. Husk på du skal hashe brugerens input+salt før du 
-* sammenligner det med det password som det kræves for at kunne logge ind.
-* Spørg hvis du er i tvivl
-* //Morten
-*
-*/
+    public Iterable<SalesAssistant> getAllSalesAssistants()
+    {
+        return _saContainer.getAllSalesAs().values();
+    } 
 
-	public String createSalt(int saId)
+    public boolean changePassword(int saId, String password)
+    {
+        SalesAssistant sa = getSalesAs(said);
+        if(sa != null)
+        {
+            String salt = sa.getSalt();
+            String hashed = hashPassword(password, salt);
+
+            sa.setPassword(hashed);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean checkLogin(int saId, String password)
+    {
+        SalesAssistant sa = getSalesAs(said);
+        if(sa != null)
+        {
+            String salt = sa.getSalt();
+            String pass = sa.getPassword();
+
+            String hashed = hashPassword(password, salt);
+            if(hashed.equals(pass))
+                return true;
+            else
+                return false;
+        }
+    }
+
+	private String createSalt(int saId)
 	{
 		
 		Calendar currentDate = Calendar.getInstance();
@@ -74,5 +119,7 @@ public class SalesAssistantCtrl
     	{}
 
         return "";		
-    } 
+    }
+
+
 }

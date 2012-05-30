@@ -3,13 +3,13 @@ package ModelLayer;
 public class OrderStatus
 {
     private long _id;
-    private Order _order;
+    //private Order _order;
     private String _statusValue;
 
-    public OrderStatus(long id, Order order, String statusValue)
+    public OrderStatus(long id, String statusValue)
     {
         _id = id;
-        _order = order;
+        //_order = order;
         _statusValue = statusValue;
     }
 
@@ -18,7 +18,7 @@ public class OrderStatus
         return _id;
     }
 
-    public Order getOrder()
+/*    public Order getOrder()
     {
         return _order;
     }
@@ -26,7 +26,7 @@ public class OrderStatus
     public void setOrder(Order order)
     {
         _order = order;
-    }
+    }*/
 
     public String getStatusValue()
     {

@@ -65,10 +65,9 @@ public class ProductLocationContainer
     public boolean updateLocation(ProductLocation loc)
     {
         int locId = loc.getLocationId();
-        ProductLocation value = _locationCollection.get(locId);
-    	if(value != null)
+    	if(_locationCollection.get(locId) != null)
     	{
-    		_locationCollection.put(locId, value);
+    		_locationCollection.put(locId, loc);
     		return true;
     	}
     	return false;
@@ -83,8 +82,7 @@ public class ProductLocationContainer
     */
     public boolean removeLocation(int locId)
     {
-    	ProductLocation value = _locationCollection.get(locId);
-    	if(value != null)
+    	if(_locationCollection.get(locId) != null)
     	{
     		_locationCollection.remove(locId);
     		return true;

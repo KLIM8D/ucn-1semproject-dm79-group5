@@ -81,4 +81,22 @@ public class Customer
             index++;
         }
     }
+
+    public Discount getDiscount(int discType)
+    {
+        int index = 0;
+        boolean found = false;
+        while(index < _discounts.size() && !found)
+        {
+            Discount disc = _discounts.get(index);
+            if(disc.getDiscountType() == discType)
+            {
+                found = true;
+                return disc;
+            }
+
+            index++;
+        }
+        return null;
+    }
 }

@@ -9,15 +9,18 @@ public class Order
     private Customer _customer;
     private String _salesNote;
     private Discount _discount;
+    private OrderStatus _status;
     private HashSet<OrderLine> _orderLines;
 
-    public Order(long id, SalesAssistant salesAsst, Customer customer, String salesNote, Discount discount)
+    public Order(SalesAssistant salesAsst, Customer customer, String salesNote, Discount discount, OrderStatus status)
     {
-        _id = id;
+        OrderContainer orderContainer = OrderContainer.getInstance();
+        _id = orderContainer.getLastKey() + 1;
         _salesAsst = salesAsst;
         _customer = customer;
         _salesNote = salesNote;
         _discount = discount;
+        _status = status;
         _orderLines = new HashSet<OrderLine>();
     }
 
@@ -69,5 +72,19 @@ public class Order
     public HashSet<OrderLine> getOrderLines()
     {
         return _orderLines;
+    }
+
+    public boolean addOrderLine(OrderLine line)
+    {
+        return _orderLines.add(line);
+    }
+
+    public void setStatus(OrderStatus status)
+    { 
+        _status = status; 
+    }
+    public OrderStatus getStatus()
+    { 
+        return _status; 
     }
 }

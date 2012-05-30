@@ -80,8 +80,7 @@ public class ProductContainer
     public boolean updateProduct(Product prod)
     {
         long itemNumber = prod.getItemNumber();
-    	Product value = _productCollection.get(itemNumber);
-    	if(value != null)
+    	if(_productCollection.get(itemNumber) != null)
     	{
     		_productCollection.put(itemNumber, prod);
     		return true;

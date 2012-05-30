@@ -13,28 +13,45 @@ public class OrderContainer
     }
 
     private HashMap<Long, Order> _orderCollection;
+    private long _lastKey;
+
+    // LastKey {get;}
+    public long getLastKey()
+    { return _lastKey; }
 
     private OrderContainer()
     {
+        _lastKey = 0;
         _orderCollection = new HashMap<Long, Order>();
     }
 
-    public void addOrder(Order order)
+    public boolean addOrder(Order order)
     {
-        _orderCollection.put(order.getId(), order);
+        if(!_orderCollection.containsKey(order.getId()))
+        {
+            _orderCollection.put(order.getId(), order);
+            _lastKey++;
+            return true;
+        }
+        return false;
     }
 
     public boolean updateOrder(Order order)
     {
-        // TODO: Pointless? We do in-memory updates, so this serves no purpose; there's nowhere to persist to.
-        return _orderCollection.get(order.getId()) != null;
+        long orderId = order.getId();
+        if(_orderCollection.get(orderId) != null)
+        {
+            _orderCollection.put(orderId, order);
+            return true;
+        }
+        return false;
     }
 
-    public boolean removeOrder(Order order)
+    public boolean removeOrder(long id)
     {
-        if (_orderCollection.get(order.getId()) != null)
+        if (_orderCollection.get(id) != null)
         {
-            _orderCollection.remove(order.getId());
+            _orderCollection.remove(id);
             return true;
         }
 

@@ -14,11 +14,10 @@ public class SalesAssistant
     private String _salt;
     private Person _person;
 
-    public SalesAssistant(int salesAssistantId, String password, String salt, Person person)
+    public SalesAssistant(Person person)
     {
-        _salesAssistantId = salesAssistantId;
-        _password = password;
-        _salt = salt;
+        SalesAssistantContainer saContainer = SalesAssistantContainer.getInstance();
+        _salesAssistantId = saContainer.getLastKey() + 1;
         _person = person;
     }
 

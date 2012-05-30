@@ -38,10 +38,9 @@ public class CustomerContainer
     public boolean updateCustomer(Customer cus)
     {
         long customerId = cus.getCustomerId();
-        Customer customer = _customerCollection.get(customerId);
-        if(customer != null)
+        if(_customerCollection.get(customerId) != null)
         {
-            _customerCollection.put(customerId,cus);
+            _customerCollection.put(customerId, cus);
             return true;
         }
         return false;        
