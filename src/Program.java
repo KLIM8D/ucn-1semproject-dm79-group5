@@ -1,5 +1,3 @@
-import TUILayer.GlobalUI;
-
 final class Program
 {
     private Program()
@@ -9,7 +7,7 @@ final class Program
     public static void main(String[] args)
     {
     	// Text interface
-    	new GlobalUI().mainRun();
+    	new TUILayer.GlobalUI().mainRun();
     	
     	// Graphic interface
     	// new GUILayer.GlobalUI();
