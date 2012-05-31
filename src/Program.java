@@ -10,5 +10,8 @@ final class Program
     {
     	// Text interface
     	new GlobalUI().mainRun();
+    	
+    	// Graphic interface
+    	// new GUILayer.GlobalUI();
     }
 }
