@@ -117,7 +117,6 @@ public class SalesAssistantMenuUI
 					_mainmenuUI = new MainMenuUI();
 					_mainmenuUI.execMainMenu();
 					break;
-
 				default:
 					print(GlobalUI.errorHandling(02));
 					Thread.sleep(2000);

@@ -22,12 +22,14 @@ public class OrderContainer
 
     public long getNextOrderLineKey()
     {
-        return _lastOrderLineKey++;
+        _lastOrderLineKey++;
+        return _lastOrderLineKey;
     }
 
     private OrderContainer()
     {
         _lastKey = 0;
+        _lastOrderLineKey = 0;
         _orderCollection = new HashMap<Long, Order>();
     }
 

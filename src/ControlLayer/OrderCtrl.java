@@ -138,19 +138,26 @@ public class OrderCtrl
         return false;
     }
 
-    public boolean addOrderLine(Order order, long itemNumber, long quantity)
+    public boolean addOrderLine(long orderId, long itemNumber, long quantity)
     {
-        for (ProductLocation loc : _locationContainer.getAll())
-        {
-            for (ProductPhysicalAvail ppa : loc.getProductCollection().values())
-            {
-                if (ppa.getProduct().getItemNumber() == itemNumber && ppa.getQuantity() >= quantity)
-                {
-                    order.getOrderLines().add(new OrderLine(_orderContainer.getNextOrderLineKey(), ppa, quantity));
+    	Order order = _orderContainer.getOrderById(orderId);
+    	if (order != null) 
+    	{
+    		ProductPhysicalAvail bestFound = null;
+        	for (ProductLocation loc : _locationContainer.getAll())
+        	{
+            	for (ProductPhysicalAvail ppa : loc.getProductCollection().values())
+            	{
+                	if (ppa.getProduct().getItemNumber() == itemNumber && (bestFound == null || ppa.getQuantity() > bestFound.getQuantity()))
+                    	bestFound = ppa;
+            	}
+        	}
 
-                    return true;
-                }
-            }
+        	if(bestFound != null)
+        	{	
+        		order.getOrderLines().add(new OrderLine(bestFound, quantity));
+        		return true;
+        	}
         }
 
     	return false;

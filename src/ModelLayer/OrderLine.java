@@ -6,10 +6,12 @@ public class OrderLine
     private ProductPhysicalAvail _product;
     private long _quantity;
 
-    public OrderLine(long id, ProductPhysicalAvail product, long quantity)
+    public OrderLine(ProductPhysicalAvail product, long quantity)
     {
-        _id = id;
+        OrderContainer orderContainer = OrderContainer.getInstance();
+        _id = orderContainer.getNextOrderLineKey();
         _product = product;
+        _quantity = quantity;
     }
 
     public long getId()
