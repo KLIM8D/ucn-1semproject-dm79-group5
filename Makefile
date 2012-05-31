@@ -1,6 +1,7 @@
 .PHONY: all clean run
 
 SOURCES = \
+	ControlLayer/LeaseCtrl \
 	ControlLayer/OrderCtrl \
 	ControlLayer/ProductCtrl \
 	ControlLayer/ProductLocationCtrl \
@@ -12,6 +13,8 @@ SOURCES = \
 	ModelLayer/Discount \
 	ModelLayer/Lease \
 	ModelLayer/LeaseContainer \
+	ModelLayer/LeasingItem \
+	ModelLayer/LeasingItemContainer \
 	ModelLayer/Order \
 	ModelLayer/OrderContainer \
 	ModelLayer/OrderLine \
