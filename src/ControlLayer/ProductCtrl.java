@@ -43,15 +43,20 @@ public class ProductCtrl
 
     public boolean updateProduct(long itemNumber, String itemName, int minInStock, int maxInStock, String inPrice, int categoryId)
     {
-        ProductCategory category = getCategory(categoryId);
-        BigDecimal price = new BigDecimal(inPrice);
+        
         Product prod = getProduct(itemNumber);
-        prod.setItemName(itemName);
-        prod.setMinInStock(minInStock);
-        prod.setMaxInStock(maxInStock);
-        prod.setPrice(price);
-        prod.setProductCategory(category);             
-        return _prodContainer.updateProduct(prod);
+        ProductCategory category = getCategory(categoryId);
+        if(prod != null && category != null)
+        {
+            BigDecimal price = new BigDecimal(inPrice);
+            prod.setItemName(itemName);
+            prod.setMinInStock(minInStock);
+            prod.setMaxInStock(maxInStock);
+            prod.setPrice(price);
+            prod.setProductCategory(category);
+            return _prodContainer.updateProduct(prod);
+        }             
+        return false;
     }
 
     public boolean removeProduct(long itemNumber)
@@ -85,6 +90,7 @@ public class ProductCtrl
         return _prodCatContainer.removeCategory(categoryId);
     }
 
+
     public boolean createProductGroup(String productGroupName, String inPrice)
     {
         BigDecimal price = new BigDecimal(inPrice);
@@ -99,11 +105,15 @@ public class ProductCtrl
 
     public boolean updateProductGroup(int prodGroupId, String productGroupName, String inPrice)
     {
-        BigDecimal price = new BigDecimal(inPrice);
         ProductGroup group = getProductGroup(prodGroupId);
-        group.setProductGroupName(productGroupName);
-        group.setPrice(price);
-        return _prodGroupContainer.updateProductGroup(group);
+        if(group != null) 
+        {
+            BigDecimal price = new BigDecimal(inPrice);
+            group.setProductGroupName(productGroupName);
+            group.setPrice(price);
+            return _prodGroupContainer.updateProductGroup(group);
+        }
+        return false;
     }
 
     public boolean removeProductGroup(int prodGroupId)

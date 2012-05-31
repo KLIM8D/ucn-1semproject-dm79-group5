@@ -246,7 +246,7 @@ public class GlobalUI
     public static String getLeaseInfo(Lease lease)
     {
         StringBuilder sb = new StringBuilder();
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
         String newLine = System.getProperty("line.separator");
         sb.append("ID: " + lease.getLeaseId() + newLine);
         sb.append("Tilknyttet kunde: " + newLine);

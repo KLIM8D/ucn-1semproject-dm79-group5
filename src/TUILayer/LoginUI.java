@@ -49,26 +49,28 @@ public class LoginUI
                     else
                     {
                         print(GlobalUI.errorHandling(4));
-                        Thread.sleep(2000);
-                        printLogin();
                     }
                 }
-
                 else
                 {
                     print(GlobalUI.errorHandling(1));
-
-                    Thread.sleep(2000);
-                    printLogin();
-                }
-
-                
+                }                
         }
-
         catch (Exception e)
         {
             print(GlobalUI.errorHandling(99));
+            
         }
+        try 
+        {
+            Thread.sleep(2000);
+            printLogin();
+        }
+        catch (Exception e)
+        {
+            printLogin();
+        }
+        
     }
 
     private void print(String inputLine)
