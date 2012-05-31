@@ -1,5 +1,6 @@
 package ModelLayer;
 import java.util.HashMap;
+import java.util.ArrayList;
 
 /**
  * @version: 0.1
@@ -77,9 +78,9 @@ public class LeasingItemContainer
         return null;
     }
     
-    public int getAvaible(long itemNumber)
+    public ArrayList getAvaible(long itemNumber)
     {
         LeasingItem item = _leasingItemCollection.get(itemNumber);
-        return item.getMaxAvaible();
+        return item.getSerialNumbers();
     }
 }

@@ -48,6 +48,30 @@ public class LeasingItem
         return _maxAvaible;
     }
     
+    public ArrayList<SerialNumber> getSerialNumbers()
+    {
+        return _serialNumbers;
+    }
+    
+    public SerialNumber getAvaible()
+    {
+        int index = 0;
+        boolean found = false;
+        while(index < _serialNumbers.size() && !found)
+        {
+            if(_serialNumbers.get(index).getIsAvaible())
+            {
+                found = true;
+                return _serialNumbers.get(index);
+            }
+            else
+            {
+                index++;
+            }
+        }
+        return null;
+    }
+    
     public void setItemNumber(long itemNumber)
     {
         _itemNumber = itemNumber;
