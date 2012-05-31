@@ -71,7 +71,7 @@ public class LeaseContainer
         return leases;
     }
     
-    public HashMap getAllLeases()
+    public HashMap<Integer, Lease> getAllLeases()
     {
         return _leaseCollection;
     }

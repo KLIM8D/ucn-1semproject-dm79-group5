@@ -3,7 +3,7 @@ import ModelLayer.*;
 import java.util.Date;
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Calendar;
 
 /** 
 * @version: 0.1
@@ -26,23 +26,43 @@ public class LeaseCtrl
         _leasingItemContainer = LeasingItemContainer.getInstance();
         _customerContainer = CustomerContainer.getInstance();
     }
-    
-    public boolean createLease(Customer cus, SerialNumber sn)
+
+    public boolean createLease(long customerId, long itemNumber, int days)
     {
-        Date rentStartDate = new Date(); // skal det være bruger input? 
-        Date rentEndDate = new Date(); // samme spørgsmål.
-        Lease lease = new Lease(cus, sn, rentStartDate, rentEndDate);
-        return _leaseContainer.addLease(lease);
+        Calendar calendar = Calendar.getInstance();
+        Date rentStartDate = calendar.getTime();
+        calendar.add(Calendar.DATE, days);
+        Date rentEndDate = calendar.getTime();
+        
+        Customer cus = _customerContainer.getCustomer(customerId);
+
+        LeasingItem item = _leasingItemContainer.getLeasingItem(itemNumber);
+        if(item == null)
+        {
+            return false;
+        }
+        SerialNumber sn = item.getAvaible();
+        if(sn != null && cus != null)
+        {
+            Lease lease = new Lease(cus, sn, rentStartDate, rentEndDate);
+            return _leaseContainer.addLease(lease);
+        }
+        return false;
     }
     
     public Lease getLease(int leaseId)
     {
         return _leaseContainer.getLease(leaseId);
     }
-    
-    public HashMap getLease()
+
+    public ArrayList<Lease> getLease()
     {
-        return _leaseContainer.getAllLeases();
+        ArrayList<Lease> leases = new ArrayList<Lease>();
+        for(Lease lease : _leaseContainer.getAllLeases().values())
+        {
+            leases.add(lease);
+        }
+        return leases;
     }
     
     public ArrayList<Lease> getLease(long itemNumber)
@@ -50,14 +70,16 @@ public class LeaseCtrl
         return _leaseContainer.getLeasesByItemNumber(itemNumber);
     }
     
-    public boolean returnLease(int leaseId)
+    public boolean removeLease(int leaseId)
     {
+        _leaseContainer.getLease(leaseId).getSerialNumber().updateAvail(true);
         return _leaseContainer.removeLease(leaseId);
     }
     
-    public boolean createLeaseItem(long itemNumber, String itemName, BigDecimal rentPrice, int maxAvaible)
+    public boolean createLeaseItem(long itemNumber, String itemName, String rentPrice, int maxAvaible)
     {
-        LeasingItem leaseItem = new LeasingItem(itemNumber, itemName, rentPrice, maxAvaible);
+        BigDecimal price = new BigDecimal(rentPrice);
+        LeasingItem leaseItem = new LeasingItem(itemNumber, itemName, price, maxAvaible);
         return _leasingItemContainer.addLeasingItem(leaseItem);
     }
     
@@ -66,10 +88,18 @@ public class LeaseCtrl
         return _leasingItemContainer.getLeasingItem(itemNumber);
     }
     
-    public boolean updateLeasingItem()
+    public boolean updateLeasingItem(long itemNumber, String itemName, String rentPrice, int maxAvaible)
     {
-        // ikke sikker på hvordan denne metode skal laves
-        return true;
+        LeasingItem item = _leasingItemContainer.getLeasingItem(itemNumber);
+        if(item != null)
+        {
+            BigDecimal price = new BigDecimal(rentPrice);
+            item.setItemName(itemName);
+            item.setRentPrice(price);
+            item.setMaxAvaible(maxAvaible);
+            return _leasingItemContainer.updateLeasingItem(item);
+        }
+        return false;
     }
     
     public boolean deleteLeaseItem(long itemNumber)
@@ -79,7 +109,19 @@ public class LeaseCtrl
     
     public ArrayList<Lease> expiredLeases()
     {
-        //can be made after issue with Date has been resolved.
-        return new ArrayList<Lease>();
+        ArrayList<Lease> leases = getLease();
+        ArrayList<Lease> expiredLeases = new ArrayList<Lease>();
+        int index = 0;
+        Calendar calendar = Calendar.getInstance();
+        Date now = calendar.getTime();
+        while(index < leases.size())
+        {
+            if(leases.get(index).getRentEndDate().compareTo(now) > 0)
+            {
+                expiredLeases.add(leases.get(index));
+            }
+            index++;
+        }
+        return expiredLeases;
     }
 }
