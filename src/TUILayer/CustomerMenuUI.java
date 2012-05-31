@@ -1,5 +1,4 @@
 package TUILayer;
-import java.util.Scanner;
 
 /**
  * Text User Interface - Customer
@@ -24,11 +23,8 @@ public class CustomerMenuUI
 		System.out.println("                    ¦                                                                 ¦");
 		System.out.println("                    ¦ 9) - Returner til hovedmenu                                     ¦");
 		System.out.println("                    -------------------------------------------------------------------");
-
-		Scanner keyboard = new Scanner(System.in);
-
-		System.out.print("\n                      Menu valg: ");
-		int userentry = keyboard.nextInt();
+		
+		int userentry = GlobalUI.inputGetInt("\n                      Menu valg: ");
 
 		try
 		{

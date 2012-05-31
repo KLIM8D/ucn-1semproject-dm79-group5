@@ -1,5 +1,4 @@
 package TUILayer;
-import java.util.Scanner;
 
 import ControlLayer.SalesAssistantCtrl;
 
@@ -34,7 +33,6 @@ public class LoginUI
         print("                    ¦                          Adgangskontrol                         ¦");
         print("                    -------------------------------------------------------------------");
 
-        Scanner keyboard = new Scanner(System.in);
         int userId = GlobalUI.inputGetInt("\n                      Indtast Bruger ID: ");
         String password = GlobalUI.inputGetLine("                      Indtast Adgangskode: ");
 

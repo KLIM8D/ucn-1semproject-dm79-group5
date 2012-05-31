@@ -1,5 +1,4 @@
 package TUILayer;
-import java.util.Scanner;
 
 /**
  * Text User Interface - Economy
@@ -23,11 +22,8 @@ public class EconomyMenuUI
 		System.out.println("                    ¦                                                                 ¦");
 		System.out.println("                    ¦ 9) - Returnere til hovedmenu                                    ¦");
 		System.out.println("                    -------------------------------------------------------------------");
-
-		Scanner keyboard = new Scanner(System.in);
-
-		System.out.print("\n                      Menu valg: ");
-		int userentry = keyboard.nextInt();
+		
+		int userentry = GlobalUI.inputGetInt("\n                      Menu valg: ");
 
 		try
 		{

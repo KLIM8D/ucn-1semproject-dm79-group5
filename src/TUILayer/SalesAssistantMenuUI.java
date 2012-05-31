@@ -1,6 +1,5 @@
 package TUILayer;
 
-import java.util.Scanner;
 import ControlLayer.SalesAssistantCtrl;
 import ModelLayer.SalesAssistant;
 
@@ -36,10 +35,7 @@ public class SalesAssistantMenuUI
 		print("                    ¦ 9) - Returner til hovedmenu                                     ¦");
 		print("                    -------------------------------------------------------------------");
 
-		Scanner keyboard = new Scanner(System.in);
-
-		System.out.print("\n                      Menu valg: ");
-		int userentry = keyboard.nextInt();
+		int userentry = GlobalUI.inputGetInt("\n                      Menu valg: ");
 
 		try
 		{
@@ -101,7 +97,7 @@ public class SalesAssistantMenuUI
 				case 4:
 					// Start of section
 					for(SalesAssistant salesAsst : _saController.getAllSalesAssistants())
-						print(GlobalUI.getSalesAssistantInfo(sa));
+						print(GlobalUI.getSalesAssistantInfo(salesAsst));
 					execSalesAsstMenu();
 					break;
 					// End of section
