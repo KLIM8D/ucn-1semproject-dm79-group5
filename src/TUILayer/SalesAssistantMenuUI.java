@@ -58,7 +58,6 @@ public class SalesAssistantMenuUI
 					execSalesAsstMenu();
 					break;
 					// End of section
-
 				case 2:
 					// Start of section
 					salesAsstId = GlobalUI.inputGetInt("Indtast ID på ekspedienten: ");
@@ -70,7 +69,6 @@ public class SalesAssistantMenuUI
 					execSalesAsstMenu();
 					break;
 					// End of section
-
 				case 3:
 					// Start of section
 					print("Bemærk denne funktion kan ikke fortrydes, så snart den er udført!");

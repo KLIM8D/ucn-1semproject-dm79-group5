@@ -10,6 +10,8 @@ SOURCES = \
 	ModelLayer/Customer \
 	ModelLayer/CustomerContainer \
 	ModelLayer/Discount \
+	ModelLayer/Lease \
+	ModelLayer/LeaseContainer \
 	ModelLayer/Order \
 	ModelLayer/OrderContainer \
 	ModelLayer/OrderLine \

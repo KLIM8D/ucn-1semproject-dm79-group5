@@ -1,6 +1,7 @@
 package TUILayer;
 
 import java.util.Scanner;
+import java.text.SimpleDateFormat;
 import ModelLayer.*;
 
 /**
@@ -200,6 +201,84 @@ public class GlobalUI
         return sb.toString();
     }
 
+    /**
+    * Display information about the product
+    *
+    * @param product        the product object
+    *
+    */        
+    public static String getProductInfo(Product product)
+    {
+        StringBuilder sb = new StringBuilder();
+        String newLine = System.getProperty("line.separator");
+        sb.append("Produkt nummer: " + product.getItemNumber() + newLine);
+        sb.append("Navn: " + product.getItemName() + newLine);
+        sb.append("Minimums lager: " + product.getMinInStock() + newLine);
+        sb.append("Maksimums lager: " + product.getMaxInStock() + newLine);
+        sb.append("Pris: " + product.getPrice() + newLine);
+        sb.append(getProductCategoryInfo(product.getProductCategory()));
+
+        return sb.toString();
+    }
+
+    /**
+    * Display information about the productcategory
+    *
+    * @param category        the productcategory object
+    *
+    */        
+    public static String getProductCategoryInfo(ProductCategory category)
+    {
+        StringBuilder sb = new StringBuilder();
+        String newLine = System.getProperty("line.separator");
+        sb.append("ID: " + category.getCategoryId() + newLine);
+        sb.append("Kategori navn: " + category.getCategoryName() + newLine);
+
+        return sb.toString();
+    }
+
+    /**
+    * Display information about the lease
+    *
+    * @param lease        the lease object
+    *
+    */        
+    public static String getLeaseInfo(Lease lease)
+    {
+        StringBuilder sb = new StringBuilder();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+        String newLine = System.getProperty("line.separator");
+        sb.append("ID: " + lease.getLeaseId() + newLine);
+        sb.append("Tilknyttet kunde: " + newLine);
+        sb.append(getCustomerInfo(lease.getCustomer()));
+        sb.append("Serienummer: " + getSerialNumberInfo(lease.getSerialNumber()) + newLine);
+        sb.append("Start dato: " + formatter.format(lease.getRentStartDate()) + newLine);
+        sb.append("Slut dato: " + formatter.format(lease.getRentEndDate()) + newLine);
+
+        return sb.toString();
+    }
+
+    /**
+    * Display information about the serialnumber
+    *
+    * @param serialnumber        the serialnumber object
+    *
+    */        
+    public static String getSerialNumberInfo(SerialNumber serialnumber)
+    {
+        StringBuilder sb = new StringBuilder();
+        String newLine = System.getProperty("line.separator");
+        sb.append("Serienummer: " + serialnumber.getSerialNumber() + newLine);
+        sb.append("Tilgængelig: " + passBoolean(serialnumber.getIsAvaible()) + newLine);
+        sb.append("Produkt nummer: " + serialnumber.getItemNumber() + newLine);
+
+        return sb.toString();
+    }
+
+    public static String passBoolean(boolean bool)
+    {
+        return bool ? "Ja" : "Nej";
+    }
 
     public static String translateDiscountTypes(int discType)
     {

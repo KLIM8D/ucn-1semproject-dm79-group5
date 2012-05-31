@@ -26,7 +26,7 @@ public class PurchaseCtrl
 	public boolean createPurchase(long itemNumber, int quantity, String inDeliveryDate, String inPrice)
 	{
 		BigDecimal price = new BigDecimal(inPrice);
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd");
+		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
         Date deliveryDate = null;
         try 
         {

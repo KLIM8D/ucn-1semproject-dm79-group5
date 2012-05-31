@@ -15,9 +15,6 @@ public class Lease
     private Date _rentEndDate;
     private int _leaseId;
     
-    /**
-     * Constructor for objects of class Lease
-     */
     public Lease(Customer customer, SerialNumber serialNumber, Date rentStartDate, Date rentEndDate)
     {
         _customer = customer;
