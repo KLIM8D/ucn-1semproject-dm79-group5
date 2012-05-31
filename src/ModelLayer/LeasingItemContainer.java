@@ -78,7 +78,7 @@ public class LeasingItemContainer
         return null;
     }
     
-    public ArrayList getAvaible(long itemNumber)
+    public ArrayList<SerialNumber> getAvaible(long itemNumber)
     {
         LeasingItem item = _leasingItemCollection.get(itemNumber);
         return item.getSerialNumbers();
