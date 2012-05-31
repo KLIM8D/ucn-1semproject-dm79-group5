@@ -24,14 +24,19 @@ public class RentalMenuUI
         GlobalUI.tuiHeader();
 
         System.out.println("\n\n\n                    -------------------------------------------------------------------");
-        System.out.println("                    Â¦                            Udlejning                            Â¦");
+        System.out.println("                    ¦                            Udlejning                            ¦");
         System.out.println("                    -------------------------------------------------------------------");
-        System.out.println("                    Â¦ 1) - Ny udlejning                                               Â¦");
-        System.out.println("                    Â¦ 2) - Find udlejning                                             Â¦");
-        System.out.println("                    Â¦ 3) - Retunering af udlejning                                    Â¦");
-        System.out.println("                    Â¦ 4) - Overskredet afleveringsdato                                Â¦");
-        System.out.println("                    Â¦                                                                 Â¦");
-        System.out.println("                    Â¦ 9) - Returnere til hovedmenu                                    Â¦");
+        System.out.println("                    ¦  1) - Ny udlejning                                               ¦");
+        System.out.println("                    ¦  2) - Find udlejning (udlejningsnummer)                          ¦");
+        System.out.println("                    ¦  3) - Retunering af udlejning                                    ¦");
+        System.out.println("                    ¦  4) - Overskredet afleveringsdato                                ¦");
+        System.out.println("                    ¦  5) - Find Alle udlejninger                                      ¦");
+        System.out.println("                    ¦  6) - Find udlejning (kundenummer)                               ¦");
+        System.out.println("                    ¦  7) - Find Udlejningsprodukt                                     ¦");
+        System.out.println("                    ¦  8) - Nyt Udlejningsprodukt                                      ¦");
+        System.out.println("                    ¦  9) - Opdater Udlejningsprodukt                                  ¦");
+        System.out.println("                    ¦ 10) - Slet Udlejningsprodukt                                     ¦");
+        System.out.println("                    ¦  0) - Returnere til hovedmenu                                    ¦");
         System.out.println("                    -------------------------------------------------------------------");
 
         int userentry = GlobalUI.inputGetInt("\n                      Menu valg: ");
@@ -74,7 +79,7 @@ public class RentalMenuUI
                     boolean done = _leaseCtrl.createLease(customerId, itemNumber, days);
                     if(!done)
                     {
-                        System.out.println("GlobalUI.errorHandling(99)");
+                        System.out.println(GlobalUI.errorHandling(99));
                         GlobalUI.inputGetLine("Tryk enter for at fortsætte..");
                     }
                     else
@@ -159,8 +164,28 @@ public class RentalMenuUI
                 
                     execRentalMenu();
                     break;
-
+                
+                case 5:
+                    execRentalMenu();
+                    break;
+                    
+                case 6:
+                    execRentalMenu();
+                    break;
+                    
+                case 7:
+                    execRentalMenu();
+                    break;                    
+                
+                case 8:
+                    execRentalMenu();
+                    break;                    
+                  
                 case 9:
+                    execRentalMenu();
+                    break;                   
+                    
+                case 10:
                     _mainmenuUI = new MainMenuUI();
                     _mainmenuUI.execMainMenu();
                     break;
