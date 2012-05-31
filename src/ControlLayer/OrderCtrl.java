@@ -16,6 +16,7 @@ public class OrderCtrl
 	private OrderStatusContainer _orderStatusContainer;
 	private SalesAssistantContainer _saContainer;
 	private ProductContainer _prodContainer;
+	private ProductLocationContainer _locationContainer;
 	private CustomerContainer _customerContainer;
 
 	public OrderCtrl()
@@ -24,6 +25,7 @@ public class OrderCtrl
 		_orderStatusContainer = OrderStatusContainer.getInstance();
 		_saContainer = SalesAssistantContainer.getInstance();
 		_prodContainer = ProductContainer.getInstance();
+		_locationContainer = ProductLocationContainer.getInstance();
 		_customerContainer = CustomerContainer.getInstance();
 	}
 
@@ -136,15 +138,21 @@ public class OrderCtrl
         return false;
     }
 
-    public boolean addOrderLine(long itemNumber, long quantity)
+    public boolean addOrderLine(Order order, long itemNumber, long quantity)
     {
-    	/**
-    	* 
-    	*
-    	* Vi skal have lavet en smart metode her der kan bestemme hvilket lager der skal tages varer fra.
-    	* 		
-    	*
-    	*/
+        for (ProductLocation loc : _locationContainer.getAll())
+        {
+            for (ProductPhysicalAvail ppa : loc.getProductCollection().values())
+            {
+                if (ppa.getProduct().getItemNumber() == itemNumber && ppa.getQuantity() >= quantity)
+                {
+                    order.getOrderLines().add(new OrderLine(_orderContainer.getNextOrderLineKey(), ppa, quantity));
+
+                    return true;
+                }
+            }
+        }
+
     	return false;
     }
 }

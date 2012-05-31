@@ -14,10 +14,16 @@ public class OrderContainer
 
     private HashMap<Long, Order> _orderCollection;
     private long _lastKey;
+    private long _lastOrderLineKey;
 
     // LastKey {get;}
     public long getLastKey()
     { return _lastKey; }
+
+    public long getNextOrderLineKey()
+    {
+        return _lastOrderLineKey++;
+    }
 
     private OrderContainer()
     {
