@@ -24,19 +24,19 @@ public class RentalMenuUI
         GlobalUI.tuiHeader();
 
         System.out.println("\n\n\n                    -------------------------------------------------------------------");
-        System.out.println("                    ¦                            Udlejning                            ¦");
+        System.out.println("                    Â¦                            Udlejning                            Â¦");
         System.out.println("                    -------------------------------------------------------------------");
-        System.out.println("                    ¦  1) - Ny udlejning                                               ¦");
-        System.out.println("                    ¦  2) - Find udlejning (udlejningsnummer)                          ¦");
-        System.out.println("                    ¦  3) - Retunering af udlejning                                    ¦");
-        System.out.println("                    ¦  4) - Overskredet afleveringsdato                                ¦");
-        System.out.println("                    ¦  5) - Find Alle udlejninger                                      ¦");
-        System.out.println("                    ¦  6) - Find udlejning (kundenummer)                               ¦");
-        System.out.println("                    ¦  7) - Find Udlejningsprodukt                                     ¦");
-        System.out.println("                    ¦  8) - Nyt Udlejningsprodukt                                      ¦");
-        System.out.println("                    ¦  9) - Opdater Udlejningsprodukt                                  ¦");
-        System.out.println("                    ¦ 10) - Slet Udlejningsprodukt                                     ¦");
-        System.out.println("                    ¦  0) - Returnere til hovedmenu                                    ¦");
+        System.out.println("                    Â¦  1) - Ny udlejning                                               Â¦");
+        System.out.println("                    Â¦  2) - Find udlejning (udlejningsnummer)                          Â¦");
+        System.out.println("                    Â¦  3) - Retunering af udlejning                                    Â¦");
+        System.out.println("                    Â¦  4) - Overskredet afleveringsdato                                Â¦");
+        System.out.println("                    Â¦  5) - Find Alle udlejninger                                      Â¦");
+        System.out.println("                    Â¦  6) - Find udlejning (kundenummer)                               Â¦");
+        System.out.println("                    Â¦  7) - Find Udlejningsprodukt                                     Â¦");
+        System.out.println("                    Â¦  8) - Nyt Udlejningsprodukt                                      Â¦");
+        System.out.println("                    Â¦  9) - Opdater Udlejningsprodukt                                  Â¦");
+        System.out.println("                    Â¦ 10) - Slet Udlejningsprodukt                                     Â¦");
+        System.out.println("                    Â¦  0) - Returnere til hovedmenu                                    Â¦");
         System.out.println("                    -------------------------------------------------------------------");
 
         int userentry = GlobalUI.inputGetInt("\n                      Menu valg: ");
@@ -54,8 +54,8 @@ public class RentalMenuUI
                     }
                     catch(Exception ex)
                     {
-                        System.out.println("*FEJL* Kundenummer består kun af tal");
-                        GlobalUI.inputGetLine("Tryk enter for at fortsætte..");
+                        System.out.println("*FEJL* Kundenummer bestaar kun af tal");
+                        GlobalUI.inputGetLine("Tryk enter for at fortsaette..");
                         execRentalMenu();
                     }
                     try{
@@ -63,8 +63,8 @@ public class RentalMenuUI
                     }
                     catch(Exception ex)
                     {
-                        System.out.println("*FEJL* UdlejningsID består kun af tal");
-                        GlobalUI.inputGetLine("Tryk enter for at fortsætte..");
+                        System.out.println("*FEJL* UdlejningsID bestaar kun af tal");
+                        GlobalUI.inputGetLine("Tryk enter for at fortsaette..");
                         execRentalMenu();
                     }
                     try{
@@ -72,20 +72,20 @@ public class RentalMenuUI
                     }
                     catch(Exception ex)
                     {
-                        System.out.println("*FEJL* UdlejningsID består kun af tal");
-                        GlobalUI.inputGetLine("Tryk enter for at fortsætte..");
+                        System.out.println("*FEJL* UdlejningsID bestaar kun af tal");
+                        GlobalUI.inputGetLine("Tryk enter for at fortsaette..");
                         execRentalMenu();
                     }
                     boolean done = _leaseCtrl.createLease(customerId, itemNumber, days);
                     if(!done)
                     {
                         System.out.println(GlobalUI.errorHandling(99));
-                        GlobalUI.inputGetLine("Tryk enter for at fortsætte..");
+                        GlobalUI.inputGetLine("Tryk enter for at fortsaette..");
                     }
                     else
                     {
-                        System.out.println("Udlånet er blevet oprettet og gemt!");
-                        GlobalUI.inputGetLine("Tryk enter for at fortsætte..");
+                        System.out.println("Udlaanet er blevet oprettet og gemt!");
+                        GlobalUI.inputGetLine("Tryk enter for at fortsaette..");
                     }
                     
                     execRentalMenu();
@@ -99,18 +99,18 @@ public class RentalMenuUI
                         if(lease == null)
                         {
                             System.out.println(GlobalUI.errorHandling(99));
-                            GlobalUI.inputGetLine("Tryk enter for at fortsætte..");
+                            GlobalUI.inputGetLine("Tryk enter for at fortsaette..");
                         }
                         else
                         {
                             System.out.println(GlobalUI.getLeaseInfo(lease));
-                            GlobalUI.inputGetLine("Tryk enter for at fortsætte..");
+                            GlobalUI.inputGetLine("Tryk enter for at fortsaette..");
                         }
                     }
                     catch(Exception ex)
                     {
-                        System.out.println("*FEJL* UdlejningsID består kun af tal");
-                        GlobalUI.inputGetLine("Tryk enter for at fortsætte..");
+                        System.out.println("*FEJL* UdlejningsID bestaar kun af tal");
+                        GlobalUI.inputGetLine("Tryk enter for at fortsaette..");
                     }
                     
                     execRentalMenu();
@@ -123,18 +123,18 @@ public class RentalMenuUI
                         if(!done)
                         {
                             System.out.println(GlobalUI.errorHandling(99));
-                            GlobalUI.inputGetLine("Tryk enter for at fortsætte..");
+                            GlobalUI.inputGetLine("Tryk enter for at fortsaette..");
                         }
                         else
                         {
-                            System.out.println("Udlånet er blevet afleveret");
-                            GlobalUI.inputGetLine("Tryk enter for at fortsætte..");
+                            System.out.println("Udlaanet er blevet afleveret");
+                            GlobalUI.inputGetLine("Tryk enter for at fortsaette..");
                         }
                     }
                     catch(Exception ex)
                     {
-                        System.out.println("*FEJL* UdlejningsID består kun af tal");
-                        GlobalUI.inputGetLine("Tryk enter for at fortsætte..");
+                        System.out.println("*FEJL* UdlejningsID bestaar kun af tal");
+                        GlobalUI.inputGetLine("Tryk enter for at fortsaette..");
                     }                    
                 
                     execRentalMenu();
@@ -149,17 +149,17 @@ public class RentalMenuUI
                         }
                         if(_leaseCtrl.expiredLeases().size() == 0)
                         {
-                            System.out.println("Der er ingen for gamle udlån!");
-                            GlobalUI.inputGetLine("Tryk enter for at fortsætte..");
+                            System.out.println("Der er ingen for gamle udlaan!");
+                            GlobalUI.inputGetLine("Tryk enter for at fortsaette..");
                         }
                         else
                         {
-                            GlobalUI.inputGetLine("Tryk enter for at fortsætte..");
+                            GlobalUI.inputGetLine("Tryk enter for at fortsaette..");
                         }
                     }
                     catch(Exception ex)
                     {
-                        GlobalUI.inputGetLine("Tryk enter for at fortsætte..");
+                        GlobalUI.inputGetLine("Tryk enter for at fortsaette..");
                     }                    
                 
                     execRentalMenu();
