@@ -12,28 +12,28 @@ import ModelLayer.*;
 
 public class GlobalUI
 {
-	private LoginUI _loginUI;
+    private LoginUI _loginUI;
 
-	public void mainRun()
-	{
-		try
-		{
+    public void mainRun()
+    {
+        try
+        {
             // Section is to be uncommented on final release
-			//tuiHeader();
-			//tuiSplash();
-			//Thread.sleep(5000);
+            //tuiHeader();
+            //tuiSplash();
+            //Thread.sleep(5000);
 
-			_loginUI = new LoginUI();
+            _loginUI = new LoginUI();
             _loginUI.execLogin();
-		}
+        }
 
-		catch (Exception e)
-		{
-			System.out.print("\n " + GlobalUI.errorHandling(99));
-		}
-	}
+        catch (Exception e)
+        {
+            System.out.print("\n " + GlobalUI.errorHandling(99));
+        }
+    }
 
-	public static String errorHandling(int code)
+    public static String errorHandling(int code)
     {
         switch (code) 
         {
@@ -258,6 +258,18 @@ public class GlobalUI
         return sb.toString();
     }
 
+    public static String getLeasingItemInfo(LeasingItem leasingItem)
+    {
+        StringBuilder sb = new StringBuilder();
+        String newLine = System.getProperty("line.separator");
+        sb.append("ID: " + leasingItem.getItemNumber() + newLine);
+        sb.append("Produktnavn: " + leasingItem.getItemName() + newLine);
+        sb.append("Leje Pris: " + leasingItem.getRentPrice() + newLine);
+        sb.append("Max Avaible: " + leasingItem.getMaxAvaible() + newLine);
+
+        return sb.toString();
+    }
+    
     /**
     * Display information about the serialnumber
     *
