@@ -86,7 +86,7 @@ public class PersonContainer
         return null;
     }
     
-    public HashMap getAllPersons()
+    public HashMap<Long, Person> getAllPersons()
     {
         return _personCollection;
     }
