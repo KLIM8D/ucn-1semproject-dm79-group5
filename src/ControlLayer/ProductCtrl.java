@@ -26,9 +26,13 @@ public class ProductCtrl
     public boolean createProduct(long itemNumber, String itemName, int minInStock, int maxInStock, String inPrice, int categoryId)
     {
         ProductCategory category = getCategory(categoryId);
-        BigDecimal price = new BigDecimal(inPrice);
-        Product prod = new Product(itemNumber, itemName, minInStock, maxInStock, price, category);
-        return _prodContainer.addProduct(prod);
+        if(category != null)
+        {
+            BigDecimal price = new BigDecimal(inPrice);
+            Product prod = new Product(itemNumber, itemName, minInStock, maxInStock, price, category);
+            return _prodContainer.addProduct(prod);
+        }
+        return false;
     }
 
     public Product getProduct(long itemNumber)
@@ -126,11 +130,16 @@ public class ProductCtrl
         return _prodGroupContainer.getAllProductGroups().values();
     }
 
-    public void createProductGroupItem(int prodGroupId, long itemNumber, int quantity)
+    public boolean createProductGroupItem(int prodGroupId, long itemNumber, int quantity)
     {
         Product prod = getProduct(itemNumber);
-        ProductGroupItem item = new ProductGroupItem(itemNumber, prod, quantity);
         ProductGroup prodGroup = getProductGroup(prodGroupId);
-        prodGroup.addItem(item);
+        if(prod != null && prodGroup != null)
+        {
+            ProductGroupItem item = new ProductGroupItem(prod, quantity);
+            prodGroup.addItem(item);
+            return true;
+        }
+        return false;
     }
 }

@@ -14,6 +14,7 @@ public class MainMenuUI
 	private StockMenuUI _stockmenuUI;
 	private EconomyMenuUI _economymenuUI;
 	private SalesAssistantMenuUI _salesAssistantMenuUI;
+	private ProductLocationMenuUI _locMenuUI;
 
 	public void execMainMenu()
 	{
@@ -26,13 +27,14 @@ public class MainMenuUI
 		System.out.println("                    ¦ 2) - Udlejning                                                  ¦");
 		System.out.println("                    ¦ 3) - Kundekartotek                                              ¦");
 		System.out.println("                    ¦ 4) - Ekspedientkartotek                                         ¦");
-		System.out.println("                    ¦ 5) - Lager                                                      ¦");
+		System.out.println("                    ¦ 5) - Produkter                                                  ¦");
 		System.out.println("                    ¦ 6) - Økonomi                                                    ¦");
+		System.out.println("                    ¦ 7) - Lager                                                      ¦");
 		System.out.println("                    ¦                                                                 ¦");
-		System.out.println("                    ¦ 9) - Afslut                                                     ¦");
+		System.out.println("                    ¦ 0) - Afslut                                                     ¦");
 		System.out.println("                    -------------------------------------------------------------------");
 		
-		int userentry = GlobalUI.inputGetInt("\n                      Menu valg: ");
+		int userentry = GlobalUI.inputGetInt("Menu valg: ");
 
 		try
 		{
@@ -68,7 +70,12 @@ public class MainMenuUI
 					_economymenuUI.execEconomyMenu();
 					break;
 
-				case 9:
+				case 7:
+					_locMenuUI = new ProductLocationMenuUI();
+					_locMenuUI.execLocationMenu();
+					break;
+
+				case 0:
 					System.out.println("\n                      Systemet er afsluttet...");
 					System.exit(0);
 

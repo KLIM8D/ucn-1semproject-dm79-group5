@@ -93,7 +93,7 @@ public class GlobalUI
     public static int inputGetInt(String text)
     {
         Scanner keyboard = new Scanner(System.in);
-        System.out.print(text);
+        print(text);
         int no = keyboard.nextInt();
         return no;
     }
@@ -107,7 +107,7 @@ public class GlobalUI
     public static double inputGetDouble(String text)
     {
         Scanner keyboard = new Scanner(System.in);
-        System.out.print(text);
+        print(text);
         double no = keyboard.nextDouble();
         return no;
     }
@@ -121,7 +121,7 @@ public class GlobalUI
     public static String inputGetLine(String text)
     {
         Scanner keyboard = new Scanner(System.in);
-        System.out.print(text);
+        print(text);
         String title = keyboard.nextLine();
         return title;
     }
@@ -135,7 +135,7 @@ public class GlobalUI
     public static long inputGetLong(String text)
     {
         Scanner keyboard = new Scanner(System.in);
-        System.out.print(text);
+        print(text);
         long no = keyboard.nextLong();
         return no;
     }
@@ -151,10 +151,10 @@ public class GlobalUI
         StringBuilder sb = new StringBuilder();
         String newLine = System.getProperty("line.separator");
         sb.append("id: " + person.getPersonId() + newLine);
-        sb.append("Navn: " + person.getName() + newLine);
-        sb.append("Adresse: " + person.getAddress() + newLine);
-        sb.append("Post. nr / by: " + person.getZipCode() + " / " + person.getCity() + newLine);
-        sb.append("Telefon nummer: " + person.getPhoneNumber() + newLine);        
+        sb.append(centerText() + "Navn: " + person.getName() + newLine);
+        sb.append(centerText() + "Adresse: " + person.getAddress() + newLine);
+        sb.append(centerText() + "Post. nr / by: " + person.getZipCode() + " / " + person.getCity() + newLine);
+        sb.append(centerText() + "Telefon nummer: " + person.getPhoneNumber() + newLine);        
 
         return sb.toString();
     }
@@ -172,13 +172,13 @@ public class GlobalUI
         sb.append("id: " + customer.getCustomerId() + newLine);
         if(customer.getIsBusiness())
         {
-            sb.append("CVR Nr.: " + customer.getBusiness().getCvrNo() + newLine);
-            sb.append("Kontakt person: " + customer.getBusiness().getContactPerson() + newLine);
+            sb.append(centerText() + "CVR Nr.: " + customer.getBusiness().getCvrNo() + newLine);
+            sb.append(centerText() + "Kontakt person: " + customer.getBusiness().getContactPerson() + newLine);
         }
         sb.append(getPersonInfo(customer.getPerson()));
-        sb.append("Rabat aftaler: " + newLine);
+        sb.append(centerText() + "Rabat aftaler: " + newLine);
         for(Discount disc : customer.getDiscounts())
-            sb.append(translateDiscountTypes(disc.getDiscountType()) + " Beløb: " + disc.getDiscountValue() + " kr." + newLine);       
+            sb.append(centerText() + translateDiscountTypes(disc.getDiscountType()) + " Beløb: " + disc.getDiscountValue() + " kr." + newLine);       
 
         return sb.toString();
     }
@@ -194,8 +194,8 @@ public class GlobalUI
         StringBuilder sb = new StringBuilder();
         String newLine = System.getProperty("line.separator");
         sb.append("id: " + salesAsst.getSalesAssistantId() + newLine);
-        sb.append("Hashed kodeord: " + salesAsst.getPassword() + newLine);
-        sb.append("Kodeords salt: " + salesAsst.getSalt() + newLine);
+        sb.append(centerText() + "Hashed kodeord: " + salesAsst.getPassword() + newLine);
+        sb.append(centerText() + "Kodeords salt: " + salesAsst.getSalt() + newLine);
         sb.append(getPersonInfo(salesAsst.getPerson()));
 
         return sb.toString();
@@ -212,11 +212,11 @@ public class GlobalUI
         StringBuilder sb = new StringBuilder();
         String newLine = System.getProperty("line.separator");
         sb.append("Produkt nummer: " + product.getItemNumber() + newLine);
-        sb.append("Navn: " + product.getItemName() + newLine);
-        sb.append("Minimums lager: " + product.getMinInStock() + newLine);
-        sb.append("Maksimums lager: " + product.getMaxInStock() + newLine);
-        sb.append("Pris: " + product.getPrice() + newLine);
-        sb.append(getProductCategoryInfo(product.getProductCategory()));
+        sb.append(centerText() + "Produktnavn: " + product.getItemName() + newLine);
+        sb.append(centerText() + "Minimums lager: " + product.getMinInStock() + newLine);
+        sb.append(centerText() + "Maksimums lager: " + product.getMaxInStock() + newLine);
+        sb.append(centerText() + "Pris: " + product.getPrice() + " kr." + newLine);
+        sb.append(centerText() + getProductCategoryInfo(product.getProductCategory(), false));
 
         return sb.toString();
     }
@@ -227,12 +227,17 @@ public class GlobalUI
     * @param category        the productcategory object
     *
     */        
-    public static String getProductCategoryInfo(ProductCategory category)
+    public static String getProductCategoryInfo(ProductCategory category, boolean wantId)
     {
         StringBuilder sb = new StringBuilder();
         String newLine = System.getProperty("line.separator");
-        sb.append("ID: " + category.getCategoryId() + newLine);
-        sb.append("Kategori navn: " + category.getCategoryName() + newLine);
+        if(wantId)
+        {
+            sb.append("Kategori Id: " + category.getCategoryId() + newLine);
+            sb.append(centerText() + "Kategori navn: " + category.getCategoryName() + newLine);
+        }
+        else
+            sb.append("Produkt kategori: " + category.getCategoryName() + newLine);
 
         return sb.toString();
     }
@@ -249,11 +254,11 @@ public class GlobalUI
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
         String newLine = System.getProperty("line.separator");
         sb.append("ID: " + lease.getLeaseId() + newLine);
-        sb.append("Tilknyttet kunde: " + newLine);
+        sb.append(centerText() + "Tilknyttet kunde: " + newLine);
         sb.append(getCustomerInfo(lease.getCustomer()));
-        sb.append("Serienummer: " + getSerialNumberInfo(lease.getSerialNumber()) + newLine);
-        sb.append("Start dato: " + formatter.format(lease.getRentStartDate()) + newLine);
-        sb.append("Slut dato: " + formatter.format(lease.getRentEndDate()) + newLine);
+        sb.append(centerText() + "Serienummer: " + getSerialNumberInfo(lease.getSerialNumber()) + newLine);
+        sb.append(centerText() + "Start dato: " + formatter.format(lease.getRentStartDate()) + newLine);
+        sb.append(centerText() + "Slut dato: " + formatter.format(lease.getRentEndDate()) + newLine);
 
         return sb.toString();
     }
@@ -263,9 +268,9 @@ public class GlobalUI
         StringBuilder sb = new StringBuilder();
         String newLine = System.getProperty("line.separator");
         sb.append("ID: " + leasingItem.getItemNumber() + newLine);
-        sb.append("Produktnavn: " + leasingItem.getItemName() + newLine);
-        sb.append("Leje Pris: " + leasingItem.getRentPrice() + newLine);
-        sb.append("Max Avaible: " + leasingItem.getMaxAvaible() + newLine);
+        sb.append(centerText() + "Produktnavn: " + leasingItem.getItemName() + newLine);
+        sb.append(centerText() + "Leje Pris: " + leasingItem.getRentPrice() + newLine);
+        sb.append(centerText() + "Maksimum tilgængelig: " + leasingItem.getMaxAvaible() + newLine);
 
         return sb.toString();
     }
@@ -281,8 +286,62 @@ public class GlobalUI
         StringBuilder sb = new StringBuilder();
         String newLine = System.getProperty("line.separator");
         sb.append("Serienummer: " + serialnumber.getSerialNumber() + newLine);
-        sb.append("Tilgængelig: " + passBoolean(serialnumber.getIsAvaible()) + newLine);
-        sb.append("Produkt nummer: " + serialnumber.getItemNumber() + newLine);
+        sb.append(centerText() + "Tilgængelig: " + passBoolean(serialnumber.getIsAvaible()) + newLine);
+        sb.append(centerText() + "Produkt nummer: " + serialnumber.getItemNumber() + newLine);
+
+        return sb.toString();
+    }
+
+    /**
+    * Display information about the product group
+    *
+    * @param group        the productgroup object
+    *
+    */        
+    public static String getProductGroupInfo(ProductGroup group)
+    {
+        StringBuilder sb = new StringBuilder();
+        String newLine = System.getProperty("line.separator");
+        sb.append("ID: " + group.getProductGroupId() + newLine);
+        sb.append(centerText() + "Titel: " + group.getProductGroupName() + newLine);
+        sb.append(centerText() + "Total pris: " + group.getPrice() + newLine);
+        for(ProductGroupItem item : group.getItems())
+            sb.append(getProductGroupItemInfo(item));
+        
+        return sb.toString();
+    }
+
+    /**
+    * Display information about the product group item
+    *
+    * @param item        the productgroupitem object
+    *
+    */        
+    public static String getProductGroupItemInfo(ProductGroupItem item)
+    {
+        StringBuilder sb = new StringBuilder();
+        String newLine = System.getProperty("line.separator");
+        sb.append(centerText() + "Produkt nummer: " + item.getProduct().getItemNumber() + newLine);
+        sb.append(centerText() + "Antal: " + item.getQuantity() + newLine);
+
+        return sb.toString();
+    }
+
+    /**
+    * Display information about the product location
+    *
+    * @param location        the productlocation object
+    *
+    */        
+    public static String getProductLocationInfo(ProductLocation location)
+    {
+        StringBuilder sb = new StringBuilder();
+        String newLine = System.getProperty("line.separator");
+        sb.append("ID: " + location.getLocationId() + newLine);
+        sb.append(centerText() + "Navn: " + location.getLocationName() + newLine);
+        sb.append(centerText() + "Adresse: " + location.getAddress() + newLine);
+        sb.append(centerText() + "By: " + location.getCity() + newLine);
+        sb.append(centerText() + "Post nummer: " + location.getZipCode() + newLine);
 
         return sb.toString();
     }
@@ -309,5 +368,15 @@ public class GlobalUI
         }
 
         return "Ukendt rabat gruppe";
+    }
+
+    private static String centerText()
+    {
+        return "                      ";
+    }
+
+    private static void print(String inputLine)
+    {
+        System.out.print(centerText() + inputLine);
     }
 }

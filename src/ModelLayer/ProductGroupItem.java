@@ -10,13 +10,21 @@ package ModelLayer;
 public class ProductGroupItem
 {
 
-	private long _itemNumber;
 	private Product _product;
 	private int _quantity;
+
+	// Product {get;}
+	public Product getProduct()
+	{ return _product; }
+
+	// Quantity {set; get;}
+	public void setQuantity(int value)
+	{ _quantity = value; }
+	public int getQuantity()
+	{ return _quantity; }
 	
-	public ProductGroupItem(long itemNumber, Product product, int quantity)
+	public ProductGroupItem(Product product, int quantity)
 	{
-		_itemNumber = itemNumber;
 		_product = product;
 		_quantity = quantity;
 	}

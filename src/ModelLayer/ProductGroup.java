@@ -1,7 +1,7 @@
 package ModelLayer;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
+import java.util.HashSet;
 
 /** 
 * @version: 0.1
@@ -16,7 +16,7 @@ public class ProductGroup
 	private int _productGroupId;
 	private String _productGroupName;
 	private BigDecimal _price;
-	private ArrayList<ProductGroupItem> _items;
+	private HashSet<ProductGroupItem> _items;
 
 	// ProductGroupId {get;}
 	public int getProductGroupId()
@@ -35,7 +35,7 @@ public class ProductGroup
 	{ return _price; }
 
 	// Items {get;}
-	public ArrayList<ProductGroupItem> getItems()
+	public HashSet<ProductGroupItem> getItems()
 	{ return _items; }
 
 	public ProductGroup(String productGroupName, BigDecimal price)
@@ -44,7 +44,7 @@ public class ProductGroup
 		_productGroupId = pgContainer.getLastKey() + 1;
 		_productGroupName = productGroupName;
 		_price = price;
-		_items = new ArrayList<ProductGroupItem>();
+		_items = new HashSet<ProductGroupItem>();
 	}
 
 	/**
@@ -53,8 +53,8 @@ public class ProductGroup
 	* @param item		the item to be added. Containing the Product and quantity in this ProductGroup
 	*
 	*/
-	public void addItem(ProductGroupItem item)
+	public boolean addItem(ProductGroupItem item)
 	{
-		_items.add(item);
+		return _items.add(item);
 	}
 }

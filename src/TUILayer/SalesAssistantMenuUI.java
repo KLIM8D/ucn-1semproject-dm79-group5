@@ -23,20 +23,21 @@ public class SalesAssistantMenuUI
 	{
 		GlobalUI.tuiHeader();
 
-		print("\n\n\n                    -------------------------------------------------------------------");
-		print("                    ¦                          Ekspedientkartotek                     ¦");
-		print("                    -------------------------------------------------------------------");
-		print("                    ¦ 1) - Opret ekspedient                                           ¦");
-		print("                    ¦ 2) - Vis ekspedient information                                 ¦");
-		print("                    ¦ 3) - Slet ekspedient                                            ¦");
-		print("                    ¦ 4) - Vis alle ekspedienter                                      ¦");
-		print("                    ¦ 5) - Skift password                                             ¦");
-		print("                    ¦                                                                 ¦");
-		print("                    ¦ 9) - Returner til hovedmenu                                     ¦");
-		print("                    -------------------------------------------------------------------");
+		print("-------------------------------------------------------------------");
+		print("¦                          Ekspedientkartotek                     ¦");
+		print("-------------------------------------------------------------------");
+		print("¦ 1) - Opret ekspedient                                           ¦");
+		print("¦ 2) - Vis ekspedient information                                 ¦");
+		print("¦ 3) - Slet ekspedient                                            ¦");
+		print("¦ 4) - Vis alle ekspedienter                                      ¦");
+		print("¦ 5) - Skift password                                             ¦");
+		print("¦                                                                 ¦");
+		print("¦ 0) - Returner til hovedmenu                                     ¦");
+		print("-------------------------------------------------------------------");
 
-		int userentry = GlobalUI.inputGetInt("\n                      Menu valg: ");
-
+		System.out.print("\n");
+		int userentry = GlobalUI.inputGetInt("Menu valg: ");
+		System.out.println("\n");
 		try
 		{
 			boolean succeeded = false;
@@ -66,6 +67,8 @@ public class SalesAssistantMenuUI
 						print(GlobalUI.getSalesAssistantInfo(sa));
 					else
 						print("En ekspedient med det ID blev ikke fundet!");
+
+					GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
 					execSalesAsstMenu();
 					break;
 					// End of section
@@ -89,6 +92,8 @@ public class SalesAssistantMenuUI
 					}
 					else
 						print("En ekspedient med det ID blev ikke fundet!");
+
+					GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
 					execSalesAsstMenu();
 					break;
 					// End of section
@@ -96,6 +101,8 @@ public class SalesAssistantMenuUI
 					// Start of section
 					for(SalesAssistant salesAsst : _saController.getAllSalesAssistants())
 						print(GlobalUI.getSalesAssistantInfo(salesAsst));
+
+					GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
 					execSalesAsstMenu();
 					break;
 					// End of section
@@ -108,10 +115,12 @@ public class SalesAssistantMenuUI
 						print("Kodeordet for ekspedienten blev ændret");
 					else
 						print(GlobalUI.errorHandling(99));
+
+					GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
 					execSalesAsstMenu();
 					break;
 					// End of section
-				case 9:
+				case 0:
 					_mainmenuUI = new MainMenuUI();
 					_mainmenuUI.execMainMenu();
 					break;
@@ -131,6 +140,6 @@ public class SalesAssistantMenuUI
 
 	private void print(String inputLine)
 	{
-		System.out.println(inputLine);
+		System.out.println("                      " + inputLine);
 	}
 }
