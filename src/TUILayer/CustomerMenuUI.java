@@ -22,7 +22,7 @@ public class CustomerMenuUI
 		System.out.println("                    ¦ 2) - Find person                                                ¦");
 		System.out.println("                    ¦ 3) - Slet person                                                ¦");
 		System.out.println("                    ¦                                                                 ¦");
-		System.out.println("                    ¦ 9) - Returnere til hovedmenu                                    ¦");
+		System.out.println("                    ¦ 9) - Returner til hovedmenu                                     ¦");
 		System.out.println("                    -------------------------------------------------------------------");
 
 		Scanner keyboard = new Scanner(System.in);

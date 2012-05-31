@@ -112,4 +112,9 @@ public class ProductLocationContainer
         }
         return false;
     }
+
+    public Iterable<ProductLocation> getAll()
+    {
+        return _locationCollection.values();
+    }
 }

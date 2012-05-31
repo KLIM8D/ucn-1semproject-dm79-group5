@@ -7,7 +7,7 @@ import java.util.Calendar;
 /** 
 * @version: 0.1
 * Filename: SalesAssistantController.java
-* Description: 
+* Description: Controller class handling all operations with SalesAssistants
 * @changes	
 */
 
@@ -122,6 +122,4 @@ public class SalesAssistantCtrl
 
         return "";		
     }
-
-
 }

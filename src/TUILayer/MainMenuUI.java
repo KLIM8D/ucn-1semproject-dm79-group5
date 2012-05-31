@@ -14,6 +14,7 @@ public class MainMenuUI
 	private CustomerMenuUI _customermenuUI;
 	private StockMenuUI _stockmenuUI;
 	private EconomyMenuUI _economymenuUI;
+	private SalesAssistantMenuUI _salesAssistantMenuUI;
 
 	public void execMainMenu()
 	{
@@ -25,8 +26,9 @@ public class MainMenuUI
 		System.out.println("                    ¦ 1) - Salg                                                       ¦");
 		System.out.println("                    ¦ 2) - Udlejning                                                  ¦");
 		System.out.println("                    ¦ 3) - Kundekartotek                                              ¦");
-		System.out.println("                    ¦ 4) - Lager                                                      ¦");
-		System.out.println("                    ¦ 5) - Økonomi                                                    ¦");
+		System.out.println("                    ¦ 4) - Ekspedientkartotek                                         ¦");
+		System.out.println("                    ¦ 5) - Lager                                                      ¦");
+		System.out.println("                    ¦ 6) - Økonomi                                                    ¦");
 		System.out.println("                    ¦                                                                 ¦");
 		System.out.println("                    ¦ 9) - Afslut                                                     ¦");
 		System.out.println("                    -------------------------------------------------------------------");
@@ -56,18 +58,23 @@ public class MainMenuUI
 					break;
 
 				case 4:
+					_salesAssistantMenuUI = new SalesAssistantMenuUI();
+					_salesAssistantMenuUI.execSalesAsstMenu();
+					break;	
+
+				case 5:
 					_stockmenuUI = new StockMenuUI();
 					_stockmenuUI.execStockMenu();
 					break;
 
-				case 5:
+				case 6:
 					_economymenuUI = new EconomyMenuUI();
 					_economymenuUI.execEconomyMenu();
 					break;
 
 				case 9:
-					System.out.print("\n                      Systemet er afsluttet...");
-					return;
+					System.out.println("\n                      Systemet er afsluttet...");
+					System.exit(0);
 
 				default:
 					System.out.print("\n                      " + GlobalUI.errorHandling(2));

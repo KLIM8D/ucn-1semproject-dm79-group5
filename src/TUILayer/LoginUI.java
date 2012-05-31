@@ -1,6 +1,8 @@
 package TUILayer;
 import java.util.Scanner;
 
+import ControlLayer.SalesAssistantCtrl;
+
 /**
  * Text User Interface - Login
  *
@@ -12,6 +14,12 @@ import java.util.Scanner;
 public class LoginUI
 {
     private MainMenuUI _mainmenuUI;
+    private SalesAssistantCtrl _saController;
+
+    public LoginUI() 
+    {
+        _saController = new SalesAssistantCtrl();
+    }
     
 	public void execLogin()
     {
@@ -22,40 +30,51 @@ public class LoginUI
     {
         GlobalUI.tuiHeader();
 
-        System.out.println("\n\n\n                    -------------------------------------------------------------------");
-        System.out.println("                    ¦                          Adgangskontrol                         ¦");
-        System.out.println("                    -------------------------------------------------------------------");
+        print("\n\n\n                    -------------------------------------------------------------------");
+        print("                    ¦                          Adgangskontrol                         ¦");
+        print("                    -------------------------------------------------------------------");
 
         Scanner keyboard = new Scanner(System.in);
-
-        System.out.print("\n                      Indtast Bruger ID: ");
-        String username = keyboard.nextLine();
-        System.out.print("                      Indtast Adgangskode: ");
-        String password = keyboard.nextLine();
+        int userId = GlobalUI.inputGetInt("\n                      Indtast Bruger ID: ");
+        String password = GlobalUI.inputGetLine("                      Indtast Adgangskode: ");
 
         try
         {
-                if(!GlobalUI.checkIfEmpty(username) && !GlobalUI.checkIfEmpty(password))
+                if(!GlobalUI.checkIfEmpty(password))
                 {
-                    username.trim();
-                    password.trim();
+                    boolean success = _saController.checkLogin(userId, password);
+                    if(success || userId == 1) //userId == 1 for testing. Removed at final release
+                    {
+                        _mainmenuUI = new MainMenuUI();
+                        _mainmenuUI.execMainMenu();
+                    }
+                    else
+                    {
+                        print(GlobalUI.errorHandling(4));
+                        Thread.sleep(2000);
+                        printLogin();
+                    }
                 }
 
                 else
                 {
-                    System.out.print("\n                      " + GlobalUI.errorHandling(1));
+                    print(GlobalUI.errorHandling(1));
 
                     Thread.sleep(2000);
                     printLogin();
                 }
 
-                _mainmenuUI = new MainMenuUI();
-                _mainmenuUI.execMainMenu();
+                
         }
 
         catch (Exception e)
         {
-            System.out.print("\n                      " + GlobalUI.errorHandling(99));
+            print(GlobalUI.errorHandling(99));
         }
+    }
+
+    private void print(String inputLine)
+    {
+        System.out.println(inputLine);
     }
 }

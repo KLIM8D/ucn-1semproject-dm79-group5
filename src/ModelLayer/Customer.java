@@ -33,6 +33,12 @@ public class Customer
         _discounts = new ArrayList<Discount>();
         _customerId = person.getPhoneNumber();
     }
+
+    // Business {set; get;}
+    public void setBusiness(Business value)
+    { _business = value; }
+    public Business getBusiness()
+    { return _business; }
     
     public long getCustomerId()
     {
