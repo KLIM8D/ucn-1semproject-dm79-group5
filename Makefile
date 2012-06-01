@@ -42,7 +42,7 @@ SOURCES = \
 	ModelLayer/SalesAssistantContainer \
 	ModelLayer/SerialNumber \
 	TUILayer/CustomerMenuUI \
-	TUILayer/EconomyMenuUI \
+	TUILayer/StatisticMenuUI \
 	TUILayer/GlobalUI \
 	TUILayer/LoginUI \
 	TUILayer/MainMenuUI \
