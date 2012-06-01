@@ -273,9 +273,33 @@ public class RentalMenuUI
                     break;                    
                   
                 case 9:
-                    
-                    execRentalMenu();
-                    break;                   
+                    try
+					{
+						itemNumber = GlobalUI.inputGetLong("Indtast ID på lageret: ");
+						LeasingItem leaseItem = _leaseCtrl.getLeaseItem(itemNumber);
+						if(leaseItem != null)
+						{
+							itemName = GlobalUI.inputGetLine("Indtast produktets navn: ");
+							rentPrice = GlobalUI.inputGetLine("Indtast udlejningsprisen: ");;
+							maxAvaible = GlobalUI.inputGetInt("Indtast max beholdning ");
+							done = _leaseCtrl.updateLeasingItem(itemNumber, itemName, rentPrice, maxAvaible);
+							if(done)
+								System.out.println("Produktet er nu opdateret");
+							else
+								System.out.println("Produktet kunne ikke opdateres");
+						}	
+						else
+							System.out.println("Et produkt med det ID blev ikke fundet");
+					}
+					catch(Exception ex)
+					{
+						System.out.println(GlobalUI.errorHandling(99));
+						Thread.sleep(2000);
+					}			
+
+					GlobalUI.inputGetLine("Tryk på enter for at forsætte..");	
+					execRentalMenu();
+					break;
                     
                 case 10:
                     try{

@@ -1,12 +1,16 @@
 .PHONY: all clean run
 
 SOURCES = \
+	ControlLayer/CustomerCtrl \
 	ControlLayer/LeaseCtrl \
 	ControlLayer/OrderCtrl \
+	ControlLayer/PersonCtrl \
 	ControlLayer/ProductCtrl \
+	ControlLayer/PersonCtrl \
 	ControlLayer/ProductLocationCtrl \
 	ControlLayer/PurchaseCtrl \
 	ControlLayer/SalesAssistantCtrl \
+	ControlLayer/StatisticCtrl \
 	ModelLayer/Business \
 	ModelLayer/Customer \
 	ModelLayer/CustomerContainer \
@@ -38,7 +42,7 @@ SOURCES = \
 	ModelLayer/SalesAssistantContainer \
 	ModelLayer/SerialNumber \
 	TUILayer/CustomerMenuUI \
-	TUILayer/EconomyMenuUI \
+	TUILayer/StatisticMenuUI \
 	TUILayer/GlobalUI \
 	TUILayer/LoginUI \
 	TUILayer/MainMenuUI \
@@ -47,6 +51,9 @@ SOURCES = \
 	TUILayer/SalesAssistantMenuUI \
 	TUILayer/SalesMenuUI \
 	TUILayer/StockMenuUI \
+	GUILayer/GlobalUI \
+	GUILayer/LoginUI \
+	GUILayer/SystemUI \
 	Program
 
 SRC = $(addprefix src/, $(addsuffix .java, $(SOURCES)))

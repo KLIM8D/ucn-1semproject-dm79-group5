@@ -12,14 +12,12 @@ import java.util.ArrayList;
 public class Customer
 {
     private long _customerId;
-    private boolean _isBusiness;
     private Person _person;
     private Business _business;
     private ArrayList<Discount> _discounts;
 
     public Customer(Person person)
     {
-        _isBusiness = false;
         _person = person;
         _discounts = new ArrayList<Discount>();
         _customerId = person.getPhoneNumber();
@@ -27,7 +25,6 @@ public class Customer
 
     public Customer(Person person, String contactPerson, long cvrNo)
     {
-        _isBusiness = true;
         _business = new Business(contactPerson, cvrNo);
         _person = person;
         _discounts = new ArrayList<Discount>();
@@ -47,7 +44,7 @@ public class Customer
     
     public boolean getIsBusiness()
     {
-        return _isBusiness;
+        return _business != null;
     }
     
     public Person getPerson()
@@ -63,11 +60,6 @@ public class Customer
     public void setCustomerId(long customerId)
     {
         _customerId = customerId;
-    }
-    
-    public void setIsBusiness(boolean isBusiness)
-    {
-        _isBusiness = isBusiness;
     }
     
     public void addDiscount(Discount disc)

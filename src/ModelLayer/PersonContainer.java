@@ -28,10 +28,15 @@ public class PersonContainer
         return _instance;
     }
     
-    public void addPerson(Person per)
+    public boolean addPerson(Person per)
     {
-        long key = per.getPersonId();
-        _personCollection.put(key, per);
+        if(per != null)
+        {
+            long key = per.getPersonId();
+            _personCollection.put(key, per);
+            return true;
+        }
+        return false;
     }
     
     public boolean updatePerson(Person per)
