@@ -1,6 +1,7 @@
 .PHONY: all clean run
 
 SOURCES = \
+	ControlLayer/CustomerCtrl \
 	ControlLayer/LeaseCtrl \
 	ControlLayer/OrderCtrl \
 	ControlLayer/PersonCtrl \
