@@ -15,12 +15,13 @@ public class EconomyMenuUI
 		GlobalUI.tuiHeader();
 
 		System.out.println("\n\n\n                    -------------------------------------------------------------------");
-		System.out.println("                    ¦                             Økonomi                             ¦");
+		System.out.println("                    ¦                             Statistiker                         ¦");
 		System.out.println("                    -------------------------------------------------------------------");
 		System.out.println("                    ¦ 1) - Generere statistik ud fra ekspedient                       ¦");
-		System.out.println("                    ¦ 2) - Generere statistik ud fra vare                             ¦");
+		System.out.println("                    ¦ 2) - Generere statistik ud fra kunde                            ¦");
+		System.out.println("                    ¦ 3) - Generere statistik ud fra vare                             ¦");
 		System.out.println("                    ¦                                                                 ¦");
-		System.out.println("                    ¦ 9) - Returnere til hovedmenu                                    ¦");
+		System.out.println("                    ¦ 0) - Returnere til hovedmenu                                    ¦");
 		System.out.println("                    -------------------------------------------------------------------");
 		
 		int userentry = GlobalUI.inputGetInt("\n                      Menu valg: ");
