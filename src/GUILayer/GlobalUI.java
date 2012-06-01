@@ -1,11 +1,6 @@
 package GUILayer;
 
 import java.awt.Component;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-
-import javax.swing.JDialog;
-
 import javax.swing.JOptionPane;
 
 public class GlobalUI {
@@ -13,9 +8,8 @@ public class GlobalUI {
 	protected static final Component frame = null;
 	private static String _systemTitle = "1. Semesters Projekt";
 	private static String _systemDescription = "UCN-DM79, Gruppe 5";
-	private static String _systemBuild = "build31052012";
-	private static boolean _dialogSystem = false;
-	private static boolean _dialogLicense = false;
+	private static String _systemBuild = "build31052012";	
+	private static boolean _isActive = false;
 	
 	public GlobalUI() {
 		try {
@@ -52,50 +46,12 @@ public class GlobalUI {
 		}
 		return null;
 	}
-		
-	public static void aboutSystem() {
-		if(_dialogSystem == false)
-		{
-			JDialog _aboutDialog = new JDialog();
-			_aboutDialog.setTitle("Om: System");
-			_aboutDialog.setBounds(0, 0, 400, 400);
-			_aboutDialog.setLocationRelativeTo(null);
-			_aboutDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE );
-			_aboutDialog.setVisible(true);
-			_aboutDialog.setModal(true);
-			_aboutDialog.setAlwaysOnTop(true);
-			
-			_dialogSystem = true;
-			
-			_aboutDialog.addWindowListener(new WindowAdapter() {
-				  public void windowClosed(WindowEvent e)
-				  {
-					  _dialogSystem = false;
-				  }
-			});
-		}
+	
+	public static boolean getWindowStatus() {
+		return _isActive;
 	}
 	
-	public static void aboutLicense() {
-		if(_dialogLicense == false)
-		{
-			JDialog _aboutDialog = new JDialog();
-			_aboutDialog.setTitle("Om: License");
-			_aboutDialog.setBounds(0, 0, 400, 400);
-			_aboutDialog.setLocationRelativeTo(null);
-			_aboutDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE );
-			_aboutDialog.setVisible(true);
-			_aboutDialog.setModal(true);
-			_aboutDialog.setAlwaysOnTop(true);
-			
-			_dialogLicense= true;
-			
-			_aboutDialog.addWindowListener(new WindowAdapter() {
-				  public void windowClosed(WindowEvent e)
-				  {
-					  _dialogLicense = false;
-				  }
-			});
-		}
+	public static void setWindowStatus(boolean status) {
+		_isActive = status;
 	}
 }

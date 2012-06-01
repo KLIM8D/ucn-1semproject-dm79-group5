@@ -9,6 +9,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JSeparator;
 import javax.swing.border.EmptyBorder;
 
 public class SystemUI extends JFrame {
@@ -21,6 +22,7 @@ public class SystemUI extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 1024, 768);
 		setLocationRelativeTo(null);
+		setResizable(false);
 
 		pnlSystemLayout = new JPanel();
 		pnlSystemLayout.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -107,45 +109,92 @@ public class SystemUI extends JFrame {
 		JMenuItem mntmSalesAssistChangePassword = new JMenuItem("Skift adgangskode");
 		mnSalesAssistant.add(mntmSalesAssistChangePassword);
 		
-		JMenu mnStock = new JMenu("Lager");
-		mnFunctions.add(mnStock);
+		JMenu mnProduct = new JMenu("Produkt");
+		mnFunctions.add(mnProduct);
 		
-		JMenuItem mntmOpretProdukt = new JMenuItem("Opret produkt");
-		mnStock.add(mntmOpretProdukt);
+		JMenuItem mntmProductCreate = new JMenuItem("Opret produkt");
+		mntmProductCreate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(GUILayer.GlobalUI.getWindowStatus() == false) {
+					new GUILayer.Product.CreateUI().setVisible(true);
+				}
+			}
+		});
+		mnProduct.add(mntmProductCreate);
 		
-		JMenuItem mntmFindProdukt = new JMenuItem("Find produkt");
-		mnStock.add(mntmFindProdukt);
+		JMenuItem mntmProductFind = new JMenuItem("Find produkt");
+		mnProduct.add(mntmProductFind);
 		
-		JMenuItem mntmSletProdukt = new JMenuItem("Slet produkt");
-		mnStock.add(mntmSletProdukt);
+		JMenuItem mntmProductShowAll = new JMenuItem("Vis alle produkter");
+		mnProduct.add(mntmProductShowAll);
 		
-		JMenu mnEconomy = new JMenu("Økonomi");
-		mnFunctions.add(mnEconomy);
+		JMenuItem mntmProductUpdate = new JMenuItem("Opdater produkt");
+		mnProduct.add(mntmProductUpdate);
 		
-		JMenuItem mntmEconomyStatsSalesAssist = new JMenuItem("Generere statistik ud fra ekspedient");
-		mnEconomy.add(mntmEconomyStatsSalesAssist);
+		JMenuItem mntmProductDelete = new JMenuItem("Slet produkt");
+		mnProduct.add(mntmProductDelete);
 		
-		JMenuItem mntmEconomyStatsProduct = new JMenuItem("Generere statistik ud fra vare");
-		mnEconomy.add(mntmEconomyStatsProduct);
+		JSeparator mntmProductSeparator = new JSeparator();
+		mnProduct.add(mntmProductSeparator);
 		
-		JMenu mnAbout = new JMenu("Om....");
+		JMenu mnProductCat = new JMenu("Produkt kategorier");
+		mnProduct.add(mnProductCat);
+		
+		JMenuItem mntmProductCatCreate = new JMenuItem("Opret produkt kategori");
+		mnProductCat.add(mntmProductCatCreate);
+		
+		JMenuItem mntmProductCatFind = new JMenuItem("Find produkt kategori");
+		mnProductCat.add(mntmProductCatFind);
+		
+		JMenuItem mntmProductCatShowAll = new JMenuItem("Vis alle produkt kategorier");
+		mnProductCat.add(mntmProductCatShowAll);
+		
+		JMenuItem mntmProductCatDelete = new JMenuItem("Slet produkt kategori");
+		mnProductCat.add(mntmProductCatDelete);
+		
+		JMenu mnProductGroup = new JMenu("Produkt grupper");
+		mnProduct.add(mnProductGroup);
+		
+		JMenuItem mntmProductGroupCreate = new JMenuItem("Opret produkt gruppe");
+		mnProductGroup.add(mntmProductGroupCreate);
+		
+		JMenuItem mntmProductGroupAddToGroup = new JMenuItem("Tilføj et produkt til en produkt gruppe");
+		mnProductGroup.add(mntmProductGroupAddToGroup);
+		
+		JMenuItem mntmProductGroupUpdate = new JMenuItem("Opdater produkt gruppe");
+		mnProductGroup.add(mntmProductGroupUpdate);
+		
+		JMenuItem mntmProductGroupFind = new JMenuItem("Find produkt gruppe");
+		mnProductGroup.add(mntmProductGroupFind);
+		
+		JMenuItem mntmProductGroupShowAll = new JMenuItem("Vis alle produkt grupper");
+		mnProductGroup.add(mntmProductGroupShowAll);
+		
+		JMenuItem mntmProductGroupDelete = new JMenuItem("Slet produkt gruppe");
+		mnProductGroup.add(mntmProductGroupDelete);
+		
+		JMenu mnStatistics = new JMenu("Statistik");
+		mnFunctions.add(mnStatistics);
+		
+		JMenuItem mntmStatisticsSalesAssist = new JMenuItem("Generere statistik ud fra ekspedient");
+		mnStatistics.add(mntmStatisticsSalesAssist);
+		
+		JMenuItem mntmStatisticsProduct = new JMenuItem("Generere statistik ud fra vare");
+		mnStatistics.add(mntmStatisticsProduct);
+		
+		JMenu mnAbout = new JMenu("Om");
 		menuBar.add(mnAbout);
 		
-		JMenuItem mntmAboutSystem = new JMenuItem("System");
-		mntmAboutSystem.addActionListener(new ActionListener() {
+		JMenuItem mntmAboutApp = new JMenuItem("Applikationen");
+		mntmAboutApp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				GlobalUI.aboutSystem();
+				if(GUILayer.GlobalUI.getWindowStatus() == false) {
+					new GUILayer.AboutUI().setVisible(true);
+				}
+				
 			}
 		});
-		mnAbout.add(mntmAboutSystem);
-		
-		JMenuItem mntmAboutLicense = new JMenuItem("Licens");
-		mntmAboutLicense.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				GlobalUI.aboutLicense();
-			}
-		});
-		mnAbout.add(mntmAboutLicense);
+		mnAbout.add(mntmAboutApp);
 	}
 
 }

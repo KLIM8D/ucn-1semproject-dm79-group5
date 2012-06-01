@@ -32,6 +32,7 @@ public class LoginUI extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 450, 140);
 		setLocationRelativeTo(null);
+		setResizable(false);
 		pnlAccessControl = new JPanel();
 		pnlAccessControl.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(pnlAccessControl);
@@ -48,14 +49,7 @@ public class LoginUI extends JFrame {
 		txtUserID = new JTextField();
 		txtUserID.addKeyListener(new KeyAdapter() {
 			public void keyReleased(KeyEvent e) {
-				try {
-					Integer.parseInt(txtUserID.getText());
-				}
-				
-				catch (NumberFormatException err) {
-					JOptionPane.showMessageDialog(frame, GlobalUI.errorHandling(04), "FEJL!", JOptionPane.WARNING_MESSAGE);
-					txtUserID.setText(null);
-				}
+				checkIfInt();
 			}
 		});
 		txtUserID.setBounds(120, 10, 316, 19);
@@ -67,7 +61,7 @@ public class LoginUI extends JFrame {
 		pnlAccessControl.add(txtPassword);
 		txtPassword.setColumns(10);
 		
-		JButton btnCancel = new JButton("Annullere");
+		JButton btnCancel = new JButton("Annuller");
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(EXIT_ON_CLOSE);
@@ -79,41 +73,54 @@ public class LoginUI extends JFrame {
 		JButton btnLogin = new JButton("Login");
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				try {			
-					if(txtUserID.getText().trim().length() != 0) {
-						if(txtPassword.getText().trim().length() != 0) {
-							int userID = Integer.parseInt(txtUserID.getText());
-							String userPassword = txtPassword.getText();
-							
-							boolean success = _saController.checkLogin(userID, userPassword);
-							if(success || userID == 1) { // userID == 1 is to be removed at final release
-								//JOptionPane.showMessageDialog(frame, "It works!");
-								new GUILayer.SystemUI().setVisible(true);
-								dispose();
-							}
-							
-							else {
-								JOptionPane.showMessageDialog(frame, GlobalUI.errorHandling(03), "FEJL!", JOptionPane.WARNING_MESSAGE);
-							}
-						}
-						
-						else {
-							JOptionPane.showMessageDialog(frame, GlobalUI.errorHandling(02), "FEJL!", JOptionPane.WARNING_MESSAGE);
-						}
-					}
-					
-					else {
-						JOptionPane.showMessageDialog(frame, GlobalUI.errorHandling(01), "FEJL!", JOptionPane.WARNING_MESSAGE);
-					}
-				}
-				
-				catch (Exception err) {
-					JOptionPane.showMessageDialog(frame, GlobalUI.errorHandling(99), "FEJL!", JOptionPane.WARNING_MESSAGE);
-					}
+				userLogin();
 			}
 		});
 		btnLogin.setBounds(190, 68, 117, 25);
 		pnlAccessControl.add(btnLogin);
+	}
+	
+	private void checkIfInt() {
+		try {
+			Integer.parseInt(txtUserID.getText());
+		}
+		
+		catch (NumberFormatException err) {
+			JOptionPane.showMessageDialog(frame, GlobalUI.errorHandling(04), "FEJL!", JOptionPane.WARNING_MESSAGE);
+			txtUserID.setText(null);
+		}
+	}
+	
+	private void userLogin() {
+		try {			
+			if(txtUserID.getText().trim().length() != 0) {
+				if(txtPassword.getText().trim().length() != 0) {
+					int userID = Integer.parseInt(txtUserID.getText());
+					String userPassword = txtPassword.getText();
+					
+					boolean success = _saController.checkLogin(userID, userPassword);
+					if(success || userID == 1) { // userID == 1 is to be removed at final release
+						new GUILayer.SystemUI().setVisible(true);
+						dispose();
+					}
+					
+					else {
+						JOptionPane.showMessageDialog(frame, GlobalUI.errorHandling(03), "FEJL!", JOptionPane.WARNING_MESSAGE);
+					}
+				}
+				
+				else {
+					JOptionPane.showMessageDialog(frame, GlobalUI.errorHandling(02), "FEJL!", JOptionPane.WARNING_MESSAGE);
+				}
+			}
+			
+			else {
+				JOptionPane.showMessageDialog(frame, GlobalUI.errorHandling(01), "FEJL!", JOptionPane.WARNING_MESSAGE);
+			}
+		}
+		
+		catch (Exception err) {
+			JOptionPane.showMessageDialog(frame, GlobalUI.errorHandling(99), "FEJL!", JOptionPane.WARNING_MESSAGE);
+		}
 	}
 }
