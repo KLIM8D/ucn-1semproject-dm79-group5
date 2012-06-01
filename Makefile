@@ -3,6 +3,7 @@
 SOURCES = \
 	ControlLayer/LeaseCtrl \
 	ControlLayer/OrderCtrl \
+	ControlLayer/PersonCtrl \
 	ControlLayer/ProductCtrl \
 	ControlLayer/ProductLocationCtrl \
 	ControlLayer/PurchaseCtrl \
