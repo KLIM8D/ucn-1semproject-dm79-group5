@@ -4,6 +4,7 @@ import ModelLayer.Business;
 import ModelLayer.Customer;
 import ModelLayer.CustomerContainer;
 import ModelLayer.Person;
+import java.util.ArrayList;
 
 public class CustomerCtrl
 {
@@ -51,5 +52,10 @@ public class CustomerCtrl
     public Iterable<Customer> getAllCustomers()
     {
         return _container.getAllCustomers().values();
+    }
+
+    public ArrayList<Customer> getAllCustomersByBusiness(boolean isBusiness)
+    {
+        return _container.getAllCustomersByBusiness(isBusiness);
     }
 }

@@ -61,7 +61,7 @@ public class SalesAssistantMenuUI
 						long phoneNumber = GlobalUI.inputGetLong("Indtast telefon nummer: ");	
 						_perController.createPerson(personId, personName, address, city, zipCode, phoneNumber);
 						String password = GlobalUI.inputGetLine("Indtast det ønsket kodeord: ");
-						boolean succeeded = _saController.createSalesAssistant(password, personId);
+						succeeded = _saController.createSalesAssistant(password, personId);
 						if(succeeded)
 							print("Ekspedienten er nu oprettet!");
 						else
