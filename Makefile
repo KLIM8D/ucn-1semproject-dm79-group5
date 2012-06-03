@@ -6,7 +6,6 @@ SOURCES = \
 	ControlLayer/OrderCtrl \
 	ControlLayer/PersonCtrl \
 	ControlLayer/ProductCtrl \
-	ControlLayer/PersonCtrl \
 	ControlLayer/ProductLocationCtrl \
 	ControlLayer/PurchaseCtrl \
 	ControlLayer/SalesAssistantCtrl \
@@ -51,9 +50,9 @@ SOURCES = \
 	TUILayer/SalesAssistantMenuUI \
 	TUILayer/SalesMenuUI \
 	TUILayer/StockMenuUI \
-	GUILayer/GlobalUI \
-	GUILayer/LoginUI \
-	GUILayer/SystemUI \
+	#GUILayer/GlobalUI \
+	#GUILayer/LoginUI \
+	#GUILayer/SystemUI \
 	Program
 
 SRC = $(addprefix src/, $(addsuffix .java, $(SOURCES)))

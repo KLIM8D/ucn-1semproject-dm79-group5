@@ -7,9 +7,10 @@ import ControlLayer.SalesAssistantCtrl;
 import ModelLayer.SalesAssistant;
 import ModelLayer.Customer;
 import ModelLayer.Product;
+import java.util.Map;
 
 /**
- * Text User Interface - Economy
+ * Text User Interface - Statistics
  *
  * @date (05.28.2012)
  */
@@ -55,7 +56,6 @@ public class StatisticMenuUI
 			switch (userentry)
 			{
 				case 1:
-					// Removal of section when function is integrated
 					// Start of section
 					try 
 					{
@@ -64,9 +64,9 @@ public class StatisticMenuUI
 						if(sa != null)
 						{
 							long[] salesAsstValues = _statisticCtrl.generateStatsFromSalesAsst(salesAsstId);
-							print(sa.getPerson().getName() + " har solgt for: ");
+							print(sa.getPerson().getName() + " har i alt solgt for: ");
 							print("Antal ordre: " + salesAsstValues[0]);
-							print("Totalt beløb: " + salesAsstValues[1]);
+							print("Totalt beløb: " + salesAsstValues[1] + " kr.");
 						}
 						else
 							print("En ekspedient med det ID blev ikke fundet");
@@ -81,21 +81,119 @@ public class StatisticMenuUI
 					execStatisticMenu();
 					break;
 					// End of section
-
 				case 2:
-					// Removal of section when function is integrated
 					// Start of section
-					print(GlobalUI.errorHandling(03));
-					Thread.sleep(2000);
+					try 
+					{
+						long customerId = GlobalUI.inputGetLong("Indtast ID for kunden: ");
+						Customer customer = _cusCtrl.getCustomer(customerId);
+						if(customer != null)
+						{
+							long[] customerValues = _statisticCtrl.generateStatsFromCustomer(customerId);
+							print(customer.getPerson().getName() + " har i alt købt for: ");
+							print("Antal ordre: " + customerValues[0]);
+							print("Totalt beløb: " + customerValues[1] + " kr.");
+						}
+						else
+							print("En kunde med det ID blev ikke fundet");
+
+						GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
+					}
+					catch (Exception e)
+					{
+						print(GlobalUI.errorHandling(99));
+						Thread.sleep(2000);
+					}
 					execStatisticMenu();
 					break;
 					// End of section
+				case 3:
+					// Start of section
+					try 
+					{
+						long itemNumber = GlobalUI.inputGetLong("Indtast produkt nummeret: ");
+						Product prod = _prodCtrl.getProduct(itemNumber);
+						if(prod != null)
+						{
+							long[] productValues = _statisticCtrl.generateStatsFromProduct(itemNumber);
+							print(prod.getItemName() + " har i alt solgt for: ");
+							print("Antal ordre: " + productValues[0]);
+							print("Totalt beløb: " + productValues[1] + " kr.");
+						}
+						else
+							print("Kunne ikke finde et produkt med det produkt nummer");
 
-				case 9:
+						GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
+					}
+					catch (Exception e)
+					{
+						print(GlobalUI.errorHandling(99));
+						Thread.sleep(2000);
+					}
+					execStatisticMenu();
+					break;
+					// End of section
+				case 4:
+					// Start of section
+					try 
+					{
+						int take = GlobalUI.inputGetInt("Hvor mange ekspedienter ønsker du at vise en top liste over: ");
+
+						for(Map.Entry<Long,SalesAssistant> entry : _statisticCtrl.getTopXForSalesAsst(take).entrySet())
+							print(entry.getValue().getPerson().getName() + " har i alt solgt for: " + entry.getKey() + " kr.");
+						
+						GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
+					}
+					catch (Exception e)
+					{
+						print(GlobalUI.errorHandling(99));
+						Thread.sleep(2000);
+					}
+					execStatisticMenu();
+					break;
+					// End of section
+				case 5:
+					// Start of section
+					try 
+					{
+						int take = GlobalUI.inputGetInt("Hvor mange kunder ønsker du at vise en top liste over: ");
+
+						for(Map.Entry<Long,Customer> entry : _statisticCtrl.getTopXForCustomer(take).entrySet())
+							print(entry.getValue().getPerson().getName() + " har i alt købt for: " + entry.getKey() + " kr.");
+						
+						GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
+					}
+					catch (Exception e)
+					{
+						print(GlobalUI.errorHandling(99));
+						Thread.sleep(2000);
+					}
+					execStatisticMenu();
+					break;
+					// End of section
+				case 6:
+					// Start of section
+					try 
+					{
+						int take = GlobalUI.inputGetInt("Hvor mange produkter ønsker du at vise en top liste over: ");
+
+						for(Map.Entry<Long,Product> entry : _statisticCtrl.getTopXForProduct(take).entrySet())
+							print(entry.getValue().getItemName() + " har i alt solgt for: " + entry.getKey() + " kr.");
+						
+						GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
+					}
+					catch (Exception e)
+					{
+						print(GlobalUI.errorHandling(99));
+						Thread.sleep(2000);
+					}
+					execStatisticMenu();
+					break;
+					// End of section
+				case 0:
 					_mainmenuUI = new MainMenuUI();
 					_mainmenuUI.execMainMenu();
 					break;
-
 				default:
 					print(GlobalUI.errorHandling(02));
 					Thread.sleep(2000);

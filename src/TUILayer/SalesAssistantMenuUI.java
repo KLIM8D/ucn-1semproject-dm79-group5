@@ -1,6 +1,7 @@
 package TUILayer;
 
 import ControlLayer.SalesAssistantCtrl;
+import ControlLayer.PersonCtrl;
 import ModelLayer.SalesAssistant;
 
 /**
@@ -13,10 +14,12 @@ public class SalesAssistantMenuUI
 {
 	private MainMenuUI _mainmenuUI;
 	private SalesAssistantCtrl _saController;
+	private PersonCtrl _perController;
 
 	public SalesAssistantMenuUI() 
 	{
 		_saController = new SalesAssistantCtrl();
+		_perController = new PersonCtrl();
 	}
 
 	public void execSalesAsstMenu()
@@ -28,9 +31,10 @@ public class SalesAssistantMenuUI
 		print("-------------------------------------------------------------------");
 		print("¦ 1) - Opret ekspedient                                           ¦");
 		print("¦ 2) - Vis ekspedient information                                 ¦");
-		print("¦ 3) - Slet ekspedient                                            ¦");
-		print("¦ 4) - Vis alle ekspedienter                                      ¦");
-		print("¦ 5) - Skift password                                             ¦");
+		print("¦ 3) - Opdater ekspedient information                             ¦");
+		print("¦ 4) - Slet ekspedient                                            ¦");
+		print("¦ 5) - Vis alle ekspedienter                                      ¦");
+		print("¦ 6) - Skift password                                             ¦");
 		print("¦                                                                 ¦");
 		print("¦ 0) - Returner til hovedmenu                                     ¦");
 		print("-------------------------------------------------------------------");
@@ -47,13 +51,28 @@ public class SalesAssistantMenuUI
 			{
 				case 1:
 					// Start of section
-					long personId = GlobalUI.inputGetLong("Indtast ID på personen: ");
-					String password = GlobalUI.inputGetLine("Indtast det ønsket kodeord: ");
-					succeeded = _saController.createSalesAssistant(password, personId);
-					if(succeeded)
-						print("Ekspedienten er nu oprettet!");
-					else
-						print(GlobalUI.errorHandling(99));
+					try
+					{
+						long personId = GlobalUI.inputGetLong("Indtast CPR nummer (uden -): ");
+						String personName = GlobalUI.inputGetLine("Indtast navn: ");
+						String address = GlobalUI.inputGetLine("Indtast vejnavn + husnummer: ");
+						int zipCode = GlobalUI.inputGetInt("Indtast post nummer: ");
+						String city = GlobalUI.inputGetLine("Indtast by: ");						
+						long phoneNumber = GlobalUI.inputGetLong("Indtast telefon nummer: ");	
+						_perController.createPerson(personId, personName, address, city, zipCode, phoneNumber);
+						String password = GlobalUI.inputGetLine("Indtast det ønsket kodeord: ");
+						boolean succeeded = _saController.createSalesAssistant(password, personId);
+						if(succeeded)
+							print("Ekspedienten er nu oprettet!");
+						else
+							print("Der skete en fejl under oprettelsen af ekspedienten");
+					}
+					catch(Exception ex)
+					{
+						//print(GlobalUI.errorHandling(99));
+						//Thread.sleep(2000);
+						print(ex.toString());
+					}			
 
 					GlobalUI.inputGetLine("Tryk på enter for at forsætte..");	
 					execSalesAsstMenu();
@@ -61,12 +80,20 @@ public class SalesAssistantMenuUI
 					// End of section
 				case 2:
 					// Start of section
-					salesAsstId = GlobalUI.inputGetInt("Indtast ID på ekspedienten: ");
-					sa = _saController.getSalesAssistant(salesAsstId);
-					if(sa != null)
-						print(GlobalUI.getSalesAssistantInfo(sa));
-					else
-						print("En ekspedient med det ID blev ikke fundet!");
+					try
+					{
+						salesAsstId = GlobalUI.inputGetInt("Indtast ID på ekspedienten: ");
+						sa = _saController.getSalesAssistant(salesAsstId);
+						if(sa != null)
+							print(GlobalUI.getSalesAssistantInfo(sa));
+						else
+							print("En ekspedient med det ID blev ikke fundet!");
+					}	
+					catch(Exception ex)
+					{
+						print(GlobalUI.errorHandling(99));
+						Thread.sleep(2000);
+					}
 
 					GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
 					execSalesAsstMenu();
@@ -74,30 +101,64 @@ public class SalesAssistantMenuUI
 					// End of section
 				case 3:
 					// Start of section
-					print("Bemærk denne funktion kan ikke fortrydes, så snart den er udført!");
-					salesAsstId = GlobalUI.inputGetInt("Indtast ID på ekspedienten: ");
-					sa = _saController.getSalesAssistant(salesAsstId);
-					if(sa != null)
+					try
 					{
-						print(GlobalUI.getSalesAssistantInfo(sa));
-						String answer = GlobalUI.inputGetLine("Er du sikker på du vil slette denne ekspedient? (Ja/Nej): ");
-						if(answer.toLowerCase().equals("ja"))
-						{
-							succeeded = _saController.removeSalesAssistant(salesAsstId);
-							if(succeeded)
-								print("Ekspedienten er nu slettet");
-							else
-								print(GlobalUI.errorHandling(99));
-						}
+						long personId = GlobalUI.inputGetLong("Indtast CPR nummer (uden -): ");
+						String personName = GlobalUI.inputGetLine("Indtast navn: ");
+						String address = GlobalUI.inputGetLine("Indtast vejnavn + husnummer: ");
+						int zipCode = GlobalUI.inputGetInt("Indtast post nummer: ");
+						String city = GlobalUI.inputGetLine("Indtast by: ");						
+						long phoneNumber = GlobalUI.inputGetLong("Indtast telefon nummer: ");	
+						succeeded = _perController.updatePerson(personId, personName, address, city, zipCode, phoneNumber);
+						if(succeeded)
+							print("Ekspedientens informationer er nu opdateret!");
+						else
+							print("Der skete en fejl under opdateringen af ekspedientens informationer");
 					}
-					else
-						print("En ekspedient med det ID blev ikke fundet!");
+					catch(Exception ex)
+					{
+						print(GlobalUI.errorHandling(99));
+						Thread.sleep(2000);
+					}			
+
+					GlobalUI.inputGetLine("Tryk på enter for at forsætte..");	
+					execSalesAsstMenu();
+					break;
+					// End of section
+				case 4:
+					// Start of section
+					try
+					{
+						print("Bemærk denne funktion kan ikke fortrydes, så snart den er udført!");
+						salesAsstId = GlobalUI.inputGetInt("Indtast ID på ekspedienten: ");
+						sa = _saController.getSalesAssistant(salesAsstId);
+						if(sa != null)
+						{
+							print(GlobalUI.getSalesAssistantInfo(sa));
+							String answer = GlobalUI.inputGetLine("Er du sikker på du vil slette denne ekspedient? (Ja/Nej): ");
+							if(answer.toLowerCase().equals("ja"))
+							{
+								succeeded = _saController.removeSalesAssistant(salesAsstId);
+								if(succeeded)
+									print("Ekspedienten er nu slettet");
+								else
+									print("Ekspedienten kunne ikke slettes");
+							}
+						}
+						else
+							print("En ekspedient med det ID blev ikke fundet!");
+					}
+					catch(Exception ex)
+					{
+						print(GlobalUI.errorHandling(99));
+						Thread.sleep(2000);
+					}					
 
 					GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
 					execSalesAsstMenu();
 					break;
 					// End of section
-				case 4:
+				case 5:
 					// Start of section
 					for(SalesAssistant salesAsst : _saController.getAllSalesAssistants())
 						print(GlobalUI.getSalesAssistantInfo(salesAsst));
@@ -106,15 +167,23 @@ public class SalesAssistantMenuUI
 					execSalesAsstMenu();
 					break;
 					// End of section
-				case 5:
+				case 6:
 					// Start of section
-					salesAsstId = GlobalUI.inputGetInt("Indtast ID på ekspedienten: ");
-					String newPassword = GlobalUI.inputGetLine("Indtast det ønskede kodeord: ");
-					succeeded = _saController.changePassword(salesAsstId, newPassword);
-					if(succeeded)
-						print("Kodeordet for ekspedienten blev ændret");
-					else
+					try
+					{
+						salesAsstId = GlobalUI.inputGetInt("Indtast ID på ekspedienten: ");
+						String newPassword = GlobalUI.inputGetLine("Indtast det ønskede kodeord: ");
+						succeeded = _saController.changePassword(salesAsstId, newPassword);
+						if(succeeded)
+							print("Kodeordet for ekspedienten blev ændret");
+						else
+							print("Kodeordet til ekspedienten kunne ikke ændres");
+					}
+					catch(Exception ex)
+					{
 						print(GlobalUI.errorHandling(99));
+						Thread.sleep(2000);
+					}					
 
 					GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
 					execSalesAsstMenu();

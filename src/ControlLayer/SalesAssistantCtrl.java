@@ -29,13 +29,14 @@ public class SalesAssistantCtrl
         if(person != null)
         {
             SalesAssistant sa = new SalesAssistant(person);
-            String salt = createSalt(sa.getSalesAssistantId());
+            String salt = createSalt(personId);
             sa.setSalt(salt);
             String hashedPassword = hashPassword(password, salt);
             sa.setPassword(hashedPassword);
 
             return _saContainer.addSalesAs(sa);
         }
+        
         return false;
     }
 
@@ -85,11 +86,11 @@ public class SalesAssistantCtrl
         return false;
     }
 
-	private String createSalt(int saId)
+	private String createSalt(long personId)
 	{
 		
 		Calendar currentDate = Calendar.getInstance();
-		Person per = getSalesAssistant(saId).getPerson();
+		Person per = _perContainer.getPerson(personId);
 		String name = per.getName();
 		long phoneNumber = per.getPhoneNumber();
 
