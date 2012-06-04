@@ -2,7 +2,6 @@ package TUILayer;
 import ControlLayer.LeaseCtrl;
 import ModelLayer.Lease;
 import ModelLayer.LeasingItem;
-import java.util.ArrayList;
 
 /**
  * Text User Interface - Rental
