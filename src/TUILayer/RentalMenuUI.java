@@ -2,7 +2,6 @@ package TUILayer;
 import ControlLayer.LeaseCtrl;
 import ModelLayer.Lease;
 import ModelLayer.LeasingItem;
-import java.util.ArrayList;
 
 /**
  * Text User Interface - Rental
@@ -24,23 +23,26 @@ public class RentalMenuUI
     {
         GlobalUI.tuiHeader();
 
-        System.out.println("\n\n\n                    -------------------------------------------------------------------");
-        System.out.println("                    ¦                            Udlejning                            ¦");
-        System.out.println("                    -------------------------------------------------------------------");
-        System.out.println("                    ¦  1) - Ny udlejning                                               ¦");
-        System.out.println("                    ¦  2) - Find udlejning (udlejningsnummer)                          ¦");
-        System.out.println("                    ¦  3) - Retunering af udlejning                                    ¦");
-        System.out.println("                    ¦  4) - Overskredet afleveringsdato                                ¦");
-        System.out.println("                    ¦  5) - Find Alle udlejninger                                      ¦");
-        System.out.println("                    ¦  6) - Find udlejning (kundenummer)                               ¦");
-        System.out.println("                    ¦  7) - Find Udlejningsprodukt                                     ¦");
-        System.out.println("                    ¦  8) - Nyt Udlejningsprodukt                                      ¦");
-        System.out.println("                    ¦  9) - Opdater Udlejningsprodukt                                  ¦");
-        System.out.println("                    ¦ 10) - Slet Udlejningsprodukt                                     ¦");
-        System.out.println("                    ¦  0) - Returnere til hovedmenu                                    ¦");
-        System.out.println("                    -------------------------------------------------------------------");
+        print("-------------------------------------------------------------------");
+        print("¦                            Udlejning                            ¦");
+        print("-------------------------------------------------------------------");
+        print("¦  1) - Ny udlejning                                               ¦");
+        print("¦  2) - Find udlejning (udlejningsnummer)                          ¦");
+        print("¦  3) - Retunering af udlejning                                    ¦");
+        print("¦  4) - Overskredet afleveringsdato                                ¦");
+        print("¦  5) - Find Alle udlejninger                                      ¦");
+        print("¦  6) - Find udlejning (kundenummer)                               ¦");
+        print("¦  7) - Find Udlejningsprodukt                                     ¦");
+        print("¦  8) - Nyt Udlejningsprodukt                                      ¦");
+        print("¦  9) - Opdater Udlejningsprodukt                                  ¦");
+        print("¦ 10) - Slet Udlejningsprodukt                                     ¦");
+        print("¦                                                                  ¦");
+        print("¦  0) - Returnere til hovedmenu                                    ¦");
+        print("-------------------------------------------------------------------");
 
-        int userentry = GlobalUI.inputGetInt("\n                      Menu valg: ");
+        System.out.print("\n");
+        int userentry = GlobalUI.inputGetInt("Menu valg: ");
+        System.out.println("\n");
 
         try
         {
@@ -50,42 +52,45 @@ public class RentalMenuUI
                     long customerId = 0;
                     long itemNumber = 0;
                     int days = 0;
-                    try{
+                    try
+                    {
                         customerId = GlobalUI.inputGetLong("Indtast Kundenummer: ");
                     }
                     catch(Exception ex)
                     {
-                        System.out.println("*FEJL* Kundenummer bestaar kun af tal");
+                        print("*FEJL* Kundenummer bestaar kun af tal");
                         GlobalUI.inputGetLine("Tryk enter for at fortsaette..");
                         execRentalMenu();
                     }
-                    try{
+                    try
+                    {
                         itemNumber = GlobalUI.inputGetLong("Indtast Produktnummer: ");
                     }
                     catch(Exception ex)
                     {
-                        System.out.println("*FEJL* UdlejningsID bestaar kun af tal");
+                        print("*FEJL* UdlejningsID bestaar kun af tal");
                         GlobalUI.inputGetLine("Tryk enter for at fortsaette..");
                         execRentalMenu();
                     }
-                    try{
+                    try
+                    {
                         days = GlobalUI.inputGetInt("Indtast udlejningens varighed i dage: ");
                     }
                     catch(Exception ex)
                     {
-                        System.out.println("*FEJL* UdlejningsID bestaar kun af tal");
+                        print("*FEJL* UdlejningsID bestaar kun af tal");
                         GlobalUI.inputGetLine("Tryk enter for at fortsaette..");
                         execRentalMenu();
                     }
                     boolean done = _leaseCtrl.createLease(customerId, itemNumber, days);
                     if(!done)
                     {
-                        System.out.println(GlobalUI.errorHandling(99));
+                        print(GlobalUI.errorHandling(99));
                         GlobalUI.inputGetLine("Tryk enter for at fortsaette..");
                     }
                     else
                     {
-                        System.out.println("Udlaanet er blevet oprettet og gemt!");
+                        print("Udlaanet er blevet oprettet og gemt!");
                         GlobalUI.inputGetLine("Tryk enter for at fortsaette..");
                     }
                     
@@ -94,23 +99,24 @@ public class RentalMenuUI
 
                 case 2:
                     int leaseId = 0;
-                    try{
+                    try
+                    {
                         leaseId = GlobalUI.inputGetInt("Indtast Udlejnings-ID: ");
                         Lease lease = _leaseCtrl.getLease(leaseId);
                         if(lease == null)
                         {
-                            System.out.println(GlobalUI.errorHandling(99));
+                            print(GlobalUI.errorHandling(99));
                             GlobalUI.inputGetLine("Tryk enter for at fortsaette..");
                         }
                         else
                         {
-                            System.out.println(GlobalUI.getLeaseInfo(lease));
+                            print(GlobalUI.getLeaseInfo(lease));
                             GlobalUI.inputGetLine("Tryk enter for at fortsaette..");
                         }
                     }
                     catch(Exception ex)
                     {
-                        System.out.println("*FEJL* UdlejningsID bestaar kun af tal");
+                        print("*FEJL* UdlejningsID bestaar kun af tal");
                         GlobalUI.inputGetLine("Tryk enter for at fortsaette..");
                     }
                     
@@ -118,23 +124,24 @@ public class RentalMenuUI
                     break;
 
                 case 3:
-                    try{
+                    try
+                    {
                         leaseId = GlobalUI.inputGetInt("Indtast Udlejnings-ID: ");
                         done = _leaseCtrl.removeLease(leaseId);
                         if(!done)
                         {
-                            System.out.println(GlobalUI.errorHandling(99));
+                            print(GlobalUI.errorHandling(99));
                             GlobalUI.inputGetLine("Tryk enter for at fortsaette..");
                         }
                         else
                         {
-                            System.out.println("Udlaanet er blevet afleveret");
+                            print("Udlaanet er blevet afleveret");
                             GlobalUI.inputGetLine("Tryk enter for at fortsaette..");
                         }
                     }
                     catch(Exception ex)
                     {
-                        System.out.println("*FEJL* UdlejningsID bestaar kun af tal");
+                        print("*FEJL* UdlejningsID bestaar kun af tal");
                         GlobalUI.inputGetLine("Tryk enter for at fortsaette..");
                     }                    
                 
@@ -143,14 +150,15 @@ public class RentalMenuUI
                     
                 case 4:
                     leaseId = 0;
-                    try{
+                    try
+                    {
                         for(Lease lease : _leaseCtrl.expiredLeases())
                         {
-                            System.out.println(GlobalUI.getLeaseInfo(lease));
+                            print(GlobalUI.getLeaseInfo(lease));
                         }
                         if(_leaseCtrl.expiredLeases().size() == 0)
                         {
-                            System.out.println("Der er ingen for gamle udlaan!");
+                            print("Der er ingen for gamle udlaan!");
                             GlobalUI.inputGetLine("Tryk enter for at fortsaette..");
                         }
                         else
@@ -160,7 +168,7 @@ public class RentalMenuUI
                     }
                     catch(Exception ex)
                     {
-                        System.out.println(GlobalUI.errorHandling(99));
+                        print(GlobalUI.errorHandling(99));
                         GlobalUI.inputGetLine("Tryk enter for at fortsaette..");
                     }                    
                 
@@ -169,14 +177,15 @@ public class RentalMenuUI
                 
                 case 5:
                     
-                    try{
+                    try
+                    {
                         for(Lease lease : _leaseCtrl.getLease())
                         {
-                            System.out.println(GlobalUI.getLeaseInfo(lease));
+                            print(GlobalUI.getLeaseInfo(lease));
                         }
                         if(_leaseCtrl.getLease().size() == 0)
                         {
-                            System.out.println("Der er ingen udlaan i oejeblikket");
+                            print("Der er ingen udlaan i oejeblikket");
                             GlobalUI.inputGetLine("Tryk enter for at fortsaette..");
                         }
                         else
@@ -193,14 +202,15 @@ public class RentalMenuUI
                     
                 case 6:
                     itemNumber = 0;
-                    try{
+                    try
+                    {
                         for(Lease lease : _leaseCtrl.getLease(itemNumber))
                         {
-                            System.out.println(GlobalUI.getLeaseInfo(lease));
+                            print(GlobalUI.getLeaseInfo(lease));
                         }
                         if(_leaseCtrl.expiredLeases().size() == 0)
                         {
-                            System.out.println("Der er ingen udlaan med dette produkt");
+                            print("Der er ingen udlaan med dette produkt");
                             GlobalUI.inputGetLine("Tryk enter for at fortsaette..");
                         }
                         else
@@ -210,7 +220,7 @@ public class RentalMenuUI
                     }
                     catch(Exception ex)
                     {
-                        System.out.println(GlobalUI.errorHandling(99));
+                        print(GlobalUI.errorHandling(99));
                         GlobalUI.inputGetLine("Tryk enter for at fortsaette..");
                     }
                     execRentalMenu();
@@ -218,23 +228,24 @@ public class RentalMenuUI
                     
                 case 7:
                     itemNumber = 0;
-                    try{
+                    try
+                    {
                         itemNumber = GlobalUI.inputGetInt("Indtast Udlejnings-ID: ");
                         LeasingItem leaseItem = _leaseCtrl.getLeaseItem(itemNumber);
                         if(leaseItem == null)
                         {
-                            System.out.println(GlobalUI.errorHandling(99));
+                            print(GlobalUI.errorHandling(99));
                             GlobalUI.inputGetLine("Tryk enter for at fortsaette..");
                         }
                         else
                         {
-                            System.out.println(GlobalUI.getLeasingItemInfo(leaseItem));
+                            print(GlobalUI.getLeasingItemInfo(leaseItem));
                             GlobalUI.inputGetLine("Tryk enter for at fortsaette..");
                         }
                     }
                     catch(Exception ex)
                     {
-                        System.out.println("*FEJL* Produktnummer bestaar kun af tal");
+                        print("*FEJL* Produktnummer bestaar kun af tal");
                         GlobalUI.inputGetLine("Tryk enter for at fortsaette..");
                     }
                     
@@ -246,7 +257,8 @@ public class RentalMenuUI
                     String itemName = "";
                     String rentPrice = "";
                     int maxAvaible = 0;
-                    try{
+                    try
+                    {
                         itemNumber = GlobalUI.inputGetInt("Indtast Udlejnings-ID: ");
                         itemName = GlobalUI.inputGetLine("Indtast Produkt navn: ");
                         rentPrice = GlobalUI.inputGetLine("Indtast Udlejlingspris: ");
@@ -254,18 +266,18 @@ public class RentalMenuUI
                         done = _leaseCtrl.createLeaseItem(itemNumber, itemName, rentPrice, maxAvaible);
                         if(!done)
                         {
-                            System.out.println(GlobalUI.errorHandling(99));
+                            print(GlobalUI.errorHandling(99));
                             GlobalUI.inputGetLine("Tryk enter for at fortsaette..");
                         }
                         else
                         {
-                            System.out.println("Produktet er blevet oprettet i udlejningssystemet!");
+                            print("Produktet er blevet oprettet i udlejningssystemet!");
                             GlobalUI.inputGetLine("Tryk enter for at fortsaette..");
                         }
                     }
                     catch(Exception ex)
                     {
-                        System.out.println(GlobalUI.errorHandling(99));
+                        print(GlobalUI.errorHandling(99));
                         GlobalUI.inputGetLine("Tryk enter for at fortsaette..");
                     }                
                     
@@ -284,16 +296,16 @@ public class RentalMenuUI
 							maxAvaible = GlobalUI.inputGetInt("Indtast max beholdning ");
 							done = _leaseCtrl.updateLeasingItem(itemNumber, itemName, rentPrice, maxAvaible);
 							if(done)
-								System.out.println("Produktet er nu opdateret");
+								print("Produktet er nu opdateret");
 							else
-								System.out.println("Produktet kunne ikke opdateres");
+								print("Produktet kunne ikke opdateres");
 						}	
 						else
-							System.out.println("Et produkt med det ID blev ikke fundet");
+							print("Et produkt med det ID blev ikke fundet");
 					}
 					catch(Exception ex)
 					{
-						System.out.println(GlobalUI.errorHandling(99));
+						print(GlobalUI.errorHandling(99));
 						Thread.sleep(2000);
 					}			
 
@@ -302,23 +314,24 @@ public class RentalMenuUI
 					break;
                     
                 case 10:
-                    try{
+                    try
+                    {
                         itemNumber = GlobalUI.inputGetInt("Indtast Produkt-ID: ");
                         done = _leaseCtrl.deleteLeaseItem(itemNumber);
                         if(!done)
                         {
-                            System.out.println(GlobalUI.errorHandling(99));
+                            print(GlobalUI.errorHandling(99));
                             GlobalUI.inputGetLine("Tryk enter for at fortsaette..");
                         }
                         else
                         {
-                            System.out.println("Produktet er blevet slettet fra udlejningslisten!");
+                            print("Produktet er blevet slettet fra udlejningslisten!");
                             GlobalUI.inputGetLine("Tryk enter for at fortsaette..");
                         }
                     }
                     catch(Exception ex)
                     {
-                        System.out.println("*FEJL* UdlejningsID bestaar kun af tal");
+                        print("*FEJL* UdlejningsID bestaar kun af tal");
                         GlobalUI.inputGetLine("Tryk enter for at fortsaette..");
                     }                    
                     
@@ -331,7 +344,7 @@ public class RentalMenuUI
                     break;
 
                 default:
-                    System.out.print("\n                      " + GlobalUI.errorHandling(02));
+                    print(GlobalUI.errorHandling(02));
                     Thread.sleep(2000);
                     execRentalMenu();
                     break;
@@ -341,7 +354,12 @@ public class RentalMenuUI
 
         catch (Exception e)
         {
-            System.out.print("\n                      " + GlobalUI.errorHandling(99));
+            print(GlobalUI.errorHandling(99));
         }
+    }
+
+    private void print(String inputLine)
+    {
+        System.out.println("                      " + inputLine);
     }
 }

@@ -61,17 +61,16 @@ public class SalesAssistantMenuUI
 						long phoneNumber = GlobalUI.inputGetLong("Indtast telefon nummer: ");	
 						_perController.createPerson(personId, personName, address, city, zipCode, phoneNumber);
 						String password = GlobalUI.inputGetLine("Indtast det ønsket kodeord: ");
-						succeeded = _saController.createSalesAssistant(password, personId);
-						if(succeeded)
-							print("Ekspedienten er nu oprettet!");
+						int saId = _saController.createSalesAssistant(password, personId);
+						if(saId != 0)
+							print("Ekspedienten er nu oprettet og kan logge ind med bruger id: " + saId);
 						else
 							print("Der skete en fejl under oprettelsen af ekspedienten");
 					}
 					catch(Exception ex)
 					{
-						//print(GlobalUI.errorHandling(99));
-						//Thread.sleep(2000);
-						print(ex.toString());
+						print(GlobalUI.errorHandling(99));
+						Thread.sleep(2000);
 					}			
 
 					GlobalUI.inputGetLine("Tryk på enter for at forsætte..");	

@@ -23,7 +23,7 @@ public class SalesAssistantCtrl
         _perContainer = PersonContainer.getInstance();
 	}
 
-    public boolean createSalesAssistant(String password, long personId)
+    public int createSalesAssistant(String password, long personId)
     {
         Person person = _perContainer.getPerson(personId);
         if(person != null)
@@ -34,10 +34,12 @@ public class SalesAssistantCtrl
             String hashedPassword = hashPassword(password, salt);
             sa.setPassword(hashedPassword);
 
-            return _saContainer.addSalesAs(sa);
+            boolean success = _saContainer.addSalesAs(sa);
+            if(success)
+                return sa.getSalesAssistantId();
         }
         
-        return false;
+        return 0;
     }
 
     public boolean removeSalesAssistant(int saId)

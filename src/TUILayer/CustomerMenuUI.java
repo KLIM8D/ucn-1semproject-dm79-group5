@@ -20,28 +20,31 @@ public class CustomerMenuUI
     {
         GlobalUI.tuiHeader();
 
-        System.out.println("\n\n\n                    -------------------------------------------------------------------");
-        System.out.println("                    ¦                          Kundekartotek                          ¦");
-        System.out.println("                    -------------------------------------------------------------------");
-        System.out.println("                    ¦ 1) - Opret kunde                                                ¦");
-        System.out.println("                    ¦ 2) - Find kunde (Kundenummer)                                   ¦");
-        System.out.println("                    ¦ 3) - Slet kunde                                                 ¦");
-        System.out.println("                    ¦ 4) - Opdater kunde                                              ¦");
-        System.out.println("                    ¦ 5) - Vis Alle kunder                                            ¦");
-        System.out.println("                    ¦ 6) - Vis Business kunder                                        ¦");
-        System.out.println("                    ¦ 7) - Vis Private kunder                                         ¦");
-        System.out.println("                    ¦                                                                 ¦");
-        System.out.println("                    ¦ 0) - Returner til hovedmenu                                     ¦");
-        System.out.println("                    -------------------------------------------------------------------");
+        print("-------------------------------------------------------------------");
+        print("¦                          Kundekartotek                          ¦");
+        print("-------------------------------------------------------------------");
+        print("¦ 1) - Opret kunde                                                ¦");
+        print("¦ 2) - Find kunde (Kundenummer)                                   ¦");
+        print("¦ 3) - Slet kunde                                                 ¦");
+        print("¦ 4) - Opdater kunde                                              ¦");
+        print("¦ 5) - Vis Alle kunder                                            ¦");
+        print("¦ 6) - Vis Business kunder                                        ¦");
+        print("¦ 7) - Vis Private kunder                                         ¦");
+        print("¦                                                                 ¦");
+        print("¦ 0) - Returner til hovedmenu                                     ¦");
+        print("-------------------------------------------------------------------");
         
-        int userentry = GlobalUI.inputGetInt("\n                      Menu valg: ");
+        System.out.print("\n");
+        int userentry = GlobalUI.inputGetInt("Menu valg: ");
+        System.out.println("\n");
 
         try
         {
             switch (userentry)
             {
                 case 1:
-                    try{
+                    try
+                    {
 						long personId = GlobalUI.inputGetLong("Indtast CPR nummer (uden -): ");
 						String personName = GlobalUI.inputGetLine("Indtast navn: ");
 						String address = GlobalUI.inputGetLine("Indtast vejnavn + husnummer: ");
@@ -66,48 +69,47 @@ public class CustomerMenuUI
                             }
                             else
                             {
-                                System.out.println("Der skete en fejl under indtastningen af kundens erhvervsoplysninger");
+                                print("Der skete en fejl under indtastningen af kundens erhvervsoplysninger");
                             }
                         }
                         else
-                            System.out.println("Der skete en fejl under indtastningen af kundens informationer");
+                            print("Der skete en fejl under indtastningen af kundens informationer");
                     }
                     catch(Exception ex)
                     {
-                        System.out.println("*FEJL* Kundenummer bestaar kun af tal");
-                        GlobalUI.inputGetLine("Tryk enter for at fortsaette..");                       
+                        print("*FEJL* Kundenummer bestaar kun af tal");                   
                     }
-                
+                    GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
                     execCustomerMenu();
                     break;
 
                 case 2:
                     long customerId = 0;
-                    try{
+                    try
+                    {
                         customerId = GlobalUI.inputGetLong("Indtast Kundenummer: ");
                         Customer customer = _customerCtrl.getCustomer(customerId);
                         if(customer == null)
                         {
-                            System.out.println(GlobalUI.errorHandling(99));
-                            GlobalUI.inputGetLine("Tryk enter for at fortsaette..");
+                            print(GlobalUI.errorHandling(99));
                         }
                         else
                         {
-                            System.out.println(GlobalUI.getCustomerInfo(customer));
-                            GlobalUI.inputGetLine("Tryk enter for at fortsaette..");
+                            print(GlobalUI.getCustomerInfo(customer));
                         }
                     }
                     catch(Exception ex)
                     {
-                        System.out.println("*FEJL* UdlejningsID bestaar kun af tal");
-                        GlobalUI.inputGetLine("Tryk enter for at fortsaette..");
+                        print("*FEJL* UdlejningsID bestaar kun af tal");
                     }
+                    GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
                     execCustomerMenu();
                     break;
                     // End of section
 
                 case 3:
-                    try{
+                    try
+                    {
                         customerId = GlobalUI.inputGetLong("Indtast Kundenummer: ");
                         Person per = _customerCtrl.getCustomer(customerId).getPerson();
                         if(per != null)
@@ -117,29 +119,26 @@ public class CustomerMenuUI
                             boolean done2 = _customerCtrl.removeCustomer(customerId);
                             if(!done || !done2)
                             {
-                                System.out.println(GlobalUI.errorHandling(99));
-                                GlobalUI.inputGetLine("Tryk enter for at fortsaette..");
+                                print(GlobalUI.errorHandling(99));
                             }
                             else
                             {
-                                System.out.println("Kunden er blevet slettet fra systemet!");
-                                GlobalUI.inputGetLine("Tryk enter for at fortsaette..");
+                                print("Kunden er blevet slettet fra systemet!");
                             }
                         }
                         else
                         {
-                            System.out.println("Personen eksisterer ikke i person kardoteket!");
-                            GlobalUI.inputGetLine("Tryk enter for at fortsaette..");
+                            print("Personen eksisterer ikke i person kardoteket!");
                         }
                     }
                     catch(Exception ex)
                     {
-                        System.out.println("*FEJL* Kundenummer bestaar kun af tal");
+                        print("*FEJL* Kundenummer bestaar kun af tal");
                         GlobalUI.inputGetLine("Tryk enter for at fortsaette..");
                     }
-                                         
-                     execCustomerMenu();
-                     break;
+                    GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
+                    execCustomerMenu();
+                    break;
                     
                 case 4:
                     try
@@ -165,48 +164,68 @@ public class CustomerMenuUI
 							 boolean done = _personCtrl.updatePerson(customerId, cusName, cusAddress, cusCity, cusZipCode, cusPhoneNumber);
 							 if(done && done2)
 							 {
-							     System.out.println("Kunden er nu opdateret");
+							     print("Kunden er nu opdateret");
 							 }
 							 else
 							 {
-							     System.out.println("*FEJL* - Kunden blev ikke opdateret ");
+							     print("*FEJL* - Kunden blev ikke opdateret ");
 							 }
 						}	
 						else
-							System.out.println("En kunde med det ID blev ikke fundet");
+							print("En kunde med det ID blev ikke fundet");
 					}
 					catch(Exception ex)
 					{
-						System.out.println(GlobalUI.errorHandling(99));
-						GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
+						print(GlobalUI.errorHandling(99));
 					}			
-	
+	                GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
 					execCustomerMenu();
 					break;
 
                 case 5:
-                    // Removal of section when function is integrated
                     // Start of section
-                    System.out.print("\n                      " + GlobalUI.errorHandling(03));
-                    Thread.sleep(2000);
+                    try 
+                    {
+                        for(Customer cust : _customerCtrl.getAllCustomers())
+                            print(GlobalUI.getCustomerInfo(cust));
+                    }
+                    catch (Exception e)
+                    {
+                        print("Der skete en data kunde dataen skulle hentes");
+                    }
+                    GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
                     execCustomerMenu();
                     break;
                     // End of section
 
                 case 6:
-                    // Removal of section when function is integrated
                     // Start of section
-                    System.out.print("\n                      " + GlobalUI.errorHandling(03));
-                    Thread.sleep(2000);
+                    try 
+                    {
+                        for(Customer cust : _customerCtrl.getAllCustomersByBusiness(true))
+                            print(GlobalUI.getCustomerInfo(cust));
+                    }
+                    catch (Exception e)
+                    {
+                        print("Der skete en data kunde dataen skulle hentes");
+                    }
+                    GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
                     execCustomerMenu();
                     break;
                     // End of section
                     
                 case 7:
-                    // Removal of section when function is integrated
                     // Start of section
-                    System.out.print("\n                      " + GlobalUI.errorHandling(03));
-                    Thread.sleep(2000);
+                    try 
+                    {
+                        for(Customer cust : _customerCtrl.getAllCustomersByBusiness(false))
+                            print(GlobalUI.getCustomerInfo(cust));
+                    }
+                    catch (Exception e)
+                    {
+                        print("Der skete en data kunde dataen skulle hentes");
+                    }
+                    GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
                     execCustomerMenu();
                     break;
                     // End of section
@@ -217,7 +236,7 @@ public class CustomerMenuUI
                     break;
 
                 default:
-                    System.out.print("\n                      " + GlobalUI.errorHandling(02));
+                    print(GlobalUI.errorHandling(02));
                     Thread.sleep(2000);
                     execCustomerMenu();
                     break;
@@ -227,7 +246,12 @@ public class CustomerMenuUI
 
         catch (Exception e)
         {
-            System.out.print("\n                      " + GlobalUI.errorHandling(99));
+            print(GlobalUI.errorHandling(99));
         }
+    }
+
+    private void print(String inputLine)
+    {
+        System.out.println("                      " + inputLine);
     }
 }
