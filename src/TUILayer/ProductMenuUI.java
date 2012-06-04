@@ -6,22 +6,22 @@ import ModelLayer.ProductCategory;
 import ModelLayer.ProductGroup;
 
 /**
- * Text User Interface - Stock
+ * Text User Interface - Product
  *
  * @date (05.28.2012)
  */
 
-public class StockMenuUI
+public class ProductMenuUI
 {
 	private MainMenuUI _mainmenuUI;
 	private ProductCtrl _productController;
 
-	public StockMenuUI()
+	public ProductMenuUI()
 	{
 		_productController = new ProductCtrl();
 	}
 
-	public void execStockMenu()
+	public void execProductMenu()
 	{
 		GlobalUI.tuiHeader();
 
@@ -76,7 +76,7 @@ public class StockMenuUI
 						print(GlobalUI.errorHandling(99));
 						Thread.sleep(2000);
 					}
-					execStockMenu();
+					execProductMenu();
 					break;
 					// End of section
 				case 2:
@@ -97,7 +97,7 @@ public class StockMenuUI
 						print(GlobalUI.errorHandling(99));
 						Thread.sleep(2000);
 					}
-					execStockMenu();
+					execProductMenu();
 					break;
 					// End of section
 				case 3:
@@ -129,7 +129,7 @@ public class StockMenuUI
 						print(GlobalUI.errorHandling(99));
 						Thread.sleep(2000);
 					}
-					execStockMenu();
+					execProductMenu();
 					break;
 				case 4:
 					// Start of section
@@ -153,7 +153,7 @@ public class StockMenuUI
 						print(GlobalUI.errorHandling(99));
 						Thread.sleep(2000);
 					}
-					execStockMenu();
+					execProductMenu();
 					break;
 					// End of section
 				case 5:
@@ -173,14 +173,14 @@ public class StockMenuUI
 						print(GlobalUI.errorHandling(99));
 						Thread.sleep(2000);
 					}
-					execStockMenu();
+					execProductMenu();
 					break;
 				case 6:
 					for(Product prod : _productController.getAllProducts())
 						print(GlobalUI.getProductInfo(prod));
 
 					GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
-					execStockMenu();
+					execProductMenu();
 					break;
 				case 7:
 					execCategoryMenu();
@@ -191,7 +191,7 @@ public class StockMenuUI
 				default:
 					print(GlobalUI.errorHandling(02));
 					Thread.sleep(2000);
-					execStockMenu();
+					execProductMenu();
 					break;
 			}
 
@@ -226,7 +226,7 @@ public class StockMenuUI
 			switch (userentry)
 			{
 				case 0:
-					execStockMenu();
+					execProductMenu();
 					break;
 				case 1:
 					// Start of section
@@ -351,7 +351,7 @@ public class StockMenuUI
 			switch (userentry)
 			{
 				case 0:
-					execStockMenu();
+					execProductMenu();
 					break;
 				case 1:
 					// Start of section

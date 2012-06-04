@@ -46,10 +46,10 @@ SOURCES = \
 	TUILayer/LoginUI \
 	TUILayer/MainMenuUI \
 	TUILayer/ProductLocationMenuUI \
+	TUILayer/ProductMenuUI \
 	TUILayer/RentalMenuUI \
 	TUILayer/SalesAssistantMenuUI \
 	TUILayer/SalesMenuUI \
-	TUILayer/StockMenuUI \
 	#GUILayer/GlobalUI \
 	#GUILayer/LoginUI \
 	#GUILayer/SystemUI \

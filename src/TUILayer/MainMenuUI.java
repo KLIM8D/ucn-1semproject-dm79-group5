@@ -11,7 +11,7 @@ public class MainMenuUI
 	private SalesMenuUI _salesmenuUI;
 	private RentalMenuUI _rentalmenuUI;
 	private CustomerMenuUI _customermenuUI;
-	private StockMenuUI _stockmenuUI;
+	private ProductMenuUI _productmenuUI;
 	private StatisticMenuUI _statisticmenuUI;
 	private SalesAssistantMenuUI _salesAssistantMenuUI;
 	private ProductLocationMenuUI _locMenuUI;
@@ -61,8 +61,8 @@ public class MainMenuUI
 					break;	
 
 				case 5:
-					_stockmenuUI = new StockMenuUI();
-					_stockmenuUI.execStockMenu();
+					_productmenuUI = new ProductMenuUI();
+					_productmenuUI.execProductMenu();
 					break;
 
 				case 6:
