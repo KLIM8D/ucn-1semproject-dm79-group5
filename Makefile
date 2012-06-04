@@ -50,10 +50,13 @@ SOURCES = \
 	TUILayer/RentalMenuUI \
 	TUILayer/SalesAssistantMenuUI \
 	TUILayer/SalesMenuUI \
-	#GUILayer/GlobalUI \
-	#GUILayer/LoginUI \
-	#GUILayer/SystemUI \
+	GUILayer/GlobalUI \
+	GUILayer/LoginUI \
+	GUILayer/SystemUI \
+	GUILayer/Product/CreateUI \
+	GUILayer/AboutUI \
 	Program
+	
 
 SRC = $(addprefix src/, $(addsuffix .java, $(SOURCES)))
 BIN = $(addprefix bin/, $(addsuffix .class, $(SOURCES)))
