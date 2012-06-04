@@ -94,22 +94,22 @@ public class LoginUI extends JFrame {
 					}
 					
 					else {
-						JOptionPane.showMessageDialog(frame, GlobalUI.errorHandling(03), "FEJL!", JOptionPane.WARNING_MESSAGE);
+						JOptionPane.showMessageDialog(frame, GlobalUI.messageHandling(03), "FEJL!", JOptionPane.WARNING_MESSAGE);
 					}
 				}
 				
 				else {
-					JOptionPane.showMessageDialog(frame, GlobalUI.errorHandling(02), "FEJL!", JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(frame, GlobalUI.messageHandling(02), "FEJL!", JOptionPane.WARNING_MESSAGE);
 				}
 			}
 			
 			else {
-				JOptionPane.showMessageDialog(frame, GlobalUI.errorHandling(01), "FEJL!", JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(frame, GlobalUI.messageHandling(01), "FEJL!", JOptionPane.WARNING_MESSAGE);
 			}
 		}
 		
 		catch (Exception err) {
-			JOptionPane.showMessageDialog(frame, GlobalUI.errorHandling(99), "FEJL!", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(frame, GlobalUI.messageHandling(99), "FEJL!", JOptionPane.WARNING_MESSAGE);
 		}
 	}
 }

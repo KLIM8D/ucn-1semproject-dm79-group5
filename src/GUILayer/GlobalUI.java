@@ -18,11 +18,11 @@ public class GlobalUI {
 		}
 		
 		catch (Exception err) {
-			JOptionPane.showMessageDialog(frame, errorHandling(99), "FEJL!", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(frame, messageHandling(99), "FEJL!", JOptionPane.WARNING_MESSAGE);
 		}
 	}
 	
-	public static String errorHandling(int code) {
+	public static String messageHandling(int code) {
         switch (code) {
             case 01:
                 return "Der skal indtastes i fejlet 'Bruger ID'.";
@@ -33,9 +33,11 @@ public class GlobalUI {
             case 04:
             	return "Feltet kan kun indholde tal.";
             case 05: 
-            	return "Produktet er nu oprettet.";
+            	return "Oprettelsen er gennemført.";
             case 06:
             	return "Produkt kategorien blev ikke fundet eller også findes dette produkt allerede.";
+            case 07: 
+            	return "Produkt kategorien findes allerede i systemet.";
         }
         return "En ukendt system fejl er hændt.";
     }
@@ -66,7 +68,7 @@ public class GlobalUI {
 		}
 
 		catch (NumberFormatException err) {
-			JOptionPane.showMessageDialog(frame, GlobalUI.errorHandling(04), "FEJL!", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(frame, GlobalUI.messageHandling(04), "FEJL!", JOptionPane.WARNING_MESSAGE);
 			data.setText(null);
 		}
 	}

@@ -137,7 +137,7 @@ public class CreateUI extends JFrame {
 				createProduct();
 			}
 		});
-		btnCreate.setBounds(253, 199, 117, 25);
+		btnCreate.setBounds(246, 199, 117, 25);
 		_pnlCreateProduct.add(btnCreate);
 		
 		txtCatID = new JTextField();
@@ -169,18 +169,20 @@ public class CreateUI extends JFrame {
 			String price = txtProdPrice.getText();
 			int categoryId = Integer.parseInt(txtCatID.getText());
 			
-			succeeded = _productController.updateProduct(itemNumber, itemName, minInStock, maxInStock, price, categoryId);
+			succeeded = _productController.createProduct(itemNumber, itemName, minInStock, maxInStock, price, categoryId);
 				
 			if(succeeded) {
-				JOptionPane.showMessageDialog(frame, GlobalUI.errorHandling(05), "FEJL!", JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(frame, GlobalUI.messageHandling(05), "INFORMATION!", JOptionPane.INFORMATION_MESSAGE);
+				setVisible(false);
+				GUILayer.GlobalUI.setWindowStatus(false);
 			}
 			else {
-				JOptionPane.showMessageDialog(frame, GlobalUI.errorHandling(06), "FEJL!", JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(frame, GlobalUI.messageHandling(06), "FEJL!", JOptionPane.WARNING_MESSAGE);
 			}
 		}
 	
 		catch (Exception err) {
-			JOptionPane.showMessageDialog(frame, GlobalUI.errorHandling(99), "FEJL!", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(frame, GlobalUI.messageHandling(99), "FEJL!", JOptionPane.WARNING_MESSAGE);
 		}
 	}
 }

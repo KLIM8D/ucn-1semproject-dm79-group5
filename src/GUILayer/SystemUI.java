@@ -141,6 +141,13 @@ public class SystemUI extends JFrame {
 		mnProduct.add(mnProductCat);
 		
 		JMenuItem mntmProductCatCreate = new JMenuItem("Opret produkt kategori");
+		mntmProductCatCreate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(GUILayer.GlobalUI.getWindowStatus() == false) {
+					new GUILayer.Product.Category.CreateUI().setVisible(true);
+				}
+			}
+		});
 		mnProductCat.add(mntmProductCatCreate);
 		
 		JMenuItem mntmProductCatFind = new JMenuItem("Find produkt kategori");
