@@ -54,6 +54,8 @@ SOURCES = \
 	GUILayer/LoginUI \
 	GUILayer/SystemUI \
 	GUILayer/Product/CreateUI \
+	GUILayer/Product/Group/CreateUI \
+	GUILayer/Product/Category/CreateUI \
 	GUILayer/AboutUI \
 	Program
 	
