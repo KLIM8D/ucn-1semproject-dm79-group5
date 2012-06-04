@@ -7,9 +7,9 @@ final class Program
     public static void main(String[] args)
     {
     	// Text interface
-    	//new TUILayer.GlobalUI().mainRun();
+    	new TUILayer.GlobalUI().mainRun();
     	
     	// Graphic interface
-    	new GUILayer.GlobalUI();
+    	//new GUILayer.GlobalUI();
     }
 }
