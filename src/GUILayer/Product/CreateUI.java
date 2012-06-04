@@ -8,17 +8,15 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JSeparator;
 import javax.swing.JButton;
-
 import java.awt.Component;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-
-import ControlLayer.ProductCtrl;
-import GUILayer.GlobalUI;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import ControlLayer.ProductCtrl;
+import GUILayer.GlobalUI;
 
 public class CreateUI extends JFrame {
 
@@ -109,7 +107,7 @@ public class CreateUI extends JFrame {
 		txtProdMax.setColumns(10);
 		
 		JLabel lblProdPrice = new JLabel("Pris");
-		lblProdPrice.setBounds(12, 107, 70, 15);
+		lblProdPrice.setBounds(12, 105, 70, 15);
 		_pnlCreateProduct.add(lblProdPrice);
 		
 		txtProdPrice = new JTextField();
@@ -118,7 +116,7 @@ public class CreateUI extends JFrame {
 		txtProdPrice.setColumns(10);
 		
 		JLabel lblCurrency = new JLabel("DKK");
-		lblCurrency.setBounds(242, 107, 70, 15);
+		lblCurrency.setBounds(240, 105, 70, 15);
 		_pnlCreateProduct.add(lblCurrency);
 		
 		JButton btnCancel = new JButton("Annuller");
@@ -158,7 +156,6 @@ public class CreateUI extends JFrame {
 	}
 	
 	private void createProduct() {
-		
 		boolean succeeded = false;
 		
 		try {

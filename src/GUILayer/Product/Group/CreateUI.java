@@ -1,4 +1,4 @@
-package GUILayer.Product.Category;
+package GUILayer.Product.Group;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -17,10 +17,11 @@ import GUILayer.GlobalUI;
 
 public class CreateUI extends JFrame {
 
-	private static final long serialVersionUID = 3162463258133538444L;
+	private static final long serialVersionUID = 2789828641175829001L;
 	protected static final Component frame = null;
 	private JPanel contentPane;
-	private JTextField txtCatName;
+	private JTextField txtGroupName;
+	private JTextField txtPrice;
 	private ProductCtrl _productController;
 
 	public CreateUI() {
@@ -28,23 +29,34 @@ public class CreateUI extends JFrame {
 		
 		setResizable(false);
 		setTitle("Opret produkt gruppe");
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 450, 136);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 166);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		GUILayer.GlobalUI.setWindowStatus(true);
+		JLabel lblGroup = new JLabel("Gruppe navn");
+		lblGroup.setBounds(12, 12, 110, 15);
+		contentPane.add(lblGroup);
 		
-		JLabel lblCatName = new JLabel("Kategori navn");
-		lblCatName.setBounds(12, 12, 107, 15);
-		contentPane.add(lblCatName);
+		txtGroupName = new JTextField();
+		txtGroupName.setBounds(119, 10, 317, 19);
+		contentPane.add(txtGroupName);
+		txtGroupName.setColumns(10);
 		
-		txtCatName = new JTextField();
-		txtCatName.setBounds(137, 10, 299, 19);
-		contentPane.add(txtCatName);
-		txtCatName.setColumns(10);
+		JLabel lblPrice = new JLabel("Total pris");
+		lblPrice.setBounds(12, 39, 70, 15);
+		contentPane.add(lblPrice);
+		
+		txtPrice = new JTextField();
+		txtPrice.setBounds(119, 39, 114, 19);
+		contentPane.add(txtPrice);
+		txtPrice.setColumns(10);
+		
+		JLabel lblCurrency = new JLabel("DKK");
+		lblCurrency.setBounds(240, 41, 70, 15);
+		contentPane.add(lblCurrency);
 		
 		JButton btnCancel = new JButton("Annuller");
 		btnCancel.addActionListener(new ActionListener() {
@@ -53,16 +65,16 @@ public class CreateUI extends JFrame {
 				setVisible(false);
 			}
 		});
-		btnCancel.setBounds(319, 64, 117, 25);
+		btnCancel.setBounds(319, 93, 117, 25);
 		contentPane.add(btnCancel);
 		
 		JButton btnCreate = new JButton("Opret");
 		btnCreate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				createCategory();
+				createGroup();
 			}
 		});
-		btnCreate.setBounds(190, 64, 117, 25);
+		btnCreate.setBounds(193, 93, 117, 25);
 		contentPane.add(btnCreate);
 		
 		addWindowListener(new WindowAdapter() {
@@ -72,12 +84,13 @@ public class CreateUI extends JFrame {
 		});
 	}
 	
-	private void createCategory() {
+	private void createGroup() {
 		boolean succeeded = false;
 		
 		try {
-			String categoryName = txtCatName.getText();
-			succeeded = _productController.createProductCategory(categoryName);
+			String groupName = txtGroupName.getText();
+			String groupPrice = txtPrice.getText();
+			succeeded = _productController.createProductGroup(groupName, groupPrice);
 			if(succeeded) {
 				JOptionPane.showMessageDialog(frame, GlobalUI.messageHandling(05), "INFORMATION!", JOptionPane.INFORMATION_MESSAGE);
 				setVisible(false);

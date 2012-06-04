@@ -3,7 +3,6 @@ package GUILayer;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -19,7 +18,7 @@ public class SystemUI extends JFrame {
 
 	public SystemUI() {
 		setTitle(GlobalUI.systemInformation(01) + " - " + GlobalUI.systemInformation(02) + " (" + GlobalUI.systemInformation(03) + ")");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(0, 0, 1024, 768);
 		setLocationRelativeTo(null);
 		setResizable(false);
@@ -163,6 +162,13 @@ public class SystemUI extends JFrame {
 		mnProduct.add(mnProductGroup);
 		
 		JMenuItem mntmProductGroupCreate = new JMenuItem("Opret produkt gruppe");
+		mntmProductGroupCreate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(GUILayer.GlobalUI.getWindowStatus() == false) {
+					new GUILayer.Product.Group.CreateUI().setVisible(true);
+				}
+			}
+		});
 		mnProductGroup.add(mntmProductGroupCreate);
 		
 		JMenuItem mntmProductGroupAddToGroup = new JMenuItem("Tilføj et produkt til en produkt gruppe");
