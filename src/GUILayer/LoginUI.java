@@ -49,7 +49,7 @@ public class LoginUI extends JFrame {
 		txtUserID = new JTextField();
 		txtUserID.addKeyListener(new KeyAdapter() {
 			public void keyReleased(KeyEvent e) {
-				checkIfInt();
+				GlobalUI.checkIfInt(txtUserID);
 			}
 		});
 		txtUserID.setBounds(120, 10, 316, 19);
@@ -78,17 +78,6 @@ public class LoginUI extends JFrame {
 		});
 		btnLogin.setBounds(190, 68, 117, 25);
 		pnlAccessControl.add(btnLogin);
-	}
-	
-	private void checkIfInt() {
-		try {
-			Integer.parseInt(txtUserID.getText());
-		}
-		
-		catch (NumberFormatException err) {
-			JOptionPane.showMessageDialog(frame, GlobalUI.errorHandling(04), "FEJL!", JOptionPane.WARNING_MESSAGE);
-			txtUserID.setText(null);
-		}
 	}
 	
 	private void userLogin() {

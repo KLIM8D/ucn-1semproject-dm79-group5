@@ -2,6 +2,7 @@ package GUILayer;
 
 import java.awt.Component;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 public class GlobalUI {
 	
@@ -30,7 +31,11 @@ public class GlobalUI {
             case 03:
             	return "Forkert id eller adgangskode.";
             case 04:
-            	return "Feltet 'Bruger ID' kan kun indholde tal.";
+            	return "Feltet kan kun indholde tal.";
+            case 05: 
+            	return "Produktet er nu oprettet.";
+            case 06:
+            	return "Produkt kategorien blev ikke fundet eller også findes dette produkt allerede.";
         }
         return "En ukendt system fejl er hændt.";
     }
@@ -53,5 +58,16 @@ public class GlobalUI {
 	
 	public static void setWindowStatus(boolean status) {
 		_isActive = status;
+	}
+	
+	public static void checkIfInt(JTextField data) {
+		try {
+			Integer.parseInt(data.getText());
+		}
+
+		catch (NumberFormatException err) {
+			JOptionPane.showMessageDialog(frame, GlobalUI.errorHandling(04), "FEJL!", JOptionPane.WARNING_MESSAGE);
+			data.setText(null);
+		}
 	}
 }
