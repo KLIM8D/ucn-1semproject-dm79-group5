@@ -4,7 +4,9 @@ import ModelLayer.Business;
 import ModelLayer.Customer;
 import ModelLayer.CustomerContainer;
 import ModelLayer.Person;
+import ModelLayer.Discount;
 import java.util.ArrayList;
+import java.math.BigDecimal;
 
 public class CustomerCtrl
 {
@@ -58,4 +60,17 @@ public class CustomerCtrl
     {
         return _container.getAllCustomersByBusiness(isBusiness);
     }
+
+    public boolean createDiscount(long id, int discType, String inPrice)
+    {
+        BigDecimal price = new BigDecimal(inPrice);
+        Discount disc = new Discount(discType, price);
+        Customer cust = getCustomer(id);
+        if(cust != null)
+        {
+            cust.addDiscount(disc);
+            return true;
+        }
+        return false;
+    } 
 }

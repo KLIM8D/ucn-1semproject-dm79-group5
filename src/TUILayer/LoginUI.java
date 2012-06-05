@@ -50,6 +50,7 @@ public class LoginUI
                 else
                 {
                     print(GlobalUI.errorHandling(4));
+                    Thread.sleep(1000);
                 }
             }
             else

@@ -29,7 +29,7 @@ public class StatisticCtrl
 		_saContainer = SalesAssistantContainer.getInstance();
 	}
 
-	public TreeMap<Long, Product> getTopXForProduct(int take)
+	public NavigableMap<Long, Product> getTopXForProduct(int take)
 	{
 		TreeMap<Long, Product> productList = new TreeMap<Long, Product>();
 		for (Product prod : _productContainer.getAllProducts().values()) 
@@ -48,7 +48,7 @@ public class StatisticCtrl
 			count++;
 		}
 
-		return returnList;
+		return returnList.descendingMap();
 	}
 
 	public long[] generateStatsFromProduct(long itemNumber)
@@ -91,7 +91,7 @@ public class StatisticCtrl
 		return count;
 	}
 
-	public TreeMap<Long, Customer> getTopXForCustomer(int take)
+	public NavigableMap<Long, Customer> getTopXForCustomer(int take)
 	{
 		TreeMap<Long, Customer> customerList = new TreeMap<Long, Customer>();
 		for (Customer cus : _customerContainer.getAllCustomers().values()) 
@@ -110,7 +110,7 @@ public class StatisticCtrl
 			count++;
 		}
 
-		return returnList;
+		return returnList.descendingMap();
 	}
 
 
@@ -157,7 +157,7 @@ public class StatisticCtrl
 		return count;	
 	}
 
-	public TreeMap<Long, SalesAssistant> getTopXForSalesAsst(int take)
+	public NavigableMap<Long, SalesAssistant> getTopXForSalesAsst(int take)
 	{
 		TreeMap<Long, SalesAssistant> salesAsstList = new TreeMap<Long, SalesAssistant>();
 		for (SalesAssistant sa : _saContainer.getAllSalesAs().values()) 
@@ -176,7 +176,7 @@ public class StatisticCtrl
 			count++;
 		}
 
-		return returnList;
+		return returnList.descendingMap();
 	}
 
 	public long[] generateStatsFromSalesAsst(int salesAsstId)

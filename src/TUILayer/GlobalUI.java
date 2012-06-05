@@ -150,7 +150,7 @@ public class GlobalUI
     {
         StringBuilder sb = new StringBuilder();
         String newLine = System.getProperty("line.separator");
-        sb.append(centerText() + "id: " + person.getPersonId() + newLine);
+        sb.append(centerText() + "CPR Nr.: " + person.getPersonId() + newLine);
         sb.append(centerText() + "Navn: " + person.getName() + newLine);
         sb.append(centerText() + "Adresse: " + person.getAddress() + newLine);
         sb.append(centerText() + "Post. nr / by: " + person.getZipCode() + " / " + person.getCity() + newLine);

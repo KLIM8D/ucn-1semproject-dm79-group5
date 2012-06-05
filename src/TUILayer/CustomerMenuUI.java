@@ -16,6 +16,12 @@ public class CustomerMenuUI
     private PersonCtrl _personCtrl;
     private CustomerCtrl _customerCtrl;
 
+    public CustomerMenuUI()
+    {
+        _personCtrl = new PersonCtrl();
+        _customerCtrl = new CustomerCtrl();
+    }
+
     public void execCustomerMenu()
     {
         GlobalUI.tuiHeader();
@@ -60,7 +66,7 @@ public class CustomerMenuUI
                                 String contactPerson =  GlobalUI.inputGetLine("Indtast kontaktperson navn: ");
                                 long cvrNo =  GlobalUI.inputGetLong("Indtast virksomhedens CVR-nummer: ");
                                 Person per = _personCtrl.getPerson(personId);
-                                _customerCtrl.createCustomer(per);
+                                _customerCtrl.createCustomer(per, contactPerson, cvrNo);
                             }
                             else if(isBusiness.toLowerCase().equals("nej"))
                             {
@@ -77,7 +83,7 @@ public class CustomerMenuUI
                     }
                     catch(Exception ex)
                     {
-                        print("*FEJL* Kundenummer bestaar kun af tal");                   
+                        print("*FEJL* Kundenummer består kun af tal");                   
                     }
                     GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
                     execCustomerMenu();
@@ -91,7 +97,7 @@ public class CustomerMenuUI
                         Customer customer = _customerCtrl.getCustomer(customerId);
                         if(customer == null)
                         {
-                            print(GlobalUI.errorHandling(99));
+                            print("Der blev ikke fundet en kunde med det kundenummer");
                         }
                         else
                         {
@@ -100,7 +106,7 @@ public class CustomerMenuUI
                     }
                     catch(Exception ex)
                     {
-                        print("*FEJL* UdlejningsID bestaar kun af tal");
+                        print("*FEJL* Kundenummer består kun af tal");
                     }
                     GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
                     execCustomerMenu();
@@ -191,7 +197,8 @@ public class CustomerMenuUI
                     }
                     catch (Exception e)
                     {
-                        print("Der skete en data kunde dataen skulle hentes");
+                        print(e.toString());
+                        print("Der skete en fejl da kunde dataen skulle hentes");
                     }
                     GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
                     execCustomerMenu();
@@ -207,7 +214,7 @@ public class CustomerMenuUI
                     }
                     catch (Exception e)
                     {
-                        print("Der skete en data kunde dataen skulle hentes");
+                        print("Der skete en fejl da kunde dataen skulle hentes");
                     }
                     GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
                     execCustomerMenu();
@@ -223,7 +230,7 @@ public class CustomerMenuUI
                     }
                     catch (Exception e)
                     {
-                        print("Der skete en data kunde dataen skulle hentes");
+                        print("Der skete en fejl da kunde dataen skulle hentes");
                     }
                     GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
                     execCustomerMenu();

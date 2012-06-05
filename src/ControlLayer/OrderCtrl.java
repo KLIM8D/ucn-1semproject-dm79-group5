@@ -162,4 +162,10 @@ public class OrderCtrl
 
     	return false;
     }
+
+    public void createOrderStatus(long statusId, String statusValue)
+    {
+    	OrderStatus status = new OrderStatus(statusId, statusValue);
+    	_orderStatusContainer.addOrderStatus(status);
+    }
 }
