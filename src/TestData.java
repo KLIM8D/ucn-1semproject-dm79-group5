@@ -21,7 +21,7 @@ public class TestData
 	
 	public TestData()
 	{
-		_customerCtrl = new CustomerCtrl();
+        _customerCtrl = new CustomerCtrl();
 		_leaseCtrl = new LeaseCtrl();
 		_orderCtrl = new OrderCtrl();
 		_productCtrl = new ProductCtrl();
@@ -32,16 +32,16 @@ public class TestData
 
 	public void addData()
 	{
-		//Customer
-		_personCtrl.createPerson(210519802011L, "Mogens Jensen", "Hobrovej 200", "Aalborg", 9000, 85920592L);
-		Person per1 = _personCtrl.getPerson(210519802011L);
+	    //Customer
+	    _personCtrl.createPerson(210519802011L, "Mogens Jensen", "Hobrovej 200", "Aalborg", 9000, 85920592L);
+	    Person per1 = _personCtrl.getPerson(210519802011L);
         _customerCtrl.createCustomer(per1);
         _customerCtrl.createDiscount(85920592L, 1, "200.00");
         _customerCtrl.createDiscount(85920592L, 2, "500.00");
         _customerCtrl.createDiscount(85920592L, 3, "150.00");
-
         _personCtrl.createPerson(111219752055L, "Joey Moe", "Landevejen 66", "Vojens", 6500, 22993011L);
-		Person per2 = _personCtrl.getPerson(111219752055L);
+	    
+        Person per2 = _personCtrl.getPerson(111219752055L);
         _customerCtrl.createCustomer(per2);
         _customerCtrl.createDiscount(22993011L, 1, "250.00");
         _customerCtrl.createDiscount(22993011L, 2, "700.00");

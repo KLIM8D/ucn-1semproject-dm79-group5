@@ -36,6 +36,7 @@ public class CustomerMenuUI
         print("¦ 5) - Vis Alle kunder                                            ¦");
         print("¦ 6) - Vis Business kunder                                        ¦");
         print("¦ 7) - Vis Private kunder                                         ¦");
+        print("¦ 8) - Tilknyt kunden en rabatgruppe                              ¦");
         print("¦                                                                 ¦");
         print("¦ 0) - Returner til hovedmenu                                     ¦");
         print("-------------------------------------------------------------------");
@@ -83,7 +84,7 @@ public class CustomerMenuUI
                     }
                     catch(Exception ex)
                     {
-                        print("*FEJL* Kundenummer består kun af tal");                   
+                        print("*FEJL* Kundenummer og CVR nummer består kun af tal");                   
                     }
                     GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
                     execCustomerMenu();
@@ -231,6 +232,34 @@ public class CustomerMenuUI
                     catch (Exception e)
                     {
                         print("Der skete en fejl da kunde dataen skulle hentes");
+                    }
+                    GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
+                    execCustomerMenu();
+                    break;
+                    // End of section
+
+                case 8:
+                    // Start of section
+                    try 
+                    {
+                        print("Mulige rabat grupper: ");
+                        print("ID: 1 " + GlobalUI.translateDiscountTypes(1));
+                        print("ID: 2 " + GlobalUI.translateDiscountTypes(2));
+                        print("ID: 3 " + GlobalUI.translateDiscountTypes(3));
+                        print("ID: 4 " + GlobalUI.translateDiscountTypes(4));
+                        print("ID: 5 " + GlobalUI.translateDiscountTypes(5));
+                        customerId = GlobalUI.inputGetLong("Indtast kundenummer: ");
+                        int discId = GlobalUI.inputGetInt("Indtast rabat gruppe ID: ");
+                        String price = GlobalUI.inputGetLine("Indtast rabattens beløb: ");
+                        boolean succeeded = _customerCtrl.createDiscount(customerId, discId, price);
+                        if(succeeded)
+                            print("Kunden er nu tildelt denne rabat gruppe");
+                        else
+                            print("Kunden med det kundenummer blev ikke fundet");
+                    }
+                    catch (Exception e)
+                    {
+                        print("Der skete en fejl da kunden skulle tildeles en rabat");
                     }
                     GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
                     execCustomerMenu();

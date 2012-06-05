@@ -356,15 +356,15 @@ public class GlobalUI
         switch (discType) 
         {
             case 1:
-                return "Rabat 1";
+                return "Mængde rabat";
             case 2:
-                return "Rabat 2";
+                return "Samarbejdes aftale";
             case 3:
-                return "Rabat 3";
+                return "Rabatgruppe 1";
             case 4:
-                return "Rabat 4";
+                return "Rabatgruppe 2";
             case 5:
-                return "Rabat 5";
+                return "Rabatgruppe 3";
         }
 
         return "Ukendt rabat gruppe";
