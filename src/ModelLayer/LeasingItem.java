@@ -16,9 +16,6 @@ public class LeasingItem
     private int _maxAvaible;
     private ArrayList<SerialNumber> _serialNumbers;
 
-    /**
-     * Constructor for objects of class LeasingItem
-     */
     public LeasingItem(long itemNumber, String itemName, BigDecimal rentPrice, int maxAvaible)
     {
         _itemNumber = itemNumber;

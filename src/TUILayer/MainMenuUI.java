@@ -34,10 +34,11 @@ public class MainMenuUI
 		System.out.println("                    ¦ 0) - Afslut                                                     ¦");
 		System.out.println("                    -------------------------------------------------------------------");
 		
-		int userentry = GlobalUI.inputGetInt("Menu valg: ");
+		
 
 		try
 		{
+			int userentry = GlobalUI.inputGetInt("Menu valg: ");
 			switch (userentry)
 			{
 				case 1:
@@ -87,10 +88,17 @@ public class MainMenuUI
 			}
 
 		}
-
+		
 		catch (Exception e)
-		{
-			System.out.print("\n                      " + GlobalUI.errorHandling(99));
-		}
+        {
+            System.out.print("\n                      " + GlobalUI.errorHandling(99));
+            try
+            {
+                Thread.sleep(2000);  
+            }
+            catch(Exception ee)
+            {}  
+            execMainMenu();
+        }
 	}
 }

@@ -255,7 +255,7 @@ public class GlobalUI
         String newLine = System.getProperty("line.separator");
         sb.append("ID: " + lease.getLeaseId() + newLine);
         sb.append(centerText() + "Tilknyttet kunde: " + newLine);
-        sb.append(getCustomerInfo(lease.getCustomer()));
+        sb.append(centerText () + getCustomerInfo(lease.getCustomer()));
         sb.append(centerText() + "Serienummer: " + getSerialNumberInfo(lease.getSerialNumber()) + newLine);
         sb.append(centerText() + "Start dato: " + formatter.format(lease.getRentStartDate()) + newLine);
         sb.append(centerText() + "Slut dato: " + formatter.format(lease.getRentEndDate()) + newLine);
@@ -267,7 +267,7 @@ public class GlobalUI
     {
         StringBuilder sb = new StringBuilder();
         String newLine = System.getProperty("line.separator");
-        sb.append("ID: " + leasingItem.getItemNumber() + newLine);
+        sb.append(centerText () + "ID: " + leasingItem.getItemNumber() + newLine);
         sb.append(centerText() + "Produktnavn: " + leasingItem.getItemName() + newLine);
         sb.append(centerText() + "Leje Pris: " + leasingItem.getRentPrice() + newLine);
         sb.append(centerText() + "Maksimum tilgængelig: " + leasingItem.getMaxAvaible() + newLine);

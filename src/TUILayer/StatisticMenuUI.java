@@ -48,11 +48,12 @@ public class StatisticMenuUI
 		print("¦                                                                 ¦");
 		print("¦ 0) - Returnere til hovedmenu                                    ¦");
 		print("-------------------------------------------------------------------");
-		System.out.print("\n");
-		int userentry = GlobalUI.inputGetInt("Menu valg: ");
-		System.out.print("\n");
+		
 		try
 		{
+			System.out.print("\n");
+			int userentry = GlobalUI.inputGetInt("Menu valg: ");
+			System.out.print("\n");
 			switch (userentry)
 			{
 				case 1:
@@ -204,9 +205,16 @@ public class StatisticMenuUI
 		}
 
 		catch (Exception e)
-		{
-			print(GlobalUI.errorHandling(99));
-		}
+        {
+            print(GlobalUI.errorHandling(99));
+            try
+            {
+                Thread.sleep(2000);  
+            }
+            catch(Exception ee)
+            {}  
+            execStatisticMenu();
+        }
 	}
 
 	private void print(String inputLine)

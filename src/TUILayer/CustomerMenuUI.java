@@ -41,12 +41,13 @@ public class CustomerMenuUI
         print("¦ 0) - Returner til hovedmenu                                     ¦");
         print("-------------------------------------------------------------------");
         
-        System.out.print("\n");
-        int userentry = GlobalUI.inputGetInt("Menu valg: ");
-        System.out.println("\n");
+        
 
         try
         {
+            System.out.print("\n");
+            int userentry = GlobalUI.inputGetInt("Menu valg: ");
+            System.out.println("\n");
             switch (userentry)
             {
                 case 1:
@@ -283,6 +284,13 @@ public class CustomerMenuUI
         catch (Exception e)
         {
             print(GlobalUI.errorHandling(99));
+            try
+            {
+                Thread.sleep(2000);  
+            }
+            catch(Exception ee)
+            {}  
+            execCustomerMenu();
         }
     }
 

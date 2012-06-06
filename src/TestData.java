@@ -57,9 +57,23 @@ public class TestData
 
         //Lease
         _leaseCtrl.createLeaseItem(12345L, "Massiv spade", "200.11", 5);
+        _leaseCtrl.createSerialNumber(85832912L, true, 12345L);
+        _leaseCtrl.createSerialNumber(85828284L, true, 12345L);
+        _leaseCtrl.createSerialNumber(834818238L, true, 12345L);
+        _leaseCtrl.createSerialNumber(12491257L, true, 12345L);
+        _leaseCtrl.createSerialNumber(21938182L, true, 12345L);
         _leaseCtrl.createLeaseItem(54321L, "Rusten skovl", "525.55", 11);
+        _leaseCtrl.createSerialNumber(2848124L, true, 54321L);
+        _leaseCtrl.createSerialNumber(918591238L, true, 54321L);
+        _leaseCtrl.createSerialNumber(5918258L, true, 54321L);
+        _leaseCtrl.createSerialNumber(8148218L, true, 54321L);
         _leaseCtrl.createLeaseItem(98765L, "Feje kost", "125.95", 3);
+        _leaseCtrl.createSerialNumber(21949294L, true, 98765L);
+        _leaseCtrl.createSerialNumber(238123L, true, 98765L);
+        _leaseCtrl.createSerialNumber(3561984L, true, 98765L);
         _leaseCtrl.createLeaseItem(45671L, "Trillebøre", "765.95", 10);
+        _leaseCtrl.createSerialNumber(9124992L, true, 45671L);
+        
         _leaseCtrl.createLease(85920592L, 12345L, 7);
         _leaseCtrl.createLease(22993011L, 45671L, 14);
         //Lease END

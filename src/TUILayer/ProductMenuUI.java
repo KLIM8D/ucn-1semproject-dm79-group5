@@ -41,10 +41,12 @@ public class ProductMenuUI
 		print("¦ 0) - Returner til hovedmenu                                     ¦");
 		print("-------------------------------------------------------------------");
 		
-		int userentry = GlobalUI.inputGetInt("Menu valg: ");
+		
 
 		try
 		{
+			System.out.println("\n");
+			int userentry = GlobalUI.inputGetInt("Menu valg: ");
 			System.out.println("\n");
 			boolean succeeded = false;
 			switch (userentry)
@@ -198,9 +200,16 @@ public class ProductMenuUI
 		}
 
 		catch (Exception e)
-		{
-			print(GlobalUI.errorHandling(99));
-		}
+        {
+            print(GlobalUI.errorHandling(99));
+            try
+            {
+                Thread.sleep(2000);  
+            }
+            catch(Exception ee)
+            {}  
+            execProductMenu();
+        }
 	}
 
 	private void execCategoryMenu()
@@ -217,11 +226,12 @@ public class ProductMenuUI
 		print("¦                                                                 ¦");
 		print("¦ 0) - Returner til produkt menu                                  ¦");
 		print("-------------------------------------------------------------------");
-		System.out.print("\n");
-		int userentry = GlobalUI.inputGetInt("Menu valg: ");
-		System.out.println("\n");
+		
 		try
 		{
+			System.out.print("\n");
+			int userentry = GlobalUI.inputGetInt("Menu valg: ");
+			System.out.println("\n");
 			boolean succeeded = false;
 			switch (userentry)
 			{
@@ -321,9 +331,16 @@ public class ProductMenuUI
 		}
 
 		catch (Exception e)
-		{
-			print(GlobalUI.errorHandling(99));
-		}
+        {
+            print(GlobalUI.errorHandling(99));
+            try
+            {
+                Thread.sleep(2000);  
+            }
+            catch(Exception ee)
+            {}  
+            execCategoryMenu();
+        }
 	}
 
 	private void execGroupMenu()
@@ -342,11 +359,12 @@ public class ProductMenuUI
 		print("¦                                                                 ¦");
 		print("¦ 0) - Returner til produkt menu                                  ¦");
 		print("-------------------------------------------------------------------");
-		System.out.print("\n");
-		int userentry = GlobalUI.inputGetInt("Menu valg: ");
-		System.out.println("\n");
+		
 		try
 		{
+			System.out.print("\n");
+			int userentry = GlobalUI.inputGetInt("Menu valg: ");
+			System.out.println("\n");
 			boolean succeeded = false;
 			switch (userentry)
 			{
@@ -490,9 +508,16 @@ public class ProductMenuUI
 		}
 
 		catch (Exception e)
-		{
-			print(GlobalUI.errorHandling(99));
-		}
+        {
+            print(GlobalUI.errorHandling(99));
+            try
+            {
+                Thread.sleep(2000);  
+            }
+            catch(Exception ee)
+            {}  
+            execGroupMenu();
+        }
 	}
 
 	private void print(String inputLine)

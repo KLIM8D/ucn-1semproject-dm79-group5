@@ -17,9 +17,6 @@ public class LeaseCtrl
     private LeasingItemContainer _leasingItemContainer;
     private CustomerContainer _customerContainer;
 
-    /**
-     * Constructor for objects of class LeaseCtrl
-     */
     public LeaseCtrl()
     {
         _leaseContainer = LeaseContainer.getInstance();
@@ -123,5 +120,18 @@ public class LeaseCtrl
             index++;
         }
         return expiredLeases;
+    }
+
+    public boolean createSerialNumber(long serialNumber, boolean isAvailble, long itemNumber)
+    {
+        SerialNumber sn = new SerialNumber(serialNumber, isAvailble, itemNumber);
+        LeasingItem item = getLeaseItem(itemNumber);
+        if(item != null)
+        {
+            item.addItem(sn);
+            return true;
+        }
+
+        return false;
     }
 }
