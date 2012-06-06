@@ -86,7 +86,7 @@ public class StatisticMenuUI
 					// Start of section
 					try 
 					{
-						long customerId = GlobalUI.inputGetLong("Indtast ID for kunden: ");
+						long customerId = GlobalUI.inputGetLong("Indtast ID for kunden (telefon nummer): ");
 						Customer customer = _cusCtrl.getCustomer(customerId);
 						if(customer != null)
 						{

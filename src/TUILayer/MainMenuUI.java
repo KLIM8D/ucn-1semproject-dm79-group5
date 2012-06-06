@@ -8,7 +8,7 @@ package TUILayer;
 
 public class MainMenuUI
 {
-	private SalesMenuUI _salesmenuUI;
+	private OrderMenuUI _ordermenuUI;
 	private RentalMenuUI _rentalmenuUI;
 	private CustomerMenuUI _customermenuUI;
 	private ProductMenuUI _productmenuUI;
@@ -42,8 +42,8 @@ public class MainMenuUI
 			switch (userentry)
 			{
 				case 1:
-					_salesmenuUI = new SalesMenuUI();
-					_salesmenuUI.execSalesMenu();
+					_ordermenuUI = new OrderMenuUI();
+					_ordermenuUI.execOrderMenu();
 					break;
 
 				case 2:

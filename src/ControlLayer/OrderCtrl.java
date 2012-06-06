@@ -29,7 +29,32 @@ public class OrderCtrl
 		_customerContainer = CustomerContainer.getInstance();
 	}
 
-	public boolean createOrder(int salesAsstId, long customerId, String salesNote, int discountType, long statusId)
+    public long createOrder(int salesAsstId, long customerId, String salesNote, long statusId)
+    {
+        try
+        {
+            SalesAssistant salesAsst = _saContainer.getSalesAs(salesAsstId);
+            Customer customer = _customerContainer.getCustomer(customerId);
+            OrderStatus status = _orderStatusContainer.getOrderStatus(statusId);
+            if(salesAsst != null && customer != null && status != null)
+            {
+                Order order = new Order(salesAsst, customer, salesNote, null, status);
+                boolean success = _orderContainer.addOrder(order);
+                if(success)
+                    return order.getId();
+                else
+                    return 0;
+            }
+            else
+                return 0;
+        }
+        catch(Exception ex)
+        {
+            return 0;
+        }
+    }
+
+	public long createOrder(int salesAsstId, long customerId, String salesNote, int discountType, long statusId)
 	{
 		try
 		{
@@ -40,17 +65,21 @@ public class OrderCtrl
 			{
 				Discount discount = customer.getDiscount(discountType);
 				if(discount == null)
-					return false;
+					return 0;
 
 				Order order = new Order(salesAsst, customer, salesNote, discount, status);
-				return _orderContainer.addOrder(order);
+				boolean success = _orderContainer.addOrder(order);
+                if(success)
+                    return order.getId();
+                else
+                    return 0;
 			}
 			else
-				return false;
+				return 0;
 		}
 		catch(Exception ex)
 		{
-			return false;
+			return 0;
 		}
 	}
 
@@ -168,4 +197,9 @@ public class OrderCtrl
     	OrderStatus status = new OrderStatus(statusId, statusValue);
     	_orderStatusContainer.addOrderStatus(status);
     }
+
+    public Iterable<OrderStatus> getAllOrderStatuses()
+    {
+        return _orderStatusContainer.getAllOrderStatuses();
+    } 
 }

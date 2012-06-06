@@ -95,7 +95,7 @@ public class CustomerMenuUI
                     long customerId = 0;
                     try
                     {
-                        customerId = GlobalUI.inputGetLong("Indtast Kundenummer: ");
+                        customerId = GlobalUI.inputGetLong("Indtast Kundenummer (telefon nummer): ");
                         Customer customer = _customerCtrl.getCustomer(customerId);
                         if(customer == null)
                         {
@@ -118,7 +118,7 @@ public class CustomerMenuUI
                 case 3:
                     try
                     {
-                        customerId = GlobalUI.inputGetLong("Indtast Kundenummer: ");
+                        customerId = GlobalUI.inputGetLong("Indtast Kundenummer (telefon nummer): ");
                         Person per = _customerCtrl.getCustomer(customerId).getPerson();
                         if(per != null)
                         {
@@ -249,7 +249,7 @@ public class CustomerMenuUI
                         print("ID: 3 " + GlobalUI.translateDiscountTypes(3));
                         print("ID: 4 " + GlobalUI.translateDiscountTypes(4));
                         print("ID: 5 " + GlobalUI.translateDiscountTypes(5));
-                        customerId = GlobalUI.inputGetLong("Indtast kundenummer: ");
+                        customerId = GlobalUI.inputGetLong("Indtast kundenummer (telefon nummer): ");
                         int discId = GlobalUI.inputGetInt("Indtast rabat gruppe ID: ");
                         String price = GlobalUI.inputGetLine("Indtast rabattens beløb: ");
                         boolean succeeded = _customerCtrl.createDiscount(customerId, discId, price);

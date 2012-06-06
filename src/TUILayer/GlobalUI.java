@@ -346,6 +346,44 @@ public class GlobalUI
         return sb.toString();
     }
 
+    /**
+    * Display information about the order
+    *
+    * @param order        the order object
+    *
+    */        
+    public static String getOrderInfo(Order order)
+    {
+        StringBuilder sb = new StringBuilder();
+        String newLine = System.getProperty("line.separator");
+        sb.append("Ordre ID: " + order.getId() + newLine);
+        sb.append(centerText() + "Kunde: " + order.getCustomer().getPerson().getName() + " / " + order.getCustomer().getPerson().getPhoneNumber() + newLine);
+        sb.append(centerText() + "Sælger: " + order.getSalesAsst().getPerson().getName() + newLine);
+        sb.append(centerText() + "Noter: " + order.getSalesNote() + newLine);
+        sb.append(centerText() + "Rabat: " + translateDiscountTypes(order.getDiscount().getDiscountType()) + " beløb: " + order.getDiscount().getDiscountValue() + " kr." + newLine);
+        sb.append(centerText() + "Status: " + order.getStatus().getStatusValue() + newLine);
+        sb.append(centerText() + "OrdreLinjer: " +  newLine);
+        for(OrderLine line : order.getOrderLines())
+            sb.append(centerText() + getOrderLineInfo(line));
+
+        return sb.toString();
+    }
+
+    /**
+    * Display information about the orderline
+    *
+    * @param orderLine        the order line object
+    *
+    */        
+    public static String getOrderLineInfo(OrderLine orderLine)
+    {
+        StringBuilder sb = new StringBuilder();
+        String newLine = System.getProperty("line.separator");
+        sb.append("Produkt: " + orderLine.getProduct().getProduct().getItemName() + " Antal: " + orderLine.getQuantity() + newLine);        
+
+        return sb.toString();
+    }
+
     public static String passBoolean(boolean bool)
     {
         return bool ? "Ja" : "Nej";

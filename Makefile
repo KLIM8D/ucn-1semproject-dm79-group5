@@ -49,7 +49,7 @@ SOURCES = \
 	TUILayer/ProductMenuUI \
 	TUILayer/RentalMenuUI \
 	TUILayer/SalesAssistantMenuUI \
-	TUILayer/SalesMenuUI \
+	TUILayer/OrderMenuUI \
 	GUILayer/GlobalUI \
 	GUILayer/LoginUI \
 	GUILayer/SystemUI \
