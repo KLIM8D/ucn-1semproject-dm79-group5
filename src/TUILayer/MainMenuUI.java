@@ -28,7 +28,7 @@ public class MainMenuUI
 		System.out.println("                    ¦ 3) - Kundekartotek                                              ¦");
 		System.out.println("                    ¦ 4) - Ekspedientkartotek                                         ¦");
 		System.out.println("                    ¦ 5) - Produkter                                                  ¦");
-		System.out.println("                    ¦ 6) - Statistiker                                                ¦");
+		System.out.println("                    ¦ 6) - Statistikker                                               ¦");
 		System.out.println("                    ¦ 7) - Lager                                                      ¦");
 		System.out.println("                    ¦                                                                 ¦");
 		System.out.println("                    ¦ 0) - Afslut                                                     ¦");

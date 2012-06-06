@@ -36,7 +36,7 @@ public class StatisticMenuUI
 		GlobalUI.tuiHeader();
 
 		print("-------------------------------------------------------------------");
-		print("¦                             Statistiker                         ¦");
+		print("¦                             Statistikker                        ¦");
 		print("-------------------------------------------------------------------");
 		print("¦ 1) - Generer statistik ud fra ekspedient                        ¦");
 		print("¦ 2) - Generer statistik ud fra kunde                             ¦");
