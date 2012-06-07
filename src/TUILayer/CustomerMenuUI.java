@@ -87,6 +87,7 @@ public class CustomerMenuUI
                     {
                         print("*FEJL* Kundenummer og CVR nummer består kun af tal");                   
                     }
+                    
                     GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
                     execCustomerMenu();
                     break;
@@ -110,6 +111,7 @@ public class CustomerMenuUI
                     {
                         print("*FEJL* Kundenummer består kun af tal");
                     }
+
                     GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
                     execCustomerMenu();
                     break;
@@ -142,8 +144,8 @@ public class CustomerMenuUI
                     catch(Exception ex)
                     {
                         print("*FEJL* Kundenummer bestaar kun af tal");
-                        GlobalUI.inputGetLine("Tryk enter for at fortsaette..");
                     }
+
                     GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
                     execCustomerMenu();
                     break;
@@ -154,30 +156,30 @@ public class CustomerMenuUI
 						String contact = "";
 						long cvrNo = 0;
 						boolean done2 = true;
-					    customerId = GlobalUI.inputGetLong("Indtast ID på lageret: ");
+					    customerId = GlobalUI.inputGetLong("Indtast Kundenummer (telefon nummer): ");
 						Customer customer = _customerCtrl.getCustomer(customerId);
 						if(customer != null)
 						{
-							 String cusName = GlobalUI.inputGetLine("Indtast Kundens navn: ");
-							 String cusAddress = GlobalUI.inputGetLine("Indtast Kundens addresse: ");;
-							 String cusCity = GlobalUI.inputGetLine("Indtast By: ");
-							 int cusZipCode = GlobalUI.inputGetInt("Indtast Postnummer: ");
-							 long cusPhoneNumber = GlobalUI.inputGetLong("Indtast Telefonnummer: ");
-							 if(customer.getIsBusiness())
-							 {
-							     contact = GlobalUI.inputGetLine("Indtast Kontaktperson: ");
-							     cvrNo = GlobalUI.inputGetLong("Indtast CVR-nummer: ");
-							     done2 = _customerCtrl.updateCustomer(customerId, contact, cvrNo);
-							 }
-							 boolean done = _personCtrl.updatePerson(customerId, cusName, cusAddress, cusCity, cusZipCode, cusPhoneNumber);
-							 if(done && done2)
-							 {
-							     print("Kunden er nu opdateret");
-							 }
-							 else
-							 {
-							     print("*FEJL* - Kunden blev ikke opdateret ");
-							 }
+							String cusName = GlobalUI.inputGetLine("Indtast Kundens navn: ");
+							String cusAddress = GlobalUI.inputGetLine("Indtast Kundens addresse: ");;
+							String cusCity = GlobalUI.inputGetLine("Indtast By: ");
+							int cusZipCode = GlobalUI.inputGetInt("Indtast Postnummer: ");
+                            long personId = customer.getPerson().getPersonId();
+							if(customer.getIsBusiness())
+							{
+							   contact = GlobalUI.inputGetLine("Indtast Kontaktperson: ");
+							   cvrNo = GlobalUI.inputGetLong("Indtast CVR-nummer: ");
+							   done2 = _customerCtrl.updateCustomer(customerId, contact, cvrNo);
+							}
+							boolean done = _personCtrl.updatePerson(personId, cusName, cusAddress, cusCity, cusZipCode);
+							if(done && done2)
+							{
+							   print("Kunden er nu opdateret");
+							}
+							else
+							{
+							   print("*FEJL* - Kunden blev ikke opdateret ");
+							}
 						}	
 						else
 							print("En kunde med det ID blev ikke fundet");
@@ -185,7 +187,8 @@ public class CustomerMenuUI
 					catch(Exception ex)
 					{
 						print(GlobalUI.errorHandling(99));
-					}			
+					}
+
 	                GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
 					execCustomerMenu();
 					break;
@@ -202,6 +205,7 @@ public class CustomerMenuUI
                         print(e.toString());
                         print("Der skete en fejl da kunde dataen skulle hentes");
                     }
+
                     GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
                     execCustomerMenu();
                     break;
@@ -218,6 +222,7 @@ public class CustomerMenuUI
                     {
                         print("Der skete en fejl da kunde dataen skulle hentes");
                     }
+
                     GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
                     execCustomerMenu();
                     break;
@@ -234,6 +239,7 @@ public class CustomerMenuUI
                     {
                         print("Der skete en fejl da kunde dataen skulle hentes");
                     }
+
                     GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
                     execCustomerMenu();
                     break;
@@ -262,6 +268,7 @@ public class CustomerMenuUI
                     {
                         print("Der skete en fejl da kunden skulle tildeles en rabat");
                     }
+
                     GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
                     execCustomerMenu();
                     break;

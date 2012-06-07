@@ -108,8 +108,8 @@ public class SalesAssistantMenuUI
 						String address = GlobalUI.inputGetLine("Indtast vejnavn + husnummer: ");
 						int zipCode = GlobalUI.inputGetInt("Indtast post nummer: ");
 						String city = GlobalUI.inputGetLine("Indtast by: ");						
-						long phoneNumber = GlobalUI.inputGetLong("Indtast telefon nummer: ");	
-						succeeded = _perController.updatePerson(personId, personName, address, city, zipCode, phoneNumber);
+						//long phoneNumber = GlobalUI.inputGetLong("Indtast telefon nummer: ");	
+						succeeded = _perController.updatePerson(personId, personName, address, city, zipCode);
 						if(succeeded)
 							print("Ekspedientens informationer er nu opdateret!");
 						else

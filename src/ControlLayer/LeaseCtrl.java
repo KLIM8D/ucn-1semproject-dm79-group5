@@ -46,6 +46,11 @@ public class LeaseCtrl
         }
         return false;
     }
+
+    public ArrayList<Lease> getCustomerLeases(long customerId)
+    {
+        return _leaseContainer.getCustomerLeases(customerId);
+    }
     
     public Lease getLease(int leaseId)
     {
@@ -113,7 +118,7 @@ public class LeaseCtrl
         Date now = calendar.getTime();
         while(index < leases.size())
         {
-            if(leases.get(index).getRentEndDate().compareTo(now) > 0)
+            if(leases.get(index).getRentEndDate().compareTo(now) < 0)
             {
                 expiredLeases.add(leases.get(index));
             }

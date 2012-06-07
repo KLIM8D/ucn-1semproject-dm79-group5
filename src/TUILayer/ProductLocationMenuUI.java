@@ -24,7 +24,7 @@ public class ProductLocationMenuUI
 		GlobalUI.tuiHeader();
 
 		print("-------------------------------------------------------------------");
-		print("¦                          Lager                                  ¦");
+		print("¦                            Lager                                ¦");
 		print("-------------------------------------------------------------------");
 		print("¦ 1) - Opret lager loktation                                      ¦");
 		print("¦ 2) - Vis lager loktation information                            ¦");

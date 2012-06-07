@@ -60,7 +60,7 @@ public class LeaseContainer
         return _leaseCollection.get(leaseId);
     }
     
-    public ArrayList<Lease> getCustomerLeases(int customerId)
+    public ArrayList<Lease> getCustomerLeases(long customerId)
     {
         ArrayList<Lease> leases = new ArrayList<Lease>();
         for(Lease lease : _leaseCollection.values())

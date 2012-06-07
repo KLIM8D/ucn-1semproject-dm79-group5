@@ -36,7 +36,7 @@ public class StatisticMenuUI
 		GlobalUI.tuiHeader();
 
 		print("-------------------------------------------------------------------");
-		print("¦                             Statistikker                        ¦");
+		print("¦                         Statistikker                            ¦");
 		print("-------------------------------------------------------------------");
 		print("¦ 1) - Generer statistik ud fra ekspedient                        ¦");
 		print("¦ 2) - Generer statistik ud fra kunde                             ¦");
@@ -139,9 +139,13 @@ public class StatisticMenuUI
 					try 
 					{
 						int take = GlobalUI.inputGetInt("Hvor mange ekspedienter ønsker du at vise en top liste over: ");
-
-						for(Map.Entry<Long,SalesAssistant> entry : _statisticCtrl.getTopXForSalesAsst(take).entrySet())
-							print(entry.getValue().getPerson().getName() + " har i alt solgt for: " + entry.getKey() + " kr.");
+						if(take > 0)
+						{
+							for(Map.Entry<Long,SalesAssistant> entry : _statisticCtrl.getTopXForSalesAsst(take).entrySet())
+								print(entry.getValue().getPerson().getName() + " har i alt solgt for: " + entry.getKey() + " kr.");
+						}
+						else
+							print("Talet skal være positivt");
 						
 						GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
 					}
@@ -158,10 +162,14 @@ public class StatisticMenuUI
 					try 
 					{
 						int take = GlobalUI.inputGetInt("Hvor mange kunder ønsker du at vise en top liste over: ");
+						if(take > 0)
+						{
+							for(Map.Entry<Long,Customer> entry : _statisticCtrl.getTopXForCustomer(take).entrySet())
+								print(entry.getValue().getPerson().getName() + " har i alt købt for: " + entry.getKey() + " kr.");
+						}
+						else
+							print("Talet skal være positivt");
 
-						for(Map.Entry<Long,Customer> entry : _statisticCtrl.getTopXForCustomer(take).entrySet())
-							print(entry.getValue().getPerson().getName() + " har i alt købt for: " + entry.getKey() + " kr.");
-						
 						GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
 					}
 					catch (Exception e)
@@ -177,10 +185,14 @@ public class StatisticMenuUI
 					try 
 					{
 						int take = GlobalUI.inputGetInt("Hvor mange produkter ønsker du at vise en top liste over: ");
+						if(take > 0)
+						{
+							for(Map.Entry<Long,Product> entry : _statisticCtrl.getTopXForProduct(take).entrySet())
+								print(entry.getValue().getItemName() + " har i alt solgt for: " + entry.getKey() + " kr.");
+						}
+						else
+							print("Talet skal være positivt");
 
-						for(Map.Entry<Long,Product> entry : _statisticCtrl.getTopXForProduct(take).entrySet())
-							print(entry.getValue().getItemName() + " har i alt solgt for: " + entry.getKey() + " kr.");
-						
 						GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
 					}
 					catch (Exception e)

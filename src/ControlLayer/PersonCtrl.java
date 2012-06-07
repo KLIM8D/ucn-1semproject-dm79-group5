@@ -8,13 +8,11 @@ import java.util.ArrayList;
 * Description: Controller class handling all operations with Persons
 * @changes    
 */
+
 public class PersonCtrl
 {
     private PersonContainer _personContainer;
 
-    /**
-     * Constructor for objects of class PersonCtrl
-     */
     public PersonCtrl()
     {
         _personContainer = PersonContainer.getInstance();
@@ -26,7 +24,7 @@ public class PersonCtrl
         return _personContainer.addPerson(per);
     }
     
-    public boolean updatePerson(long personId, String name, String address, String city, int zipCode, long phoneNumber)
+    public boolean updatePerson(long personId, String name, String address, String city, int zipCode)
     {
         Person per = _personContainer.getPerson(personId);
         if(per != null)
@@ -35,7 +33,6 @@ public class PersonCtrl
             per.setAddress(address);
             per.setCity(city);
             per.setZipCode(zipCode);
-            per.setPhoneNumber(phoneNumber);
             return _personContainer.updatePerson(per);
         }
         return false;

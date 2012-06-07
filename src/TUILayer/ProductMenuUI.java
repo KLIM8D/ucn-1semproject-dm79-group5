@@ -26,7 +26,7 @@ public class ProductMenuUI
 		GlobalUI.tuiHeader();
 
 		print("-------------------------------------------------------------------");
-		print("¦                              Produkter                          ¦");
+		print("¦                           Produkter                             ¦");
 		print("-------------------------------------------------------------------");
 		print("¦ 1) - Opret produkt                                              ¦");
 		print("¦ 2) - Vis produkt                                                ¦");
@@ -70,14 +70,13 @@ public class ProductMenuUI
 							print("Produktet er nu oprettet!");
 						else
 							print("Produkt kategorien blev ikke fundet eller også findes dette produkt allerede");
-
-						GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
 					}
 					catch (Exception e)
 					{
 						print(GlobalUI.errorHandling(99));
-						Thread.sleep(2000);
 					}
+
+					GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
 					execProductMenu();
 					break;
 					// End of section
@@ -91,14 +90,14 @@ public class ProductMenuUI
 							print(GlobalUI.getProductInfo(prod));
 						else
 							print("Der blev ikke fundet et produkt med det produkt nummer");
-
-						GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
 					}
 					catch (Exception e)
 					{
 						print(GlobalUI.errorHandling(99));
 						Thread.sleep(2000);
 					}
+
+					GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
 					execProductMenu();
 					break;
 					// End of section
@@ -124,13 +123,13 @@ public class ProductMenuUI
 						else
 							print("Der blev ikke fundet et produkt med det produkt nummer");
 
-						GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
 					}
 					catch (Exception e)
 					{
 						print(GlobalUI.errorHandling(99));
-						Thread.sleep(2000);
 					}
+
+					GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
 					execProductMenu();
 					break;
 				case 4:
@@ -147,14 +146,21 @@ public class ProductMenuUI
 							else
 								print(GlobalUI.errorHandling(99));
 						}
-
-						GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
+						else if(answer.toLowerCase().equals("nej"))
+						{
+							print("Produktet blev ikke slettet");
+						}
+						else
+						{
+							print("Ukendt input");
+						}
 					}
 					catch (Exception e)
 					{
 						print(GlobalUI.errorHandling(99));
-						Thread.sleep(2000);
 					}
+
+					GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
 					execProductMenu();
 					break;
 					// End of section
@@ -167,14 +173,13 @@ public class ProductMenuUI
 							print(GlobalUI.getProductInfo(prod));
 						else
 							print("Der blev ikke fundet noget produkt");
-
-						GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
 					}
 					catch (Exception e)
 					{
 						print(GlobalUI.errorHandling(99));
-						Thread.sleep(2000);
 					}
+
+					GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
 					execProductMenu();
 					break;
 				case 6:
@@ -217,7 +222,7 @@ public class ProductMenuUI
 		GlobalUI.tuiHeader();
 
 		print("-------------------------------------------------------------------");
-		print("¦                              Produkt kategorier                 ¦");
+		print("¦                      Produkt kategorier                         ¦");
 		print("-------------------------------------------------------------------");
 		print("¦ 1) - Opret produkt kategori                                     ¦");
 		print("¦ 2) - Vis produkt kategori                                       ¦");
@@ -248,14 +253,13 @@ public class ProductMenuUI
 							print("Produkt kategorien er nu oprettet");
 						else
 							print("Produkt kategorien findes allerede i systemet");
-
-						GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
 					}
 					catch (Exception e)
 					{
 						print(GlobalUI.errorHandling(99));
-						Thread.sleep(2000);
 					}
+
+					GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
 					execCategoryMenu();
 					break;
 					// End of section
@@ -269,14 +273,13 @@ public class ProductMenuUI
 							print(GlobalUI.getProductCategoryInfo(category, true));
 						else
 							print("Der blev ikke fundet en kategori med det ID");
-
-						GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
 					}
 					catch (Exception e)
 					{
 						print(GlobalUI.errorHandling(99));
-						Thread.sleep(2000);
 					}
+
+					GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
 					execCategoryMenu();
 					break;
 					// End of section
@@ -285,14 +288,13 @@ public class ProductMenuUI
 					{
 						for(ProductCategory category : _productController.getAllCategories())
 							print(GlobalUI.getProductCategoryInfo(category, true));
-
-						GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
 					}
 					catch (Exception e)
 					{
 						print(GlobalUI.errorHandling(99));
-						Thread.sleep(2000);
 					}
+
+					GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
 					execCategoryMenu();
 					break;
 				case 4:
@@ -312,13 +314,13 @@ public class ProductMenuUI
 						}
 						else
 							print("Produkt kategorien blev ikke slettet");
-						GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
 					}
 					catch (Exception e)
 					{
 						print(GlobalUI.errorHandling(99));
-						Thread.sleep(2000);
 					}
+
+					GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
 					execCategoryMenu();
 					break;
 					// End of section
@@ -348,7 +350,7 @@ public class ProductMenuUI
 		GlobalUI.tuiHeader();
 
 		print("-------------------------------------------------------------------");
-		print("¦                              Produkt grupper                    ¦");
+		print("¦                        Produkt grupper                          ¦");
 		print("-------------------------------------------------------------------");
 		print("¦ 1) - Opret produkt gruppe                                       ¦");
 		print("¦ 2) - Tilføj et produkt til en produkt gruppe                    ¦");
@@ -382,14 +384,13 @@ public class ProductMenuUI
 							print("Produkt gruppen er nu oprettet");
 						else
 							print("Produkt gruppen blev ikke oprettet");						
-
-						GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
 					}
 					catch (Exception e)
 					{
 						print(GlobalUI.errorHandling(99));
-						Thread.sleep(2000);
 					}
+
+					GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
 					execGroupMenu();
 					break;
 					// End of section
@@ -406,14 +407,13 @@ public class ProductMenuUI
 						else
 							print("Der skete en fejl i indtastningen."); 
 						    print("Produktet med det produkt nummer og produkt gruppen med det ID skal eksitere");
-
-						GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
 					}
 					catch (Exception e)
 					{
 						print(GlobalUI.errorHandling(99));
-						Thread.sleep(2000);
 					}
+
+					GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
 					execGroupMenu();
 					break;
 					// End of section
@@ -428,14 +428,13 @@ public class ProductMenuUI
 							print("Produkt gruppen er nu opdateret");
 						else
 							print("Produkt gruppen blev ikke opdateret. Prøv igen, og hver sikker på at indtastningen er korrekt");
-
-						GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
 					}
 					catch (Exception e)
 					{
 						print(GlobalUI.errorHandling(99));
-						Thread.sleep(2000);
 					}
+
+					GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
 					execGroupMenu();
 					break;
 				case 4:
@@ -447,14 +446,13 @@ public class ProductMenuUI
 							print(GlobalUI.getProductGroupInfo(group));
 						else
 							print("Der blev ikke fundet en produkt gruppe med det ID");
-
-						GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
 					}
 					catch (Exception e)
 					{
 						print(GlobalUI.errorHandling(99));
-						Thread.sleep(2000);
 					}
+
+					GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
 					execGroupMenu();
 					break;
 				case 5:
@@ -462,14 +460,13 @@ public class ProductMenuUI
 					{
 						for(ProductGroup group : _productController.getAllProductGroups())
 							print(GlobalUI.getProductGroupInfo(group));
-
-						GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
 					}
 					catch (Exception e)
 					{
 						print(GlobalUI.errorHandling(99));
-						Thread.sleep(2000);
 					}
+
+					GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
 					execGroupMenu();
 					break;
 				case 6:
@@ -489,13 +486,13 @@ public class ProductMenuUI
 						}
 						else
 							print("Produkt gruppen blev ikke slettet");
-						GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
 					}
 					catch (Exception e)
 					{
 						print(GlobalUI.errorHandling(99));
-						Thread.sleep(2000);
 					}
+
+					GlobalUI.inputGetLine("Tryk på enter for at forsætte..");
 					execGroupMenu();
 					break;
 					// End of section

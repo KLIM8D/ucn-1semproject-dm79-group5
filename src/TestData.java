@@ -1,5 +1,7 @@
 import ControlLayer.*;
 import ModelLayer.*;
+import java.util.Date;
+import java.util.Calendar;
 
 /** 
 * @version: 0.1
@@ -76,6 +78,13 @@ public class TestData
         
         _leaseCtrl.createLease(85920592L, 12345L, 7);
         _leaseCtrl.createLease(22993011L, 45671L, 14);
+        _leaseCtrl.createLease(85920592L, 54321L, 7);
+        Lease lease = _leaseCtrl.getLease(3);
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DATE, -15);
+        lease.setRentStartDate(calendar.getTime());
+        calendar.add(Calendar.DATE, -10);
+        lease.setRentEndDate(calendar.getTime());
         //Lease END
 
 
