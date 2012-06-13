@@ -1,6 +1,5 @@
 package GUILayer;
 
-import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
@@ -10,9 +9,6 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.CompoundBorder;
-import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
 import javax.swing.JLabel;
@@ -125,8 +121,26 @@ public class SystemUI extends JFrame {
 		JMenuItem mntmRentalFind = new JMenuItem("Find udlejning");
 		mnRental.add(mntmRentalFind);
 		
+		JMenuItem mntmRentalShowAll = new JMenuItem("Vis alle udlejninger");
+		mnRental.add(mntmRentalShowAll);
+		
 		JMenuItem mntmRentalReturn = new JMenuItem("Retunering af udlejning");
 		mnRental.add(mntmRentalReturn);
+		
+		JMenuItem mntmRentalOverDue = new JMenuItem("Overskredet afleveringsdato");
+		mnRental.add(mntmRentalOverDue);
+		
+		JMenu mnRentalProducts = new JMenu("Udlejningsprodukter");
+		mnRental.add(mnRentalProducts);
+		
+		JMenuItem mntmRentalProductNew = new JMenuItem("Nyt udlejningsprodukt");
+		mnRentalProducts.add(mntmRentalProductNew);
+		
+		JMenuItem mntmRentalProductUpdate = new JMenuItem("Opdater udlejningsprodukt");
+		mnRentalProducts.add(mntmRentalProductUpdate);
+		
+		JMenuItem mntmRentalProductDelete = new JMenuItem("Slet udlejningsprodukt");
+		mnRentalProducts.add(mntmRentalProductDelete);
 		
 		JMenu mnCustomer = new JMenu("Kundekartotek");
 		mnFunctions.add(mnCustomer);
