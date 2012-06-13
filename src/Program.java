@@ -9,9 +9,9 @@ final class Program
     	// Text interface
         TestData test = new TestData();
         test.addData();
-    	new TUILayer.GlobalUI().mainRun();
+    	//new TUILayer.GlobalUI().mainRun();
     	
     	// Graphic interface
-    	//new GUILayer.GlobalUI();
+    	new GUILayer.GlobalUI();
     }
 }
