@@ -29,7 +29,7 @@ public class CreateUI extends JFrame {
 	 * Create the frame.
 	 */
 	public CreateUI() {
-		setTitle("Ny Udlejning");
+		setTitle("Ny udlejning");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(0, 0, 450, 183);
 		setLocationRelativeTo(null);

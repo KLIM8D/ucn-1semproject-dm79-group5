@@ -31,7 +31,7 @@ public class UpdateUI extends JFrame {
 	 */
 	public UpdateUI() {
 		setResizable(false);
-		setTitle("Opdater Udlejningsprodukt");
+		setTitle("Opdater udlejningsprodukt");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(0, 0, 450, 212);
 		setLocationRelativeTo(null);

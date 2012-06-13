@@ -27,11 +27,11 @@ public class DeleteUI extends JFrame {
 	 * Create the frame.
 	 */
 	public DeleteUI() {
-		setTitle("Slet Udlejningsprodukt");
+		setResizable(false);
+		setTitle("Slet udlejningsprodukt");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(0, 0, 450, 132);
 		setLocationRelativeTo(null);
-		setResizable(false);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
