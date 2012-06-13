@@ -17,6 +17,8 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import java.beans.PropertyVetoException;
+
 import javax.swing.JButton;
 
 import GUILayer.Product.ShowAllUI;
@@ -248,6 +250,11 @@ public class SystemUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 					JInternalFrame showAllProducts = GUILayer.Product.ShowAllUI.createWindow();
 					pnlSystemLayout.add(showAllProducts);
+					try 
+					{
+						showAllProducts.setSelected(true);
+					} 
+					catch (PropertyVetoException ex) {}
 			}
 		});
 		mnProduct.add(mntmProductShowAll);

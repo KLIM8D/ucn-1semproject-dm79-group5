@@ -49,7 +49,10 @@ public class LoginUI extends JFrame {
 		txtUserID = new JTextField();
 		txtUserID.addKeyListener(new KeyAdapter() {
 			public void keyReleased(KeyEvent e) {
-				GlobalUI.checkIfInt(txtUserID);
+				if(txtUserID.getText().length() > 0)
+				{				
+					GlobalUI.checkIfInt(txtUserID);				
+				}
 			}
 		});
 		txtUserID.setBounds(120, 10, 316, 19);
