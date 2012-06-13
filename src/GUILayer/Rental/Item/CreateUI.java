@@ -4,12 +4,20 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+
+import GUILayer.GlobalUI;
+
+import java.awt.Component;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class CreateUI extends JFrame {
 
 	private static final long serialVersionUID = 1299321633363093472L;
+	protected static final Component frame = null;
 	private JPanel contentPane;
 	private JTextField txtBarcode;
 	private JTextField txtproductId;
@@ -30,12 +38,14 @@ public class CreateUI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		GUILayer.GlobalUI.setWindowStatus(true);
+		
 		JLabel lblIndtastKundenummer = new JLabel("Stregkode");
 		lblIndtastKundenummer.setBounds(10, 11, 116, 14);
 		contentPane.add(lblIndtastKundenummer);
 		
 		txtBarcode = new JTextField();
-		txtBarcode.setBounds(120, 8, 314, 20);
+		txtBarcode.setBounds(130, 8, 304, 20);
 		contentPane.add(txtBarcode);
 		txtBarcode.setColumns(10);
 		
@@ -45,7 +55,7 @@ public class CreateUI extends JFrame {
 		
 		txtproductId = new JTextField();
 		txtproductId.setColumns(10);
-		txtproductId.setBounds(120, 33, 314, 20);
+		txtproductId.setBounds(130, 33, 304, 20);
 		contentPane.add(txtproductId);
 		
 		JLabel lblLnets = new JLabel("Udlejningspris");
@@ -54,16 +64,27 @@ public class CreateUI extends JFrame {
 		
 		txtRentPrice = new JTextField();
 		txtRentPrice.setColumns(10);
-		txtRentPrice.setBounds(120, 58, 86, 20);
+		txtRentPrice.setBounds(130, 58, 76, 20);
 		contentPane.add(txtRentPrice);
 		
 		JButton btnCreate = new JButton("Opret");
-		btnCreate.setBounds(244, 146, 91, 23);
+		btnCreate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				createItem();
+			}
+		});
+		btnCreate.setBounds(188, 146, 117, 23);
 		contentPane.add(btnCreate);
 		
-		JButton btnAnnuller = new JButton("Annuller");
-		btnAnnuller.setBounds(343, 146, 91, 23);
-		contentPane.add(btnAnnuller);
+		JButton btnCancel = new JButton("Annuller");
+		btnCancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GUILayer.GlobalUI.setWindowStatus(false);
+				setVisible(false);
+			}
+		});
+		btnCancel.setBounds(317, 146, 117, 23);
+		contentPane.add(btnCancel);
 		
 		JLabel lblMaxBeholdning = new JLabel("Max beholdning");
 		lblMaxBeholdning.setBounds(10, 86, 127, 14);
@@ -71,7 +92,26 @@ public class CreateUI extends JFrame {
 		
 		txtMaxAvail = new JTextField();
 		txtMaxAvail.setColumns(10);
-		txtMaxAvail.setBounds(120, 83, 86, 20);
+		txtMaxAvail.setBounds(130, 83, 76, 20);
 		contentPane.add(txtMaxAvail);
+	}
+	
+	private void createItem() {
+		boolean succeeded = false;
+		
+		try {	
+			if(succeeded) {
+				JOptionPane.showMessageDialog(frame, GlobalUI.messageHandling(05), "INFORMATION!", JOptionPane.INFORMATION_MESSAGE);
+				setVisible(false);
+				GUILayer.GlobalUI.setWindowStatus(false);
+			}
+			else {
+				JOptionPane.showMessageDialog(frame, GlobalUI.messageHandling(10), "FEJL!", JOptionPane.WARNING_MESSAGE);
+			}
+			
+		}
+		catch (Exception e) {
+			JOptionPane.showMessageDialog(frame, GlobalUI.messageHandling(99), "FEJL!", JOptionPane.WARNING_MESSAGE);
+		}
 	}
 }

@@ -38,6 +38,20 @@ public class GlobalUI {
             	return "Produkt kategorien blev ikke fundet eller også findes dette produkt allerede.";
             case 07: 
             	return "Produkt kategorien findes allerede i systemet.";
+            case 10:
+            	return "Oprettelsen blev IKKE gennemført.";
+            case 11:
+            	return "Returnering gennemført.";
+            case 12:
+            	return "Returnering blev IKKE gennemført.";
+            case 13:
+            	return "Opdateringen er gennemført.";
+            case 14:
+            	return "Opdateringen blev IKKE gennemført.";
+            case 15:
+            	return "Produktet er fjernet.";
+            case 16:
+            	return "Produktet blev IKKE fjernet.";
         }
         return "En ukendt system fejl er hændt.";
     }

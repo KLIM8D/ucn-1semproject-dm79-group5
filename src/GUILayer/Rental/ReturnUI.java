@@ -4,12 +4,20 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+
+import GUILayer.GlobalUI;
+
+import java.awt.Component;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ReturnUI extends JFrame {
 
 	private static final long serialVersionUID = 1508718069134916292L;
+	protected static final Component frame = null;
 	private JPanel contentPane;
 	private JTextField txtLeaseId;
 
@@ -27,21 +35,53 @@ public class ReturnUI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblIndtastKundenummer = new JLabel("Udlejningsnummer");
-		lblIndtastKundenummer.setBounds(10, 11, 116, 14);
-		contentPane.add(lblIndtastKundenummer);
+		GUILayer.GlobalUI.setWindowStatus(true);
+		
+		JLabel lblLeaseId = new JLabel("Udlejningsnummer");
+		lblLeaseId.setBounds(10, 11, 132, 17);
+		contentPane.add(lblLeaseId);
 		
 		txtLeaseId = new JTextField();
-		txtLeaseId.setBounds(120, 8, 314, 20);
+		txtLeaseId.setBounds(154, 8, 280, 20);
 		contentPane.add(txtLeaseId);
 		txtLeaseId.setColumns(10);
 		
 		JButton btnCreate = new JButton("Udf\u00F8r");
-		btnCreate.setBounds(242, 60, 91, 23);
+		btnCreate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				returnRental();
+			}
+		});
+		btnCreate.setBounds(188, 60, 117, 23);
 		contentPane.add(btnCreate);
 		
-		JButton btnAnnuller = new JButton("Annuller");
-		btnAnnuller.setBounds(343, 60, 91, 23);
-		contentPane.add(btnAnnuller);
+		JButton btnCancel = new JButton("Annuller");
+		btnCancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GUILayer.GlobalUI.setWindowStatus(false);
+				setVisible(false);
+			}
+		});
+		btnCancel.setBounds(317, 60, 117, 23);
+		contentPane.add(btnCancel);
+	}
+	
+	private void returnRental() {
+		boolean succeeded = false;
+		
+		try {	
+			if(succeeded) {
+				JOptionPane.showMessageDialog(frame, GlobalUI.messageHandling(11), "INFORMATION!", JOptionPane.INFORMATION_MESSAGE);
+				setVisible(false);
+				GUILayer.GlobalUI.setWindowStatus(false);
+			}
+			else {
+				JOptionPane.showMessageDialog(frame, GlobalUI.messageHandling(12), "FEJL!", JOptionPane.WARNING_MESSAGE);
+			}
+			
+		}
+		catch (Exception e) {
+			JOptionPane.showMessageDialog(frame, GlobalUI.messageHandling(99), "FEJL!", JOptionPane.WARNING_MESSAGE);
+		}
 	}
 }

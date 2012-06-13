@@ -4,12 +4,20 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+
+import GUILayer.GlobalUI;
+
+import java.awt.Component;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class CreateUI extends JFrame {
 
 	private static final long serialVersionUID = -4856264644734812620L;
+	protected static final Component frame = null;
 	private JPanel contentPane;
 	private JTextField txtCustomerId;
 	private JTextField txtBarcode;
@@ -29,6 +37,8 @@ public class CreateUI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		GUILayer.GlobalUI.setWindowStatus(true);
+		
 		JLabel lblIndtastKundenummer = new JLabel("Kundenummer");
 		lblIndtastKundenummer.setBounds(10, 11, 116, 14);
 		contentPane.add(lblIndtastKundenummer);
@@ -39,7 +49,7 @@ public class CreateUI extends JFrame {
 		txtCustomerId.setColumns(10);
 		
 		JLabel lblIndtastProduktnummer = new JLabel("Stregkode");
-		lblIndtastProduktnummer.setBounds(10, 36, 127, 14);
+		lblIndtastProduktnummer.setBounds(10, 36, 127, 17);
 		contentPane.add(lblIndtastProduktnummer);
 		
 		txtBarcode = new JTextField();
@@ -48,7 +58,7 @@ public class CreateUI extends JFrame {
 		contentPane.add(txtBarcode);
 		
 		JLabel lblLnets = new JLabel("L\u00E5nvarighed");
-		lblLnets.setBounds(10, 61, 127, 14);
+		lblLnets.setBounds(10, 61, 127, 17);
 		contentPane.add(lblLnets);
 		
 		txtDays = new JTextField();
@@ -57,11 +67,41 @@ public class CreateUI extends JFrame {
 		contentPane.add(txtDays);
 		
 		JButton btnCreate = new JButton("Opret");
-		btnCreate.setBounds(242, 117, 91, 23);
+		btnCreate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				createRental();
+			}
+		});
+		btnCreate.setBounds(188, 117, 117, 23);
 		contentPane.add(btnCreate);
 		
-		JButton btnAnnuller = new JButton("Annuller");
-		btnAnnuller.setBounds(343, 117, 91, 23);
-		contentPane.add(btnAnnuller);
+		JButton btnCancel = new JButton("Annuller");
+		btnCancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				GUILayer.GlobalUI.setWindowStatus(false);
+				setVisible(false);
+			}
+		});
+		btnCancel.setBounds(317, 117, 117, 23);
+		contentPane.add(btnCancel);
+	}
+	
+	private void createRental() {
+		boolean succeeded = false;
+		
+		try {	
+			if(succeeded) {
+				JOptionPane.showMessageDialog(frame, GlobalUI.messageHandling(05), "INFORMATION!", JOptionPane.INFORMATION_MESSAGE);
+				setVisible(false);
+				GUILayer.GlobalUI.setWindowStatus(false);
+			}
+			else {
+				JOptionPane.showMessageDialog(frame, GlobalUI.messageHandling(10), "FEJL!", JOptionPane.WARNING_MESSAGE);
+			}
+			
+		}
+		catch (Exception e) {
+			JOptionPane.showMessageDialog(frame, GlobalUI.messageHandling(99), "FEJL!", JOptionPane.WARNING_MESSAGE);
+		}
 	}
 }
