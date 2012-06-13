@@ -238,6 +238,13 @@ public class SystemUI extends JFrame {
 		mnProduct.add(mntmProductFind);
 		
 		JMenuItem mntmProductShowAll = new JMenuItem("Vis alle produkter");
+		mntmProductShowAll.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(!GUILayer.GlobalUI.getWindowStatus()) {
+					new GUILayer.Product.ShowAllUI().setVisible(true);
+				}
+			}
+		});
 		mnProduct.add(mntmProductShowAll);
 		
 		JMenuItem mntmProductUpdate = new JMenuItem("Opdater produkt");
