@@ -2,7 +2,10 @@ package GUILayer;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -16,10 +19,13 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.JButton;
 
+import GUILayer.Product.ShowAllUI;
+
 public class SystemUI extends JFrame {
 
 	private static final long serialVersionUID = 817624121973761535L;
 	private JPanel pnlSystemLayout;
+	private JDesktopPane desktopPane;
 
 	public SystemUI() {
 		setTitle(GlobalUI.systemInformation(01) + " - " + GlobalUI.systemInformation(02) + " (" + GlobalUI.systemInformation(03) + ")");
@@ -240,9 +246,8 @@ public class SystemUI extends JFrame {
 		JMenuItem mntmProductShowAll = new JMenuItem("Vis alle produkter");
 		mntmProductShowAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(!GUILayer.GlobalUI.getWindowStatus()) {
-					new GUILayer.Product.ShowAllUI().setVisible(true);
-				}
+					JInternalFrame showAllProducts = GUILayer.Product.ShowAllUI.createWindow();
+					pnlSystemLayout.add(showAllProducts);
 			}
 		});
 		mnProduct.add(mntmProductShowAll);
