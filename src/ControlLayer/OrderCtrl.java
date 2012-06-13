@@ -15,6 +15,7 @@ public class OrderCtrl
 	private OrderContainer _orderContainer;
 	private OrderStatusContainer _orderStatusContainer;
 	private SalesAssistantContainer _saContainer;
+	@SuppressWarnings("unused")
 	private ProductContainer _prodContainer;
 	private ProductLocationContainer _locationContainer;
 	private CustomerContainer _customerContainer;

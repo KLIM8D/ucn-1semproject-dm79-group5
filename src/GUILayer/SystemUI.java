@@ -1,6 +1,5 @@
 package GUILayer;
 
-import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
@@ -10,6 +9,12 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
+import java.awt.Color;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import java.awt.Font;
+import javax.swing.JButton;
 
 public class SystemUI extends JFrame {
 
@@ -25,8 +30,49 @@ public class SystemUI extends JFrame {
 
 		pnlSystemLayout = new JPanel();
 		pnlSystemLayout.setBorder(new EmptyBorder(5, 5, 5, 5));
-		pnlSystemLayout.setLayout(new BorderLayout(0, 0));
 		setContentPane(pnlSystemLayout);
+		pnlSystemLayout.setLayout(null);
+		
+		JPanel pnlQuickSelect = new JPanel();
+		pnlQuickSelect.setBorder(new LineBorder(new Color(0, 0, 0)));
+		pnlQuickSelect.setBounds(363, 163, 351, 353);
+		pnlSystemLayout.add(pnlQuickSelect);
+		pnlQuickSelect.setLayout(null);
+		
+		JLabel lblTitle = new JLabel("Vestbjerg Byggecenter A/S");
+		lblTitle.setFont(new Font("Dialog", Font.BOLD, 21));
+		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTitle.setBounds(12, 12, 327, 39);
+		pnlQuickSelect.add(lblTitle);
+		
+		JSeparator sptDivider = new JSeparator();
+		sptDivider.setForeground(Color.BLACK);
+		sptDivider.setBounds(12, 55, 327, 1);
+		pnlQuickSelect.add(sptDivider);
+		
+		JButton btnCreateOrder = new JButton("Ny ordre");
+		btnCreateOrder.setBounds(12, 68, 327, 35);
+		pnlQuickSelect.add(btnCreateOrder);
+		
+		JButton btnFindOrdre = new JButton("Find ordre");
+		btnFindOrdre.setBounds(12, 115, 327, 35);
+		pnlQuickSelect.add(btnFindOrdre);
+		
+		JButton btnNewRental = new JButton("Ny udlejning");
+		btnNewRental.setBounds(12, 162, 327, 35);
+		pnlQuickSelect.add(btnNewRental);
+		
+		JButton btnFindRental = new JButton("Find udlejning");
+		btnFindRental.setBounds(12, 209, 327, 35);
+		pnlQuickSelect.add(btnFindRental);
+		
+		JButton btnReturnRental = new JButton("Returnering af udlejning");
+		btnReturnRental.setBounds(12, 256, 327, 35);
+		pnlQuickSelect.add(btnReturnRental);
+		
+		JButton btnFindProduct = new JButton("Find produkt");
+		btnFindProduct.setBounds(12, 303, 327, 35);
+		pnlQuickSelect.add(btnFindProduct);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -75,8 +121,26 @@ public class SystemUI extends JFrame {
 		JMenuItem mntmRentalFind = new JMenuItem("Find udlejning");
 		mnRental.add(mntmRentalFind);
 		
+		JMenuItem mntmRentalShowAll = new JMenuItem("Vis alle udlejninger");
+		mnRental.add(mntmRentalShowAll);
+		
 		JMenuItem mntmRentalReturn = new JMenuItem("Retunering af udlejning");
 		mnRental.add(mntmRentalReturn);
+		
+		JMenuItem mntmRentalOverDue = new JMenuItem("Overskredet afleveringsdato");
+		mnRental.add(mntmRentalOverDue);
+		
+		JMenu mnRentalProducts = new JMenu("Udlejningsprodukter");
+		mnRental.add(mnRentalProducts);
+		
+		JMenuItem mntmRentalProductNew = new JMenuItem("Nyt udlejningsprodukt");
+		mnRentalProducts.add(mntmRentalProductNew);
+		
+		JMenuItem mntmRentalProductUpdate = new JMenuItem("Opdater udlejningsprodukt");
+		mnRentalProducts.add(mntmRentalProductUpdate);
+		
+		JMenuItem mntmRentalProductDelete = new JMenuItem("Slet udlejningsprodukt");
+		mnRentalProducts.add(mntmRentalProductDelete);
 		
 		JMenu mnCustomer = new JMenu("Kundekartotek");
 		mnFunctions.add(mnCustomer);
@@ -209,5 +273,4 @@ public class SystemUI extends JFrame {
 		});
 		mnAbout.add(mntmAboutApp);
 	}
-
 }
