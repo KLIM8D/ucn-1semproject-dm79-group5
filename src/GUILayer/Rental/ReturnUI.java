@@ -1,6 +1,5 @@
 package GUILayer.Rental;
 
-import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -10,6 +9,7 @@ import javax.swing.JButton;
 
 public class ReturnUI extends JFrame {
 
+	private static final long serialVersionUID = 1508718069134916292L;
 	private JPanel contentPane;
 	private JTextField txtLeaseId;
 

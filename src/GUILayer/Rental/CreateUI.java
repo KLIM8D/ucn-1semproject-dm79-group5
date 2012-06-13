@@ -1,6 +1,5 @@
 package GUILayer.Rental;
 
-import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -10,6 +9,7 @@ import javax.swing.JButton;
 
 public class CreateUI extends JFrame {
 
+	private static final long serialVersionUID = -4856264644734812620L;
 	private JPanel contentPane;
 	private JTextField txtCustomerId;
 	private JTextField txtBarcode;
