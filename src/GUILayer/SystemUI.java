@@ -59,6 +59,13 @@ public class SystemUI extends JFrame {
 		pnlQuickSelect.add(btnFindOrdre);
 		
 		JButton btnNewRental = new JButton("Ny udlejning");
+		btnNewRental.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(GUILayer.GlobalUI.getWindowStatus() == false) {
+					new GUILayer.Rental.CreateUI().setVisible(true);
+				}
+			}
+		});
 		btnNewRental.setBounds(12, 162, 327, 35);
 		pnlQuickSelect.add(btnNewRental);
 		
@@ -67,6 +74,13 @@ public class SystemUI extends JFrame {
 		pnlQuickSelect.add(btnFindRental);
 		
 		JButton btnReturnRental = new JButton("Returnering af udlejning");
+		btnReturnRental.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(GUILayer.GlobalUI.getWindowStatus() == false) {
+					new GUILayer.Rental.ReturnUI().setVisible(true);
+				}
+			}
+		});
 		btnReturnRental.setBounds(12, 256, 327, 35);
 		pnlQuickSelect.add(btnReturnRental);
 		
@@ -116,6 +130,13 @@ public class SystemUI extends JFrame {
 		mnFunctions.add(mnRental);
 		
 		JMenuItem mntmRentalNew = new JMenuItem("Ny udlejning");
+		mntmRentalNew.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(GUILayer.GlobalUI.getWindowStatus() == false) {
+					new GUILayer.Rental.CreateUI().setVisible(true);
+				}
+			}
+		});
 		mnRental.add(mntmRentalNew);
 		
 		JMenuItem mntmRentalFind = new JMenuItem("Find udlejning");
@@ -125,6 +146,13 @@ public class SystemUI extends JFrame {
 		mnRental.add(mntmRentalShowAll);
 		
 		JMenuItem mntmRentalReturn = new JMenuItem("Retunering af udlejning");
+		mntmRentalReturn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(GUILayer.GlobalUI.getWindowStatus() == false) {
+					new GUILayer.Rental.ReturnUI().setVisible(true);
+				}
+			}
+		});
 		mnRental.add(mntmRentalReturn);
 		
 		JMenuItem mntmRentalOverDue = new JMenuItem("Overskredet afleveringsdato");
@@ -134,12 +162,33 @@ public class SystemUI extends JFrame {
 		mnRental.add(mnRentalProducts);
 		
 		JMenuItem mntmRentalProductNew = new JMenuItem("Nyt udlejningsprodukt");
+		mntmRentalProductNew.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(GUILayer.GlobalUI.getWindowStatus() == false) {
+					new GUILayer.Rental.Item.CreateUI().setVisible(true);
+				}
+			}
+		});
 		mnRentalProducts.add(mntmRentalProductNew);
 		
 		JMenuItem mntmRentalProductUpdate = new JMenuItem("Opdater udlejningsprodukt");
+		mntmRentalProductUpdate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(GUILayer.GlobalUI.getWindowStatus() == false) {
+					new GUILayer.Rental.Item.UpdateUI().setVisible(true);
+				}
+			}
+		});
 		mnRentalProducts.add(mntmRentalProductUpdate);
 		
 		JMenuItem mntmRentalProductDelete = new JMenuItem("Slet udlejningsprodukt");
+		mntmRentalProductDelete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(GUILayer.GlobalUI.getWindowStatus() == false) {
+					new GUILayer.Rental.Item.DeleteUI().setVisible(true);
+				}
+			}
+		});
 		mnRentalProducts.add(mntmRentalProductDelete);
 		
 		JMenu mnCustomer = new JMenu("Kundekartotek");

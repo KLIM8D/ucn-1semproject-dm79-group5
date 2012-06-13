@@ -13,6 +13,8 @@ import GUILayer.GlobalUI;
 import java.awt.Component;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class CreateUI extends JFrame {
 
@@ -28,7 +30,7 @@ public class CreateUI extends JFrame {
 	 */
 	public CreateUI() {
 		setTitle("Ny Udlejning");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(0, 0, 450, 183);
 		setLocationRelativeTo(null);
 		setResizable(false);
@@ -84,6 +86,12 @@ public class CreateUI extends JFrame {
 		});
 		btnCancel.setBounds(317, 117, 117, 23);
 		contentPane.add(btnCancel);
+		
+		addWindowListener(new WindowAdapter() {
+			public void windowClosed(WindowEvent e) {
+				GUILayer.GlobalUI.setWindowStatus(false);
+			}
+		});
 	}
 	
 	private void createRental() {

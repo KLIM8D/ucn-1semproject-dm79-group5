@@ -13,6 +13,8 @@ import GUILayer.GlobalUI;
 import java.awt.Component;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class CreateUI extends JFrame {
 
@@ -29,7 +31,7 @@ public class CreateUI extends JFrame {
 	 */
 	public CreateUI() {
 		setTitle("Nyt Udlejningsprodukt");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(0, 0, 450, 212);
 		setLocationRelativeTo(null);
 		setResizable(false);
@@ -94,6 +96,12 @@ public class CreateUI extends JFrame {
 		txtMaxAvail.setColumns(10);
 		txtMaxAvail.setBounds(130, 83, 76, 20);
 		contentPane.add(txtMaxAvail);
+		
+		addWindowListener(new WindowAdapter() {
+			public void windowClosed(WindowEvent e) {
+				GUILayer.GlobalUI.setWindowStatus(false);
+			}
+		});
 	}
 	
 	private void createItem() {

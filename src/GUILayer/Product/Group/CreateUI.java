@@ -29,7 +29,7 @@ public class CreateUI extends JFrame {
 		
 		setResizable(false);
 		setTitle("Opret produkt gruppe");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(0, 0, 450, 166);
 		setLocationRelativeTo(null);
 		contentPane = new JPanel();

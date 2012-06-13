@@ -13,6 +13,8 @@ import GUILayer.GlobalUI;
 import java.awt.Component;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class ReturnUI extends JFrame {
 
@@ -26,7 +28,7 @@ public class ReturnUI extends JFrame {
 	 */
 	public ReturnUI() {
 		setTitle("Retunering af udlejning ");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(0, 0, 450, 126);
 		setLocationRelativeTo(null);
 		setResizable(false);
@@ -64,6 +66,12 @@ public class ReturnUI extends JFrame {
 		});
 		btnCancel.setBounds(317, 60, 117, 23);
 		contentPane.add(btnCancel);
+		
+		addWindowListener(new WindowAdapter() {
+			public void windowClosed(WindowEvent e) {
+				GUILayer.GlobalUI.setWindowStatus(false);
+			}
+		});
 	}
 	
 	private void returnRental() {

@@ -13,6 +13,8 @@ import GUILayer.GlobalUI;
 import java.awt.Component;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class DeleteUI extends JFrame {
 
@@ -26,7 +28,7 @@ public class DeleteUI extends JFrame {
 	 */
 	public DeleteUI() {
 		setTitle("Slet Udlejningsprodukt");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(0, 0, 450, 132);
 		setLocationRelativeTo(null);
 		setResizable(false);
@@ -64,6 +66,12 @@ public class DeleteUI extends JFrame {
 		});
 		btnAnnuller.setBounds(322, 66, 117, 23);
 		contentPane.add(btnAnnuller);
+		
+		addWindowListener(new WindowAdapter() {
+			public void windowClosed(WindowEvent e) {
+				GUILayer.GlobalUI.setWindowStatus(false);
+			}
+		});
 	}
 	
 	private void deleteItem() {
