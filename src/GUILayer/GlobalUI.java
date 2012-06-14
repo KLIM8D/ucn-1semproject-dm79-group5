@@ -56,6 +56,8 @@ public class GlobalUI {
             	return "Er du sikker på du vil slette denne ekspedient?";
             case 18:
             	return "En ekspedient med det indtastede id blev ikke fundet.";
+            case 20:
+            	return "Der skal indtastes i feltet.";
         }
         return "En ukendt system fejl er hændt.";
     }
