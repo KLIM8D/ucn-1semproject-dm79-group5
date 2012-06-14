@@ -60,9 +60,6 @@ public class ShowAllUI {
 	//Controllers
 	private ProductCtrl _prodCtrl;
 	private ProductLocationCtrl _locationCtrl;
-	
-	// Show Product
-	private JPanel showProductPanel;
 	private JLabel lblShowItemNumber;
 	private JLabel lblShowItemName;
 	private JLabel lblShowItemMinQuantity;
@@ -95,12 +92,12 @@ public class ShowAllUI {
 		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		_frame.setContentPane(contentPane);
 		
 		
 		//Search
 		JPanel searchPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		searchPanel.setBounds(5, 5, 904, 35);
 		
 		lblItemNumber = new JLabel("Produkt nummer: ");
 		lblItemNumber.setBounds(187, 10, 126, 15);
@@ -146,17 +143,18 @@ public class ShowAllUI {
 				}
 			}
 		});
+		contentPane.setLayout(null);
 		btnSearch.setBounds(656, 5, 61, 25);
 		searchPanel.add(btnSearch);
 		
-		contentPane.add(searchPanel, BorderLayout.NORTH);
+		contentPane.add(searchPanel);
 		//Search end
 		
 		//Grid / table
 		gridPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		gridPanel.setBounds(new Rectangle(0, 0, 880, 250));
+		gridPanel.setBounds(new Rectangle(5, 40, 904, 263));
 
-		contentPane.add(gridPanel, BorderLayout.CENTER);
+		contentPane.add(gridPanel);
 		
 		
 		
@@ -204,40 +202,26 @@ public class ShowAllUI {
 	        }			
 		};
 		_frame.addPropertyChangeListener(propertyChangeListener );
-		//Grid / table end
 		
-		//Show product
-		showProductPanel = new JPanel();
-		showProductPanel.setSize(new Dimension(880, 200));
-		showProductPanel.setLayout(null);
+		JPanel showProductPanel = new JPanel();
+		showProductPanel.setBounds(5, 315, 904, 203);
+		contentPane.add(showProductPanel);
 		lblShowItemNumber = new JLabel();
-		lblShowItemNumber.setBounds(452, 5, 116, 14);
-		lblShowItemName = new JLabel();
-		lblShowItemName.setBounds(457, 5, 116, 14);
-		lblShowItemMinQuantity = new JLabel();
-		lblShowItemMinQuantity.setBounds(462, 5, 116, 14);
-		lblShowItemMaxQuantity = new JLabel();
-		lblShowItemMaxQuantity.setBounds(467, 5, 116, 14);
-		lblShowItemPrice = new JLabel();
-		lblShowItemPrice.setBounds(472, 5, 116, 14);
-		lblShowItemCategory = new JLabel();
-		lblShowItemCategory.setBounds(477, 5, 116, 14);
-		lblShowLocationsName = new JLabel();
-		lblShowLocationsName.setBounds(482, 5, 116, 14);
-		lblShowLocationsAvail = new JLabel();
-		lblShowLocationsAvail.setBounds(487, 5, 116, 14);
-		
-		
 		showProductPanel.add(lblShowItemNumber);
+		lblShowItemName = new JLabel();
 		showProductPanel.add(lblShowItemName);
+		lblShowItemMinQuantity = new JLabel();
 		showProductPanel.add(lblShowItemMinQuantity);
+		lblShowItemMaxQuantity = new JLabel();
 		showProductPanel.add(lblShowItemMaxQuantity);
+		lblShowItemPrice = new JLabel();
 		showProductPanel.add(lblShowItemPrice);
+		lblShowItemCategory = new JLabel();
 		showProductPanel.add(lblShowItemCategory);
+		lblShowLocationsName = new JLabel();
 		showProductPanel.add(lblShowLocationsName);
+		lblShowLocationsAvail = new JLabel();
 		showProductPanel.add(lblShowLocationsAvail);
-		
-		contentPane.add(showProductPanel, BorderLayout.SOUTH);
 		
 	}
 
@@ -358,6 +342,6 @@ public class ShowAllUI {
         	gridPanel.removeAll();
         	gridPanel.add(scrollPane);
         }
-	};
+	}
 }
 
