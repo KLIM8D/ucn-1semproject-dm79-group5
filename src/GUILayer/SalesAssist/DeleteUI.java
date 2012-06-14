@@ -17,6 +17,8 @@ import javax.swing.JButton;
 import ControlLayer.SalesAssistantCtrl;
 import ModelLayer.SalesAssistant;
 import GUILayer.GlobalUI;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class DeleteUI extends JFrame {
 
@@ -47,6 +49,14 @@ public class DeleteUI extends JFrame {
 		contentPane.add(lblSalesAssistId);
 		
 		txtSalesAssistId = new JTextField();
+		txtSalesAssistId.addKeyListener(new KeyAdapter() {
+			public void keyReleased(KeyEvent e) {
+				if(txtSalesAssistId.getText().length() > 0)
+				{				
+					GlobalUI.checkIfInt(txtSalesAssistId);				
+				}
+			}
+		});
 		txtSalesAssistId.setBounds(127, 10, 309, 19);
 		contentPane.add(txtSalesAssistId);
 		txtSalesAssistId.setColumns(10);
@@ -79,27 +89,32 @@ public class DeleteUI extends JFrame {
 	
 	private void deleteSalesAssist() {
 		
-		try {
-			int salesAsstId = 0;
-			SalesAssistant sa = null;
-			
-			salesAsstId = Integer.parseInt(txtSalesAssistId.getText());
-			sa = _saController.getSalesAssistant(salesAsstId);
-			
-			if(sa != null) {
-				int result = JOptionPane.showConfirmDialog((Component) null, GlobalUI.messageHandling(17), "ADVARSEL!", JOptionPane.OK_CANCEL_OPTION);
-				if(result == 0) {
-					_saController.removeSalesAssistant(salesAsstId);
-					setVisible(false);
-					GUILayer.GlobalUI.setWindowStatus(false);
-				}			
-			}
-			else {
-				JOptionPane.showMessageDialog(frame, GlobalUI.messageHandling(18), "FEJL!", JOptionPane.WARNING_MESSAGE);
-			}
+		if(txtSalesAssistId.getText().length() == 0) {
+			JOptionPane.showMessageDialog(frame, GlobalUI.messageHandling(20), "FEJL!", JOptionPane.WARNING_MESSAGE);
 		}
-		catch (Exception e) {
-			JOptionPane.showMessageDialog(frame, GlobalUI.messageHandling(99), "FEJL!", JOptionPane.WARNING_MESSAGE);
+		else {
+			try {
+				int salesAsstId = 0;
+				SalesAssistant sa = null;
+				
+				salesAsstId = Integer.parseInt(txtSalesAssistId.getText());
+				sa = _saController.getSalesAssistant(salesAsstId);
+				if(sa != null) {
+					int result = JOptionPane.showConfirmDialog((Component) null, GlobalUI.messageHandling(17), "ADVARSEL!", JOptionPane.OK_CANCEL_OPTION);
+					if(result == 0) {
+						_saController.removeSalesAssistant(salesAsstId);
+						setVisible(false);
+						GUILayer.GlobalUI.setWindowStatus(false);
+					}			
+				}
+				else {
+					JOptionPane.showMessageDialog(frame, GlobalUI.messageHandling(18), "FEJL!", JOptionPane.WARNING_MESSAGE);
+				}
+				
+			}
+			catch (Exception e) {
+				JOptionPane.showMessageDialog(frame, GlobalUI.messageHandling(99), "FEJL!", JOptionPane.WARNING_MESSAGE);
+			}
 		}
 	}
 }
