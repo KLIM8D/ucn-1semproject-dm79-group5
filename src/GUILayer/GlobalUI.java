@@ -57,7 +57,9 @@ public class GlobalUI {
             case 18:
             	return "En ekspedient med det indtastede id blev ikke fundet.";
             case 20:
-            	return "Der skal indtastes i feltet.";
+            	return "Der skal indtastes i fejlet 'Ekspedient id'.";
+            case 21:
+            	return "Der skal indtastes i fejlet ' Ny adgangskode'.";
         }
         return "En ukendt system fejl er hændt.";
     }
