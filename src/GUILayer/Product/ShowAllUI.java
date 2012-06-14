@@ -24,14 +24,19 @@ import javax.swing.event.InternalFrameEvent;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import org.omg.CORBA.Environment;
+
 import ControlLayer.ProductCtrl;
 import ControlLayer.ProductLocationCtrl;
 import GUILayer.GlobalUI;
 import ModelLayer.Product;
+import ModelLayer.ProductLocation;
+
 import java.awt.Rectangle;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.awt.Point;
 
 
 public class ShowAllUI {
@@ -39,7 +44,7 @@ public class ShowAllUI {
 	private JPanel contentPane;
 	private JTable table;
 	private JButton btnEdit;
-	private ProductCtrl _prodCtrl;
+	
 	private DefaultTableModel model;
 	private static JInternalFrame _frame;
 	private static ShowAllUI _instance;
@@ -52,6 +57,21 @@ public class ShowAllUI {
 	private JScrollPane scrollPane;
 	private JPanel gridPanel;
 	
+	//Controllers
+	private ProductCtrl _prodCtrl;
+	private ProductLocationCtrl _locationCtrl;
+	
+	// Show Product
+	private JPanel showProductPanel;
+	private JLabel lblShowItemNumber;
+	private JLabel lblShowItemName;
+	private JLabel lblShowItemMinQuantity;
+	private JLabel lblShowItemMaxQuantity;
+	private JLabel lblShowItemPrice;
+	private JLabel lblShowItemCategory;
+	private JLabel lblShowLocationsName;
+	private JLabel lblShowLocationsAvail;
+	
 	public static JInternalFrame createWindow()
 	{
 		if(_instance == null)
@@ -63,13 +83,14 @@ public class ShowAllUI {
 	private ShowAllUI() 
 	{
 		_prodCtrl = new ProductCtrl();
+		_locationCtrl = new ProductLocationCtrl();
 		
 		_frame = new JInternalFrame();		
 		_frame.setTitle("Vis alle produkter");
 		_frame.setClosable(true);
 		_frame.setMaximizable(true);
 		_frame.setVisible(true);
-		_frame.getContentPane().setLayout(new FlowLayout(FlowLayout.LEFT));
+		//_frame.getContentPane().setLayout(new FlowLayout(FlowLayout.LEFT));
 		_frame.setBounds(0, 0, 924, 562);
 		
 		contentPane = new JPanel();
@@ -80,7 +101,6 @@ public class ShowAllUI {
 		
 		//Search
 		JPanel searchPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		//searchPanel.setBounds(0, 0, 450, 140);
 		
 		lblItemNumber = new JLabel("Produkt nummer: ");
 		lblItemNumber.setBounds(187, 10, 126, 15);
@@ -130,9 +150,12 @@ public class ShowAllUI {
 		searchPanel.add(btnSearch);
 		
 		contentPane.add(searchPanel, BorderLayout.NORTH);
+		//Search end
 		
-		//Grid
+		//Grid / table
 		gridPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		gridPanel.setBounds(new Rectangle(0, 0, 880, 250));
+
 		contentPane.add(gridPanel, BorderLayout.CENTER);
 		
 		
@@ -153,11 +176,15 @@ public class ShowAllUI {
 		model = new DefaultTableModel();
 		
 		table.setModel(model);
-		table.setPreferredScrollableViewportSize(new Dimension(880, 500));
+		table.setPreferredScrollableViewportSize(new Dimension(880, 250));
 		table.setFillsViewportHeight(true);
 		addData();
+		
 		scrollPane = new JScrollPane(table);
+		scrollPane.setBounds(10, 5, 883, 253);
 		gridPanel.add(scrollPane);
+		
+		
 		
 		//Close window
 		_frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -173,25 +200,44 @@ public class ShowAllUI {
 		{
 	        public void propertyChange(PropertyChangeEvent evt) 
 	        {
-	            if(_frame.isMaximum())
-	            {
-	            	table.setPreferredScrollableViewportSize(new Dimension(_frame.getWidth()-44, _frame.getHeight()-62));
-	            	scrollPane.setPreferredSize(new Dimension(_frame.getWidth()-44, _frame.getHeight()-62));	            	
-	            	gridPanel.removeAll();
-	            	gridPanel.add(scrollPane);
-	            }
-	            else
-	            {
-	            	table.setPreferredScrollableViewportSize(new Dimension(880, 500));
-	            	scrollPane.setPreferredSize(new Dimension(880, 500));	            	
-	            	gridPanel.removeAll();
-	            	gridPanel.add(scrollPane);
-	            }
-	        };
+	            autoScaleTable();
+	        }			
 		};
 		_frame.addPropertyChangeListener(propertyChangeListener );
-
+		//Grid / table end
 		
+		//Show product
+		showProductPanel = new JPanel();
+		showProductPanel.setSize(new Dimension(880, 200));
+		showProductPanel.setLayout(null);
+		lblShowItemNumber = new JLabel();
+		lblShowItemNumber.setBounds(452, 5, 116, 14);
+		lblShowItemName = new JLabel();
+		lblShowItemName.setBounds(457, 5, 116, 14);
+		lblShowItemMinQuantity = new JLabel();
+		lblShowItemMinQuantity.setBounds(462, 5, 116, 14);
+		lblShowItemMaxQuantity = new JLabel();
+		lblShowItemMaxQuantity.setBounds(467, 5, 116, 14);
+		lblShowItemPrice = new JLabel();
+		lblShowItemPrice.setBounds(472, 5, 116, 14);
+		lblShowItemCategory = new JLabel();
+		lblShowItemCategory.setBounds(477, 5, 116, 14);
+		lblShowLocationsName = new JLabel();
+		lblShowLocationsName.setBounds(482, 5, 116, 14);
+		lblShowLocationsAvail = new JLabel();
+		lblShowLocationsAvail.setBounds(487, 5, 116, 14);
+		
+		
+		showProductPanel.add(lblShowItemNumber);
+		showProductPanel.add(lblShowItemName);
+		showProductPanel.add(lblShowItemMinQuantity);
+		showProductPanel.add(lblShowItemMaxQuantity);
+		showProductPanel.add(lblShowItemPrice);
+		showProductPanel.add(lblShowItemCategory);
+		showProductPanel.add(lblShowLocationsName);
+		showProductPanel.add(lblShowLocationsAvail);
+		
+		contentPane.add(showProductPanel, BorderLayout.SOUTH);
 		
 	}
 
@@ -201,7 +247,10 @@ public class ShowAllUI {
 		{
 		    public void actionPerformed(ActionEvent e)
 		    {
-		        System.out.println(((DefaultTableModel)table.getModel()));
+		    	JTable table = (JTable) e.getSource();
+                int row = Integer.valueOf(e.getActionCommand());
+                long itemNumber = Long.parseLong(table.getValueAt(row, 0).toString());
+                showProduct(itemNumber);
 		    }
 		};
 		ButtonColumn buttonColumn = new ButtonColumn(table, delete, 6);
@@ -261,12 +310,54 @@ public class ShowAllUI {
 		addShowButton();
 	}
 	
-	public <E> ArrayList<E> makeCollection(Iterable<E> iter)
+	private <E> ArrayList<E> makeCollection(Iterable<E> iter)
 	{
 		ArrayList<E> list = new ArrayList<E>();
 		for (E item : iter) 
 			list.add(item);
 		return list;
 	}
+
+	private void showProduct(long itemNumber)
+	{
+		Product prod = _prodCtrl.getProduct(itemNumber);
+		
+		if(prod != null)
+		{
+			lblShowItemNumber.setText(Long.toString(prod.getItemNumber()));
+			lblShowItemName.setText(prod.getItemName());
+			lblShowItemMinQuantity.setText(Integer.toString(prod.getMinInStock()));
+			lblShowItemMaxQuantity.setText(Integer.toString(prod.getMaxInStock()));
+			lblShowItemPrice.setText(prod.getPrice().toString());
+			lblShowItemCategory.setText(prod.getProductCategory().getCategoryName());
+			String locations = "";
+			String avail = "";
+			for(ProductLocation loc : _locationCtrl.getAll())
+			{
+				locations += loc.getLocationName() + System.getProperty("line.separator");
+				avail += _locationCtrl.getAvailOnLocation(loc.getLocationId(), itemNumber) + System.getProperty("line.separator");
+			}
+			
+			lblShowLocationsName.setText(locations);
+			lblShowLocationsAvail.setText(avail);
+		}
+	}
+	
+	private void autoScaleTable() {
+		if(_frame.isMaximum())
+        {
+        	table.setPreferredScrollableViewportSize(new Dimension(_frame.getWidth()-44, _frame.getHeight()-62));
+        	scrollPane.setPreferredSize(new Dimension(_frame.getWidth()-44, _frame.getHeight()-62));	            	
+        	gridPanel.removeAll();
+        	gridPanel.add(scrollPane);
+        }
+        else
+        {
+        	table.setPreferredScrollableViewportSize(new Dimension(880, 250));
+        	scrollPane.setPreferredSize(new Dimension(880, 250));	            	
+        	gridPanel.removeAll();
+        	gridPanel.add(scrollPane);
+        }
+	};
 }
 
