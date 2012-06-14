@@ -52,6 +52,10 @@ public class GlobalUI {
             	return "Produktet er fjernet.";
             case 16:
             	return "Produktet blev IKKE fjernet.";
+            case 17:
+            	return "Er du sikker på du vil slette denne ekspedient?";
+            case 18:
+            	return "En ekspedient med det indtastede id blev ikke fundet.";
         }
         return "En ukendt system fejl er hændt.";
     }
