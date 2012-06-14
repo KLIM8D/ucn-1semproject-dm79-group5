@@ -2,8 +2,6 @@ package GUILayer;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JMenu;
@@ -18,16 +16,13 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.beans.PropertyVetoException;
-
 import javax.swing.JButton;
 
-import GUILayer.Product.ShowAllUI;
 
 public class SystemUI extends JFrame {
 
 	private static final long serialVersionUID = 817624121973761535L;
 	private JPanel pnlSystemLayout;
-	private JDesktopPane desktopPane;
 
 	public SystemUI() {
 		setTitle(GlobalUI.systemInformation(01) + " - " + GlobalUI.systemInformation(02) + " (" + GlobalUI.systemInformation(03) + ")");
@@ -215,18 +210,57 @@ public class SystemUI extends JFrame {
 		mnFunctions.add(mnSalesAssistant);
 		
 		JMenuItem mntmSalesAssistCreate = new JMenuItem("Opret ekspedient");
+		mntmSalesAssistCreate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(GUILayer.GlobalUI.getWindowStatus() == false) {
+					new GUILayer.SalesAssist.CreateUI().setVisible(true);
+				}
+			}
+		});
 		mnSalesAssistant.add(mntmSalesAssistCreate);
 		
-		JMenuItem mntmSalesAssistInfo = new JMenuItem("Vis ekspedient information");
-		mnSalesAssistant.add(mntmSalesAssistInfo);
+		JMenuItem mntmSalesAssistUpdate = new JMenuItem("Opdatere ekspedient information");
+		mntmSalesAssistUpdate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(GUILayer.GlobalUI.getWindowStatus() == false) {
+					new GUILayer.SalesAssist.UpdateUI().setVisible(true);
+				}
+			}
+		});
+		mnSalesAssistant.add(mntmSalesAssistUpdate);
 		
 		JMenuItem mntmSalesAssistDelete = new JMenuItem("Slet ekspedient");
+		mntmSalesAssistDelete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(GUILayer.GlobalUI.getWindowStatus() == false) {
+					new GUILayer.SalesAssist.DeleteUI().setVisible(true);
+				}
+			}
+		});
 		mnSalesAssistant.add(mntmSalesAssistDelete);
 		
 		JMenuItem mntmSalesAssistShowAll = new JMenuItem("Vis alle ekspedienter");
+		mntmSalesAssistShowAll.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JInternalFrame showAllProducts = GUILayer.SalesAssist.ShowAllUI.createWindow();
+				pnlSystemLayout.add(showAllProducts);
+				try 
+				{
+					showAllProducts.setSelected(true);
+				} 
+				catch (PropertyVetoException ex) {}
+			}
+		});
 		mnSalesAssistant.add(mntmSalesAssistShowAll);
 		
 		JMenuItem mntmSalesAssistChangePassword = new JMenuItem("Skift adgangskode");
+		mntmSalesAssistChangePassword.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(GUILayer.GlobalUI.getWindowStatus() == false) {
+					new GUILayer.SalesAssist.UpdatePwdUI().setVisible(true);
+				}
+			}
+		});
 		mnSalesAssistant.add(mntmSalesAssistChangePassword);
 		
 		JMenu mnProduct = new JMenu("Produkt");
