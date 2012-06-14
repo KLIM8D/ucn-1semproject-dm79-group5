@@ -22,7 +22,7 @@ public class CreateUI extends JFrame {
 
 	private static final long serialVersionUID = 7199391358909768134L;
 	protected static final Component frame = null;
-	private JPanel _pnlCreateProduct;
+	private JPanel contentPane;
 	private JTextField txtProdId;
 	private JTextField txtProdName;
 	private JTextField txtProdMin;
@@ -42,18 +42,18 @@ public class CreateUI extends JFrame {
 		
 		GUILayer.GlobalUI.setWindowStatus(true);
 
-		_pnlCreateProduct = new JPanel();
-		_pnlCreateProduct.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(_pnlCreateProduct);
-		_pnlCreateProduct.setLayout(null);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
 		
 		JLabel lblProdId = new JLabel("Stregkode");
 		lblProdId.setBounds(12, 12, 99, 15);
-		_pnlCreateProduct.add(lblProdId);
+		contentPane.add(lblProdId);
 		
 		JLabel lblProdName = new JLabel("Produkt navn");
 		lblProdName.setBounds(12, 37, 99, 15);
-		_pnlCreateProduct.add(lblProdName);
+		contentPane.add(lblProdName);
 		
 		txtProdId = new JTextField();
 		txtProdId.addKeyListener(new KeyAdapter() {
@@ -62,25 +62,25 @@ public class CreateUI extends JFrame {
 			}
 		});
 		txtProdId.setBounds(121, 10, 371, 19);
-		_pnlCreateProduct.add(txtProdId);
+		contentPane.add(txtProdId);
 		txtProdId.setColumns(10);
 		
 		txtProdName = new JTextField();
 		txtProdName.setBounds(121, 35, 371, 19);
-		_pnlCreateProduct.add(txtProdName);
+		contentPane.add(txtProdName);
 		txtProdName.setColumns(10);
 		
 		JLabel lblCatID = new JLabel("Kategori ID");
 		lblCatID.setBounds(12, 64, 99, 15);
-		_pnlCreateProduct.add(lblCatID);
+		contentPane.add(lblCatID);
 		
 		JSeparator separator = new JSeparator();
 		separator.setBounds(12, 133, 480, 1);
-		_pnlCreateProduct.add(separator);
+		contentPane.add(separator);
 		
 		JLabel lblProdMin = new JLabel("Min. beholding");
 		lblProdMin.setBounds(12, 147, 124, 15);
-		_pnlCreateProduct.add(lblProdMin);
+		contentPane.add(lblProdMin);
 		
 		txtProdMin = new JTextField();
 		txtProdMin.addKeyListener(new KeyAdapter() {
@@ -89,12 +89,12 @@ public class CreateUI extends JFrame {
 			}
 		});
 		txtProdMin.setBounds(121, 147, 114, 19);
-		_pnlCreateProduct.add(txtProdMin);
+		contentPane.add(txtProdMin);
 		txtProdMin.setColumns(10);
 		
 		JLabel lblProdMax = new JLabel("Max. beholdning");
 		lblProdMax.setBounds(253, 147, 124, 15);
-		_pnlCreateProduct.add(lblProdMax);
+		contentPane.add(lblProdMax);
 		
 		txtProdMax = new JTextField();
 		txtProdMax.addKeyListener(new KeyAdapter() {
@@ -103,21 +103,21 @@ public class CreateUI extends JFrame {
 			}
 		});
 		txtProdMax.setBounds(378, 145, 114, 19);
-		_pnlCreateProduct.add(txtProdMax);
+		contentPane.add(txtProdMax);
 		txtProdMax.setColumns(10);
 		
 		JLabel lblProdPrice = new JLabel("Pris");
 		lblProdPrice.setBounds(12, 105, 70, 15);
-		_pnlCreateProduct.add(lblProdPrice);
+		contentPane.add(lblProdPrice);
 		
 		txtProdPrice = new JTextField();
 		txtProdPrice.setBounds(121, 103, 114, 19);
-		_pnlCreateProduct.add(txtProdPrice);
+		contentPane.add(txtProdPrice);
 		txtProdPrice.setColumns(10);
 		
 		JLabel lblCurrency = new JLabel("DKK");
 		lblCurrency.setBounds(240, 105, 70, 15);
-		_pnlCreateProduct.add(lblCurrency);
+		contentPane.add(lblCurrency);
 		
 		JButton btnCancel = new JButton("Annuller");
 		btnCancel.addActionListener(new ActionListener() {
@@ -127,7 +127,7 @@ public class CreateUI extends JFrame {
 			}
 		});
 		btnCancel.setBounds(375, 199, 117, 25);
-		_pnlCreateProduct.add(btnCancel);
+		contentPane.add(btnCancel);
 		
 		JButton btnCreate = new JButton("Opret");
 		btnCreate.addActionListener(new ActionListener() {
@@ -136,7 +136,7 @@ public class CreateUI extends JFrame {
 			}
 		});
 		btnCreate.setBounds(246, 199, 117, 25);
-		_pnlCreateProduct.add(btnCreate);
+		contentPane.add(btnCreate);
 		
 		txtCatID = new JTextField();
 		txtCatID.addKeyListener(new KeyAdapter() {
@@ -145,7 +145,7 @@ public class CreateUI extends JFrame {
 			}
 		});
 		txtCatID.setBounds(121, 62, 114, 19);
-		_pnlCreateProduct.add(txtCatID);
+		contentPane.add(txtCatID);
 		txtCatID.setColumns(10);
 		
 		addWindowListener(new WindowAdapter() {
