@@ -98,22 +98,28 @@ public class UpdatePwdUI extends JFrame {
 	}
 	
 	private void changePassword() {
+		String enteredPwd = "";
+		for(char c : txtPassword.getPassword())
+			enteredPwd += c;
+		
 		if(txtSalesAssistId.getText().length() == 0) {
 			JOptionPane.showMessageDialog(frame, GlobalUI.messageHandling(20), "FEJL!", JOptionPane.WARNING_MESSAGE);
 		}
 		else {
-			if(txtPassword.getPassword().toString().length() == 0) {
+			if(enteredPwd.length() < 6) {
 				JOptionPane.showMessageDialog(frame, GlobalUI.messageHandling(21), "FEJL!", JOptionPane.WARNING_MESSAGE);
 			}
 			else {
 				try {
+	
+					
 					int salesAsstId = 0;
 					SalesAssistant sa = null;
 					
 					salesAsstId = Integer.parseInt(txtSalesAssistId.getText());
 					sa = _saController.getSalesAssistant(salesAsstId);
 					if(sa != null) {
-						_saController.changePassword(salesAsstId, txtPassword.getPassword().toString());
+						_saController.changePassword(salesAsstId, enteredPwd);				
 						setVisible(false);
 						GUILayer.GlobalUI.setWindowStatus(false);
 					}

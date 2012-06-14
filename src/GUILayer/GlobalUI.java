@@ -25,9 +25,9 @@ public class GlobalUI {
 	public static String messageHandling(int code) {
         switch (code) {
             case 01:
-                return "Der skal indtastes i fejlet 'Bruger ID'.";
+                return "Der skal indtastes i feltet 'Bruger ID'.";
             case 02:
-                return "Der skal indtastes i fejlet 'Adgangskode'.";
+                return "Der skal indtastes i feltet 'Adgangskode'.";
             case 03:
             	return "Forkert id eller adgangskode.";
             case 04:
@@ -57,9 +57,9 @@ public class GlobalUI {
             case 18:
             	return "En ekspedient med det indtastede id blev ikke fundet.";
             case 20:
-            	return "Der skal indtastes i fejlet 'Ekspedient id'.";
+            	return "Der skal indtastes i feltet 'Ekspedient id'.";
             case 21:
-            	return "Der skal indtastes i fejlet ' Ny adgangskode'.";
+            	return "Der skal mindst indtastes 6 tegn i fejlet 'Ny adgangskode'.";
         }
         return "En ukendt system fejl er hændt.";
     }
