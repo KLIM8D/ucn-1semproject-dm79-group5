@@ -294,6 +294,17 @@ public class SystemUI extends JFrame {
 		mnProduct.add(mntmProductShowAll);
 		
 		JMenuItem mntmProductUpdate = new JMenuItem("Opdater produkt");
+		mntmProductUpdate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+					JInternalFrame updateProduct = GUILayer.Product.UpdateUI.createWindow();
+					pnlSystemLayout.add(updateProduct);
+					try 
+					{
+						updateProduct.setSelected(true);
+					} 
+					catch (PropertyVetoException ex) {}
+			}
+		});
 		mnProduct.add(mntmProductUpdate);
 		
 		JMenuItem mntmProductDelete = new JMenuItem("Slet produkt");

@@ -1,6 +1,5 @@
 package GUILayer.Product;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
@@ -17,14 +16,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
-import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.InternalFrameEvent;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-
-import org.omg.CORBA.Environment;
 
 import ControlLayer.ProductCtrl;
 import ControlLayer.ProductLocationCtrl;
@@ -36,14 +33,13 @@ import java.awt.Rectangle;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.awt.Point;
+import java.awt.Font;
 
 
 public class ShowAllUI {
 
 	private JPanel contentPane;
 	private JTable table;
-	private JButton btnEdit;
 	
 	private DefaultTableModel model;
 	private static JInternalFrame _frame;
@@ -60,6 +56,9 @@ public class ShowAllUI {
 	//Controllers
 	private ProductCtrl _prodCtrl;
 	private ProductLocationCtrl _locationCtrl;
+	
+	//ShowProductPanel
+	private JPanel showProductPanel;
 	private JLabel lblShowItemNumber;
 	private JLabel lblShowItemName;
 	private JLabel lblShowItemMinQuantity;
@@ -68,6 +67,8 @@ public class ShowAllUI {
 	private JLabel lblShowItemCategory;
 	private JLabel lblShowLocationsName;
 	private JLabel lblShowLocationsAvail;
+	private JLabel lblProduktInformation;
+	private JLabel lblLagerBeholdning;
 	
 	public static JInternalFrame createWindow()
 	{
@@ -87,7 +88,6 @@ public class ShowAllUI {
 		_frame.setClosable(true);
 		_frame.setMaximizable(true);
 		_frame.setVisible(true);
-		//_frame.getContentPane().setLayout(new FlowLayout(FlowLayout.LEFT));
 		_frame.setBounds(0, 0, 924, 562);
 		
 		contentPane = new JPanel();
@@ -152,11 +152,7 @@ public class ShowAllUI {
 		
 		//Grid / table
 		gridPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		gridPanel.setBounds(new Rectangle(5, 40, 904, 263));
-
-		contentPane.add(gridPanel);
-		
-		
+		contentPane.add(gridPanel);		
 		
 		columnNames = new String[]{"Produkt nummer", "Produkt navn", "Minimums beholdning", "Maksimums beholdning", "Pris", "Kategori", " "};
 		
@@ -174,14 +170,11 @@ public class ShowAllUI {
 		model = new DefaultTableModel();
 		
 		table.setModel(model);
-		table.setPreferredScrollableViewportSize(new Dimension(880, 250));
 		table.setFillsViewportHeight(true);
 		addData();
 		
 		scrollPane = new JScrollPane(table);
-		scrollPane.setBounds(10, 5, 883, 253);
-		gridPanel.add(scrollPane);
-		
+		gridPanel.add(scrollPane);		
 		
 		
 		//Close window
@@ -192,8 +185,6 @@ public class ShowAllUI {
 		        _instance = null;
 		      }
 		    });
-		System.out.print(scrollPane.getHeight());
-		System.out.print(scrollPane.getWidth());
 		PropertyChangeListener propertyChangeListener = new PropertyChangeListener()
 		{
 	        public void propertyChange(PropertyChangeEvent evt) 
@@ -202,31 +193,54 @@ public class ShowAllUI {
 	        }			
 		};
 		_frame.addPropertyChangeListener(propertyChangeListener );
+		//Grid / Table end
 		
-		JPanel showProductPanel = new JPanel();
-		showProductPanel.setBounds(5, 315, 904, 203);
+		//ShowProductPanel
+		showProductPanel = new JPanel();
+		showProductPanel.setBounds(5, 315, 904, 200);
 		contentPane.add(showProductPanel);
+		showProductPanel.setLayout(null);
 		lblShowItemNumber = new JLabel();
+		lblShowItemNumber.setBounds(12, 15, 350, 20);
 		showProductPanel.add(lblShowItemNumber);
 		lblShowItemName = new JLabel();
+		lblShowItemName.setBounds(12, 47, 350, 20);
 		showProductPanel.add(lblShowItemName);
 		lblShowItemMinQuantity = new JLabel();
+		lblShowItemMinQuantity.setBounds(12, 79, 350, 20);
 		showProductPanel.add(lblShowItemMinQuantity);
 		lblShowItemMaxQuantity = new JLabel();
+		lblShowItemMaxQuantity.setBounds(12, 111, 350, 20);
 		showProductPanel.add(lblShowItemMaxQuantity);
 		lblShowItemPrice = new JLabel();
+		lblShowItemPrice.setBounds(12, 143, 350, 20);
 		showProductPanel.add(lblShowItemPrice);
 		lblShowItemCategory = new JLabel();
+		lblShowItemCategory.setBounds(12, 175, 350, 20);
 		showProductPanel.add(lblShowItemCategory);
 		lblShowLocationsName = new JLabel();
+		lblShowLocationsName.setVerticalAlignment(SwingConstants.TOP);
+		lblShowLocationsName.setBounds(444, 15, 150, 200);
 		showProductPanel.add(lblShowLocationsName);
 		lblShowLocationsAvail = new JLabel();
+		lblShowLocationsAvail.setVerticalAlignment(SwingConstants.TOP);
+		lblShowLocationsAvail.setBounds(754, 15, 114, 200);
 		showProductPanel.add(lblShowLocationsAvail);
 		
+		lblProduktInformation = new JLabel("Produkt information:");
+		lblProduktInformation.setVisible(false);
+		lblProduktInformation.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblProduktInformation.setBounds(12, 0, 200, 15);
+		showProductPanel.add(lblProduktInformation);
+		
+		lblLagerBeholdning = new JLabel("Lager beholdning:");
+		lblLagerBeholdning.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblLagerBeholdning.setBounds(444, 0, 200, 15);
+		showProductPanel.add(lblLagerBeholdning);
+		//ShowProductPanel end
 	}
 
 	private void addShowButton() {
-		btnEdit = new JButton("Vis");
 		Action delete = new AbstractAction()
 		{
 		    public void actionPerformed(ActionEvent e)
@@ -308,20 +322,22 @@ public class ShowAllUI {
 		
 		if(prod != null)
 		{
-			lblShowItemNumber.setText(Long.toString(prod.getItemNumber()));
-			lblShowItemName.setText(prod.getItemName());
-			lblShowItemMinQuantity.setText(Integer.toString(prod.getMinInStock()));
-			lblShowItemMaxQuantity.setText(Integer.toString(prod.getMaxInStock()));
-			lblShowItemPrice.setText(prod.getPrice().toString());
-			lblShowItemCategory.setText(prod.getProductCategory().getCategoryName());
-			String locations = "";
-			String avail = "";
+			lblProduktInformation.setVisible(true);
+			lblShowItemNumber.setText("Produkt nummer: " + Long.toString(prod.getItemNumber()));
+			lblShowItemName.setText("Produkt navn: " + prod.getItemName());
+			lblShowItemMinQuantity.setText("Minimums beholdning: " + Integer.toString(prod.getMinInStock()));
+			lblShowItemMaxQuantity.setText("Maksimums beholdning: " + Integer.toString(prod.getMaxInStock()));
+			lblShowItemPrice.setText("Pris: " + prod.getPrice().toString() + " kr.");
+			lblShowItemCategory.setText("Produkt kategori: " + prod.getProductCategory().getCategoryName());
+			String locations = "<html>";
+			String avail = "<html>";
 			for(ProductLocation loc : _locationCtrl.getAll())
 			{
-				locations += loc.getLocationName() + System.getProperty("line.separator");
-				avail += _locationCtrl.getAvailOnLocation(loc.getLocationId(), itemNumber) + System.getProperty("line.separator");
+				locations += loc.getLocationName() + "<br/>";
+				avail += _locationCtrl.getAvailOnLocation(loc.getLocationId(), itemNumber) + " stk. <br/>";
 			}
-			
+			locations += "</html>";
+			avail += "</html>";
 			lblShowLocationsName.setText(locations);
 			lblShowLocationsAvail.setText(avail);
 		}
@@ -330,15 +346,19 @@ public class ShowAllUI {
 	private void autoScaleTable() {
 		if(_frame.isMaximum())
         {
-        	table.setPreferredScrollableViewportSize(new Dimension(_frame.getWidth()-44, _frame.getHeight()-62));
-        	scrollPane.setPreferredSize(new Dimension(_frame.getWidth()-44, _frame.getHeight()-62));	            	
+			gridPanel.setBounds(new Rectangle(0, 40, _frame.getWidth()-8, _frame.getHeight()-312));
+        	table.setPreferredScrollableViewportSize(new Dimension(_frame.getWidth()-18, _frame.getHeight()-312));
+        	scrollPane.setPreferredSize(new Dimension(_frame.getWidth()-18, _frame.getHeight()-312));
+        	showProductPanel.setLocation(showProductPanel.getLocation().x, gridPanel.getLocation().y + gridPanel.getHeight()+10);
         	gridPanel.removeAll();
         	gridPanel.add(scrollPane);
         }
         else
         {
-        	table.setPreferredScrollableViewportSize(new Dimension(880, 250));
-        	scrollPane.setPreferredSize(new Dimension(880, 250));	            	
+        	gridPanel.setBounds(new Rectangle(0, 40, 914, 250));
+        	table.setPreferredScrollableViewportSize(new Dimension(904, 250));
+        	scrollPane.setPreferredSize(new Dimension(904, 250));
+        	showProductPanel.setLocation(5, 315);
         	gridPanel.removeAll();
         	gridPanel.add(scrollPane);
         }
