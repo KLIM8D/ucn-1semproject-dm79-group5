@@ -1,9 +1,5 @@
 package GUILayer.Product;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-import java.awt.FlowLayout;
-import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -14,14 +10,12 @@ import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
-import javax.swing.table.DefaultTableModel;
 
 import ControlLayer.ProductCtrl;
 import GUILayer.GlobalUI;
@@ -32,9 +26,8 @@ import javax.swing.JComboBox;
 import javax.swing.JSeparator;
 import java.awt.Color;
 
-public class UpdateUI {
-
-	private DefaultTableModel model;
+public class UpdateUI 
+{
 	private static JFrame _frame;
 	private static UpdateUI _instance;
 	private JPanel contentPane;
@@ -164,7 +157,7 @@ public class UpdateUI {
 		for(int i = 0; i < categories.size(); i++)
 			categoryNames[i] = categories.get(i).getCategoryName();
 		
-		drpCategories = new JComboBox<String>(categoryNames);
+		drpCategories = new JComboBox(categoryNames);
 		drpCategories.setBounds(235, 147, 300, 20);
 		mainContentPanel.add(drpCategories);
 		

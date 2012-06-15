@@ -9,7 +9,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JSeparator;
 import javax.swing.JButton;
-import java.awt.Component;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
@@ -25,7 +24,6 @@ import ModelLayer.ProductCategory;
 public class CreateUI {
 
 	private static final long serialVersionUID = 7199391358909768134L;
-	protected static final Component frame = null;
 	private static JFrame _frame;
 	private static CreateUI _instance;
 	private JPanel contentPane;
@@ -148,8 +146,7 @@ public class CreateUI {
 		JButton btnCreate = new JButton("Opret");
 		btnCreate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				_instance = null;
-				_frame.dispose();
+				createProduct();
 			}
 		});
 		btnCreate.setBounds(246, 199, 117, 25);
@@ -185,17 +182,17 @@ public class CreateUI {
 			succeeded = _productController.createProduct(itemNumber, itemName, minInStock, maxInStock, price, categoryId);
 				
 			if(succeeded) {
-				JOptionPane.showMessageDialog(frame, GlobalUI.messageHandling(05), "INFORMATION!", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null, GlobalUI.messageHandling(05), "INFORMATION!", JOptionPane.INFORMATION_MESSAGE);
 				_instance = null;
 				_frame.dispose();
 			}
 			else {
-				JOptionPane.showMessageDialog(frame, GlobalUI.messageHandling(06), "FEJL!", JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(null, GlobalUI.messageHandling(06), "FEJL!", JOptionPane.WARNING_MESSAGE);
 			}
 		}
 	
 		catch (Exception err) {
-			JOptionPane.showMessageDialog(frame, GlobalUI.messageHandling(99), "FEJL!", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(null, GlobalUI.messageHandling(99), "FEJL!", JOptionPane.WARNING_MESSAGE);
 		}
 	}
 	
