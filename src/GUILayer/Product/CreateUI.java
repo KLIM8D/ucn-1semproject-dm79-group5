@@ -3,6 +3,7 @@ package GUILayer.Product;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -15,39 +16,54 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+
 import ControlLayer.ProductCtrl;
 import GUILayer.GlobalUI;
+import ModelLayer.ProductCategory;
 
-public class CreateUI extends JFrame {
+public class CreateUI {
 
 	private static final long serialVersionUID = 7199391358909768134L;
 	protected static final Component frame = null;
+	private static JFrame _frame;
+	private static CreateUI _instance;
 	private JPanel contentPane;
 	private JTextField txtProdId;
 	private JTextField txtProdName;
 	private JTextField txtProdMin;
 	private JTextField txtProdMax;
 	private JTextField txtProdPrice;
-	private JTextField txtCatID;
+	private JComboBox<String> drpCategories;
 	private ProductCtrl _productController;
+	
+	public static JFrame createWindow()
+	{
+		if(_instance == null)
+			_instance = new CreateUI();
+		
+		return _frame;
+	}
 
-	public CreateUI() {
+	private CreateUI() {
 		_productController = new ProductCtrl();
 		
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setTitle("Opret produkt");
-		setBounds(0, 0, 509, 269);
-		setLocationRelativeTo(null);
-		setResizable(false);
+		_frame = new JFrame();
 		
-		GUILayer.GlobalUI.setWindowStatus(true);
+		_frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		_frame.setTitle("Opret produkt");
+		_frame.setBounds(0, 0, 509, 269);
+		_frame.setLocationRelativeTo(null);
+		_frame.setResizable(false);
+		_frame.setVisible(true);
+		
 
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
+		_frame.setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblProdId = new JLabel("Stregkode");
+		JLabel lblProdId = new JLabel("Produkt nr");
 		lblProdId.setBounds(12, 12, 99, 15);
 		contentPane.add(lblProdId);
 		
@@ -70,7 +86,7 @@ public class CreateUI extends JFrame {
 		contentPane.add(txtProdName);
 		txtProdName.setColumns(10);
 		
-		JLabel lblCatID = new JLabel("Kategori ID");
+		JLabel lblCatID = new JLabel("Kategori");
 		lblCatID.setBounds(12, 64, 99, 15);
 		contentPane.add(lblCatID);
 		
@@ -122,8 +138,8 @@ public class CreateUI extends JFrame {
 		JButton btnCancel = new JButton("Annuller");
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				GUILayer.GlobalUI.setWindowStatus(false);
-				setVisible(false);
+				_instance = null;
+				_frame.dispose();
 			}
 		});
 		btnCancel.setBounds(375, 199, 117, 25);
@@ -132,25 +148,26 @@ public class CreateUI extends JFrame {
 		JButton btnCreate = new JButton("Opret");
 		btnCreate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				createProduct();
+				_instance = null;
+				_frame.dispose();
 			}
 		});
 		btnCreate.setBounds(246, 199, 117, 25);
 		contentPane.add(btnCreate);
 		
-		txtCatID = new JTextField();
-		txtCatID.addKeyListener(new KeyAdapter() {
-			public void keyReleased(KeyEvent e) {
-				GlobalUI.checkIfInt(txtCatID);
-			}
-		});
-		txtCatID.setBounds(121, 62, 114, 19);
-		contentPane.add(txtCatID);
-		txtCatID.setColumns(10);
+		ArrayList<ProductCategory> categories = makeCollection(_productController.getAllCategories());
+		String[] categoryNames = new String[categories.size()];
+		for(int i = 0; i < categories.size(); i++)
+			categoryNames[i] = categories.get(i).getCategoryName();
 		
-		addWindowListener(new WindowAdapter() {
-			public void windowClosed(WindowEvent e) {
-				GUILayer.GlobalUI.setWindowStatus(false);
+		drpCategories = new JComboBox(categoryNames);
+		drpCategories.setBounds(121, 62, 300, 20);
+		contentPane.add(drpCategories);
+		
+		_frame.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				_instance = null;
+				_frame.dispose();
 			}
 		});
 	}
@@ -164,14 +181,13 @@ public class CreateUI extends JFrame {
 			int minInStock = Integer.parseInt(txtProdMin.getText());
 			int maxInStock = Integer.parseInt(txtProdMax.getText());
 			String price = txtProdPrice.getText();
-			int categoryId = Integer.parseInt(txtCatID.getText());
-			
+			int categoryId = drpCategories.getSelectedIndex() + 1;
 			succeeded = _productController.createProduct(itemNumber, itemName, minInStock, maxInStock, price, categoryId);
 				
 			if(succeeded) {
 				JOptionPane.showMessageDialog(frame, GlobalUI.messageHandling(05), "INFORMATION!", JOptionPane.INFORMATION_MESSAGE);
-				setVisible(false);
-				GUILayer.GlobalUI.setWindowStatus(false);
+				_instance = null;
+				_frame.dispose();
 			}
 			else {
 				JOptionPane.showMessageDialog(frame, GlobalUI.messageHandling(06), "FEJL!", JOptionPane.WARNING_MESSAGE);
@@ -181,5 +197,13 @@ public class CreateUI extends JFrame {
 		catch (Exception err) {
 			JOptionPane.showMessageDialog(frame, GlobalUI.messageHandling(99), "FEJL!", JOptionPane.WARNING_MESSAGE);
 		}
+	}
+	
+	private <E> ArrayList<E> makeCollection(Iterable<E> iter)
+	{
+		ArrayList<E> list = new ArrayList<E>();
+		for (E item : iter) 
+			list.add(item);
+		return list;
 	}
 }

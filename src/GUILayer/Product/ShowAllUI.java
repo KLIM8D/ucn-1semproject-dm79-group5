@@ -25,6 +25,7 @@ import javax.swing.table.DefaultTableModel;
 
 import ControlLayer.ProductCtrl;
 import ControlLayer.ProductLocationCtrl;
+import GUILayer.ButtonColumn;
 import GUILayer.GlobalUI;
 import ModelLayer.Product;
 import ModelLayer.ProductLocation;
@@ -241,7 +242,7 @@ public class ShowAllUI {
 	}
 
 	private void addShowButton() {
-		Action delete = new AbstractAction()
+		Action show = new AbstractAction()
 		{
 		    public void actionPerformed(ActionEvent e)
 		    {
@@ -251,7 +252,7 @@ public class ShowAllUI {
                 showProduct(itemNumber);
 		    }
 		};
-		ButtonColumn buttonColumn = new ButtonColumn(table, delete, 6);
+		ButtonColumn buttonColumn = new ButtonColumn(table, show, 6);
 		buttonColumn.setMnemonic(KeyEvent.VK_D);
 	}
 	

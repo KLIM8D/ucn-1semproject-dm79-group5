@@ -14,9 +14,11 @@ import javax.swing.JSeparator;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 
-public class CreateUI extends JFrame {
+public class CreateUI {
 
 	private static final long serialVersionUID = -2548260112937399166L;
+	private static JFrame _frame;
+	private static CreateUI _instance;
 	private JPanel contentPane;
 	private JTextField txtSocNum;
 	private JTextField txtFullName;
@@ -30,19 +32,27 @@ public class CreateUI extends JFrame {
 	private JTextField txtPhoneNo;
 	private JLabel lblPassword;
 	private JPasswordField txtPassword;
-
-	public CreateUI() {
-		setTitle("Opret ekspedient");
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(0, 0, 368, 286);
-		setLocationRelativeTo(null);
-		setResizable(false);
+	
+	public static JFrame createWindow()
+	{
+		if(_instance == null)
+			_instance = new CreateUI();
 		
-		GUILayer.GlobalUI.setWindowStatus(true);
+		return _frame;
+	}
+
+	private CreateUI() {
+		_frame = new JFrame();
+		_frame.setTitle("Opret ekspedient");
+		_frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		_frame.setBounds(0, 0, 368, 286);
+		_frame.setLocationRelativeTo(null);
+		_frame.setResizable(false);
+		_frame.setVisible(true);
 		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
+		_frame.setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JLabel lblSocNum = new JLabel("CPR-Nummer");
@@ -124,16 +134,17 @@ public class CreateUI extends JFrame {
 		JButton btnCancel = new JButton("Annuller");
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				GUILayer.GlobalUI.setWindowStatus(false);
-				setVisible(false);
+				_instance = null;
+				_frame.dispose();
 			}
 		});
 		btnCancel.setBounds(237, 213, 117, 25);
 		contentPane.add(btnCancel);
 		
-		addWindowListener(new WindowAdapter() {
-			public void windowClosed(WindowEvent e) {
-				GUILayer.GlobalUI.setWindowStatus(false);
+		_frame.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				_instance = null;
+				_frame.dispose();
 			}
 		});
 	}

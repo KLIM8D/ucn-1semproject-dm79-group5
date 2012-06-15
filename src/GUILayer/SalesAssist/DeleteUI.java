@@ -1,6 +1,5 @@
 package GUILayer.SalesAssist;
 
-import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -20,28 +19,37 @@ import GUILayer.GlobalUI;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public class DeleteUI extends JFrame {
+public class DeleteUI {
 
 	private SalesAssistantCtrl _saController;
 	private static final long serialVersionUID = 8303757512052314425L;
-	protected static final Component frame = null;
+	private static JFrame _frame;
+	private static DeleteUI _instance;
 	private JPanel contentPane;
 	private JTextField txtSalesAssistId;
+	
+	public static JFrame createWindow()
+	{
+		if(_instance == null)
+			_instance = new DeleteUI();
+		
+		return _frame;
+	}
 
-	public DeleteUI() {
+	private DeleteUI() {
 		_saController = new SalesAssistantCtrl();
 		
-		setTitle("Slet ekspedient");
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(0, 0, 450, 138);
-		setLocationRelativeTo(null);
-		setResizable(false);
-		
-		GUILayer.GlobalUI.setWindowStatus(true);
+		_frame = new JFrame();
+		_frame.setTitle("Slet ekspedient");
+		_frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		_frame.setBounds(0, 0, 450, 138);
+		_frame.setLocationRelativeTo(null);
+		_frame.setResizable(false);
+		_frame.setVisible(true);
 		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
+		_frame.setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JLabel lblSalesAssistId = new JLabel("Ekspedient Id");
@@ -73,16 +81,17 @@ public class DeleteUI extends JFrame {
 		JButton btnCancel = new JButton("Annuller");
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				GUILayer.GlobalUI.setWindowStatus(false);
-				setVisible(false);
+				_instance = null;
+				_frame.dispose();
 			}
 		});
 		btnCancel.setBounds(319, 64, 117, 25);
 		contentPane.add(btnCancel);
 		
-		addWindowListener(new WindowAdapter() {
-			public void windowClosed(WindowEvent e) {
-				GUILayer.GlobalUI.setWindowStatus(false);
+		_frame.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				_instance = null;
+				_frame.dispose();
 			}
 		});
 	}
@@ -90,7 +99,7 @@ public class DeleteUI extends JFrame {
 	private void deleteSalesAssist() {
 		
 		if(txtSalesAssistId.getText().length() == 0) {
-			JOptionPane.showMessageDialog(frame, GlobalUI.messageHandling(20), "FEJL!", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(null, GlobalUI.messageHandling(20), "FEJL!", JOptionPane.WARNING_MESSAGE);
 		}
 		else {
 			try {
@@ -100,20 +109,20 @@ public class DeleteUI extends JFrame {
 				salesAsstId = Integer.parseInt(txtSalesAssistId.getText());
 				sa = _saController.getSalesAssistant(salesAsstId);
 				if(sa != null) {
-					int result = JOptionPane.showConfirmDialog((Component) null, GlobalUI.messageHandling(17), "ADVARSEL!", JOptionPane.OK_CANCEL_OPTION);
+					int result = JOptionPane.showConfirmDialog(null, GlobalUI.messageHandling(17), "ADVARSEL!", JOptionPane.OK_CANCEL_OPTION);
 					if(result == 0) {
 						_saController.removeSalesAssistant(salesAsstId);
-						setVisible(false);
-						GUILayer.GlobalUI.setWindowStatus(false);
+						_instance = null;
+						_frame.dispose();
 					}			
 				}
 				else {
-					JOptionPane.showMessageDialog(frame, GlobalUI.messageHandling(18), "FEJL!", JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, GlobalUI.messageHandling(18), "FEJL!", JOptionPane.WARNING_MESSAGE);
 				}
 				
 			}
 			catch (Exception e) {
-				JOptionPane.showMessageDialog(frame, GlobalUI.messageHandling(99), "FEJL!", JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(null, GlobalUI.messageHandling(99), "FEJL!", JOptionPane.WARNING_MESSAGE);
 			}
 		}
 	}

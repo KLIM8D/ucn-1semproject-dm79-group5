@@ -7,7 +7,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
-import java.awt.Component;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
@@ -15,28 +14,37 @@ import java.awt.event.WindowEvent;
 import ControlLayer.ProductCtrl;
 import GUILayer.GlobalUI;
 
-public class CreateUI extends JFrame {
+public class CreateUI {
 
 	private static final long serialVersionUID = 3162463258133538444L;
-	protected static final Component frame = null;
+	private static JFrame _frame;
+	private static CreateUI _instance;
 	private JPanel contentPane;
 	private JTextField txtCatName;
 	private ProductCtrl _productController;
+	
+	public static JFrame createWindow()
+	{
+		if(_instance == null)
+			_instance = new CreateUI();
+		
+		return _frame;
+	}
 
-	public CreateUI() {
+	private CreateUI() {
 		_productController = new ProductCtrl();
 		
-		setResizable(false);
-		setTitle("Opret produkt gruppe");
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(0, 0, 450, 136);
-		setLocationRelativeTo(null);
+		_frame = new JFrame();
+		_frame.setResizable(false);
+		_frame.setTitle("Opret produkt gruppe");
+		_frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		_frame.setBounds(0, 0, 450, 136);
+		_frame.setLocationRelativeTo(null);
+		_frame.setVisible(true);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
+		_frame.setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		GUILayer.GlobalUI.setWindowStatus(true);
 		
 		JLabel lblCatName = new JLabel("Kategori navn");
 		lblCatName.setBounds(12, 12, 107, 15);
@@ -50,8 +58,8 @@ public class CreateUI extends JFrame {
 		JButton btnCancel = new JButton("Annuller");
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				GUILayer.GlobalUI.setWindowStatus(false);
-				setVisible(false);
+				_instance = null;
+				_frame.dispose();
 			}
 		});
 		btnCancel.setBounds(319, 64, 117, 25);
@@ -66,9 +74,10 @@ public class CreateUI extends JFrame {
 		btnCreate.setBounds(190, 64, 117, 25);
 		contentPane.add(btnCreate);
 		
-		addWindowListener(new WindowAdapter() {
-			public void windowClosed(WindowEvent e) {
-				GUILayer.GlobalUI.setWindowStatus(false);
+		_frame.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				_instance = null;
+				_frame.dispose();
 			}
 		});
 	}
@@ -80,16 +89,16 @@ public class CreateUI extends JFrame {
 			String categoryName = txtCatName.getText();
 			succeeded = _productController.createProductCategory(categoryName);
 			if(succeeded) {
-				JOptionPane.showMessageDialog(frame, GlobalUI.messageHandling(05), "INFORMATION!", JOptionPane.INFORMATION_MESSAGE);
-				setVisible(false);
-				GUILayer.GlobalUI.setWindowStatus(false);
+				JOptionPane.showMessageDialog(null, GlobalUI.messageHandling(05), "INFORMATION!", JOptionPane.INFORMATION_MESSAGE);
+				_instance = null;
+				_frame.dispose();
 			}
 			else {
-				JOptionPane.showMessageDialog(frame, GlobalUI.messageHandling(06), "FEJL!", JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(null, GlobalUI.messageHandling(06), "FEJL!", JOptionPane.WARNING_MESSAGE);
 			}
 		}
 		catch (Exception e) {
-			JOptionPane.showMessageDialog(frame, GlobalUI.messageHandling(99), "FEJL!", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(null, GlobalUI.messageHandling(99), "FEJL!", JOptionPane.WARNING_MESSAGE);
 		}
 	}
 }

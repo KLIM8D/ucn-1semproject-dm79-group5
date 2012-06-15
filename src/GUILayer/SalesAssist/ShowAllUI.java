@@ -23,7 +23,7 @@ public class ShowAllUI  {
 		return _frame;
 	}
 
-	public ShowAllUI() {
+	private ShowAllUI() {
 		_frame = new JInternalFrame();
 		_frame.setTitle("Vis alle ekspedienter");
 		_frame.setClosable(true);

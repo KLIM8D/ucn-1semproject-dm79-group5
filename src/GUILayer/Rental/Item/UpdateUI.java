@@ -10,37 +10,42 @@ import javax.swing.JButton;
 
 import GUILayer.GlobalUI;
 
-import java.awt.Component;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-public class UpdateUI extends JFrame {
+public class UpdateUI {
 
 	private static final long serialVersionUID = -969960698608387632L;
-	protected static final Component frame = null;
+	private static JFrame _frame;
+	private static UpdateUI _instance;
 	private JPanel contentPane;
 	private JTextField txtBarcode;
 	private JTextField txtproductId;
 	private JTextField txtRentPrice;
 	private JTextField txtMaxAvail;
+	
+	public static JFrame createWindow()
+	{
+		if(_instance == null)
+			_instance = new UpdateUI();
+		
+		return _frame;
+	}
 
-	/**
-	 * Create the frame.
-	 */
-	public UpdateUI() {
-		setResizable(false);
-		setTitle("Opdater udlejningsprodukt");
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(0, 0, 450, 212);
-		setLocationRelativeTo(null);
+	private UpdateUI() {
+		_frame = new JFrame();
+		_frame.setResizable(false);
+		_frame.setTitle("Opdater udlejningsprodukt");
+		_frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		_frame.setBounds(0, 0, 450, 212);
+		_frame.setLocationRelativeTo(null);
+		_frame.setVisible(true);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
+		_frame.setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		GUILayer.GlobalUI.setWindowStatus(true);
 		
 		JLabel lblBarCode = new JLabel("Stregkode");
 		lblBarCode.setBounds(10, 11, 116, 14);
@@ -81,8 +86,8 @@ public class UpdateUI extends JFrame {
 		JButton btnCancel = new JButton("Annuller");
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				GUILayer.GlobalUI.setWindowStatus(true);
-				setVisible(false);
+				_instance = null;
+				_frame.dispose();
 			}
 		});
 		btnCancel.setBounds(317, 146, 117, 23);
@@ -97,9 +102,10 @@ public class UpdateUI extends JFrame {
 		txtMaxAvail.setBounds(130, 83, 76, 20);
 		contentPane.add(txtMaxAvail);
 		
-		addWindowListener(new WindowAdapter() {
-			public void windowClosed(WindowEvent e) {
-				GUILayer.GlobalUI.setWindowStatus(false);
+		_frame.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				_instance = null;
+				_frame.dispose();
 			}
 		});
 	}
@@ -109,17 +115,17 @@ public class UpdateUI extends JFrame {
 		
 		try {	
 			if(succeeded) {
-				JOptionPane.showMessageDialog(frame, GlobalUI.messageHandling(13), "INFORMATION!", JOptionPane.INFORMATION_MESSAGE);
-				setVisible(false);
-				GUILayer.GlobalUI.setWindowStatus(false);
+				JOptionPane.showMessageDialog(null, GlobalUI.messageHandling(13), "INFORMATION!", JOptionPane.INFORMATION_MESSAGE);
+				_instance = null;
+				_frame.dispose();
 			}
 			else {
-				JOptionPane.showMessageDialog(frame, GlobalUI.messageHandling(14), "FEJL!", JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(null, GlobalUI.messageHandling(14), "FEJL!", JOptionPane.WARNING_MESSAGE);
 			}
 			
 		}
 		catch (Exception e) {
-			JOptionPane.showMessageDialog(frame, GlobalUI.messageHandling(99), "FEJL!", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(null, GlobalUI.messageHandling(99), "FEJL!", JOptionPane.WARNING_MESSAGE);
 		}
 	}
 }

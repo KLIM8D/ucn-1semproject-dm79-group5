@@ -1,6 +1,5 @@
 package GUILayer.SalesAssist;
 
-import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -21,29 +20,38 @@ import GUILayer.GlobalUI;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public class UpdatePwdUI extends JFrame {
+public class UpdatePwdUI {
 
 	private SalesAssistantCtrl _saController;
 	private static final long serialVersionUID = -2198226493427431793L;
-	protected static final Component frame = null;
+	private static JFrame _frame;
+	private static UpdatePwdUI _instance;
 	private JPanel contentPane;
 	private JTextField txtSalesAssistId;
 	private JPasswordField txtPassword;
+	
+	public static JFrame createWindow()
+	{
+		if(_instance == null)
+			_instance = new UpdatePwdUI();
+		
+		return _frame;
+	}
 
-	public UpdatePwdUI() {
+	private UpdatePwdUI() {
 		_saController = new SalesAssistantCtrl();
 		
-		setTitle("Skift adgangskode");
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(0, 0, 450, 167);
-		setLocationRelativeTo(null);
-		setResizable(false);
-		
-		GUILayer.GlobalUI.setWindowStatus(true);
+		_frame = new JFrame();
+		_frame.setTitle("Skift adgangskode");
+		_frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		_frame.setBounds(0, 0, 450, 167);
+		_frame.setLocationRelativeTo(null);
+		_frame.setResizable(false);
+		_frame.setVisible(true);
 		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
+		_frame.setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JLabel lblSalesAssistId = new JLabel("Ekspedient Id");
@@ -83,16 +91,17 @@ public class UpdatePwdUI extends JFrame {
 		JButton btnCancel = new JButton("Annuller");
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				GUILayer.GlobalUI.setWindowStatus(false);
-				setVisible(false);
+				_instance = null;
+				_frame.dispose();
 			}
 		});
 		btnCancel.setBounds(319, 91, 117, 25);
 		contentPane.add(btnCancel);
 		
-		addWindowListener(new WindowAdapter() {
-			public void windowClosed(WindowEvent e) {
-				GUILayer.GlobalUI.setWindowStatus(false);
+		_frame.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				_instance = null;
+				_frame.dispose();
 			}
 		});
 	}
@@ -103,32 +112,28 @@ public class UpdatePwdUI extends JFrame {
 			enteredPwd += c;
 		
 		if(txtSalesAssistId.getText().length() == 0) {
-			JOptionPane.showMessageDialog(frame, GlobalUI.messageHandling(20), "FEJL!", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(null, GlobalUI.messageHandling(20), "FEJL!", JOptionPane.WARNING_MESSAGE);
 		}
 		else {
 			if(enteredPwd.length() < 6) {
-				JOptionPane.showMessageDialog(frame, GlobalUI.messageHandling(21), "FEJL!", JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(null, GlobalUI.messageHandling(21), "FEJL!", JOptionPane.WARNING_MESSAGE);
 			}
 			else {
 				try {
-	
 					
-					int salesAsstId = 0;
-					SalesAssistant sa = null;
-					
-					salesAsstId = Integer.parseInt(txtSalesAssistId.getText());
-					sa = _saController.getSalesAssistant(salesAsstId);
+					int salesAsstId = Integer.parseInt(txtSalesAssistId.getText());
+					SalesAssistant sa = _saController.getSalesAssistant(salesAsstId);
 					if(sa != null) {
 						_saController.changePassword(salesAsstId, enteredPwd);				
-						setVisible(false);
-						GUILayer.GlobalUI.setWindowStatus(false);
+						_instance = null;
+						_frame.dispose();
 					}
 					else{
-						JOptionPane.showMessageDialog(frame, GlobalUI.messageHandling(18), "FEJL!", JOptionPane.WARNING_MESSAGE);
+						JOptionPane.showMessageDialog(null, GlobalUI.messageHandling(18), "FEJL!", JOptionPane.WARNING_MESSAGE);
 					}
 				}
 				catch (Exception e) {
-					JOptionPane.showMessageDialog(frame, GlobalUI.messageHandling(99), "FEJL!", JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, GlobalUI.messageHandling(99), "FEJL!", JOptionPane.WARNING_MESSAGE);
 				}
 			}
 		}

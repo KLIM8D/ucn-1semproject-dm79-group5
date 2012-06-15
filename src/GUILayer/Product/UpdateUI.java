@@ -8,14 +8,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
@@ -31,7 +35,7 @@ import java.awt.Color;
 public class UpdateUI {
 
 	private DefaultTableModel model;
-	private static JInternalFrame _frame;
+	private static JFrame _frame;
 	private static UpdateUI _instance;
 	private JPanel contentPane;
 	
@@ -46,14 +50,14 @@ public class UpdateUI {
 	private JTextField txtMinInStock;
 	private JTextField txtMaxInStock;
 	private JTextField txtPrice;
-	private JComboBox drpCategories;
+	private JComboBox<String> drpCategories;
 	
 	//Controllers
 	private ProductCtrl _prodCtrl;
 	
 	
 	
-	public static JInternalFrame createWindow()
+	public static JFrame createWindow()
 	{
 		if(_instance == null)
 			_instance = new UpdateUI();
@@ -64,13 +68,12 @@ public class UpdateUI {
 	private UpdateUI() {
 		_prodCtrl = new ProductCtrl();
 		
-		_frame = new JInternalFrame();		
+		_frame = new JFrame();		
 		_frame.setTitle("Opdater produkt");
-		_frame.setClosable(true);
-		_frame.setMaximizable(false);
 		_frame.setVisible(true);
-		//_frame.getContentPane().setLayout(new FlowLayout(FlowLayout.LEFT));
-		_frame.setBounds(0, 0, 600, 350);
+		_frame.setResizable(false);
+		_frame.setBounds(0, 0, 600, 300);
+		_frame.setLocationRelativeTo(null);
 		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -110,8 +113,6 @@ public class UpdateUI {
 		topPanel.add(btnGetProduct);
 		
 		contentPane.add(topPanel);
-		
-		
 		
 		//Update panel
 		JPanel mainContentPanel = new JPanel();
@@ -163,7 +164,7 @@ public class UpdateUI {
 		for(int i = 0; i < categories.size(); i++)
 			categoryNames[i] = categories.get(i).getCategoryName();
 		
-		drpCategories = new JComboBox(categoryNames);
+		drpCategories = new JComboBox<String>(categoryNames);
 		drpCategories.setBounds(235, 147, 300, 20);
 		mainContentPanel.add(drpCategories);
 		
@@ -176,13 +177,34 @@ public class UpdateUI {
 				}
 			}
 		});
-		btnOpdater.setBounds(418, 186, 117, 25);
+		btnOpdater.setBounds(290, 186, 117, 25);
 		mainContentPanel.add(btnOpdater);
+		
+		JButton btnCancel = new JButton("Annuller");
+		btnCancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				_instance = null;
+				_frame.dispose();
+			}
+		});
+		btnCancel.setBounds(418, 186, 117, 25);
+		mainContentPanel.add(btnCancel);
 		
 		JSeparator separator = new JSeparator();
 		separator.setForeground(Color.BLACK);
 		separator.setBounds(0, 0, 578, 2);
 		mainContentPanel.add(separator);
+		
+		//Close window
+		_frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+		_frame.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				_frame.dispose();
+				_instance = null;
+			}
+		});
+		
+		
 	}
 	
 	private void getProductData(long itemNumber)

@@ -64,9 +64,7 @@ public class SystemUI extends JFrame {
 		JButton btnNewRental = new JButton("Ny udlejning");
 		btnNewRental.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(GUILayer.GlobalUI.getWindowStatus() == false) {
-					new GUILayer.Rental.CreateUI().setVisible(true);
-				}
+					GUILayer.Rental.CreateUI.createWindow();
 			}
 		});
 		btnNewRental.setBounds(12, 162, 327, 35);
@@ -79,15 +77,24 @@ public class SystemUI extends JFrame {
 		JButton btnReturnRental = new JButton("Returnering af udlejning");
 		btnReturnRental.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(GUILayer.GlobalUI.getWindowStatus() == false) {
-					new GUILayer.Rental.ReturnUI().setVisible(true);
-				}
+					GUILayer.Rental.ReturnUI.createWindow();
 			}
 		});
 		btnReturnRental.setBounds(12, 256, 327, 35);
 		pnlQuickSelect.add(btnReturnRental);
 		
-		JButton btnFindProduct = new JButton("Find produkt");
+		JButton btnFindProduct = new JButton("Vis alle produkter");
+		btnFindProduct.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+					JInternalFrame showAllProducts = GUILayer.Product.ShowAllUI.createWindow();
+					pnlSystemLayout.add(showAllProducts);
+					try 
+					{
+						showAllProducts.setSelected(true);
+					} 
+					catch (PropertyVetoException ex) {}
+			}
+		});
 		btnFindProduct.setBounds(12, 303, 327, 35);
 		pnlQuickSelect.add(btnFindProduct);
 		
@@ -135,9 +142,7 @@ public class SystemUI extends JFrame {
 		JMenuItem mntmRentalNew = new JMenuItem("Ny udlejning");
 		mntmRentalNew.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(GUILayer.GlobalUI.getWindowStatus() == false) {
-					new GUILayer.Rental.CreateUI().setVisible(true);
-				}
+					GUILayer.Rental.CreateUI.createWindow();
 			}
 		});
 		mnRental.add(mntmRentalNew);
@@ -151,9 +156,7 @@ public class SystemUI extends JFrame {
 		JMenuItem mntmRentalReturn = new JMenuItem("Retunering af udlejning");
 		mntmRentalReturn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(GUILayer.GlobalUI.getWindowStatus() == false) {
-					new GUILayer.Rental.ReturnUI().setVisible(true);
-				}
+					GUILayer.Rental.ReturnUI.createWindow();
 			}
 		});
 		mnRental.add(mntmRentalReturn);
@@ -167,9 +170,7 @@ public class SystemUI extends JFrame {
 		JMenuItem mntmRentalProductNew = new JMenuItem("Nyt udlejningsprodukt");
 		mntmRentalProductNew.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(GUILayer.GlobalUI.getWindowStatus() == false) {
-					new GUILayer.Rental.Item.CreateUI().setVisible(true);
-				}
+					GUILayer.Rental.Item.CreateUI.createWindow();
 			}
 		});
 		mnRentalProducts.add(mntmRentalProductNew);
@@ -177,9 +178,7 @@ public class SystemUI extends JFrame {
 		JMenuItem mntmRentalProductUpdate = new JMenuItem("Opdater udlejningsprodukt");
 		mntmRentalProductUpdate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(GUILayer.GlobalUI.getWindowStatus() == false) {
-					new GUILayer.Rental.Item.UpdateUI().setVisible(true);
-				}
+					GUILayer.Rental.Item.UpdateUI.createWindow();
 			}
 		});
 		mnRentalProducts.add(mntmRentalProductUpdate);
@@ -187,9 +186,7 @@ public class SystemUI extends JFrame {
 		JMenuItem mntmRentalProductDelete = new JMenuItem("Slet udlejningsprodukt");
 		mntmRentalProductDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(GUILayer.GlobalUI.getWindowStatus() == false) {
-					new GUILayer.Rental.Item.DeleteUI().setVisible(true);
-				}
+					GUILayer.Rental.Item.DeleteUI.createWindow();
 			}
 		});
 		mnRentalProducts.add(mntmRentalProductDelete);
@@ -212,9 +209,7 @@ public class SystemUI extends JFrame {
 		JMenuItem mntmSalesAssistCreate = new JMenuItem("Opret ekspedient");
 		mntmSalesAssistCreate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(GUILayer.GlobalUI.getWindowStatus() == false) {
-					new GUILayer.SalesAssist.CreateUI().setVisible(true);
-				}
+					GUILayer.SalesAssist.CreateUI.createWindow();
 			}
 		});
 		mnSalesAssistant.add(mntmSalesAssistCreate);
@@ -222,9 +217,7 @@ public class SystemUI extends JFrame {
 		JMenuItem mntmSalesAssistUpdate = new JMenuItem("Opdatere ekspedient information");
 		mntmSalesAssistUpdate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(GUILayer.GlobalUI.getWindowStatus() == false) {
-					new GUILayer.SalesAssist.UpdateUI().setVisible(true);
-				}
+					GUILayer.SalesAssist.UpdateUI.createWindow();
 			}
 		});
 		mnSalesAssistant.add(mntmSalesAssistUpdate);
@@ -232,9 +225,7 @@ public class SystemUI extends JFrame {
 		JMenuItem mntmSalesAssistDelete = new JMenuItem("Slet ekspedient");
 		mntmSalesAssistDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(GUILayer.GlobalUI.getWindowStatus() == false) {
-					new GUILayer.SalesAssist.DeleteUI().setVisible(true);
-				}
+					GUILayer.SalesAssist.DeleteUI.createWindow();
 			}
 		});
 		mnSalesAssistant.add(mntmSalesAssistDelete);
@@ -242,11 +233,11 @@ public class SystemUI extends JFrame {
 		JMenuItem mntmSalesAssistShowAll = new JMenuItem("Vis alle ekspedienter");
 		mntmSalesAssistShowAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JInternalFrame showAllProducts = GUILayer.SalesAssist.ShowAllUI.createWindow();
-				pnlSystemLayout.add(showAllProducts);
+				JInternalFrame showAllSalesAsst = GUILayer.SalesAssist.ShowAllUI.createWindow();
+				pnlSystemLayout.add(showAllSalesAsst);
 				try 
 				{
-					showAllProducts.setSelected(true);
+					showAllSalesAsst.setSelected(true);
 				} 
 				catch (PropertyVetoException ex) {}
 			}
@@ -256,9 +247,7 @@ public class SystemUI extends JFrame {
 		JMenuItem mntmSalesAssistChangePassword = new JMenuItem("Skift adgangskode");
 		mntmSalesAssistChangePassword.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(GUILayer.GlobalUI.getWindowStatus() == false) {
-					new GUILayer.SalesAssist.UpdatePwdUI().setVisible(true);
-				}
+					GUILayer.SalesAssist.UpdatePwdUI.createWindow();
 			}
 		});
 		mnSalesAssistant.add(mntmSalesAssistChangePassword);
@@ -269,15 +258,10 @@ public class SystemUI extends JFrame {
 		JMenuItem mntmProductCreate = new JMenuItem("Opret produkt");
 		mntmProductCreate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(GUILayer.GlobalUI.getWindowStatus() == false) {
-					new GUILayer.Product.CreateUI().setVisible(true);
-				}
+					GUILayer.Product.CreateUI.createWindow();
 			}
 		});
 		mnProduct.add(mntmProductCreate);
-		
-		JMenuItem mntmProductFind = new JMenuItem("Find produkt");
-		mnProduct.add(mntmProductFind);
 		
 		JMenuItem mntmProductShowAll = new JMenuItem("Vis alle produkter");
 		mntmProductShowAll.addActionListener(new ActionListener() {
@@ -296,18 +280,17 @@ public class SystemUI extends JFrame {
 		JMenuItem mntmProductUpdate = new JMenuItem("Opdater produkt");
 		mntmProductUpdate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					JInternalFrame updateProduct = GUILayer.Product.UpdateUI.createWindow();
-					pnlSystemLayout.add(updateProduct);
-					try 
-					{
-						updateProduct.setSelected(true);
-					} 
-					catch (PropertyVetoException ex) {}
+					GUILayer.Product.UpdateUI.createWindow();
 			}
 		});
 		mnProduct.add(mntmProductUpdate);
 		
 		JMenuItem mntmProductDelete = new JMenuItem("Slet produkt");
+		mntmProductDelete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+					GUILayer.Product.DeleteUI.createWindow();
+			}
+		});
 		mnProduct.add(mntmProductDelete);
 		
 		JSeparator mntmProductSeparator = new JSeparator();
@@ -319,21 +302,24 @@ public class SystemUI extends JFrame {
 		JMenuItem mntmProductCatCreate = new JMenuItem("Opret produkt kategori");
 		mntmProductCatCreate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(GUILayer.GlobalUI.getWindowStatus() == false) {
-					new GUILayer.Product.Category.CreateUI().setVisible(true);
-				}
+					GUILayer.Product.Category.CreateUI.createWindow();
 			}
 		});
 		mnProductCat.add(mntmProductCatCreate);
 		
-		JMenuItem mntmProductCatFind = new JMenuItem("Find produkt kategori");
-		mnProductCat.add(mntmProductCatFind);
-		
 		JMenuItem mntmProductCatShowAll = new JMenuItem("Vis alle produkt kategorier");
+		mntmProductCatShowAll.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+					JInternalFrame showAllCatgories = GUILayer.Product.Category.ShowAllUI.createWindow();
+					pnlSystemLayout.add(showAllCatgories);
+					try 
+					{
+						showAllCatgories.setSelected(true);
+					} 
+					catch (PropertyVetoException ex) {}
+			}
+		});
 		mnProductCat.add(mntmProductCatShowAll);
-		
-		JMenuItem mntmProductCatDelete = new JMenuItem("Slet produkt kategori");
-		mnProductCat.add(mntmProductCatDelete);
 		
 		JMenu mnProductGroup = new JMenu("Produkt grupper");
 		mnProduct.add(mnProductGroup);
@@ -341,9 +327,7 @@ public class SystemUI extends JFrame {
 		JMenuItem mntmProductGroupCreate = new JMenuItem("Opret produkt gruppe");
 		mntmProductGroupCreate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(GUILayer.GlobalUI.getWindowStatus() == false) {
-					new GUILayer.Product.Group.CreateUI().setVisible(true);
-				}
+					GUILayer.Product.Group.CreateUI.createWindow();
 			}
 		});
 		mnProductGroup.add(mntmProductGroupCreate);
@@ -378,10 +362,7 @@ public class SystemUI extends JFrame {
 		JMenuItem mntmAboutApp = new JMenuItem("Applikationen");
 		mntmAboutApp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(GUILayer.GlobalUI.getWindowStatus() == false) {
-					new GUILayer.AboutUI().setVisible(true);
-				}
-				
+					GUILayer.AboutUI.createWindow();				
 			}
 		});
 		mnAbout.add(mntmAboutApp);

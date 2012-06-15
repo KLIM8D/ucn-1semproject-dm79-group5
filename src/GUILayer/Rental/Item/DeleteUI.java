@@ -10,34 +10,39 @@ import javax.swing.JButton;
 
 import GUILayer.GlobalUI;
 
-import java.awt.Component;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-public class DeleteUI extends JFrame {
+public class DeleteUI {
 
 	private static final long serialVersionUID = 7832893035517234399L;
-	protected static final Component frame = null;
+	private static JFrame _frame;
+	private static DeleteUI _instance;
 	private JPanel contentPane;
 	private JTextField txtBarcode;
 
-	/**
-	 * Create the frame.
-	 */
-	public DeleteUI() {
-		setResizable(false);
-		setTitle("Slet udlejningsprodukt");
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(0, 0, 450, 132);
-		setLocationRelativeTo(null);
+	public static JFrame createWindow()
+	{
+		if(_instance == null)
+			_instance = new DeleteUI();
+		
+		return _frame;
+	}
+	
+	private DeleteUI() {
+		_frame = new JFrame();
+		_frame.setResizable(false);
+		_frame.setTitle("Slet udlejningsprodukt");
+		_frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		_frame.setBounds(0, 0, 450, 132);
+		_frame.setLocationRelativeTo(null);
+		_frame.setVisible(true);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
+		_frame.setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		GUILayer.GlobalUI.setWindowStatus(true);
 		
 		JLabel lblBarCode = new JLabel("Stregkode");
 		lblBarCode.setBounds(10, 11, 116, 17);
@@ -60,16 +65,17 @@ public class DeleteUI extends JFrame {
 		JButton btnAnnuller = new JButton("Annuller");
 		btnAnnuller.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				GUILayer.GlobalUI.setWindowStatus(false);
-				setVisible(false);
+				_instance = null;
+				_frame.dispose();
 			}
 		});
 		btnAnnuller.setBounds(322, 66, 117, 23);
 		contentPane.add(btnAnnuller);
 		
-		addWindowListener(new WindowAdapter() {
-			public void windowClosed(WindowEvent e) {
-				GUILayer.GlobalUI.setWindowStatus(false);
+		_frame.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				_instance = null;
+				_frame.dispose();
 			}
 		});
 	}
@@ -79,17 +85,17 @@ public class DeleteUI extends JFrame {
 		
 		try {	
 			if(succeeded) {
-				JOptionPane.showMessageDialog(frame, GlobalUI.messageHandling(15), "INFORMATION!", JOptionPane.INFORMATION_MESSAGE);
-				setVisible(false);
-				GUILayer.GlobalUI.setWindowStatus(false);
+				JOptionPane.showMessageDialog(null, GlobalUI.messageHandling(15), "INFORMATION!", JOptionPane.INFORMATION_MESSAGE);
+				_instance = null;
+				_frame.dispose();
 			}
 			else {
-				JOptionPane.showMessageDialog(frame, GlobalUI.messageHandling(16), "FEJL!", JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(null, GlobalUI.messageHandling(16), "FEJL!", JOptionPane.WARNING_MESSAGE);
 			}
 			
 		}
 		catch (Exception e) {
-			JOptionPane.showMessageDialog(frame, GlobalUI.messageHandling(99), "FEJL!", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(null, GlobalUI.messageHandling(99), "FEJL!", JOptionPane.WARNING_MESSAGE);
 		}
 	}
 }

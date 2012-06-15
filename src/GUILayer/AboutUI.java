@@ -15,24 +15,34 @@ import javax.swing.SwingConstants;
 import javax.swing.JSeparator;
 import javax.swing.UIManager;
 
-public class AboutUI extends JFrame {
+public class AboutUI {
 
 	private static final long serialVersionUID = -9172568450744220960L;
+	private static JFrame _frame;
+	private static AboutUI _instance;
 	private JPanel pnlAbout;
 
-	public AboutUI() {
-		setTitle("Om applikationen");
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(0, 0, 470, 415);
-		setLocationRelativeTo(null);
-		setAlwaysOnTop(true);
-		setResizable(false);
+	public static JFrame createWindow()
+	{
+		if(_instance == null)
+			_instance = new AboutUI();
+		
+		return _frame;
+	}
+	
+	private AboutUI() {
+		_frame = new JFrame();
+		_frame.setTitle("Om applikationen");
+		_frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		_frame.setBounds(0, 0, 470, 415);
+		_frame.setLocationRelativeTo(null);
+		_frame.setAlwaysOnTop(true);
+		_frame.setResizable(false);
+		_frame.setVisible(true);
 		pnlAbout = new JPanel();
 		pnlAbout.setBorder(new EmptyBorder(5, 5, 5, 5));
 		pnlAbout.setLayout(new BorderLayout(0, 0));
-		setContentPane(pnlAbout);
-		
-		GUILayer.GlobalUI.setWindowStatus(true);
+		_frame.setContentPane(pnlAbout);
 		
 		JTabbedPane tabAbout = new JTabbedPane(JTabbedPane.TOP);
 		pnlAbout.add(tabAbout, BorderLayout.CENTER);
@@ -111,9 +121,10 @@ public class AboutUI extends JFrame {
 		txtLicense.setBounds(5, 5, 435, 337);
 		pnlLicense.add(txtLicense);
 		
-		addWindowListener(new WindowAdapter() {
-			public void windowClosed(WindowEvent e) {
-				GUILayer.GlobalUI.setWindowStatus(false);
+		_frame.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				_instance = null;
+				_frame.dispose();
 			}
 		});
 	}
