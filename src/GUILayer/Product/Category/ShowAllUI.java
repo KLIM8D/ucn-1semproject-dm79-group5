@@ -59,6 +59,7 @@ public class ShowAllUI {
 		return _frame;
 	}
 	
+	@SuppressWarnings("serial")
 	private ShowAllUI() 
 	{
 		_prodCtrl = new ProductCtrl();
@@ -164,6 +165,7 @@ public class ShowAllUI {
 	}
 
 	private void addDeleteButton() {
+		@SuppressWarnings("serial")
 		Action delete = new AbstractAction()
 		{
 		    public void actionPerformed(ActionEvent e)

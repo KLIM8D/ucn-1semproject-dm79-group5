@@ -17,7 +17,6 @@ import java.awt.event.WindowEvent;
 
 public class DeleteUI {
 
-	private static final long serialVersionUID = 7832893035517234399L;
 	private static JFrame _frame;
 	private static DeleteUI _instance;
 	private JPanel contentPane;

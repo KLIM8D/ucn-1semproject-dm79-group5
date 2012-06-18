@@ -3,17 +3,14 @@ package GUILayer.Product.Group;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.event.InternalFrameEvent;
+
 import javax.swing.table.DefaultTableModel;
-import javax.swing.AbstractAction;
-import javax.swing.Action;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
-import javax.swing.WindowConstants;
-
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Rectangle;
@@ -23,12 +20,8 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
-
 import ControlLayer.ProductCtrl;
-import GUILayer.ButtonColumn;
 import GUILayer.GlobalUI;
 import ModelLayer.ProductGroupItem;
 
@@ -56,6 +49,7 @@ public class ShowGroupItemsUI
 		return _frame;
 	}
 
+	@SuppressWarnings("serial")
 	private ShowGroupItemsUI(final int prodGroupId) 
 	{
 		_productController = new ProductCtrl();

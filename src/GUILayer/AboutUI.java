@@ -17,7 +17,6 @@ import javax.swing.UIManager;
 
 public class AboutUI {
 
-	private static final long serialVersionUID = -9172568450744220960L;
 	private static JFrame _frame;
 	private static AboutUI _instance;
 	private JPanel pnlAbout;

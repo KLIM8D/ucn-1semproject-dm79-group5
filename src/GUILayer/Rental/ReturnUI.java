@@ -7,11 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
-
-import GUILayer.AboutUI;
 import GUILayer.GlobalUI;
-
-import java.awt.Component;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
@@ -19,7 +15,6 @@ import java.awt.event.WindowEvent;
 
 public class ReturnUI {
 
-	private static final long serialVersionUID = 1508718069134916292L;
 	private static JFrame _frame;
 	private static ReturnUI _instance;
 	private JPanel contentPane;

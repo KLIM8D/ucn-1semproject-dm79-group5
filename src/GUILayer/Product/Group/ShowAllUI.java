@@ -59,6 +59,7 @@ public class ShowAllUI {
 		return _frame;
 	}
 	
+	@SuppressWarnings("serial")
 	private ShowAllUI() 
 	{
 		_prodCtrl = new ProductCtrl();
@@ -164,6 +165,7 @@ public class ShowAllUI {
 	}
 
 	private void addShowButton() {
+		@SuppressWarnings("serial")
 		Action delete = new AbstractAction()
 		{
 		    public void actionPerformed(ActionEvent e)
@@ -213,7 +215,6 @@ public class ShowAllUI {
 	
 	private void showGroupInfo(int prodGroupId)
 	{
-		boolean succeeded = false;
 		try
 		{
 			ShowGroupItemsUI.createWindow(prodGroupId);

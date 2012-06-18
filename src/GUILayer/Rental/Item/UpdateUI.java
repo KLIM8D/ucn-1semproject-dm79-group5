@@ -17,7 +17,6 @@ import java.awt.event.WindowEvent;
 
 public class UpdateUI {
 
-	private static final long serialVersionUID = -969960698608387632L;
 	private static JFrame _frame;
 	private static UpdateUI _instance;
 	private JPanel contentPane;

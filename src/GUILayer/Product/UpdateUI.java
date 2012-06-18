@@ -58,6 +58,7 @@ public class UpdateUI
 		return _frame;
 	}
 	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private UpdateUI() {
 		_prodCtrl = new ProductCtrl();
 		

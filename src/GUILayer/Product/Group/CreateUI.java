@@ -16,7 +16,6 @@ import GUILayer.GlobalUI;
 
 public class CreateUI {
 
-	private static final long serialVersionUID = 2789828641175829001L;
 	private static JFrame _frame;
 	private static CreateUI _instance;
 	private JPanel contentPane;

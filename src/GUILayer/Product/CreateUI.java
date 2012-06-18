@@ -23,7 +23,6 @@ import ModelLayer.ProductCategory;
 
 public class CreateUI {
 
-	private static final long serialVersionUID = 7199391358909768134L;
 	private static JFrame _frame;
 	private static CreateUI _instance;
 	private JPanel contentPane;
@@ -43,6 +42,7 @@ public class CreateUI {
 		return _frame;
 	}
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private CreateUI() {
 		_productController = new ProductCtrl();
 		

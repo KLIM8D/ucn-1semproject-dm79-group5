@@ -17,7 +17,6 @@ import java.awt.event.WindowEvent;
 
 public class CreateUI {
 
-	private static final long serialVersionUID = 1299321633363093472L;
 	private static JFrame _frame;
 	private static CreateUI _instance;
 	private JPanel contentPane;
