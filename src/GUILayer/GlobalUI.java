@@ -60,6 +60,10 @@ public class GlobalUI {
             	return "Der skal indtastes i feltet 'Ekspedient id'.";
             case 21:
             	return "Der skal mindst indtastes 6 tegn i fejlet 'Ny adgangskode'.";
+            case 22:
+            	return "Ekspedienten er slettet.";
+            case 23:
+            	return "Kodeordet for ekspedienten er ændret.";
         }
         return "En ukendt system fejl er hændt.";
     }
