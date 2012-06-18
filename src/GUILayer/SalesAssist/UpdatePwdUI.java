@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -13,7 +12,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
-
 import ControlLayer.SalesAssistantCtrl;
 import ModelLayer.SalesAssistant;
 import GUILayer.GlobalUI;
@@ -23,7 +21,6 @@ import java.awt.event.KeyEvent;
 public class UpdatePwdUI {
 
 	private SalesAssistantCtrl _saController;
-	private static final long serialVersionUID = -2198226493427431793L;
 	private static JFrame _frame;
 	private static UpdatePwdUI _instance;
 	private JPanel contentPane;
@@ -124,7 +121,8 @@ public class UpdatePwdUI {
 					int salesAsstId = Integer.parseInt(txtSalesAssistId.getText());
 					SalesAssistant sa = _saController.getSalesAssistant(salesAsstId);
 					if(sa != null) {
-						_saController.changePassword(salesAsstId, enteredPwd);				
+						_saController.changePassword(salesAsstId, enteredPwd);
+						JOptionPane.showMessageDialog(null, GlobalUI.messageHandling(23), "INFORMATION!", JOptionPane.INFORMATION_MESSAGE);
 						_instance = null;
 						_frame.dispose();
 					}
