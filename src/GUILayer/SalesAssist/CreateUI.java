@@ -4,19 +4,25 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JSeparator;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
+import ControlLayer.PersonCtrl;
+import ControlLayer.SalesAssistantCtrl;
+import GUILayer.GlobalUI;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class CreateUI {
 
-	private static final long serialVersionUID = -2548260112937399166L;
+	private SalesAssistantCtrl _saController;
+	private PersonCtrl _perController;
 	private static JFrame _frame;
 	private static CreateUI _instance;
 	private JPanel contentPane;
@@ -42,6 +48,9 @@ public class CreateUI {
 	}
 
 	private CreateUI() {
+		_saController = new SalesAssistantCtrl();
+		_perController = new PersonCtrl();
+		
 		_frame = new JFrame();
 		_frame.setTitle("Opret ekspedient");
 		_frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -60,6 +69,14 @@ public class CreateUI {
 		contentPane.add(lblSocNum);
 		
 		txtSocNum = new JTextField();
+		txtSocNum.addKeyListener(new KeyAdapter() {
+			public void keyReleased(KeyEvent e) {
+				if(txtSocNum.getText().length() > 0)
+				{				
+					GlobalUI.checkIfInt(txtSocNum);				
+				}
+			}
+		});
 		txtSocNum.setBounds(127, 10, 227, 19);
 		contentPane.add(txtSocNum);
 		txtSocNum.setColumns(10);
@@ -88,6 +105,14 @@ public class CreateUI {
 		contentPane.add(lblZipCode);
 		
 		txtZipCode = new JTextField();
+		txtZipCode.addKeyListener(new KeyAdapter() {
+			public void keyReleased(KeyEvent e) {
+				if(txtZipCode.getText().length() > 0)
+				{				
+					GlobalUI.checkIfInt(txtZipCode);				
+				}
+			}
+		});
 		txtZipCode.setBounds(127, 89, 40, 19);
 		contentPane.add(txtZipCode);
 		txtZipCode.setColumns(10);
@@ -106,6 +131,14 @@ public class CreateUI {
 		contentPane.add(lblPhoneNo);
 		
 		txtPhoneNo = new JTextField();
+		txtPhoneNo.addKeyListener(new KeyAdapter() {
+			public void keyReleased(KeyEvent e) {
+				if(txtPhoneNo.getText().length() > 0)
+				{				
+					GlobalUI.checkIfInt(txtPhoneNo);				
+				}
+			}
+		});
 		txtPhoneNo.setBounds(127, 116, 227, 19);
 		contentPane.add(txtPhoneNo);
 		txtPhoneNo.setColumns(10);
@@ -119,6 +152,14 @@ public class CreateUI {
 		contentPane.add(lblPassword);
 		
 		txtPassword = new JPasswordField();
+		txtPassword.addKeyListener(new KeyAdapter() {
+			public void keyReleased(KeyEvent e) {
+				if(txtPassword.getPassword().length > 0)
+				{				
+					GlobalUI.checkIfInt(txtPassword);				
+				}
+			}
+		});
 		txtPassword.setBounds(127, 159, 227, 19);
 		contentPane.add(txtPassword);
 		
@@ -150,6 +191,33 @@ public class CreateUI {
 	}
 	
 	private void createSalesAssist() {
-		
+		try {
+			long socNum = Long.parseLong(txtSocNum.getText().trim());
+			String fullName = txtFullName.getText();
+			String address = txtAddress.getText();
+			int zipCode = Integer.parseInt(txtZipCode.getText().trim());
+			String city = txtCity.getText();
+			long phoneNo = Long.parseLong(txtPhoneNo.getText().trim());
+			
+			String enteredPwd = "";
+			for(char c : txtPassword.getPassword())
+				enteredPwd += c;
+			
+			_perController.createPerson(socNum, fullName, address, city, zipCode, phoneNo);
+			int saId = _saController.createSalesAssistant(enteredPwd, socNum);
+			
+			if(saId != 0) {	
+				JOptionPane.showMessageDialog(null, GlobalUI.messageHandling(05), "INFORMATION!", JOptionPane.INFORMATION_MESSAGE);
+				_instance = null;
+				_frame.dispose();
+			}
+			else {
+				JOptionPane.showMessageDialog(null, GlobalUI.messageHandling(10), "FEJL!", JOptionPane.WARNING_MESSAGE);
+			}
+			
+		}
+		catch (Exception e) {
+			JOptionPane.showMessageDialog(null, GlobalUI.messageHandling(99), "FEJL!", JOptionPane.WARNING_MESSAGE);
+		}
 	}
 }
