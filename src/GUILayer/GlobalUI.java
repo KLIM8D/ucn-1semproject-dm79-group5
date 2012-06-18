@@ -10,7 +10,6 @@ public class GlobalUI {
 	private static String _systemTitle = "1. Semesters Projekt";
 	private static String _systemDescription = "UCN-DM79, Gruppe 5";
 	private static String _systemBuild = "build31052012";	
-	//private static boolean _isActive = false;
 	
 	public GlobalUI() {
 		try {
@@ -79,14 +78,6 @@ public class GlobalUI {
 		}
 		return null;
 	}
-	
-//	public static boolean getWindowStatus() {
-//		return _isActive;
-//	}
-//	
-//	public static void setWindowStatus(boolean status) {
-//		_isActive = status;
-//	}
 	
 	public static void checkIfInt(JTextField data) {
 		try {
