@@ -111,7 +111,7 @@ public class ShowAllUI {
 			public void keyReleased(KeyEvent e) {
 				if(txtItemNumber.getText().length() > 0)
 				{
-					GlobalUI.checkIfInt(txtItemNumber);
+					GlobalUI.checkIfLong(txtItemNumber);
 				}
 			}
 		});
@@ -235,6 +235,7 @@ public class ShowAllUI {
 		showProductPanel.add(lblProduktInformation);
 		
 		lblLagerBeholdning = new JLabel("Lager beholdning:");
+		lblLagerBeholdning.setVisible(false);
 		lblLagerBeholdning.setFont(new Font("Dialog", Font.BOLD, 16));
 		lblLagerBeholdning.setBounds(444, 0, 200, 15);
 		showProductPanel.add(lblLagerBeholdning);
@@ -324,6 +325,7 @@ public class ShowAllUI {
 		if(prod != null)
 		{
 			lblProduktInformation.setVisible(true);
+			lblLagerBeholdning.setVisible(true);
 			lblShowItemNumber.setText("Produkt nummer: " + Long.toString(prod.getItemNumber()));
 			lblShowItemName.setText("Produkt navn: " + prod.getItemName());
 			lblShowItemMinQuantity.setText("Minimums beholdning: " + Integer.toString(prod.getMinInStock()));

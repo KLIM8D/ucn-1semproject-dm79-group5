@@ -72,7 +72,7 @@ public class CreateUI {
 		txtProdId = new JTextField();
 		txtProdId.addKeyListener(new KeyAdapter() {
 			public void keyReleased(KeyEvent e) {
-				GlobalUI.checkIfInt(txtProdId);
+				GlobalUI.checkIfLong(txtProdId);
 			}
 		});
 		txtProdId.setBounds(121, 10, 371, 19);

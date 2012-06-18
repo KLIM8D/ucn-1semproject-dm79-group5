@@ -88,4 +88,15 @@ public class GlobalUI {
 			data.setText(null);
 		}
 	}
+	
+	public static void checkIfLong(JTextField data) {
+		try {
+			Long.parseLong(data.getText());
+		}
+
+		catch (NumberFormatException err) {
+			JOptionPane.showMessageDialog(frame, GlobalUI.messageHandling(04), "FEJL!", JOptionPane.WARNING_MESSAGE);
+			data.setText(null);
+		}
+	}
 }

@@ -2,8 +2,16 @@ package GUILayer;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowStateListener;
+
+import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
+import javax.swing.JLayeredPane;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -11,35 +19,50 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
+
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Container;
+import java.awt.Dimension;
+
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.beans.PropertyVetoException;
 import javax.swing.JButton;
 
 
-public class SystemUI extends JFrame {
+public class SystemUI extends JFrame implements ComponentListener {
 
 	private static final long serialVersionUID = 817624121973761535L;
 	private JPanel pnlSystemLayout;
+	private JLayeredPane layeredPane;
+	private JPanel pnlQuickSelect;
 
 	public SystemUI() {
 		setTitle(GlobalUI.systemInformation(01) + " - " + GlobalUI.systemInformation(02) + " (" + GlobalUI.systemInformation(03) + ")");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(0, 0, 1024, 768);
 		setLocationRelativeTo(null);
-		setResizable(false);
-
+		setMinimumSize(new Dimension(1024, 768));
+		setResizable(true);
 		pnlSystemLayout = new JPanel();
 		pnlSystemLayout.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(pnlSystemLayout);
 		pnlSystemLayout.setLayout(null);
 		
-		JPanel pnlQuickSelect = new JPanel();
+		layeredPane = new JDesktopPane();
+		layeredPane.setOpaque(false);
+		layeredPane.setBounds(0, 0, getWidth(), getHeight());
+		add(layeredPane, BorderLayout.CENTER);
+		addComponentListener(this);
+		
+		pnlQuickSelect = new JPanel();
 		pnlQuickSelect.setBorder(new LineBorder(new Color(0, 0, 0)));
 		pnlQuickSelect.setBounds(363, 163, 351, 353);
-		pnlSystemLayout.add(pnlQuickSelect);
+		layeredPane.add(pnlQuickSelect, JLayeredPane.FRAME_CONTENT_LAYER);
 		pnlQuickSelect.setLayout(null);
 		
 		JLabel lblTitle = new JLabel("Vestbjerg Byggecenter A/S");
@@ -87,7 +110,8 @@ public class SystemUI extends JFrame {
 		btnFindProduct.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 					JInternalFrame showAllProducts = GUILayer.Product.ShowAllUI.createWindow();
-					pnlSystemLayout.add(showAllProducts);
+					layeredPane.add(showAllProducts, JLayeredPane.DEFAULT_LAYER);
+					layeredPane.moveToFront(showAllProducts);
 					try 
 					{
 						showAllProducts.setSelected(true);
@@ -234,7 +258,8 @@ public class SystemUI extends JFrame {
 		mntmSalesAssistShowAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JInternalFrame showAllSalesAsst = GUILayer.SalesAssist.ShowAllUI.createWindow();
-				pnlSystemLayout.add(showAllSalesAsst);
+				layeredPane.add(showAllSalesAsst, JLayeredPane.DEFAULT_LAYER);
+				layeredPane.moveToFront(showAllSalesAsst);
 				try 
 				{
 					showAllSalesAsst.setSelected(true);
@@ -267,7 +292,8 @@ public class SystemUI extends JFrame {
 		mntmProductShowAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 					JInternalFrame showAllProducts = GUILayer.Product.ShowAllUI.createWindow();
-					pnlSystemLayout.add(showAllProducts);
+					layeredPane.add(showAllProducts, JLayeredPane.DEFAULT_LAYER);
+					layeredPane.moveToFront(showAllProducts);
 					try 
 					{
 						showAllProducts.setSelected(true);
@@ -311,7 +337,8 @@ public class SystemUI extends JFrame {
 		mntmProductCatShowAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 					JInternalFrame showAllCatgories = GUILayer.Product.Category.ShowAllUI.createWindow();
-					pnlSystemLayout.add(showAllCatgories);
+					layeredPane.add(showAllCatgories, JLayeredPane.DEFAULT_LAYER);
+					layeredPane.moveToFront(showAllCatgories);
 					try 
 					{
 						showAllCatgories.setSelected(true);
@@ -335,14 +362,23 @@ public class SystemUI extends JFrame {
 		JMenuItem mntmProductGroupAddToGroup = new JMenuItem("Tilføj et produkt til en produkt gruppe");
 		mnProductGroup.add(mntmProductGroupAddToGroup);
 		
+		JMenuItem mntmProductGroupShowAll = new JMenuItem("Vis alle produkt grupper");
+		mntmProductGroupShowAll.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+					JInternalFrame showAllProductGroups = GUILayer.Product.Group.ShowAllUI.createWindow();
+					layeredPane.add(showAllProductGroups, JLayeredPane.DEFAULT_LAYER);
+					layeredPane.moveToFront(showAllProductGroups);
+					try 
+					{
+						showAllProductGroups.setSelected(true);
+					} 
+					catch (PropertyVetoException ex) {}
+			}
+		});
+		mnProductGroup.add(mntmProductGroupShowAll);
+		
 		JMenuItem mntmProductGroupUpdate = new JMenuItem("Opdater produkt gruppe");
 		mnProductGroup.add(mntmProductGroupUpdate);
-		
-		JMenuItem mntmProductGroupFind = new JMenuItem("Find produkt gruppe");
-		mnProductGroup.add(mntmProductGroupFind);
-		
-		JMenuItem mntmProductGroupShowAll = new JMenuItem("Vis alle produkt grupper");
-		mnProductGroup.add(mntmProductGroupShowAll);
 		
 		JMenuItem mntmProductGroupDelete = new JMenuItem("Slet produkt gruppe");
 		mnProductGroup.add(mntmProductGroupDelete);
@@ -366,5 +402,32 @@ public class SystemUI extends JFrame {
 			}
 		});
 		mnAbout.add(mntmAboutApp);
+	}
+	
+	@Override
+	public void componentResized(ComponentEvent e) 
+	{
+		layeredPane.setBounds(0, 0, getWidth(), getHeight());
+		int x = (getWidth() / 2) - (351 / 2);
+		int y = (getHeight() / 3) - (353 / 2);
+		pnlQuickSelect.setBounds(x, y, 351, 353);
+    }
+
+	@Override
+	public void componentHidden(ComponentEvent arg0) 
+	{
+		
+	}
+
+	@Override
+	public void componentMoved(ComponentEvent arg0) 
+	{
+		
+	}
+
+	@Override
+	public void componentShown(ComponentEvent arg0) 
+	{
+		
 	}
 }

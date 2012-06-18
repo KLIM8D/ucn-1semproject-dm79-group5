@@ -66,7 +66,7 @@ public class DeleteUI {
 			public void keyReleased(KeyEvent e) {
 				if(txtItemNumber.getText().length() > 0)
 				{
-					GlobalUI.checkIfInt(txtItemNumber);
+					GlobalUI.checkIfLong(txtItemNumber);
 				}
 			}
 		});
