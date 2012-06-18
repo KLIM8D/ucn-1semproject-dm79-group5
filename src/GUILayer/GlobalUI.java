@@ -5,7 +5,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 public class GlobalUI {
-	
 	protected static final Component frame = null;
 	private static String _systemTitle = "1. Semesters Projekt";
 	private static String _systemDescription = "UCN-DM79, Gruppe 5";
