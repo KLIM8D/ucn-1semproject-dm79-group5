@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -12,7 +11,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
-
 import ControlLayer.SalesAssistantCtrl;
 import ModelLayer.SalesAssistant;
 import GUILayer.GlobalUI;
@@ -22,7 +20,6 @@ import java.awt.event.KeyEvent;
 public class DeleteUI {
 
 	private SalesAssistantCtrl _saController;
-	private static final long serialVersionUID = 8303757512052314425L;
 	private static JFrame _frame;
 	private static DeleteUI _instance;
 	private JPanel contentPane;
@@ -112,6 +109,7 @@ public class DeleteUI {
 					int result = JOptionPane.showConfirmDialog(null, GlobalUI.messageHandling(17), "ADVARSEL!", JOptionPane.OK_CANCEL_OPTION);
 					if(result == 0) {
 						_saController.removeSalesAssistant(salesAsstId);
+						JOptionPane.showMessageDialog(null, GlobalUI.messageHandling(22), "INFORMATION!", JOptionPane.INFORMATION_MESSAGE);
 						_instance = null;
 						_frame.dispose();
 					}			
