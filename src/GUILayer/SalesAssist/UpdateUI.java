@@ -4,17 +4,21 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import ControlLayer.PersonCtrl;
+import GUILayer.GlobalUI;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class UpdateUI {
-
-	private static final long serialVersionUID = -2548260112937399166L;
+	
+	private PersonCtrl _perController;
 	private static JFrame _frame;
 	private static UpdateUI _instance;
 	private JPanel contentPane;
@@ -36,6 +40,8 @@ public class UpdateUI {
 	}
 
 	private UpdateUI() {
+		_perController = new PersonCtrl();
+		
 		_frame = new JFrame();
 		_frame.setTitle("Opdater ekspedient information");
 		_frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -54,6 +60,14 @@ public class UpdateUI {
 		contentPane.add(lblSocNum);
 		
 		txtSocNum = new JTextField();
+		txtSocNum.addKeyListener(new KeyAdapter() {
+			public void keyReleased(KeyEvent e) {
+				if(txtSocNum.getText().length() > 0)
+				{				
+					GlobalUI.checkIfInt(txtSocNum);				
+				}
+			}
+		});
 		txtSocNum.setBounds(127, 10, 227, 19);
 		contentPane.add(txtSocNum);
 		txtSocNum.setColumns(10);
@@ -82,6 +96,14 @@ public class UpdateUI {
 		contentPane.add(lblZipCode);
 		
 		txtZipCode = new JTextField();
+		txtZipCode.addKeyListener(new KeyAdapter() {
+			public void keyReleased(KeyEvent e) {
+				if(txtZipCode.getText().length() > 0)
+				{				
+					GlobalUI.checkIfInt(txtZipCode);				
+				}
+			}
+		});
 		txtZipCode.setBounds(127, 89, 40, 19);
 		contentPane.add(txtZipCode);
 		txtZipCode.setColumns(10);
@@ -123,6 +145,29 @@ public class UpdateUI {
 	}
 	
 	private void updateSalesAssist() {
-		
+		try {
+			boolean succeeded = false;
+			
+			long socNum = Long.parseLong(txtSocNum.getText().trim());
+			String fullName = txtFullName.getText();
+			String address = txtAddress.getText();
+			int zipCode = Integer.parseInt(txtZipCode.getText().trim());
+			String city = txtCity.getText();
+			
+			succeeded = _perController.updatePerson(socNum, fullName, address, city, zipCode);
+			
+			if(succeeded) {
+				JOptionPane.showMessageDialog(null, GlobalUI.messageHandling(13), "INFORMATION!", JOptionPane.INFORMATION_MESSAGE);
+				_instance = null;
+				_frame.dispose();
+			}
+			else {
+				JOptionPane.showMessageDialog(null, GlobalUI.messageHandling(14), "FEJL!", JOptionPane.WARNING_MESSAGE);
+			}
+			
+		}
+		catch (Exception e) {
+			JOptionPane.showMessageDialog(null, GlobalUI.messageHandling(99), "FEJL!", JOptionPane.WARNING_MESSAGE);
+		}
 	}
 }
