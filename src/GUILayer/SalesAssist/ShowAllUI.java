@@ -2,7 +2,6 @@ package GUILayer.SalesAssist;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
-
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
