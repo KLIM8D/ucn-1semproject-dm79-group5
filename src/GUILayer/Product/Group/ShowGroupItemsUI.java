@@ -23,9 +23,11 @@ import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import ControlLayer.ProductCtrl;
 import GUILayer.GlobalUI;
+import ModelLayer.ProductGroup;
 import ModelLayer.ProductGroupItem;
 
 import javax.swing.JTable;
+import java.awt.Font;
 
 public class ShowGroupItemsUI 
 {
@@ -40,6 +42,7 @@ public class ShowGroupItemsUI
 	private JScrollPane scrollPane;
 	private JTable table;
 	private JPanel gridPanel;
+	private JLabel lblGroupName;
 	
 	public static JFrame createWindow(int prodGroupId)
 	{
@@ -59,7 +62,6 @@ public class ShowGroupItemsUI
 		_frame.setTitle("Vis produkt gruppe");
 		_frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		_frame.setBounds(0, 0, 524, 500);
-		_frame.setLocationRelativeTo(null);
 		_frame.setVisible(true);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -69,7 +71,12 @@ public class ShowGroupItemsUI
 		//Grid / table
 		gridPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		gridPanel.setBounds(new Rectangle(0, 40, 514, 200));
-		contentPane.add(gridPanel);		
+		contentPane.add(gridPanel);
+		
+		lblGroupName = new JLabel("");
+		lblGroupName.setFont(new Font("Dialog", Font.BOLD, 16));
+		lblGroupName.setBounds(12, 13, 502, 15);
+		contentPane.add(lblGroupName);
 				
 		columnNames = new String[]{"Produkt nummer", "Produkt navn", "Antal"};
 				
@@ -145,6 +152,8 @@ public class ShowGroupItemsUI
 		contentPane.add(btnCreate);
 		
 		
+		
+		
 		_frame.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
 				_instance = null;
@@ -155,7 +164,9 @@ public class ShowGroupItemsUI
 	
 	private void addData(int prodGroupId)
 	{
-		ArrayList<ProductGroupItem> prodGroupItems = makeCollection(_productController.getProductGroup(prodGroupId).getItems());
+		ProductGroup group = _productController.getProductGroup(prodGroupId);
+		ArrayList<ProductGroupItem> prodGroupItems = makeCollection(group.getItems());
+		lblGroupName.setText(group.getProductGroupName());
 		Object[][] data = {};
 		model.setDataVector(data, columnNames);
 		for(ProductGroupItem item : prodGroupItems)

@@ -40,7 +40,6 @@ public class DeleteUI {
 		_frame.setTitle("Slet ekspedient");
 		_frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		_frame.setBounds(0, 0, 450, 138);
-		_frame.setLocationRelativeTo(null);
 		_frame.setResizable(false);
 		_frame.setVisible(true);
 		

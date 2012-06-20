@@ -34,7 +34,6 @@ public class AboutUI {
 		_frame.setTitle("Om applikationen");
 		_frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		_frame.setBounds(0, 0, 470, 415);
-		_frame.setLocationRelativeTo(null);
 		_frame.setAlwaysOnTop(true);
 		_frame.setResizable(false);
 		_frame.setVisible(true);

@@ -17,7 +17,10 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Toolkit;
+
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
@@ -78,7 +81,8 @@ public class SystemUI extends JFrame implements ComponentListener {
 		JButton btnNewRental = new JButton("Ny udlejning");
 		btnNewRental.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					GUILayer.Rental.CreateUI.createWindow();
+					JFrame createFrame = GUILayer.Rental.CreateUI.createWindow();
+					createFrame.setLocationRelativeTo(pnlSystemLayout);
 			}
 		});
 		btnNewRental.setBounds(12, 162, 327, 35);
@@ -91,7 +95,8 @@ public class SystemUI extends JFrame implements ComponentListener {
 		JButton btnReturnRental = new JButton("Returnering af udlejning");
 		btnReturnRental.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					GUILayer.Rental.ReturnUI.createWindow();
+					JFrame returnFrame = GUILayer.Rental.ReturnUI.createWindow();
+					returnFrame.setLocationRelativeTo(pnlSystemLayout);
 			}
 		});
 		btnReturnRental.setBounds(12, 256, 327, 35);
@@ -157,7 +162,8 @@ public class SystemUI extends JFrame implements ComponentListener {
 		JMenuItem mntmRentalNew = new JMenuItem("Ny udlejning");
 		mntmRentalNew.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					GUILayer.Rental.CreateUI.createWindow();
+					JFrame  createFrame = GUILayer.Rental.CreateUI.createWindow();
+					createFrame.setLocationRelativeTo(pnlSystemLayout);
 			}
 		});
 		mnRental.add(mntmRentalNew);
@@ -171,7 +177,8 @@ public class SystemUI extends JFrame implements ComponentListener {
 		JMenuItem mntmRentalReturn = new JMenuItem("Retunering af udlejning");
 		mntmRentalReturn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					GUILayer.Rental.ReturnUI.createWindow();
+					JFrame returnFrame = GUILayer.Rental.ReturnUI.createWindow();
+					returnFrame.setLocationRelativeTo(pnlSystemLayout);
 			}
 		});
 		mnRental.add(mntmRentalReturn);
@@ -185,7 +192,8 @@ public class SystemUI extends JFrame implements ComponentListener {
 		JMenuItem mntmRentalProductNew = new JMenuItem("Nyt udlejningsprodukt");
 		mntmRentalProductNew.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					GUILayer.Rental.Item.CreateUI.createWindow();
+					JFrame createFrame = GUILayer.Rental.Item.CreateUI.createWindow();
+					createFrame.setLocationRelativeTo(pnlSystemLayout);
 			}
 		});
 		mnRentalProducts.add(mntmRentalProductNew);
@@ -193,7 +201,8 @@ public class SystemUI extends JFrame implements ComponentListener {
 		JMenuItem mntmRentalProductUpdate = new JMenuItem("Opdater udlejningsprodukt");
 		mntmRentalProductUpdate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					GUILayer.Rental.Item.UpdateUI.createWindow();
+					JFrame updateFrame = GUILayer.Rental.Item.UpdateUI.createWindow();
+					updateFrame.setLocationRelativeTo(pnlSystemLayout);
 			}
 		});
 		mnRentalProducts.add(mntmRentalProductUpdate);
@@ -201,7 +210,8 @@ public class SystemUI extends JFrame implements ComponentListener {
 		JMenuItem mntmRentalProductDelete = new JMenuItem("Slet udlejningsprodukt");
 		mntmRentalProductDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					GUILayer.Rental.Item.DeleteUI.createWindow();
+					JFrame deleteFrame = GUILayer.Rental.Item.DeleteUI.createWindow();
+					deleteFrame.setLocationRelativeTo(pnlSystemLayout);
 			}
 		});
 		mnRentalProducts.add(mntmRentalProductDelete);
@@ -224,7 +234,8 @@ public class SystemUI extends JFrame implements ComponentListener {
 		JMenuItem mntmSalesAssistCreate = new JMenuItem("Opret ekspedient");
 		mntmSalesAssistCreate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					GUILayer.SalesAssist.CreateUI.createWindow();
+					JFrame createFrame = GUILayer.SalesAssist.CreateUI.createWindow();
+					createFrame.setLocationRelativeTo(pnlSystemLayout);
 			}
 		});
 		mnSalesAssistant.add(mntmSalesAssistCreate);
@@ -232,7 +243,8 @@ public class SystemUI extends JFrame implements ComponentListener {
 		JMenuItem mntmSalesAssistUpdate = new JMenuItem("Opdatere ekspedient information");
 		mntmSalesAssistUpdate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					GUILayer.SalesAssist.UpdateUI.createWindow();
+					JFrame updateFrame = GUILayer.SalesAssist.UpdateUI.createWindow();
+					updateFrame.setLocationRelativeTo(pnlSystemLayout);
 			}
 		});
 		mnSalesAssistant.add(mntmSalesAssistUpdate);
@@ -240,7 +252,8 @@ public class SystemUI extends JFrame implements ComponentListener {
 		JMenuItem mntmSalesAssistDelete = new JMenuItem("Slet ekspedient");
 		mntmSalesAssistDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					GUILayer.SalesAssist.DeleteUI.createWindow();
+					JFrame deleteFrame = GUILayer.SalesAssist.DeleteUI.createWindow();
+					deleteFrame.setLocationRelativeTo(pnlSystemLayout);
 			}
 		});
 		mnSalesAssistant.add(mntmSalesAssistDelete);
@@ -263,7 +276,8 @@ public class SystemUI extends JFrame implements ComponentListener {
 		JMenuItem mntmSalesAssistChangePassword = new JMenuItem("Skift adgangskode");
 		mntmSalesAssistChangePassword.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					GUILayer.SalesAssist.UpdatePwdUI.createWindow();
+					JFrame passwordFrame = GUILayer.SalesAssist.UpdatePwdUI.createWindow();
+					passwordFrame.setLocationRelativeTo(pnlSystemLayout);
 			}
 		});
 		mnSalesAssistant.add(mntmSalesAssistChangePassword);
@@ -274,7 +288,8 @@ public class SystemUI extends JFrame implements ComponentListener {
 		JMenuItem mntmProductCreate = new JMenuItem("Opret produkt");
 		mntmProductCreate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					GUILayer.Product.CreateUI.createWindow();
+					JFrame createFrame = GUILayer.Product.CreateUI.createWindow();
+					createFrame.setLocationRelativeTo(pnlSystemLayout);
 			}
 		});
 		mnProduct.add(mntmProductCreate);
@@ -297,7 +312,8 @@ public class SystemUI extends JFrame implements ComponentListener {
 		JMenuItem mntmProductUpdate = new JMenuItem("Opdater produkt");
 		mntmProductUpdate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					GUILayer.Product.UpdateUI.createWindow();
+					JFrame updateFrame = GUILayer.Product.UpdateUI.createWindow();
+					updateFrame.setLocationRelativeTo(pnlSystemLayout);
 			}
 		});
 		mnProduct.add(mntmProductUpdate);
@@ -305,8 +321,9 @@ public class SystemUI extends JFrame implements ComponentListener {
 		JMenuItem mntmProductDelete = new JMenuItem("Slet produkt");
 		mntmProductDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					GUILayer.Product.DeleteUI.createWindow();
-			}
+					JFrame deleteFrame = GUILayer.Product.DeleteUI.createWindow();
+					deleteFrame.setLocationRelativeTo(pnlSystemLayout);
+				}
 		});
 		mnProduct.add(mntmProductDelete);
 		
@@ -319,7 +336,8 @@ public class SystemUI extends JFrame implements ComponentListener {
 		JMenuItem mntmProductCatCreate = new JMenuItem("Opret produkt kategori");
 		mntmProductCatCreate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					GUILayer.Product.Category.CreateUI.createWindow();
+					JFrame createFrame = GUILayer.Product.Category.CreateUI.createWindow();
+					createFrame.setLocationRelativeTo(pnlSystemLayout);
 			}
 		});
 		mnProductCat.add(mntmProductCatCreate);
@@ -345,13 +363,11 @@ public class SystemUI extends JFrame implements ComponentListener {
 		JMenuItem mntmProductGroupCreate = new JMenuItem("Opret produkt gruppe");
 		mntmProductGroupCreate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					GUILayer.Product.Group.CreateUI.createWindow();
+					JFrame createFrame = GUILayer.Product.Group.CreateUI.createWindow();
+					createFrame.setLocationRelativeTo(pnlSystemLayout);
 			}
 		});
 		mnProductGroup.add(mntmProductGroupCreate);
-		
-		JMenuItem mntmProductGroupAddToGroup = new JMenuItem("Tilføj et produkt til en produkt gruppe");
-		mnProductGroup.add(mntmProductGroupAddToGroup);
 		
 		JMenuItem mntmProductGroupShowAll = new JMenuItem("Vis alle produkt grupper");
 		mntmProductGroupShowAll.addActionListener(new ActionListener() {
@@ -369,9 +385,21 @@ public class SystemUI extends JFrame implements ComponentListener {
 		mnProductGroup.add(mntmProductGroupShowAll);
 		
 		JMenuItem mntmProductGroupUpdate = new JMenuItem("Opdater produkt gruppe");
+		mntmProductGroupUpdate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+					JFrame updateFrame = GUILayer.Product.Group.UpdateUI.createWindow();
+					updateFrame.setLocationRelativeTo(pnlSystemLayout);
+			}
+		});
 		mnProductGroup.add(mntmProductGroupUpdate);
 		
 		JMenuItem mntmProductGroupDelete = new JMenuItem("Slet produkt gruppe");
+		mntmProductGroupDelete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+					JFrame deleteFrame = GUILayer.Product.Group.DeleteUI.createWindow();
+					deleteFrame.setLocationRelativeTo(pnlSystemLayout);
+			}
+		});
 		mnProductGroup.add(mntmProductGroupDelete);
 		
 		JMenu mnStatistics = new JMenu("Statistik");
@@ -389,7 +417,8 @@ public class SystemUI extends JFrame implements ComponentListener {
 		JMenuItem mntmAboutApp = new JMenuItem("Applikationen");
 		mntmAboutApp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					GUILayer.AboutUI.createWindow();				
+					JFrame aboutFrame = GUILayer.AboutUI.createWindow();
+					aboutFrame.setLocationRelativeTo(pnlSystemLayout);
 			}
 		});
 		mnAbout.add(mntmAboutApp);
@@ -421,4 +450,5 @@ public class SystemUI extends JFrame implements ComponentListener {
 	{
 		
 	}
+
 }

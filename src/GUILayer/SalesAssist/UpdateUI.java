@@ -46,7 +46,6 @@ public class UpdateUI {
 		_frame.setTitle("Opdater ekspedient information");
 		_frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		_frame.setBounds(0, 0, 368, 217);
-		_frame.setLocationRelativeTo(null);
 		_frame.setResizable(false);
 		_frame.setVisible(true);
 		

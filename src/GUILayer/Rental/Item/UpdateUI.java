@@ -39,7 +39,6 @@ public class UpdateUI {
 		_frame.setTitle("Opdater udlejningsprodukt");
 		_frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		_frame.setBounds(0, 0, 450, 212);
-		_frame.setLocationRelativeTo(null);
 		_frame.setVisible(true);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

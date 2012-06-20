@@ -38,7 +38,6 @@ public class CreateUI {
 		_frame.setTitle("Opret produkt gruppe");
 		_frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		_frame.setBounds(0, 0, 450, 136);
-		_frame.setLocationRelativeTo(null);
 		_frame.setVisible(true);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

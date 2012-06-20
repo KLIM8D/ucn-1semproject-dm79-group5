@@ -42,7 +42,6 @@ public class UpdatePwdUI {
 		_frame.setTitle("Skift adgangskode");
 		_frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		_frame.setBounds(0, 0, 450, 167);
-		_frame.setLocationRelativeTo(null);
 		_frame.setResizable(false);
 		_frame.setVisible(true);
 		

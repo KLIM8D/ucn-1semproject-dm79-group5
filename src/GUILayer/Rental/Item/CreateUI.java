@@ -38,7 +38,6 @@ public class CreateUI {
 		_frame.setTitle("Nyt udlejningsprodukt");
 		_frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		_frame.setBounds(0, 0, 450, 212);
-		_frame.setLocationRelativeTo(null);
 		_frame.setResizable(false);
 		_frame.setVisible(true);
 		contentPane = new JPanel();

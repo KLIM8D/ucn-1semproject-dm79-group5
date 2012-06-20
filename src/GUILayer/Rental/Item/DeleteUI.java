@@ -36,7 +36,6 @@ public class DeleteUI {
 		_frame.setTitle("Slet udlejningsprodukt");
 		_frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		_frame.setBounds(0, 0, 450, 132);
-		_frame.setLocationRelativeTo(null);
 		_frame.setVisible(true);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

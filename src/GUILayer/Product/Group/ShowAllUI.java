@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -217,7 +218,8 @@ public class ShowAllUI {
 	{
 		try
 		{
-			ShowGroupItemsUI.createWindow(prodGroupId);
+			JFrame frameShowInfo = ShowGroupItemsUI.createWindow(prodGroupId);
+			GlobalUI.centerOnScreen(frameShowInfo);
 		}
 		catch(Exception ex)
 		{

@@ -67,7 +67,6 @@ public class UpdateUI
 		_frame.setVisible(true);
 		_frame.setResizable(false);
 		_frame.setBounds(0, 0, 600, 300);
-		_frame.setLocationRelativeTo(null);
 		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

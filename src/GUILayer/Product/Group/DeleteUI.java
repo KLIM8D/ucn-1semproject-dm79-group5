@@ -1,4 +1,4 @@
-package GUILayer.Product;
+package GUILayer.Product.Group;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,9 +24,9 @@ public class DeleteUI {
 	private static DeleteUI _instance;
 	private static JFrame _frame;
 	private JPanel contentPane;
-	private JButton btnDeleteProduct;
-	private JTextField txtItemNumber;
-	private JLabel lblItemNumber;
+	private JButton btnDeleteProductGroup;
+	private JTextField txtProdGroupId;
+	private JLabel lblProdGroupId;
 	
 	//Controllers
 	private ProductCtrl _prodCtrl;
@@ -44,10 +44,10 @@ public class DeleteUI {
 		_prodCtrl = new ProductCtrl();
 		
 		_frame = new JFrame();		
-		_frame.setTitle("Slet produkt");
+		_frame.setTitle("Slet produkt gruppe");
 		_frame.setVisible(true);
 		_frame.setResizable(false);
-		_frame.setBounds(0, 0, 486, 100);
+		_frame.setBounds(0, 0, 489, 100);
 		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -56,39 +56,39 @@ public class DeleteUI {
 		
 		//Top layout
 		JPanel topPanel = new JPanel();
-		topPanel.setBounds(5, 0, 590, 69);
+		topPanel.setBounds(5, 0, 489, 69);
 		topPanel.setLayout(null);
-		txtItemNumber = new JTextField();
-		txtItemNumber.setBounds(211, 12, 251, 20);
-		txtItemNumber.setColumns(10);
-		txtItemNumber.addKeyListener(new KeyAdapter() {
+		txtProdGroupId = new JTextField();
+		txtProdGroupId.setBounds(222, 12, 251, 20);
+		txtProdGroupId.setColumns(10);
+		txtProdGroupId.addKeyListener(new KeyAdapter() {
 			public void keyReleased(KeyEvent e) {
-				if(txtItemNumber.getText().length() > 0)
+				if(txtProdGroupId.getText().length() > 0)
 				{
-					GlobalUI.checkIfLong(txtItemNumber);
+					GlobalUI.checkIfInt(txtProdGroupId);
 				}
 			}
 		});
-		lblItemNumber = new JLabel("Indtast produkt nummer: ");
-		lblItemNumber.setBounds(12, 12, 181, 15);
-		topPanel.add(lblItemNumber);
-		topPanel.add(txtItemNumber);
-		btnDeleteProduct = new JButton("Slet produkt");
-		btnDeleteProduct.addActionListener(new ActionListener() {
+		lblProdGroupId = new JLabel("Indtast produkt gruppe id: ");
+		lblProdGroupId.setBounds(12, 12, 192, 15);
+		topPanel.add(lblProdGroupId);
+		topPanel.add(txtProdGroupId);
+		btnDeleteProductGroup = new JButton("Slet");
+		btnDeleteProductGroup.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if(txtItemNumber.getText().length() > 0)
+				if(txtProdGroupId.getText().length() > 0)
 				{
-					long itemNumber = Long.parseLong(txtItemNumber.getText());
-					deleteProduct(itemNumber);
+					int prodGroupId = Integer.parseInt(txtProdGroupId.getText());
+					deleteProductGroup(prodGroupId);
 				}
 			}
 		});
 		
-		btnDeleteProduct.setBounds(211, 38, 122, 25);
-		topPanel.add(btnDeleteProduct);
+		btnDeleteProductGroup.setBounds(222, 38, 122, 25);
+		topPanel.add(btnDeleteProductGroup);
 		contentPane.add(topPanel);
 		JButton btnCancel = new JButton("Annuller");
-		btnCancel.setBounds(345, 38, 117, 25);
+		btnCancel.setBounds(356, 38, 117, 25);
 		topPanel.add(btnCancel);
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -107,23 +107,22 @@ public class DeleteUI {
 		});
 	}
 	
-	private void deleteProduct(long itemNumber)
+	private void deleteProductGroup(int prodGroupId)
 	{
 		boolean succeeded = false;
 		try
 		{
-			
 			int proceed = showConfirmDialog();
 			if(proceed == 1)
 			{
-				succeeded = _prodCtrl.removeProduct(itemNumber);
+				succeeded = _prodCtrl.removeProductGroup(prodGroupId);
 				if(succeeded)
-					JOptionPane.showMessageDialog(null, "Produktet er nu slettet", "Gennemført!", JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Produkte gruppen er nu slettet", "Gennemført!", JOptionPane.WARNING_MESSAGE);
 				else
-					JOptionPane.showMessageDialog(null, "Der skete en fejl da: " + txtItemNumber.getText() + " skulle slettes", "FEJL!", JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Der skete en fejl da produkt gruppen skulle slettes", "FEJL!", JOptionPane.WARNING_MESSAGE);
 			}
 			else
-				JOptionPane.showMessageDialog(null, "Handlingen blev afbrudt. Produktet blev ikke slettet", "FEJL!", JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Handlingen blev afbrudt. Produkt gruppen blev ikke slettet", "FEJL!", JOptionPane.WARNING_MESSAGE);
 		}
 		catch(Exception ex)
 		{
@@ -133,7 +132,7 @@ public class DeleteUI {
 	
 	private int showConfirmDialog()
 	{
-		int option = JOptionPane.showConfirmDialog (null, "Er du sikker på du vil slettet produktet? Bemærk handlingen kan ikke fortrydes");
+		int option = JOptionPane.showConfirmDialog (null, "Er du sikker på du vil slettet denne produkt gruppe? Bemærk handlingen kan ikke fortrydes");
 		if (option == JOptionPane.YES_OPTION )
 			return 1;
 		
