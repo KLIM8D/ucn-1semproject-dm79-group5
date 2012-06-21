@@ -193,6 +193,7 @@ public class TestData
         _orderCtrl.addOrderLine(4L, 858293L, 1);
         _orderCtrl.addOrderLine(4L, 848482L, 1);
         _orderCtrl.addOrderLine(4L, 102938L, 2);
+        _orderCtrl.addOrderLine(4L, 956934L, 1);
         //ORDER END
     }
 }

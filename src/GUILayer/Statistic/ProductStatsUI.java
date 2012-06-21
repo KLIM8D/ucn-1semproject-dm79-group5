@@ -20,10 +20,10 @@ import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.InternalFrameEvent;
 
-import ControlLayer.CustomerCtrl;
+import ControlLayer.ProductCtrl;
 import ControlLayer.StatisticCtrl;
 import GUILayer.GlobalUI;
-import ModelLayer.Customer;
+import ModelLayer.Product;
 
 import java.util.Map;
 
@@ -41,37 +41,37 @@ import org.jfree.data.general.PieDataset;
 
 import javax.swing.JTabbedPane;
 
-public class CustomerStatsUI {
+public class ProductStatsUI {
 
 	private JPanel contentPane;
 	
 	private static JInternalFrame _frame;
-	private static CustomerStatsUI _instance;
+	private static ProductStatsUI _instance;
 	private JComboBox<String> drpNumberOfCustomers;
-	private JTextField txtPhoneNumber;
+	private JTextField txtItemNumber;
 	private JPanel pnlChart;
-	private JPanel pnlSpecCustomer;
+	private JPanel pnlSpecProduct;
 	private JLabel lbltotalOrders;
 	private JLabel lbltotalValue;
 	//Controllers
-	private CustomerCtrl _custCtrl;
+	private ProductCtrl _productCtrl;
 	private StatisticCtrl _statCtrl;
 	
 	public static JInternalFrame createWindow()
 	{
 		if(_instance == null)
-			_instance = new CustomerStatsUI();
+			_instance = new ProductStatsUI();
 		
 		return _frame;
 	}
 	
-	private CustomerStatsUI() 
+	private ProductStatsUI() 
 	{
-		_custCtrl = new CustomerCtrl();
+		_productCtrl = new ProductCtrl();
 		_statCtrl = new StatisticCtrl();
 		
 		_frame = new JInternalFrame();		
-		_frame.setTitle("Generer statistik ud fra kunde");
+		_frame.setTitle("Generer statistik ud fra produkt");
 		_frame.setClosable(true);
 		_frame.setMaximizable(false);
 		_frame.setVisible(true);
@@ -88,45 +88,45 @@ public class CustomerStatsUI {
         contentPane.add(tabbedPane);
         
         //Tab1
-        pnlSpecCustomer = new JPanel();
-        pnlSpecCustomer.setLayout(null);
-        JLabel lblPhoneNumber = new JLabel("Indtast telefon nummer: ");
-        lblPhoneNumber.setBounds(177, 9, 176, 15);
-        pnlSpecCustomer.add(lblPhoneNumber);
+        pnlSpecProduct = new JPanel();
+        pnlSpecProduct.setLayout(null);
+        JLabel lblItemNumber = new JLabel("Indtast produkt nummer: ");
+        lblItemNumber.setBounds(154, 9, 199, 15);
+        pnlSpecProduct.add(lblItemNumber);
         
-        txtPhoneNumber = new JTextField();
-        txtPhoneNumber.addKeyListener(new KeyAdapter() {
+        txtItemNumber = new JTextField();
+        txtItemNumber.addKeyListener(new KeyAdapter() {
 			public void keyReleased(KeyEvent e) {
-				if(txtPhoneNumber.getText().length() > 0)
+				if(txtItemNumber.getText().length() > 0)
 				{
-					GlobalUI.checkIfLong(txtPhoneNumber);
+					GlobalUI.checkIfLong(txtItemNumber);
 				}
 			}
 		});
-        txtPhoneNumber.setBounds(358, 5, 199, 24);
-        pnlSpecCustomer.add(txtPhoneNumber);
+        txtItemNumber.setBounds(358, 5, 199, 24);
+        pnlSpecProduct.add(txtItemNumber);
         
         JButton btnGetData = new JButton("Hent data");
         btnGetData.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if(txtPhoneNumber.getText().length() > 0)
+				if(txtItemNumber.getText().length() > 0)
 				{
-					long customerId = Long.parseLong(txtPhoneNumber.getText());
-					createCustomerInfo(customerId);
+					long customerId = Long.parseLong(txtItemNumber.getText());
+					createProductInfo(customerId);
 				}
 			}
 		});
         btnGetData.setBounds(565, 4, 117, 25);
-        pnlSpecCustomer.add(btnGetData);
+        pnlSpecProduct.add(btnGetData);
         
-        tabbedPane.addTab("Bestemt kunde", null, pnlSpecCustomer, null);
+        tabbedPane.addTab("Bestemt produkt", null, pnlSpecProduct, null);
         
         lbltotalOrders = new JLabel();
         lbltotalOrders.setBounds(224, 36, 137, 15);
-        pnlSpecCustomer.add(lbltotalOrders);
+        pnlSpecProduct.add(lbltotalOrders);
         lbltotalValue = new JLabel();
         lbltotalValue.setBounds(402, 36, 155, 15);
-        pnlSpecCustomer.add(lbltotalValue);
+        pnlSpecProduct.add(lbltotalValue);
         
         
         
@@ -137,14 +137,14 @@ public class CustomerStatsUI {
         pnlChart = new JPanel(new FlowLayout(FlowLayout.LEFT));
         tabbedPane.addTab("Top liste", null, pnlChart, null);
         
-        JLabel lblNumberOfCustomers = new JLabel("Antal kunder: ");
+        JLabel lblNumberOfCustomers = new JLabel("Antal produkter: ");
         pnlChart.add(lblNumberOfCustomers);
         
         drpNumberOfCustomers = new JComboBox<String>();
         drpNumberOfCustomers.addItem("10");
-        drpNumberOfCustomers.addItem("20");
-        drpNumberOfCustomers.addItem("50");
         drpNumberOfCustomers.addItem("100");
+        drpNumberOfCustomers.addItem("500");
+        drpNumberOfCustomers.addItem("1000");
         
 
         pnlChart.add(drpNumberOfCustomers);
@@ -153,7 +153,7 @@ public class CustomerStatsUI {
 		
 		final JFreeChart chart = ChartFactory.createBarChart(
 	            "Top 10",        			// chart title
-	            "Kunder",                   // domain axis label
+	            "Produkter",                // domain axis label
 	            "Kroner",                   // range axis label
 	            dataset,                 	// data
 	            PlotOrientation.VERTICAL,
@@ -197,24 +197,24 @@ public class CustomerStatsUI {
 		    });
 	}
 
-	private void createCustomerInfo(final long customerId) 
+	private void createProductInfo(final long itemNumber) 
 	{
-		Customer cust = _custCtrl.getCustomer(customerId);
-		if(cust != null)
+		Product prod = _productCtrl.getProduct(itemNumber);
+		if(prod != null)
 		{
-			long[] customerValues = _statCtrl.generateStatsFromCustomer(customerId);
+			long[] customerValues = _statCtrl.generateStatsFromProduct(itemNumber);
         	lbltotalOrders.setText("Total antal ordre: " + customerValues[0]);
         	lbltotalValue.setText("Totalt købt for: " + customerValues[1]);
         
-        	JFreeChart chartTab1 = createChart(createDatasetForCustomer(customerId));
+        	JFreeChart chartTab1 = createChart(createDatasetForProduct(itemNumber));
         	ChartPanel chartPanelTab1 = new ChartPanel(chartTab1);
         	chartPanelTab1.setBounds(104, 63, 680, 420);
-        	pnlSpecCustomer.add(chartPanelTab1,5);
-        	pnlSpecCustomer.updateUI();
+        	pnlSpecProduct.add(chartPanelTab1,5);
+        	pnlSpecProduct.updateUI();
 		}
 		else
 		{
-			JOptionPane.showMessageDialog(null, "Der blev ikke fundet en kunde med telefon nummeret: " + customerId, "FEJL!", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Der blev ikke fundet et produkt med produkt nummeret: " + itemNumber, "FEJL!", JOptionPane.WARNING_MESSAGE);
 		}
 			
 	}
@@ -222,28 +222,28 @@ public class CustomerStatsUI {
 	
 	private CategoryDataset createDataset(final int take) 
 	{
-        final String bottomString = "Købt for total";
+        final String bottomString = "Solgt for total";
 
         final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         
-        for(Map.Entry<Long,Customer> entry : _statCtrl.getTopXForCustomer(take).entrySet())
-        	dataset.addValue(entry.getKey(), bottomString, entry.getValue().getPerson().getName());
+        for(Map.Entry<Long,Product> entry : _statCtrl.getTopXForProduct(take).entrySet())
+        	dataset.addValue(entry.getKey(), bottomString, entry.getValue().getItemName());
 
         return dataset;
     }
 	
-	private PieDataset createDatasetForCustomer(final long customerId) 
+	private PieDataset createDatasetForProduct(final long itemNumber) 
 	{
         DefaultPieDataset dataset = new DefaultPieDataset();
         long total = 0;
-        for(Map.Entry<Long,Customer> entry : _statCtrl.getTopXForCustomer(10000).entrySet())
+        for(Map.Entry<Long,Product> entry : _statCtrl.getTopXForProduct(100000).entrySet())
         {
-        	if(entry.getValue().getCustomerId() == customerId)
-        		dataset.setValue(entry.getValue().getPerson().getName(), entry.getKey());
+        	if(entry.getValue().getItemNumber() == itemNumber)
+        		dataset.setValue(entry.getValue().getItemName(), entry.getKey());
         	else
         		total += entry.getKey();
         }
-        dataset.setValue("Andre kunder", total);
+        dataset.setValue("Andre produkter", total);
         return dataset;        
     }
 	

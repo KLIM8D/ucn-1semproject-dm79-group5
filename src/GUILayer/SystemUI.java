@@ -497,7 +497,22 @@ public class SystemUI extends JFrame implements ComponentListener {
 		});
 		mnStatistics.add(mntmStatisticsCustomer);
 		
-		JMenuItem mntmStatisticsProduct = new JMenuItem("Generer statistik ud fra vare");
+		JMenuItem mntmStatisticsProduct = new JMenuItem("Generer statistik ud fra produkt");
+		mntmStatisticsProduct.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+					JInternalFrame showProductStats = GUILayer.Statistic.ProductStatsUI.createWindow();
+					if(!layeredPane.isAncestorOf(showProductStats))
+					{
+						layeredPane.add(showProductStats, JLayeredPane.DEFAULT_LAYER);
+					}
+					layeredPane.moveToFront(showProductStats);
+					try 
+					{
+						showProductStats.setSelected(true);
+					} 
+					catch (PropertyVetoException ex) {}
+			}
+		});
 		mnStatistics.add(mntmStatisticsProduct);
 		
 		
