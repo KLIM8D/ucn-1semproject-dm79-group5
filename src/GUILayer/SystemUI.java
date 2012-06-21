@@ -48,7 +48,7 @@ public class SystemUI extends JFrame implements ComponentListener {
 		layeredPane = new JDesktopPane();
 		layeredPane.setOpaque(false);
 		layeredPane.setBounds(0, 0, getWidth(), getHeight());
-		add(layeredPane, BorderLayout.CENTER);
+		getContentPane().add(layeredPane, BorderLayout.CENTER);
 		addComponentListener(this);
 		
 		pnlQuickSelect = new JPanel();
@@ -220,14 +220,57 @@ public class SystemUI extends JFrame implements ComponentListener {
 		JMenu mnCustomer = new JMenu("Kundekartotek");
 		mnFunctions.add(mnCustomer);
 		
-		JMenuItem mntmPersonCreate = new JMenuItem("Opret person");
-		mnCustomer.add(mntmPersonCreate);
+		JMenuItem mntmCustomerCreate = new JMenuItem("Opret kunde");
+		mntmCustomerCreate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFrame createFrame = GUILayer.Customer.CreateUI.createWindow();
+				createFrame.setLocationRelativeTo(pnlSystemLayout);
+			}
+		});
+		mnCustomer.add(mntmCustomerCreate);
 		
-		JMenuItem mntmPersonFind = new JMenuItem("Find person");
-		mnCustomer.add(mntmPersonFind);
+		JMenuItem mntmCustomerUpdate = new JMenuItem("Opdatere kunde information");
+		mntmCustomerUpdate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFrame updateFrame = GUILayer.Customer.UpdateUI.createWindow();
+				updateFrame.setLocationRelativeTo(pnlSystemLayout);
+			}
+		});
+		mnCustomer.add(mntmCustomerUpdate);
 		
-		JMenuItem mntmPersonDelete = new JMenuItem("Slet person");
+		JMenuItem mntmPersonDelete = new JMenuItem("Slet kunde");
+		mntmPersonDelete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFrame deleteFrame = GUILayer.Customer.DeleteUI.createWindow();
+				deleteFrame.setLocationRelativeTo(pnlSystemLayout);
+			}
+		});
 		mnCustomer.add(mntmPersonDelete);
+		
+		JMenuItem mntmCustomerAssoDiscGroup = new JMenuItem("Tilknyt person til rabatgruppe");
+		mntmCustomerAssoDiscGroup.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFrame assoDicsGroupFrame = GUILayer.Customer.AssoDiscGroupUI.createWindow();
+				assoDicsGroupFrame.setLocationRelativeTo(pnlSystemLayout);
+			}
+		});
+		mnCustomer.add(mntmCustomerAssoDiscGroup);
+		
+		
+		JMenuItem mntmCustomerShowAll = new JMenuItem("Vis alle kunder");
+		mntmCustomerShowAll.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JInternalFrame showAllCustomers = GUILayer.Customer.ShowAllUI.createWindow();
+				layeredPane.add(showAllCustomers, JLayeredPane.DEFAULT_LAYER);
+				layeredPane.moveToFront(showAllCustomers);
+				try 
+				{
+					showAllCustomers.setSelected(true);
+				} 
+				catch (PropertyVetoException ex) {}
+			}
+		});
+		mnCustomer.add(mntmCustomerShowAll);
 		
 		JMenu mnSalesAssistant = new JMenu("Ekspedientkartotek");
 		mnFunctions.add(mnSalesAssistant);
@@ -483,5 +526,4 @@ public class SystemUI extends JFrame implements ComponentListener {
 	{
 		
 	}
-
 }

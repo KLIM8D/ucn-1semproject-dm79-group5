@@ -65,6 +65,14 @@ public class GlobalUI {
             	return "Ekspedienten er slettet.";
             case 23:
             	return "Kodeordet for ekspedienten er ændret.";
+            case 24:
+            	return "Kunden blev slettet fra systemet.";
+            case 25:
+            	return "Kunden eksisterer IKKE i systemet.";
+            case 26:
+            	return "Kunden er tildelt valgte rabat gruppen.";
+            case 27:
+            	return "Ingen kunde blev fundet med det angivet telefon nummer.";
         }
         return "En ukendt system fejl er hændt.";
     }
@@ -113,4 +121,23 @@ public class GlobalUI {
 	    int y = (screenSize.height / 2) - (height / 2);
 	    c.setLocation(x, y);
 	}
+	
+	public static String translateDiscountTypes(int discType)
+    {
+        switch (discType) 
+        {
+            case 1:
+                return "Mængde rabat";
+            case 2:
+                return "Samarbejdes aftale";
+            case 3:
+                return "Rabatgruppe 1";
+            case 4:
+                return "Rabatgruppe 2";
+            case 5:
+                return "Rabatgruppe 3";
+        }
+
+        return "Ukendt rabat gruppe";
+    }
 }
