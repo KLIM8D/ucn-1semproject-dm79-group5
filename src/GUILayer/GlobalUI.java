@@ -65,6 +65,10 @@ public class GlobalUI {
             	return "Ekspedienten er slettet.";
             case 23:
             	return "Kodeordet for ekspedienten er ændret.";
+            case 24:
+            	return "Kunden blev slettet fra systemet.";
+            case 25:
+            	return "Kunden eksisterer IKKE i systemet.";
         }
         return "En ukendt system fejl er hændt.";
     }
