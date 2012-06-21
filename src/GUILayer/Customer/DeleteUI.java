@@ -1,5 +1,8 @@
 package GUILayer.Customer;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -31,6 +34,13 @@ public class DeleteUI {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		_frame.setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		_frame.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				_instance = null;
+				_frame.dispose();
+			}
+		});
 	}
 
 }
