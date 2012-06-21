@@ -151,14 +151,6 @@ public class CreateUI {
 		contentPane.add(lblPassword);
 		
 		txtPassword = new JPasswordField();
-		txtPassword.addKeyListener(new KeyAdapter() {
-			public void keyReleased(KeyEvent e) {
-				if(txtPassword.getPassword().length > 0)
-				{				
-					GlobalUI.checkIfInt(txtPassword);				
-				}
-			}
-		});
 		txtPassword.setBounds(127, 159, 227, 19);
 		contentPane.add(txtPassword);
 		

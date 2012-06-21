@@ -183,6 +183,16 @@ public class TestData
         _orderCtrl.addOrderLine(3L, 589282L, 2);
         _orderCtrl.addOrderLine(3L, 848482L, 4);
         _orderCtrl.addOrderLine(3L, 295992L, 1);
+        
+        _orderCtrl.createOrder(3, 29129422L, "Pas på hunden", 3, 1L);
+        _orderCtrl.addOrderLine(4L, 295992L, 2);
+        _orderCtrl.addOrderLine(4L, 898582L, 4);
+        _orderCtrl.addOrderLine(4L, 589282L, 1);
+        _orderCtrl.addOrderLine(4L, 582885L, 2);
+        _orderCtrl.addOrderLine(4L, 985952L, 4);
+        _orderCtrl.addOrderLine(4L, 858293L, 1);
+        _orderCtrl.addOrderLine(4L, 848482L, 1);
+        _orderCtrl.addOrderLine(4L, 102938L, 2);
         //ORDER END
     }
 }

@@ -17,9 +17,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.Toolkit;
 
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -106,7 +104,10 @@ public class SystemUI extends JFrame implements ComponentListener {
 		btnFindProduct.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 					JInternalFrame showAllProducts = GUILayer.Product.ShowAllUI.createWindow();
-					layeredPane.add(showAllProducts, JLayeredPane.DEFAULT_LAYER);
+					if(!layeredPane.isAncestorOf(showAllProducts))
+					{
+						layeredPane.add(showAllProducts, JLayeredPane.DEFAULT_LAYER);
+					}
 					layeredPane.moveToFront(showAllProducts);
 					try 
 					{
@@ -262,7 +263,10 @@ public class SystemUI extends JFrame implements ComponentListener {
 		mntmSalesAssistShowAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JInternalFrame showAllSalesAsst = GUILayer.SalesAssist.ShowAllUI.createWindow();
-				layeredPane.add(showAllSalesAsst, JLayeredPane.DEFAULT_LAYER);
+				if(!layeredPane.isAncestorOf(showAllSalesAsst))
+				{
+					layeredPane.add(showAllSalesAsst, JLayeredPane.DEFAULT_LAYER);
+				}
 				layeredPane.moveToFront(showAllSalesAsst);
 				try 
 				{
@@ -298,7 +302,10 @@ public class SystemUI extends JFrame implements ComponentListener {
 		mntmProductShowAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 					JInternalFrame showAllProducts = GUILayer.Product.ShowAllUI.createWindow();
-					layeredPane.add(showAllProducts, JLayeredPane.DEFAULT_LAYER);
+					if(!layeredPane.isAncestorOf(showAllProducts))
+					{
+						layeredPane.add(showAllProducts, JLayeredPane.DEFAULT_LAYER);
+					}
 					layeredPane.moveToFront(showAllProducts);
 					try 
 					{
@@ -346,7 +353,10 @@ public class SystemUI extends JFrame implements ComponentListener {
 		mntmProductCatShowAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 					JInternalFrame showAllCatgories = GUILayer.Product.Category.ShowAllUI.createWindow();
-					layeredPane.add(showAllCatgories, JLayeredPane.DEFAULT_LAYER);
+					if(!layeredPane.isAncestorOf(showAllCatgories))
+					{
+						layeredPane.add(showAllCatgories, JLayeredPane.DEFAULT_LAYER);
+					}
 					layeredPane.moveToFront(showAllCatgories);
 					try 
 					{
@@ -373,7 +383,10 @@ public class SystemUI extends JFrame implements ComponentListener {
 		mntmProductGroupShowAll.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 					JInternalFrame showAllProductGroups = GUILayer.Product.Group.ShowAllUI.createWindow();
-					layeredPane.add(showAllProductGroups, JLayeredPane.DEFAULT_LAYER);
+					if(!layeredPane.isAncestorOf(showAllProductGroups))
+					{
+						layeredPane.add(showAllProductGroups, JLayeredPane.DEFAULT_LAYER);
+					}
 					layeredPane.moveToFront(showAllProductGroups);
 					try 
 					{
@@ -405,11 +418,31 @@ public class SystemUI extends JFrame implements ComponentListener {
 		JMenu mnStatistics = new JMenu("Statistik");
 		mnFunctions.add(mnStatistics);
 		
-		JMenuItem mntmStatisticsSalesAssist = new JMenuItem("Generere statistik ud fra ekspedient");
+		JMenuItem mntmStatisticsSalesAssist = new JMenuItem("Generer statistik ud fra ekspedient");
+		mntmStatisticsSalesAssist.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+					JInternalFrame showSalesAsstStats = GUILayer.Statistic.SalesAsstStatsUI.createWindow();
+					if(!layeredPane.isAncestorOf(showSalesAsstStats))
+					{
+						layeredPane.add(showSalesAsstStats, JLayeredPane.DEFAULT_LAYER);
+					}
+					layeredPane.moveToFront(showSalesAsstStats);
+					try 
+					{
+						showSalesAsstStats.setSelected(true);
+					} 
+					catch (PropertyVetoException ex) {}
+			}
+		});
 		mnStatistics.add(mntmStatisticsSalesAssist);
 		
-		JMenuItem mntmStatisticsProduct = new JMenuItem("Generere statistik ud fra vare");
+		JMenuItem mntmStatisticsCustomer = new JMenuItem("Generer statistik ud fra kunde");
+		mnStatistics.add(mntmStatisticsCustomer);
+		
+		JMenuItem mntmStatisticsProduct = new JMenuItem("Generer statistik ud fra vare");
 		mnStatistics.add(mntmStatisticsProduct);
+		
+		
 		
 		JMenu mnAbout = new JMenu("Om");
 		menuBar.add(mnAbout);
