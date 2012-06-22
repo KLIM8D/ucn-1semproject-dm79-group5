@@ -56,7 +56,7 @@ public class DeleteUI {
 		
 		//Top layout
 		JPanel topPanel = new JPanel();
-		topPanel.setBounds(5, 0, 590, 69);
+		topPanel.setBounds(5, 0, 470, 69);
 		topPanel.setLayout(null);
 		txtItemNumber = new JTextField();
 		txtItemNumber.setBounds(211, 12, 251, 20);

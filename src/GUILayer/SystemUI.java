@@ -51,6 +51,7 @@ public class SystemUI extends JFrame implements ComponentListener {
 		getContentPane().add(layeredPane, BorderLayout.CENTER);
 		addComponentListener(this);
 		
+		//Quickselect menu
 		pnlQuickSelect = new JPanel();
 		pnlQuickSelect.setBorder(new LineBorder(new Color(0, 0, 0)));
 		pnlQuickSelect.setBounds(363, 163, 351, 353);
@@ -118,10 +119,12 @@ public class SystemUI extends JFrame implements ComponentListener {
 		});
 		btnFindProduct.setBounds(12, 303, 327, 35);
 		pnlQuickSelect.add(btnFindProduct);
+		//Quickselect end
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
+		//System menu
 		JMenu mnFiles = new JMenu("Filer");
 		menuBar.add(mnFiles);
 		
@@ -141,10 +144,12 @@ public class SystemUI extends JFrame implements ComponentListener {
 			}
 		});
 		mnFiles.add(mntmExit);
+		//System menu end
 		
 		JMenu mnFunctions = new JMenu("Funktioner");
 		menuBar.add(mnFunctions);
 		
+		//Order menu
 		JMenu mnSales = new JMenu("Salg");
 		mnFunctions.add(mnSales);
 		
@@ -156,7 +161,9 @@ public class SystemUI extends JFrame implements ComponentListener {
 		
 		JMenuItem mntmOrdreCancel = new JMenuItem("Annullering af ordre");
 		mnSales.add(mntmOrdreCancel);
+		//Order menu end
 		
+		//Rental menu
 		JMenu mnRental = new JMenu("Udlejning");
 		mnFunctions.add(mnRental);
 		
@@ -216,7 +223,9 @@ public class SystemUI extends JFrame implements ComponentListener {
 			}
 		});
 		mnRentalProducts.add(mntmRentalProductDelete);
+		//Rental menu end
 		
+		//Customer menu
 		JMenu mnCustomer = new JMenu("Kundekartotek");
 		mnFunctions.add(mnCustomer);
 		
@@ -229,7 +238,7 @@ public class SystemUI extends JFrame implements ComponentListener {
 		});
 		mnCustomer.add(mntmCustomerCreate);
 		
-		JMenuItem mntmCustomerUpdate = new JMenuItem("Opdatere kunde information");
+		JMenuItem mntmCustomerUpdate = new JMenuItem("Opdater kunde information");
 		mntmCustomerUpdate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFrame updateFrame = GUILayer.Customer.UpdateUI.createWindow();
@@ -247,7 +256,7 @@ public class SystemUI extends JFrame implements ComponentListener {
 		});
 		mnCustomer.add(mntmPersonDelete);
 		
-		JMenuItem mntmCustomerAssoDiscGroup = new JMenuItem("Tilknyt person til rabatgruppe");
+		JMenuItem mntmCustomerAssoDiscGroup = new JMenuItem("Tilknyt kunde til rabatgruppe");
 		mntmCustomerAssoDiscGroup.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				JFrame assoDicsGroupFrame = GUILayer.Customer.AssoDiscGroupUI.createWindow();
@@ -271,7 +280,9 @@ public class SystemUI extends JFrame implements ComponentListener {
 			}
 		});
 		mnCustomer.add(mntmCustomerShowAll);
+		//Customer menu end
 		
+		//SalesAssistant menu
 		JMenu mnSalesAssistant = new JMenu("Ekspedientkartotek");
 		mnFunctions.add(mnSalesAssistant);
 		
@@ -284,7 +295,7 @@ public class SystemUI extends JFrame implements ComponentListener {
 		});
 		mnSalesAssistant.add(mntmSalesAssistCreate);
 		
-		JMenuItem mntmSalesAssistUpdate = new JMenuItem("Opdatere ekspedient information");
+		JMenuItem mntmSalesAssistUpdate = new JMenuItem("Opdater ekspedient information");
 		mntmSalesAssistUpdate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 					JFrame updateFrame = GUILayer.SalesAssist.UpdateUI.createWindow();
@@ -328,7 +339,9 @@ public class SystemUI extends JFrame implements ComponentListener {
 			}
 		});
 		mnSalesAssistant.add(mntmSalesAssistChangePassword);
+		//SalesAssistant menu end
 		
+		//Product menu
 		JMenu mnProduct = new JMenu("Produkt");
 		mnFunctions.add(mnProduct);
 		
@@ -371,15 +384,16 @@ public class SystemUI extends JFrame implements ComponentListener {
 		JMenuItem mntmProductDelete = new JMenuItem("Slet produkt");
 		mntmProductDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					JFrame deleteFrame = GUILayer.Product.DeleteUI.createWindow();
-					deleteFrame.setLocationRelativeTo(pnlSystemLayout);
+					GUILayer.Product.DeleteUI.createWindow();
 				}
 		});
 		mnProduct.add(mntmProductDelete);
 		
 		JSeparator mntmProductSeparator = new JSeparator();
 		mnProduct.add(mntmProductSeparator);
+		//Product end
 		
+		//Product category sub-menu
 		JMenu mnProductCat = new JMenu("Produkt kategorier");
 		mnProduct.add(mnProductCat);
 		
@@ -409,7 +423,9 @@ public class SystemUI extends JFrame implements ComponentListener {
 			}
 		});
 		mnProductCat.add(mntmProductCatShowAll);
+		//Product-category end
 		
+		//Product-group sub-menu
 		JMenu mnProductGroup = new JMenu("Produkt grupper");
 		mnProduct.add(mnProductGroup);
 		
@@ -452,12 +468,45 @@ public class SystemUI extends JFrame implements ComponentListener {
 		JMenuItem mntmProductGroupDelete = new JMenuItem("Slet produkt gruppe");
 		mntmProductGroupDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-					JFrame deleteFrame = GUILayer.Product.Group.DeleteUI.createWindow();
-					deleteFrame.setLocationRelativeTo(pnlSystemLayout);
+					GUILayer.Product.Group.DeleteUI.createWindow();
 			}
 		});
 		mnProductGroup.add(mntmProductGroupDelete);
+		//Product-group end
 		
+		//Storage menu
+		JMenu mnStorage = new JMenu("Lager");
+		mnFunctions.add(mnStorage);
+		
+		JMenuItem mntmStorageCreate = new JMenuItem("Opret nyt lager");
+		mntmStorageCreate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+					JFrame createFrame = GUILayer.Product.Storage.CreateUI.createWindow();
+					createFrame.setLocationRelativeTo(pnlSystemLayout);
+			}
+		});
+		mnStorage.add(mntmStorageCreate);
+		
+		JMenuItem mntmStorageUpdate = new JMenuItem("Opdater lager information");
+		mnStorage.add(mntmStorageUpdate);
+		
+		JMenuItem mntmStorageDelete = new JMenuItem("Slet lager");
+		mnStorage.add(mntmStorageDelete);
+		
+		JMenuItem mntmStorageShowAll = new JMenuItem("Vis alle lagre");
+		mnStorage.add(mntmStorageShowAll);
+		
+		JSeparator mntmStorageSeparator = new JSeparator();
+		mnStorage.add(mntmStorageSeparator);
+		
+		JMenuItem mntmStorageAddProduct = new JMenuItem("Tilføj produkter til et lager");
+		mnStorage.add(mntmStorageAddProduct);
+		
+		JMenuItem mntmStorageShowAvailProduct = new JMenuItem("Vis tilgænglige produkter");
+		mnStorage.add(mntmStorageShowAvailProduct);
+		//Storage menu end
+		
+		//Statistic menu
 		JMenu mnStatistics = new JMenu("Statistik");
 		mnFunctions.add(mnStatistics);
 		
@@ -514,9 +563,9 @@ public class SystemUI extends JFrame implements ComponentListener {
 			}
 		});
 		mnStatistics.add(mntmStatisticsProduct);
+		//Statistic menu end
 		
-		
-		
+		//About
 		JMenu mnAbout = new JMenu("Om");
 		menuBar.add(mnAbout);
 		
