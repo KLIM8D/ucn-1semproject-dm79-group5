@@ -67,11 +67,11 @@ public class CreateUI {
 		pnlCreate.setLayout(new BorderLayout(0, 0));
 		_frame.setContentPane(pnlCreate);
 		
-		JTabbedPane tabAbout = new JTabbedPane(JTabbedPane.TOP);
-		pnlCreate.add(tabAbout, BorderLayout.CENTER);
+		JTabbedPane tabCreate = new JTabbedPane(JTabbedPane.TOP);
+		pnlCreate.add(tabCreate, BorderLayout.CENTER);
 		
 		JPanel pnlPrivate = new JPanel();
-		tabAbout.addTab("Privat", null, pnlPrivate, null);
+		tabCreate.addTab("Privat", null, pnlPrivate, null);
 		pnlPrivate.setLayout(null);
 		
 		txtPhoneNo_Private = new JTextField();
@@ -173,7 +173,7 @@ public class CreateUI {
 		pnlPrivate.add(btnCancel_Private);
 		
 		JPanel pnlBusiness = new JPanel();
-		tabAbout.addTab("Erhverv", null, pnlBusiness, null);
+		tabCreate.addTab("Erhverv", null, pnlBusiness, null);
 		pnlBusiness.setLayout(null);
 		
 		txtPhoneNo_Business = new JTextField();
