@@ -70,10 +70,40 @@ public class SystemUI extends JFrame implements ComponentListener {
 		pnlQuickSelect.add(sptDivider);
 		
 		JButton btnCreateOrder = new JButton("Ny ordre");
+		btnCreateOrder.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JInternalFrame newOrder = GUILayer.Order.CreateUI.createWindow();
+				if(!layeredPane.isAncestorOf(newOrder))
+				{
+					layeredPane.add(newOrder, JLayeredPane.DEFAULT_LAYER);
+				}
+				layeredPane.moveToFront(newOrder);
+				try 
+				{
+					newOrder.setSelected(true);
+				} 
+				catch (PropertyVetoException ex) {}
+			}
+		});
 		btnCreateOrder.setBounds(12, 68, 327, 35);
 		pnlQuickSelect.add(btnCreateOrder);
 		
 		JButton btnFindOrdre = new JButton("Find ordre");
+		btnFindOrdre.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JInternalFrame findOrder = GUILayer.Order.FindUI.createWindow();
+				if(!layeredPane.isAncestorOf(findOrder))
+				{
+					layeredPane.add(findOrder, JLayeredPane.DEFAULT_LAYER);
+				}
+				layeredPane.moveToFront(findOrder);
+				try 
+				{
+					findOrder.setSelected(true);
+				} 
+				catch (PropertyVetoException ex) {}
+			}
+		});
 		btnFindOrdre.setBounds(12, 115, 327, 35);
 		pnlQuickSelect.add(btnFindOrdre);
 		
@@ -154,12 +184,48 @@ public class SystemUI extends JFrame implements ComponentListener {
 		mnFunctions.add(mnSales);
 		
 		JMenuItem mntmOrdreNew = new JMenuItem("Ny ordre");
+		mntmOrdreNew.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JInternalFrame newOrder = GUILayer.Order.CreateUI.createWindow();
+				if(!layeredPane.isAncestorOf(newOrder))
+				{
+					layeredPane.add(newOrder, JLayeredPane.DEFAULT_LAYER);
+				}
+				layeredPane.moveToFront(newOrder);
+				try 
+				{
+					newOrder.setSelected(true);
+				} 
+				catch (PropertyVetoException ex) {}
+			}
+		});
 		mnSales.add(mntmOrdreNew);
 		
 		JMenuItem mntmOrdreFind = new JMenuItem("Find ordre");
+		mntmOrdreFind.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JInternalFrame findOrder = GUILayer.Order.FindUI.createWindow();
+				if(!layeredPane.isAncestorOf(findOrder))
+				{
+					layeredPane.add(findOrder, JLayeredPane.DEFAULT_LAYER);
+				}
+				layeredPane.moveToFront(findOrder);
+				try 
+				{
+					findOrder.setSelected(true);
+				} 
+				catch (PropertyVetoException ex) {}
+			}
+		});
 		mnSales.add(mntmOrdreFind);
 		
-		JMenuItem mntmOrdreCancel = new JMenuItem("Annullering af ordre");
+		JMenuItem mntmOrdreCancel = new JMenuItem("Ændre status på ordre");
+		mntmOrdreCancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFrame returnFrame = GUILayer.Order.ChangeStatusUI.createWindow();
+				returnFrame.setLocationRelativeTo(pnlSystemLayout);
+			}
+		});
 		mnSales.add(mntmOrdreCancel);
 		//Order menu end
 		
