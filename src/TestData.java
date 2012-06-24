@@ -54,6 +54,13 @@ public class TestData
         _customerCtrl.createDiscount(29129422L, 1, "333.00");
         _customerCtrl.createDiscount(29129422L, 2, "666.00");
         _customerCtrl.createDiscount(29129422L, 3, "999.00");
+        
+        _personCtrl.createPerson(220319881921L, "Lars Jensen", "Valmuevej 22", "København", 2000, 12345678L);
+		Person per4 = _personCtrl.getPerson(220319881921L);
+        _customerCtrl.createCustomer(per4);
+        _customerCtrl.createDiscount(12345678L, 1, "222.00");
+        _customerCtrl.createDiscount(12345678L, 2, "444.00");
+        _customerCtrl.createDiscount(12345678L, 3, "888.00");
         //Customer END
 
         //Lease
@@ -107,6 +114,7 @@ public class TestData
         _productCtrl.createProduct(985952L, "Håndklæde holdere", 0, 100, "25.00", 5);
         _productCtrl.createProduct(858293L, "Toilet børste", 0, 50, "50.00", 5);
         _productCtrl.createProduct(848482L, "Hvide fliser 25x25", 0, 2000, "125.00", 5);
+        _productCtrl.createProduct(123456L, "Slagbror maskine", 0, 10, "275.00", 5);
 
         _productCtrl.createProductGroup("Fint hvidt badeværelse", "20000.00");
         _productCtrl.createProductGroupItem(1, 295992L, 1);
@@ -127,7 +135,7 @@ public class TestData
         _locationCtrl.addProduct(2, 858221L, 254);
         _locationCtrl.addProduct(2, 2019549L, 7);
         _locationCtrl.addProduct(2, 956934L, 179);
-
+        _locationCtrl.addProduct(2, 123456L, 3);
 
 
         _locationCtrl.addProduct(1, 295992L, 3);
@@ -148,6 +156,9 @@ public class TestData
 
         _personCtrl.createPerson(150119650510L, "Jens Christensen", "Musvågevej 210", "Aalborg", 9000, 88229911L);
         _salesAsstCtrl.createSalesAssistant("JensPassword", 150119650510L);
+        
+        _personCtrl.createPerson(100519861510L, "Jesper Larsen", "Kongevej 123", "Aalborg", 9000, 33223322);
+        _salesAsstCtrl.createSalesAssistant("123456", 100519861510L);
         //SalesAssistant END
 
         //Order
