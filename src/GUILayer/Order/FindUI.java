@@ -1,4 +1,4 @@
-package GUILayer.Customer;
+package GUILayer.Order;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -8,23 +8,23 @@ import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.InternalFrameEvent;
 
-public class ShowAllUI  {
+public class FindUI  {
 
 	private static JInternalFrame _frame;
-	private static ShowAllUI _instance;
+	private static FindUI _instance;
 	private JPanel contentPane;
 	
 	public static JInternalFrame createWindow()
 	{
 		if(_instance == null)
-			_instance = new ShowAllUI();
+			_instance = new FindUI();
 		
 		return _frame;
 	}
 
-	private ShowAllUI() {
+	private FindUI() {
 		_frame = new JInternalFrame();
-		_frame.setTitle("Vis alle kunder");
+		_frame.setTitle("Find ordre");
 		_frame.setClosable(true);
 		_frame.setMaximizable(true);
 		_frame.setVisible(true);

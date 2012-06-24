@@ -94,7 +94,7 @@ public class AssoDiscGroupUI {
 			public void keyReleased(KeyEvent e) {
 				if(txtPhoneNo.getText().length() > 0)
 				{				
-					GlobalUI.checkIfInt(txtPhoneNo);				
+					GlobalUI.checkIfLong(txtPhoneNo);				
 				}
 			}
 		});

@@ -29,7 +29,7 @@ public class CreateUI {
     private CustomerCtrl _customerCtrl;
 	private static JFrame _frame;
 	private static CreateUI _instance;
-	private JPanel pnlAbout;
+	private JPanel pnlCreate;
 	private JTextField txtPhoneNo_Private;
 	private JTextField txtZipCode_Private;
 	private JTextField txtCity_Private;
@@ -58,20 +58,20 @@ public class CreateUI {
         
 		_frame = new JFrame();
 		_frame.setTitle("Opret kunde");
-		_frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		_frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		_frame.setBounds(0, 0, 382, 298);
 		_frame.setResizable(false);
 		_frame.setVisible(true);
-		pnlAbout = new JPanel();
-		pnlAbout.setBorder(new EmptyBorder(5, 5, 5, 5));
-		pnlAbout.setLayout(new BorderLayout(0, 0));
-		_frame.setContentPane(pnlAbout);
+		pnlCreate = new JPanel();
+		pnlCreate.setBorder(new EmptyBorder(5, 5, 5, 5));
+		pnlCreate.setLayout(new BorderLayout(0, 0));
+		_frame.setContentPane(pnlCreate);
 		
-		JTabbedPane tabAbout = new JTabbedPane(JTabbedPane.TOP);
-		pnlAbout.add(tabAbout, BorderLayout.CENTER);
+		JTabbedPane tabCreate = new JTabbedPane(JTabbedPane.TOP);
+		pnlCreate.add(tabCreate, BorderLayout.CENTER);
 		
 		JPanel pnlPrivate = new JPanel();
-		tabAbout.addTab("Privat", null, pnlPrivate, null);
+		tabCreate.addTab("Privat", null, pnlPrivate, null);
 		pnlPrivate.setLayout(null);
 		
 		txtPhoneNo_Private = new JTextField();
@@ -79,7 +79,7 @@ public class CreateUI {
 			public void keyReleased(KeyEvent e) {
 				if(txtPhoneNo_Business.getText().length() > 0)
 				{				
-					GlobalUI.checkIfInt(txtPhoneNo_Private);				
+					GlobalUI.checkIfLong(txtPhoneNo_Private);				
 				}
 			}
 		});
@@ -173,7 +173,7 @@ public class CreateUI {
 		pnlPrivate.add(btnCancel_Private);
 		
 		JPanel pnlBusiness = new JPanel();
-		tabAbout.addTab("Erhverv", null, pnlBusiness, null);
+		tabCreate.addTab("Erhverv", null, pnlBusiness, null);
 		pnlBusiness.setLayout(null);
 		
 		txtPhoneNo_Business = new JTextField();
@@ -181,7 +181,7 @@ public class CreateUI {
 			public void keyReleased(KeyEvent e) {
 				if(txtPhoneNo_Business.getText().length() > 0)
 				{				
-					GlobalUI.checkIfInt(txtPhoneNo_Business);				
+					GlobalUI.checkIfLong(txtPhoneNo_Business);				
 				}
 			}
 		});
