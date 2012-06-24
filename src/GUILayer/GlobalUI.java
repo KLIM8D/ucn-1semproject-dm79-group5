@@ -73,6 +73,12 @@ public class GlobalUI {
             	return "Kunden er tildelt valgte rabat gruppen.";
             case 27:
             	return "Ingen kunde blev fundet med det angivet telefon nummer.";
+            case 28:
+            	return "Kunden er en erhvervskunde.";
+            case 29:
+            	return "Kunden er en privatkunde.";
+            case 30:
+            	return "Ingen kunde fundet med det angivet telefonnummer.";
         }
         return "En ukendt system fejl er hændt.";
     }
