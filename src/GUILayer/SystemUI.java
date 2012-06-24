@@ -118,6 +118,18 @@ public class SystemUI extends JFrame implements ComponentListener {
 		pnlQuickSelect.add(btnNewRental);
 		
 		JButton btnFindRental = new JButton("Find udlejning");
+		btnFindRental.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JInternalFrame showAllRentals = GUILayer.Rental.ShowAllUI.createWindow();
+				layeredPane.add(showAllRentals, JLayeredPane.DEFAULT_LAYER);
+				layeredPane.moveToFront(showAllRentals);
+				try 
+				{
+					showAllRentals.setSelected(true);
+				} 
+				catch (PropertyVetoException ex) {}
+			}
+		});
 		btnFindRental.setBounds(12, 209, 327, 35);
 		pnlQuickSelect.add(btnFindRental);
 		
