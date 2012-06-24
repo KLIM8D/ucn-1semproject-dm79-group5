@@ -488,21 +488,69 @@ public class SystemUI extends JFrame implements ComponentListener {
 		mnStorage.add(mntmStorageCreate);
 		
 		JMenuItem mntmStorageUpdate = new JMenuItem("Opdater lager information");
+		mntmStorageUpdate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+					JFrame updateFrame = GUILayer.Product.Storage.UpdateUI.createWindow();
+					updateFrame.setLocationRelativeTo(pnlSystemLayout);
+			}
+		});
 		mnStorage.add(mntmStorageUpdate);
 		
 		JMenuItem mntmStorageDelete = new JMenuItem("Slet lager");
+		mntmStorageDelete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+					JFrame deleteFrame = GUILayer.Product.Storage.DeleteUI.createWindow();
+					deleteFrame.setLocationRelativeTo(pnlSystemLayout);
+			}
+		});
 		mnStorage.add(mntmStorageDelete);
 		
 		JMenuItem mntmStorageShowAll = new JMenuItem("Vis alle lagre");
+		mntmStorageShowAll.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+					JInternalFrame showAllStorages = GUILayer.Product.Storage.ShowAllUI.createWindow();
+					if(!layeredPane.isAncestorOf(showAllStorages))
+					{
+						layeredPane.add(showAllStorages, JLayeredPane.DEFAULT_LAYER);
+					}
+					layeredPane.moveToFront(showAllStorages);
+					try 
+					{
+						showAllStorages.setSelected(true);
+					} 
+					catch (PropertyVetoException ex) {}
+			}
+		});
 		mnStorage.add(mntmStorageShowAll);
 		
 		JSeparator mntmStorageSeparator = new JSeparator();
 		mnStorage.add(mntmStorageSeparator);
 		
-		JMenuItem mntmStorageAddProduct = new JMenuItem("Tilføj produkter til et lager");
+		JMenuItem mntmStorageAddProduct = new JMenuItem("Tilføj et produkt til et lager");
+		mntmStorageAddProduct.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+					JFrame addFrame = GUILayer.Product.Storage.AddProductUI.createWindow();
+					addFrame.setLocationRelativeTo(pnlSystemLayout);
+			}
+		});
 		mnStorage.add(mntmStorageAddProduct);
 		
 		JMenuItem mntmStorageShowAvailProduct = new JMenuItem("Vis tilgænglige produkter");
+		mntmStorageShowAvailProduct.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+					JInternalFrame showAllAvail = GUILayer.Product.Storage.ShowAllAvailbleUI.createWindow();
+					if(!layeredPane.isAncestorOf(showAllAvail))
+					{
+						layeredPane.add(showAllAvail, JLayeredPane.DEFAULT_LAYER);
+					}
+					layeredPane.moveToFront(showAllAvail);
+					try 
+					{
+						showAllAvail.setSelected(true);
+					} 
+					catch (PropertyVetoException ex) {}
+			}
+		});
 		mnStorage.add(mntmStorageShowAvailProduct);
 		//Storage menu end
 		

@@ -133,7 +133,7 @@ public class DeleteUI {
 	
 	private int showConfirmDialog()
 	{
-		int option = JOptionPane.showConfirmDialog (null, "Er du sikker på du vil slettet produktet? Bemærk handlingen kan ikke fortrydes");
+		int option = JOptionPane.showConfirmDialog (null, "Er du sikker på du vil slette produktet? Bemærk handlingen kan ikke fortrydes");
 		if (option == JOptionPane.YES_OPTION )
 			return 1;
 		
