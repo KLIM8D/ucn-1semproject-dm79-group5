@@ -58,7 +58,7 @@ public class CreateUI {
         
 		_frame = new JFrame();
 		_frame.setTitle("Opret kunde");
-		_frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		_frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		_frame.setBounds(0, 0, 382, 298);
 		_frame.setResizable(false);
 		_frame.setVisible(true);

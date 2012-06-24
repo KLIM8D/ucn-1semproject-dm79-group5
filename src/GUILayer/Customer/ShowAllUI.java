@@ -30,7 +30,7 @@ public class ShowAllUI  {
 		_frame.setVisible(true);
 		_frame.getContentPane().setLayout(new FlowLayout(FlowLayout.LEFT));
 		_frame.setBounds(0, 0, 450, 300);
-		_frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+		_frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		_frame.addInternalFrameListener(new javax.swing.event.InternalFrameAdapter() {
 		      public void internalFrameClosing(InternalFrameEvent e) {
 		        _frame.dispose();
