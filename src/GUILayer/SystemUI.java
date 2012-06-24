@@ -176,10 +176,19 @@ public class SystemUI extends JFrame implements ComponentListener {
 		});
 		mnRental.add(mntmRentalNew);
 		
-		JMenuItem mntmRentalFind = new JMenuItem("Find udlejning");
-		mnRental.add(mntmRentalFind);
-		
 		JMenuItem mntmRentalShowAll = new JMenuItem("Vis alle udlejninger");
+		mntmRentalShowAll.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JInternalFrame showAllRentals = GUILayer.Rental.ShowAllUI.createWindow();
+				layeredPane.add(showAllRentals, JLayeredPane.DEFAULT_LAYER);
+				layeredPane.moveToFront(showAllRentals);
+				try 
+				{
+					showAllRentals.setSelected(true);
+				} 
+				catch (PropertyVetoException ex) {}
+			}
+		});
 		mnRental.add(mntmRentalShowAll);
 		
 		JMenuItem mntmRentalReturn = new JMenuItem("Retunering af udlejning");
@@ -191,8 +200,6 @@ public class SystemUI extends JFrame implements ComponentListener {
 		});
 		mnRental.add(mntmRentalReturn);
 		
-		JMenuItem mntmRentalOverDue = new JMenuItem("Overskredet afleveringsdato");
-		mnRental.add(mntmRentalOverDue);
 		
 		JMenu mnRentalProducts = new JMenu("Udlejningsprodukter");
 		mnRental.add(mnRentalProducts);

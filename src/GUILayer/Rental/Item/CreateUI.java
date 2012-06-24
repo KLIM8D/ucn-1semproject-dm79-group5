@@ -8,10 +8,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
+import ControlLayer.LeaseCtrl;
 import GUILayer.GlobalUI;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -20,11 +23,11 @@ public class CreateUI {
 	private static JFrame _frame;
 	private static CreateUI _instance;
 	private JPanel contentPane;
-	private JTextField txtBarcode;
-	private JTextField txtproductId;
+	private JTextField txtItemNumber;
+	private JTextField txtItemName;
 	private JTextField txtRentPrice;
 	private JTextField txtMaxAvail;
-
+	private LeaseCtrl _leaseCtrl;
 	public static JFrame createWindow()
 	{
 		if(_instance == null)
@@ -34,6 +37,7 @@ public class CreateUI {
 	}
 	
 	private CreateUI() {
+		_leaseCtrl = new LeaseCtrl();
 		_frame = new JFrame();
 		_frame.setTitle("Nyt udlejningsprodukt");
 		_frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -45,29 +49,45 @@ public class CreateUI {
 		_frame.setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblIndtastKundenummer = new JLabel("Stregkode");
-		lblIndtastKundenummer.setBounds(10, 11, 116, 14);
-		contentPane.add(lblIndtastKundenummer);
+		JLabel lblItemNumber = new JLabel("Produktnummer");
+		lblItemNumber.setBounds(10, 11, 116, 14);
+		contentPane.add(lblItemNumber);
 		
-		txtBarcode = new JTextField();
-		txtBarcode.setBounds(130, 8, 304, 20);
-		contentPane.add(txtBarcode);
-		txtBarcode.setColumns(10);
+		txtItemNumber = new JTextField();
+		txtItemNumber.addKeyListener(new KeyAdapter() {
+			public void keyReleased(KeyEvent e) {
+				if(txtItemNumber.getText().length() > 0)
+				{
+					GlobalUI.checkIfLong(txtItemNumber);
+				}
+			}
+		});
+		txtItemNumber.setBounds(130, 8, 304, 20);
+		contentPane.add(txtItemNumber);
+		txtItemNumber.setColumns(10);
 		
-		JLabel lblIndtastProduktnummer = new JLabel("Produktnummer");
-		lblIndtastProduktnummer.setBounds(10, 36, 127, 14);
-		contentPane.add(lblIndtastProduktnummer);
+		JLabel lblItemName = new JLabel("Produkt navn");
+		lblItemName.setBounds(10, 36, 127, 14);
+		contentPane.add(lblItemName);
 		
-		txtproductId = new JTextField();
-		txtproductId.setColumns(10);
-		txtproductId.setBounds(130, 33, 304, 20);
-		contentPane.add(txtproductId);
+		txtItemName = new JTextField();
+		txtItemName.setColumns(10);
+		txtItemName.setBounds(130, 33, 304, 20);
+		contentPane.add(txtItemName);
 		
-		JLabel lblLnets = new JLabel("Udlejningspris");
-		lblLnets.setBounds(10, 61, 127, 14);
-		contentPane.add(lblLnets);
+		JLabel lblPrice = new JLabel("Udlejningspris");
+		lblPrice.setBounds(10, 61, 127, 14);
+		contentPane.add(lblPrice);
 		
 		txtRentPrice = new JTextField();
+		txtRentPrice.addKeyListener(new KeyAdapter() {
+			public void keyReleased(KeyEvent e) {
+				if(txtRentPrice.getText().length() > 0)
+				{
+					GlobalUI.checkIfLong(txtRentPrice);
+				}
+			}
+		});
 		txtRentPrice.setColumns(10);
 		txtRentPrice.setBounds(130, 58, 76, 20);
 		contentPane.add(txtRentPrice);
@@ -75,7 +95,10 @@ public class CreateUI {
 		JButton btnCreate = new JButton("Opret");
 		btnCreate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				createItem();
+				if(isFormValid())
+					createItem();
+				else
+					JOptionPane.showMessageDialog(null, "Alle felter skal udfyldes", "FEJL!", JOptionPane.WARNING_MESSAGE);
 			}
 		});
 		btnCreate.setBounds(188, 146, 117, 23);
@@ -91,11 +114,19 @@ public class CreateUI {
 		btnCancel.setBounds(317, 146, 117, 23);
 		contentPane.add(btnCancel);
 		
-		JLabel lblMaxBeholdning = new JLabel("Max beholdning");
-		lblMaxBeholdning.setBounds(10, 86, 127, 14);
-		contentPane.add(lblMaxBeholdning);
+		JLabel lblMaxAvail = new JLabel("Max beholdning");
+		lblMaxAvail.setBounds(10, 86, 127, 14);
+		contentPane.add(lblMaxAvail);
 		
 		txtMaxAvail = new JTextField();
+		txtMaxAvail.addKeyListener(new KeyAdapter() {
+			public void keyReleased(KeyEvent e) {
+				if(txtMaxAvail.getText().length() > 0)
+				{
+					GlobalUI.checkIfLong(txtMaxAvail);
+				}
+			}
+		});
 		txtMaxAvail.setColumns(10);
 		txtMaxAvail.setBounds(130, 83, 76, 20);
 		contentPane.add(txtMaxAvail);
@@ -111,8 +142,15 @@ public class CreateUI {
 	private void createItem() {
 		boolean succeeded = false;
 		
-		try {	
-			if(succeeded) {
+		try 
+		{	
+			long itemNumber = Long.parseLong(txtItemNumber.getText());
+			String itemName = txtItemName.getText();
+			String rentPrice = txtRentPrice.getText();
+			int maxAvaible = Integer.parseInt(txtMaxAvail.getText());
+			succeeded = _leaseCtrl.createLeaseItem(itemNumber, itemName, rentPrice, maxAvaible);
+			if(succeeded) 
+			{
 				JOptionPane.showMessageDialog(null, GlobalUI.messageHandling(05), "INFORMATION!", JOptionPane.INFORMATION_MESSAGE);
 				_instance = null;
 				_frame.dispose();
@@ -125,5 +163,14 @@ public class CreateUI {
 		catch (Exception e) {
 			JOptionPane.showMessageDialog(null, GlobalUI.messageHandling(99), "FEJL!", JOptionPane.WARNING_MESSAGE);
 		}
+	}
+	
+	private boolean isFormValid()
+	{
+		if(txtItemNumber.getText().length() > 0 && txtItemName.getText().length() > 0 &&
+				txtRentPrice.getText().length() > 0 && txtMaxAvail.getText().length() > 0)
+			return true;
+		
+		return false;
 	}
 }
