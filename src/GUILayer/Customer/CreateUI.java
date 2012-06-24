@@ -29,7 +29,7 @@ public class CreateUI {
     private CustomerCtrl _customerCtrl;
 	private static JFrame _frame;
 	private static CreateUI _instance;
-	private JPanel pnlAbout;
+	private JPanel pnlCreate;
 	private JTextField txtPhoneNo_Private;
 	private JTextField txtZipCode_Private;
 	private JTextField txtCity_Private;
@@ -62,13 +62,13 @@ public class CreateUI {
 		_frame.setBounds(0, 0, 382, 298);
 		_frame.setResizable(false);
 		_frame.setVisible(true);
-		pnlAbout = new JPanel();
-		pnlAbout.setBorder(new EmptyBorder(5, 5, 5, 5));
-		pnlAbout.setLayout(new BorderLayout(0, 0));
-		_frame.setContentPane(pnlAbout);
+		pnlCreate = new JPanel();
+		pnlCreate.setBorder(new EmptyBorder(5, 5, 5, 5));
+		pnlCreate.setLayout(new BorderLayout(0, 0));
+		_frame.setContentPane(pnlCreate);
 		
 		JTabbedPane tabAbout = new JTabbedPane(JTabbedPane.TOP);
-		pnlAbout.add(tabAbout, BorderLayout.CENTER);
+		pnlCreate.add(tabAbout, BorderLayout.CENTER);
 		
 		JPanel pnlPrivate = new JPanel();
 		tabAbout.addTab("Privat", null, pnlPrivate, null);
