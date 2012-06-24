@@ -142,7 +142,7 @@ public class UpdateUI {
 		lblPhoneNo_Private.setBounds(12, 14, 97, 15);
 		pnlPrivate.add(lblPhoneNo_Private);
 		
-		JButton btnUpdate_Private = new JButton("Opdatere");
+		JButton btnUpdate_Private = new JButton("Opdater");
 		btnUpdate_Private.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				long data = Long.parseLong(txtPhoneNo_Private.getText());
@@ -276,7 +276,7 @@ public class UpdateUI {
 		btnAnnuller_Business.setBounds(238, 191, 117, 25);
 		pnlBusiness.add(btnAnnuller_Business);
 		
-		JButton btnUpdate_Business = new JButton("Opdatere");
+		JButton btnUpdate_Business = new JButton("Opdater");
 		btnUpdate_Business.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				long data = Long.parseLong(txtPhoneNo_Business.getText());

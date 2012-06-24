@@ -7,11 +7,20 @@ import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+import ModelLayer.SalesAssistant;
+
 public class GlobalUI {
 	protected static final Component frame = null;
 	private static String _systemTitle = "1. Semesters Projekt";
 	private static String _systemDescription = "UCN-DM79, Gruppe 5";
-	private static String _systemBuild = "build31052012";	
+	private static String _systemBuild = "build31052012";
+	private static SalesAssistant _loggedInUser;
+	
+	public static SalesAssistant getLoggedInUser() 
+	{	return _loggedInUser;	}
+
+	public static void setLoggedInUser(SalesAssistant value) 
+	{	_loggedInUser = value;	}
 	
 	public GlobalUI() {
 		try {

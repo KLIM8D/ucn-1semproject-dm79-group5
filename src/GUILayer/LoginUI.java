@@ -92,6 +92,7 @@ public class LoginUI extends JFrame {
 					
 					boolean success = _saController.checkLogin(userID, userPassword);
 					if(success || userID == 1) { // userID == 1 is to be removed at final release
+						GlobalUI.setLoggedInUser(_saController.getSalesAssistant(userID));
 						new GUILayer.SystemUI().setVisible(true);
 						dispose();
 					}

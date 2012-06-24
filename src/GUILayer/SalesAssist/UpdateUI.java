@@ -116,7 +116,7 @@ public class UpdateUI {
 		contentPane.add(txtCity);
 		txtCity.setColumns(10);
 		
-		JButton btnUpdate = new JButton("Opdatere");
+		JButton btnUpdate = new JButton("Opdater");
 		btnUpdate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				updateSalesAssist();
