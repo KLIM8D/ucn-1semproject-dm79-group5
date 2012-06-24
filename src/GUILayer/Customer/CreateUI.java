@@ -79,7 +79,7 @@ public class CreateUI {
 			public void keyReleased(KeyEvent e) {
 				if(txtPhoneNo_Business.getText().length() > 0)
 				{				
-					GlobalUI.checkIfInt(txtPhoneNo_Private);				
+					GlobalUI.checkIfLong(txtPhoneNo_Private);				
 				}
 			}
 		});
@@ -181,7 +181,7 @@ public class CreateUI {
 			public void keyReleased(KeyEvent e) {
 				if(txtPhoneNo_Business.getText().length() > 0)
 				{				
-					GlobalUI.checkIfInt(txtPhoneNo_Business);				
+					GlobalUI.checkIfLong(txtPhoneNo_Business);				
 				}
 			}
 		});
