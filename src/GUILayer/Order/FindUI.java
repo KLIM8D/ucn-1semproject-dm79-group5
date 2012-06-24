@@ -373,8 +373,11 @@ public class FindUI
 			lblShowCustomer.setText("Kunde: " + order.getCustomer().getPerson().getName() + " / " + Long.toString(order.getCustomer().getCustomerId()));
 			lblShowSalesAsst.setText("Sælger: " + order.getSalesAsst().getPerson().getName());
 			lblShowSaleNotes.setText("Salgs noter: " + order.getSalesNote());
-			lblShowDiscount.setText("Rabat gruppe: " + GlobalUI.translateDiscountTypes(order.getDiscount().getDiscountType()));
-			lblShowDiscountValue.setText("Rabat beløb: " + order.getDiscount().getDiscountValue().toString() + " kr.");
+			if(order.getDiscount() != null)
+			{
+				lblShowDiscount.setText("Rabat gruppe: " + GlobalUI.translateDiscountTypes(order.getDiscount().getDiscountType()));
+				lblShowDiscountValue.setText("Rabat beløb: " + order.getDiscount().getDiscountValue().toString() + " kr.");
+			}
 			lblShowStatus.setText("Status: " + order.getStatus().getStatusValue());
 			
 			ArrayList<OrderLine> orderLines = makeCollection(order.getOrderLines());

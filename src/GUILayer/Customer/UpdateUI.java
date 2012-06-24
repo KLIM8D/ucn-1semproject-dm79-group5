@@ -124,7 +124,7 @@ public class UpdateUI {
 			public void keyReleased(KeyEvent e) {
 				if(txtPhoneNo_Private.getText().length() > 0)
 				{				
-					GlobalUI.checkIfInt(txtPhoneNo_Private);				
+					GlobalUI.checkIfLong(txtPhoneNo_Private);				
 				}
 			}
 			public void keyPressed(KeyEvent e) {
